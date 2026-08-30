@@ -2,6 +2,8 @@
   'use strict';
 
   const CANONICAL_STUDENT_ID_MAP = Object.freeze({
+    CY2223: 'CY0002',
+    CY5305: 'CY0012',
     CY9657: 'CY0005',
     CY1006: 'CY0006',
     CY1003: 'CY0003',
@@ -9,7 +11,11 @@
     CY1007: 'CY0017',
     CY1008: 'CY0011',
     CY1009: 'CY0012',
-    CY1010: 'CY0014'
+    CY1010: 'CY0014',
+    CY1019: 'CY0004',
+    CY5678: 'CY0016',
+    CY8868: 'CY0015',
+    ET2322: 'CY0000'
   });
 
   const CANONICAL_STUDENT_NAME_MAP = Object.freeze({

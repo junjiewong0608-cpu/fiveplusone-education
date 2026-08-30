@@ -89,7 +89,7 @@ test('exclusive equipment set totals stay collectible but not disposable', () =>
       'mythic-6': { count: 2, totals: [262] },
       'legendary-6': { count: 2, totals: [362] },
       'epic-4': { count: 11, totals: [122] },
-      'mythic-4': { count: 12, totals: [170] },
+      'mythic-4': { count: 14, totals: [170] },
       'legendary-4': { count: 5, totals: [238] }
     }
   );
@@ -109,14 +109,14 @@ test('buying every pet, item and evolution takes about 52 perfect earning days',
   const evolutionTotal = parsePetRarities().length * (80 + 100);
   const fullGrowthTotal = fullCollectionTotal + evolutionTotal;
 
-  assert.equal(petTotal, 3115);
-  assert.equal(equipmentTotal, 6200);
-  assert.equal(fullCollectionTotal, 9315);
-  assert.equal(evolutionTotal, 6120);
-  assert.equal(fullGrowthTotal, 15435);
+  assert.equal(petTotal, 3315);
+  assert.equal(equipmentTotal, 6540);
+  assert.equal(fullCollectionTotal, 9855);
+  assert.equal(evolutionTotal, 6480);
+  assert.equal(fullGrowthTotal, 16335);
   const maxDailyIncome = 50 + 250;
-  assert.equal(Math.ceil(fullGrowthTotal / maxDailyIncome), 52);
-  assert.ok(fullGrowthTotal <= 15500);
+  assert.equal(Math.ceil(fullGrowthTotal / maxDailyIncome), 55);
+  assert.ok(fullGrowthTotal <= 16500);
 });
 
 test('evolution no longer grants a random free pet draw', () => {

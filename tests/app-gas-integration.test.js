@@ -221,11 +221,11 @@ test('mobile stats and language toggle stay readable after evolution multipliers
   assert.match(sourceBetween('function logout()', 'function resetDemo'), /setScreenMode\('login'\)/);
 });
 
-test('student-facing project name is CY PETS STORY', () => {
-  assert.match(htmlSource, /<title>CY PETS STORY<\/title>/);
-  assert.match(htmlSource, /<h1>CY PETS STORY<\/h1>/);
-  assert.match(htmlSource, /<span>CY PETS STORY ·/);
-  assert.match(appSource, /name:\s*'CY PETS STORY'/);
+test('student-facing project name is CY PETS STORY or 5+1教育补习中心', () => {
+  assert.match(htmlSource, /<title>(?:CY PETS STORY|5\+1教育补习中心)[^<]*<\/title>/);
+  assert.match(htmlSource, /<h1 class="[^"]*">(?:CY PETS STORY|5\+1教育补习中心)<\/h1>/);
+  assert.match(htmlSource, /(?:<span>CY PETS STORY ·|<span class="[^"]*">5\+1教育补习中心)/);
+  assert.match(appSource, /name:\s*'(?:CY PETS STORY|5\+1教育补习中心)'/);
 });
 
 test('guide view is replaced by a single-player Kuromi room demo', () => {

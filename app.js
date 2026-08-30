@@ -17,18 +17,20 @@
     enforceHolidayWindow: false,
     backendMode: 'supabase',
     backendUrl: '',
-    supabaseFunctionUrl: savedSupabaseUrl || 'https://txepbxugalmkrwiorwpj.supabase.co/functions/v1/cy-pets-api',
-    supabaseAnonKey: savedSupabaseKey || 'sb_publishable__Q1nRbRAg29h_30Ti9MMPw_jmwo1feu',
+    supabaseFunctionUrl: 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api',
+    supabaseAnonKey: 'YOUR_PUBLIC_FUNCTION_KEY',
     supabaseRequestTimeoutMs: 35000,
     interactionRoomApiUrl: '/api/redis-room',
     interactionRoomRequestTimeoutMs: 8000,
     requestRetryCount: 4,
     requestRetryDelayMs: 650
   };
+  if (savedSupabaseUrl) APP_CONFIG.supabaseFunctionUrl = savedSupabaseUrl;
+  if (savedSupabaseKey) APP_CONFIG.supabaseAnonKey = savedSupabaseKey;
   const DEFAULT_APP_VIEW = 'dashboard-view';
   const APP_ASSET_VERSION = '20260831-01';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
-  const TEACHER_REWARD_ADMIN_IDS = new Set(['TCH01_JIE', 'TCH02_RACHEL', '510000', '510001', 'FO0000', 'FO0001', 'CY0000', 'CY0001']);
+  const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
   const KUROMI_ROOM_EMOJI_REACTIONS = ['😊', '😄', '😂', '😍', '😎', '🥳', '😮', '😋', '🤩', '😴'];
   const NEW_PLAYER_GUIDE_TYPE_SPEED_MS = 16;
@@ -1294,6 +1296,7 @@
   const NEW_PLAYER_GUIDE_GREETING_PET_IDS = new Set(['sunny-wing', 'sprouty', 'hydroblob', 'fluffbit']);
   const TRANSLATIONS = {
     en: {
+      'CY PETS STORY': 'CY PETS STORY',
       '语言选择': 'Language',
       '学习背景音乐': 'Learning background music',
       '5+1教育补习中心': '5+1 Tuition Center',
@@ -2250,7 +2253,7 @@
       title: '老师，新歌上线啦！',
       titleEn: 'Teacher, new songs are live!',
       copyEn: student => `${getNewPlayerGuidePetName(student)} is here with a quick update: the Music Box has new songs from BLACKPINK, BIGBANG, BTS, IVE, SEVENTEEN, Stray Kids, TWICE and Hachimi.`,
-      copy: student => `${getNewPlayerGuidePetName(student)}来通知老师：音乐盒已经加入 BLACKPINK、BIGBANG、BTS、IVE、SEVENTEEN、Stray Kids、TWICE、Hachimi 的新歌啦！`
+      copy: student => `${getNewPlayerGuidePetName(student)}来通知老师：音乐盒已经加入 BLACKPINK、BTS、IVE、SEVENTEEN、Stray Kids、TWICE、Hachimi 的新歌啦！`
     },
     {
       id: 'teacher-music-box',
@@ -2319,7 +2322,7 @@
   };
 
   const PET_CATALOG = [
-    { id: 'sunny-wing', name: 'Sunny Wing', rarity: 'A', icon: '🪽', image: 'assets/roles/sunny-wing-a.png', evolvedImage: 'assets/roles/evolved/sunny-wing.png', cuteEvolvedImage: 'assets/roles/cute-evolved/sunny-wing.png', skillAssets: { before: 'assets/roles/sunny wing /前.png', after: 'assets/roles/sunny wing /后.png' }, baseStats: { hp: 105, attack: 12, defense: 10, speed: 12, luck: 14 } },
+    { id: 'sunny-wing', name: 'Sunny Wing', rarity: 'A', icon: '🪽', image: 'assets/roles/sunny-wing-a.png', evolvedImage: 'assets/roles/evolved/sunny-wing.png', cuteEvolvedImage: 'assets/roles/cute-evolved/sunny-wing.png', skillAssets: { before: 'assets/roles/sunny wing/前.png', after: 'assets/roles/sunny wing/后.png' }, baseStats: { hp: 105, attack: 12, defense: 10, speed: 12, luck: 14 } },
     { id: 'sprouty', name: 'Sprouty', rarity: 'A', icon: '🌱', image: 'assets/roles/sprouty-a.png', evolvedImage: 'assets/roles/evolved/sprouty.png', cuteEvolvedImage: 'assets/roles/cute-evolved/sprouty.png', skillAssets: { before: 'assets/roles/sprouty/前.png', after: 'assets/roles/sprouty/后.png' }, baseStats: { hp: 180, attack: 10, defense: 55, speed: 4, luck: 12 } },
     { id: 'hydroblob', name: 'Hydroblob', rarity: 'A', icon: '💧', image: 'assets/roles/hydroblob-a.png', evolvedImage: 'assets/roles/evolved/hydroblob.png', cuteEvolvedImage: 'assets/roles/cute-evolved/hydroblob.png', skillAssets: { before: 'assets/roles/hydroblob/前.png', after: 'assets/roles/hydroblob/后.png' }, baseStats: { hp: 105, attack: 10, defense: 12, speed: 8, luck: 12 } },
     { id: 'fluffbit', name: 'Fluffbit', rarity: 'A', icon: '🐾', image: 'assets/roles/fluffbit-a.png', evolvedImage: 'assets/roles/evolved/fluffbit.png', cuteEvolvedImage: 'assets/roles/cute-evolved/fluffbit.png', skillAssets: { before: 'assets/roles/fluffbit/前.png', after: 'assets/roles/fluffbit/后.png' }, baseStats: { hp: 96, attack: 11, defense: 9, speed: 12, luck: 14 } },

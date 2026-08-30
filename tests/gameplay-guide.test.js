@@ -92,7 +92,7 @@ const newRoomMapSets = [
   },
   {
     id: 'cy-school',
-    name: '诚意校园',
+    name: '5+1 智慧校园',
     backgroundMode: 'single-screen',
     maps: [
       'assets/room-demo/map-school-gate.png',

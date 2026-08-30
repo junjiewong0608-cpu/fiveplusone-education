@@ -7,7 +7,7 @@ const projectRoot = path.resolve(__dirname, '..');
 const appSource = fs.readFileSync(path.join(projectRoot, 'app.js'), 'utf8');
 
 const roleSkillFolders = {
-  'sunny-wing': 'sunny wing ',
+  'sunny-wing': 'sunny wing',
   sprouty: 'sprouty',
   hydroblob: 'hydroblob',
   fluffbit: 'fluffbit',

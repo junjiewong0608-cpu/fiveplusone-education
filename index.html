@@ -86,14 +86,19 @@
         <!-- Student Legacy ID Login Form (Compatibility) -->
         <form id="login-form" class="login-form hidden" hidden aria-hidden="true">
           <label for="student-id">学生 ID (兼容旧版)</label>
-          <input id="student-id" name="studentId" autocomplete="off" placeholder="例如 CY1001" maxlength="20" />
+          <input id="student-id" name="studentId" autocomplete="off" placeholder="请输入老师给你的 ID" maxlength="20" />
           <button class="primary-button full-width" type="submit">以 ID 登录</button>
         </form>
 
-        <div class="demo-login">
+        <div class="quick-demo-login">
           <span>演示快速体验：</span>
           <button type="button" class="text-button demo-phone-btn" data-demo-phone="60123456789">Form 2 体验生</button>
           <button type="button" class="text-button demo-phone-btn" data-demo-phone="60198765432">Form 3 体验生</button>
+        </div>
+
+        <div class="demo-login hidden" hidden aria-hidden="true">
+          <button id="free-demo-button" type="button" class="text-button hidden" hidden>自由搭配 Demo</button>
+          <button id="teacher-entry-button" type="button" class="text-button hidden" hidden>老师入口</button>
           <button id="show-login-form-button" type="button" class="text-button hidden" hidden>已有 ID 登录</button>
         </div>
       </div>
@@ -206,6 +211,76 @@
 
       <!-- 2. Students Management -->
       <section id="tab-students" class="teacher-tab-content hidden">
+        <section class="teacher-import-panel panel-card" data-admin-teacher-only>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">BULK IMPORT</p>
+              <h3>批量导入学生名单</h3>
+              <p class="muted-text">格式：学生ID, 姓名, 分行, 班级, 负责老师 ID</p>
+            </div>
+            <div class="button-group">
+              <button type="button" class="secondary-button" data-teacher-import-template>下载范本</button>
+              <button type="button" class="secondary-button" data-teacher-import-preview>预览数据</button>
+              <button type="button" class="primary-button" data-teacher-import-submit>确认导入</button>
+            </div>
+          </div>
+          <div class="form-grid compact-grid">
+            <label>
+              <span>默认分行</span>
+              <input id="teacher-import-default-branch" type="text" value="5+1 智慧总院" />
+            </label>
+            <label>
+              <span>默认班级</span>
+              <input id="teacher-import-default-class" type="text" value="Form 2" />
+            </label>
+            <label>
+              <span>默认负责老师 ID</span>
+              <input id="teacher-import-default-teacher" type="text" value="TCH01_JIE" />
+            </label>
+            <label class="file-upload-button">
+              <span>选择 CSV 文件</span>
+              <input id="teacher-import-file" type="file" accept=".csv,text/csv,text/plain" hidden />
+            </label>
+          </div>
+          <textarea id="teacher-import-textarea" class="teacher-import-textarea" placeholder="每行一位学生：ID, 姓名, 分行, 班级, 负责老师 ID" rows="4"></textarea>
+          <div id="teacher-import-preview" class="teacher-import-preview hidden"></div>
+        </section>
+
+        <section class="teacher-panel panel-card">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">CLASSROOM REWARDS</p>
+              <h3>根据课堂表现奖励金币</h3>
+              <p class="muted-text">学生每日最多 250，CY0000/CY0001 可给老师账号无上限</p>
+            </div>
+          </div>
+          <div class="teacher-filter-bar">
+            <label>
+              <span>老师 ID</span>
+              <input id="teacher-id-input" type="text" value="TCH01_JIE" />
+            </label>
+            <label>
+              <span>班级</span>
+              <select id="teacher-class-select">
+                <option value="">全部班级</option>
+              </select>
+            </label>
+            <button id="teacher-refresh-button" type="button" class="secondary-button compact-button">刷新班级</button>
+          </div>
+          <div class="teacher-reward-shortcuts">
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="2">+2</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="4">+4</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="6">+6</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="8">+8</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="10">+10</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="20">+20</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="50">+50</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="100">+100</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="250">+250</button>
+            <button type="button" class="secondary-button compact-button" data-teacher-reward="1000">+1000</button>
+          </div>
+        </section>
+
         <section class="panel-card">
           <div class="panel-heading">
             <div><p class="eyebrow">STUDENT ROSTER</p><h3>学生档案与账号管理</h3><p class="muted-text">学生手机号属于私密数据，仅授权教师可见。普通学生端不公开手机号码。</p></div>
@@ -460,14 +535,17 @@
   <section id="app-screen" class="screen app-screen hidden">
     <header class="topbar eduverse-topbar">
       <div class="app-logo-lockup">
-        <img class="app-header-logo" src="assets/brand/center-logo.png?v=20260831-01" alt="5+1教育补习中心" />
+        <img class="app-header-logo" src="assets/brand/center-logo.png" alt="5+1教育补习中心" />
         <span class="eduverse-header-title">5+1教育补习中心</span>
       </div>
       <div class="topbar-actions">
         <button id="sound-toggle-btn" type="button" class="icon-button sound-toggle-button" aria-label="音效开关" title="音效开关">🔊</button>
         <button id="teacher-mode-button" type="button" class="secondary-button teacher-mode-button hidden" hidden>🧑‍🏫 教师端</button>
         <div class="student-chip">
-          <span id="student-chip-avatar">🌟</span>
+          <label class="avatar-upload-control" title="更换头像">
+            <input type="file" id="student-avatar-upload" accept="image/*" class="sr-only" />
+            <span id="student-chip-avatar">🌟</span>
+          </label>
           <div class="student-chip-info">
             <span id="student-chip-name">学生</span>
             <span id="student-chip-form" class="student-form-pill">Form 2</span>
@@ -486,7 +564,8 @@
         <button type="button" class="nav-button" data-view="duel-view">⚔️ 好友巅峰决斗</button>
         <button type="button" class="nav-button" data-view="leaderboard-view">🏆 全校荣耀榜</button>
         <button type="button" class="nav-button" data-view="achievements-view">👑 成就殿堂</button>
-        <button type="button" class="nav-button" data-view="home-view">🐾 我的宠物</button>
+        <button type="button" class="nav-button" data-view="home-view" data-onboarding-target="nav-pets">🐾 我的宠物</button>
+        <button type="button" class="nav-button" data-view="guide-view">互动区</button>
         <button type="button" class="nav-button" data-view="shop-view">🛍️ 宠物商店</button>
         <button type="button" class="nav-button" data-view="wall-view">💬 留言墙</button>
         <button type="button" class="nav-button" data-view="friends-view">👥 好友</button>
@@ -1204,6 +1283,14 @@
       </section>
 
       <section id="home-view" class="view">
+        <header class="story-title-banner">
+          <img src="assets/brand/cy-pets-story-integrated-title-banner-imagen.png" alt="CY PETS STORY" />
+          <div class="story-title-banner-copy">
+            <h2>CY PETS STORY</h2>
+            <p>5+1 学习乐园</p>
+          </div>
+        </header>
+
         <div class="home-top-panels" aria-label="学习快捷信息">
           <article class="stats-card panel-card">
             <div class="panel-heading compact"><h3>我的学习能量</h3><span class="mini-icon">⚡</span></div>
@@ -1701,6 +1788,22 @@
       <h2 id="registration-success-title">注册成功！</h2>
       <p class="muted-text">请牢记你的学生 ID：<strong id="registration-success-id">CY0000</strong></p>
       <button type="button" class="primary-button action-glow-button full-width" data-registration-success-continue>进入学习世界 🚀</button>
+    </div>
+  </div>
+
+  <!-- Avatar Crop Modal -->
+  <div id="avatar-crop-overlay" class="modal-backdrop hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="avatar-crop-title">
+    <div class="modal-card avatar-crop-modal">
+      <h3 id="avatar-crop-title">裁剪头像</h3>
+      <canvas id="avatar-crop-canvas" width="280" height="280"></canvas>
+      <div class="avatar-crop-controls">
+        <label for="avatar-crop-zoom">缩放</label>
+        <input type="range" id="avatar-crop-zoom" min="1" max="3" step="0.1" value="1" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="secondary-button" data-avatar-crop-cancel>取消</button>
+        <button type="button" class="primary-button" data-avatar-crop-save>保存头像</button>
+      </div>
     </div>
   </div>
 
