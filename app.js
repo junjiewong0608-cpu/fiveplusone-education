@@ -487,7 +487,7 @@
       },
       {
         id: 'cy-school',
-        name: '诚意校园',
+        name: '5+1 智慧校园',
         subtitle: '校门、走廊、课室、食堂、礼堂、操场',
         previewSrc: 'assets/room-demo/map-school-gate.png',
         backgroundMode: 'single-screen',
@@ -495,7 +495,7 @@
           {
             id: 'school-gate',
             shortTitle: '校门',
-            title: '诚意校门',
+            title: '5+1 智慧校门',
             subtitle: '向右去走廊，向左去操场',
             backgroundSrc: 'assets/room-demo/map-school-gate.png',
             groundY: 476,
@@ -1101,11 +1101,11 @@
     { id: 'super', label: '超大', title: '超大只', subtitle: '彩蛋主角尺寸', scale: INTERACTION_ROOM_SUPER_SIZE_SCALE }
   ];
   const PERMANENT_INTERACTION_ROOM_FALLBACKS = [
-    { roomId: 'MKPRIMARY', roomName: 'Demo Branch A', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'paris-trip', memberLimit: 30, isPermanent: true },
-    { roomId: 'STPPRIMARY', roomName: 'Demo Branch B', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'xian-trip', memberLimit: 30, isPermanent: true },
-    { roomId: 'CYMEET2026', roomName: 'Demo Meeting Room', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'cy-school', memberLimit: 30, isPermanent: true },
-    { roomId: 'WSPRIMARY', roomName: 'Demo Branch C', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'uk-trip', memberLimit: 30, isPermanent: true },
-    { roomId: 'LEARNERS2026', roomName: "Demo Learners Club", ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'beijing-trip', memberLimit: 30, isPermanent: true }
+    { roomId: 'MKPRIMARY', roomName: '5+1 智慧总院', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'paris-trip', memberLimit: 30, isPermanent: true },
+    { roomId: 'STPPRIMARY', roomName: '5+1 旗舰校区', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'xian-trip', memberLimit: 30, isPermanent: true },
+    { roomId: 'CYMEET2026', roomName: '5+1 教师研讨室', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'cy-school', memberLimit: 30, isPermanent: true },
+    { roomId: 'WSPRIMARY', roomName: '5+1 菁英校区', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'uk-trip', memberLimit: 30, isPermanent: true },
+    { roomId: 'LEARNERS2026', roomName: "5+1 荣耀研习社", ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'beijing-trip', memberLimit: 30, isPermanent: true }
   ];
   const INTERACTION_ROOM_FLY_HEIGHT_RATIO = 0.75;
   const INTERACTION_ROOM_MAX_FLOAT_OFFSET = 320;
@@ -1267,9 +1267,9 @@
       '童年回忆守护者 (Childhood Memory Guardian)'
     ],
     'cy-original': [
-      'CY PETS STORY Champion (宠物图鉴王)',
+      '5+1 宠物图鉴王 (5+1 Pets Champion)',
       'Bit Pets Explorer (像素伙伴探险家)',
-      '假期宠物守护者 (Holiday Pet Guardian)'
+      '5+1 专属学习守护者 (5+1 Learning Guardian)'
     ]
   };
 
@@ -1690,7 +1690,7 @@
       '💬 预设留言': '💬 Preset Comments',
       '发布留言': 'Post Message',
       '选择要发布的话': 'Choose A Post Message',
-      'CY PETS STORY · 系统原型版': 'CY PETS STORY · Prototype',
+      '5+1教育补习中心 · 专属学习世界': '5+1 Tuition Center · Learning World',
       '关闭弹窗': 'Close Popup',
       '关闭': 'Close',
       '选择你的 A 级初始宠物': 'Choose Your A-Rank Starter Pet',
