@@ -7724,6 +7724,17 @@ button[aria-disabled="true"] {
   margin-bottom: 24px;
 }
 
+.teacher-quick-actions-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.teacher-quick-actions-bar button {
+  width: 100%;
+  min-height: 48px;
+}
+
 .kpi-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;

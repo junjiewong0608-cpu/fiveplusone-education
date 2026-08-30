@@ -2,13 +2,6 @@
   'use strict';
 
   // ===== 后续可修改的系统设置 =====
-  const savedSupabaseUrl = (() => {
-    try { return localStorage.getItem('fo_supabase_url') || ''; } catch { return ''; }
-  })();
-  const savedSupabaseKey = (() => {
-    try { return localStorage.getItem('fo_supabase_anon_key') || ''; } catch { return ''; }
-  })();
-
   const APP_CONFIG = {
     name: '5+1教育补习中心',
     holidayStart: '2026-08-01',
@@ -17,18 +10,16 @@
     enforceHolidayWindow: false,
     backendMode: 'supabase',
     backendUrl: '',
-    supabaseFunctionUrl: 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api',
-    supabaseAnonKey: 'YOUR_PUBLIC_FUNCTION_KEY',
+    supabaseFunctionUrl: 'https://txepbxugalmkrwiorwpj.supabase.co/functions/v1/cy-pets-api',
+    supabaseAnonKey: 'sb_publishable__Q1nRbRAg29h_30Ti9MMPw_jmwo1feu',
     supabaseRequestTimeoutMs: 35000,
     interactionRoomApiUrl: '/api/redis-room',
     interactionRoomRequestTimeoutMs: 8000,
     requestRetryCount: 4,
     requestRetryDelayMs: 650
   };
-  if (savedSupabaseUrl) APP_CONFIG.supabaseFunctionUrl = savedSupabaseUrl;
-  if (savedSupabaseKey) APP_CONFIG.supabaseAnonKey = savedSupabaseKey;
   const DEFAULT_APP_VIEW = 'dashboard-view';
-  const APP_ASSET_VERSION = '20260831-01';
+  const APP_ASSET_VERSION = '20260831-03';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
   const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
@@ -19281,12 +19272,13 @@
     const teacherScreen = document.getElementById('teacher-screen');
     if (teacherScreen) {
       teacherScreen.classList.remove('hidden');
+      setScreenMode('teacher');
       const statusLabel = document.getElementById('teacher-current-status-label');
       if (statusLabel && currentTeacher) {
         statusLabel.textContent = `教师：${currentTeacher.name} (${currentTeacher.teacherId})`;
       }
       renderTeacherDashboard();
-      window.location.hash = '#/teacher/dashboard';
+      if (!window.location.hash.startsWith('#/teacher/')) window.location.hash = '#/teacher/dashboard';
     }
   }
 
@@ -19296,81 +19288,6 @@
     renderTeacherQuestionsTable();
     renderTeacherClassesTable();
     renderGoogleSheetSyncStatus();
-    renderSupabaseConfigPanel();
-  }
-
-  function renderSupabaseConfigPanel() {
-    const urlInput = document.getElementById('supabase-url-input');
-    const keyInput = document.getElementById('supabase-key-input');
-    const msgEl = document.getElementById('supabase-status-message');
-    const btn = document.getElementById('test-supabase-btn');
-    if (!urlInput || !keyInput || !msgEl) return;
-
-    if (!urlInput.value) {
-      urlInput.value = APP_CONFIG.supabaseFunctionUrl.includes('YOUR_SUPABASE_PROJECT_REF') ? '' : APP_CONFIG.supabaseFunctionUrl;
-    }
-    if (!keyInput.value) {
-      keyInput.value = APP_CONFIG.supabaseAnonKey.includes('YOUR_PUBLIC_FUNCTION_KEY') ? '' : APP_CONFIG.supabaseAnonKey;
-    }
-
-    const isConnected = APP_CONFIG.supabaseFunctionUrl && !APP_CONFIG.supabaseFunctionUrl.includes('YOUR_SUPABASE_PROJECT_REF') && APP_CONFIG.supabaseAnonKey && !APP_CONFIG.supabaseAnonKey.includes('YOUR_PUBLIC_FUNCTION_KEY');
-    if (isConnected) {
-      msgEl.style.color = '#15803d';
-      msgEl.style.background = '#f0fdf4';
-      msgEl.style.borderColor = '#bbf7d0';
-      msgEl.innerHTML = '🟢 <strong>已连接 Supabase 云端数据库</strong> · 当前系统处于实时云端同步模式。';
-    }
-
-    if (btn && !btn._supabaseConfigBound) {
-      btn._supabaseConfigBound = true;
-      btn.addEventListener('click', async () => {
-        const inputUrl = (urlInput.value || '').trim();
-        const inputKey = (keyInput.value || '').trim();
-        if (!inputUrl || !inputKey) {
-          msgEl.style.color = '#b91c1c';
-          msgEl.style.background = '#fef2f2';
-          msgEl.style.borderColor = '#fecaca';
-          msgEl.innerHTML = '⚠️ 请先输入完整的 Supabase Function URL 与 Anon Key。';
-          return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = '⏳ 正在测试连接...';
-        msgEl.innerHTML = '⏳ 正在发起 Supabase 云端握手测试...';
-
-        try {
-          APP_CONFIG.supabaseFunctionUrl = inputUrl;
-          APP_CONFIG.supabaseAnonKey = inputKey;
-          try {
-            localStorage.setItem('fo_supabase_url', inputUrl);
-            localStorage.setItem('fo_supabase_anon_key', inputKey);
-          } catch {}
-
-          const testRes = await backend.requestSupabase('warmup', {});
-          btn.disabled = false;
-          btn.textContent = '⚡ 测试连接并保存';
-          if (testRes && (testRes.ok || testRes.source || testRes.serverTime)) {
-            msgEl.style.color = '#15803d';
-            msgEl.style.background = '#f0fdf4';
-            msgEl.style.borderColor = '#bbf7d0';
-            msgEl.innerHTML = '🎉 <strong>Supabase 云端握手成功！</strong>已为您成功保存并立即生效实时云端存储。';
-            showToast('Supabase 云端数据库连接成功！');
-          } else {
-            msgEl.style.color = '#b91c1c';
-            msgEl.style.background = '#fef2f2';
-            msgEl.style.borderColor = '#fecaca';
-            msgEl.innerHTML = `⚠️ 连接返回异常：${testRes?.error || '请检查 Function URL 是否正确部署并开启 CORS。'}`;
-          }
-        } catch (err) {
-          btn.disabled = false;
-          btn.textContent = '⚡ 测试连接并保存';
-          msgEl.style.color = '#b91c1c';
-          msgEl.style.background = '#fef2f2';
-          msgEl.style.borderColor = '#fecaca';
-          msgEl.innerHTML = `⚠️ 连接失败：${err.message || '网络请求错误，请核对 Supabase URL 与 Anon Key。'}`;
-        }
-      });
-    }
   }
 
   function renderTeacherSubjectBars() {
@@ -21000,6 +20917,12 @@
           c.classList.toggle('active', c.id === targetId);
         });
         window.location.hash = `#/teacher/${targetId.replace('tab-', '')}`;
+      });
+    });
+
+    document.querySelectorAll('[data-teacher-jump]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelector(`.teacher-nav-tab[data-teacher-tab="${button.dataset.teacherJump}"]`)?.click();
       });
     });
 

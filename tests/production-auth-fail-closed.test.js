@@ -62,3 +62,18 @@ test('Edge student phone auth does not swallow database errors or create mock lo
   assert.doesNotMatch(authSource, /const mockStudent/);
   assert.match(authSource, /找不到这个手机号对应的学生账号/);
 });
+
+test('Teacher dashboard keeps infrastructure hidden and quick actions wired', () => {
+  const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  const app = fs.readFileSync(path.join(__dirname, '../app.js'), 'utf8');
+  const styles = fs.readFileSync(path.join(__dirname, '../styles.css'), 'utf8');
+  const dashboard = html.slice(html.indexOf('id="tab-dashboard"'), html.indexOf('<!-- 2. Students Management -->'));
+
+  assert.doesNotMatch(dashboard, /supabase-(?:url|key)-input|SUPABASE CLOUD DATABASE/);
+  assert.doesNotMatch(app, /fo_supabase_(?:url|anon_key)/);
+  assert.match(dashboard, /teacher-quick-actions-bar[\s\S]*<\/section>\s*<\/section>\s*$/);
+  assert.match(app, /querySelectorAll\('\[data-teacher-jump\]'\)/);
+  assert.match(app, /setScreenMode\('teacher'\)/);
+  assert.match(app, /if \(!window\.location\.hash\.startsWith\('#\/teacher\/'\)\) window\.location\.hash = '#\/teacher\/dashboard'/);
+  assert.match(styles, /\.teacher-quick-actions-bar\s*\{[\s\S]*grid-template-columns/);
+});
