@@ -248,7 +248,13 @@
 
   function isSupabaseMode(config = {}) {
     const mode = getBackendMode(config);
-    return (mode === 'supabase' || mode === 'hybrid') && Boolean(config.supabaseFunctionUrl) && Boolean(config.supabaseAnonKey);
+    const functionUrl = String(config.supabaseFunctionUrl || '').trim();
+    const anonKey = String(config.supabaseAnonKey || '').trim();
+    return (mode === 'supabase' || mode === 'hybrid')
+      && Boolean(functionUrl)
+      && Boolean(anonKey)
+      && !functionUrl.includes('YOUR_SUPABASE_PROJECT_REF')
+      && !anonKey.includes('YOUR_PUBLIC_FUNCTION_KEY');
   }
 
   function hasRemoteBackend(config = {}) {
@@ -790,9 +796,11 @@
         return requestSupabase('listTeachers', {});
       },
       async teacherLogin(payload = {}) {
-        if (isSupabaseMode(config)) {
-          const res = await requestSupabase('teacherLogin', payload);
-          if (res.ok) return res;
+        if (getBackendMode(config) !== 'local') {
+          if (!isSupabaseMode(config)) {
+            return { ok: false, errorCode: 'SUPABASE_NOT_CONFIGURED', error: 'Supabase 后端尚未配置。' };
+          }
+          return requestSupabase('teacherLogin', payload);
         }
         const teacherId = payload.teacherId || 'TCH01_JIE';
         const teacherNames = {
@@ -828,9 +836,11 @@
         return requestSupabase('getTeacherProfile', { teacherId });
       },
       async registerStudentPhone(payload = {}) {
-        if (isSupabaseMode(config)) {
-          const res = await requestSupabase('registerStudentPhone', payload);
-          if (res.ok) return res;
+        if (getBackendMode(config) !== 'local') {
+          if (!isSupabaseMode(config)) {
+            return { ok: false, errorCode: 'SUPABASE_NOT_CONFIGURED', error: 'Supabase 后端尚未配置。' };
+          }
+          return requestSupabase('registerStudentPhone', payload);
         }
         const studentId = '51' + String(payload.phone || '1001').slice(-4);
         return {
@@ -852,9 +862,11 @@
         };
       },
       async loginStudentPhone(payload = {}) {
-        if (isSupabaseMode(config)) {
-          const res = await requestSupabase('loginStudentPhone', payload);
-          if (res.ok) return res;
+        if (getBackendMode(config) !== 'local') {
+          if (!isSupabaseMode(config)) {
+            return { ok: false, errorCode: 'SUPABASE_NOT_CONFIGURED', error: 'Supabase 后端尚未配置。' };
+          }
+          return requestSupabase('loginStudentPhone', payload);
         }
         const isF3 = String(payload.phone || '').includes('9876');
         const studentId = isF3 ? '511002' : '511001';

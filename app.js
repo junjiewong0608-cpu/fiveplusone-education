@@ -17,8 +17,8 @@
     enforceHolidayWindow: false,
     backendMode: 'supabase',
     backendUrl: '',
-    supabaseFunctionUrl: savedSupabaseUrl || 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api',
-    supabaseAnonKey: savedSupabaseKey || 'YOUR_PUBLIC_FUNCTION_KEY',
+    supabaseFunctionUrl: savedSupabaseUrl || 'https://txepbxugalmkrwiorwpj.supabase.co/functions/v1/cy-pets-api',
+    supabaseAnonKey: savedSupabaseKey || 'sb_publishable__Q1nRbRAg29h_30Ti9MMPw_jmwo1feu',
     supabaseRequestTimeoutMs: 35000,
     interactionRoomApiUrl: '/api/redis-room',
     interactionRoomRequestTimeoutMs: 8000,
@@ -18007,6 +18007,7 @@
 
   // ===== 云端后端接口 =====
   const backend = HolidayBackendClient.createClient(APP_CONFIG);
+  const backendClient = backend;
   let backendWarmupStarted = false;
 
   function warmProductionBackend() {
@@ -18042,13 +18043,12 @@
     withButtonLoading(button, () => registerStudentFromForm(event.currentTarget), '注册中');
   });
   $('#show-login-form-button')?.addEventListener('click', () => switchLoginFormMode('login'));
-  $('#show-register-form-button')?.addEventListener('click', () => switchLoginFormMode('register'));
-  $('#free-demo-button').addEventListener('click', startFreeDemo);
-  $('#teacher-entry-button').addEventListener('click', enterTeacherMode);
+  $('#free-demo-button')?.addEventListener('click', startFreeDemo);
+  $('#teacher-entry-button')?.addEventListener('click', enterTeacherMode);
   $('#teacher-mode-button')?.addEventListener('click', () => enterTeacherMode(session.studentId));
   $('#teacher-logout-button').addEventListener('click', exitTeacherMode);
-  $('#teacher-refresh-button').addEventListener('click', loadTeacherClasses);
-  $('#teacher-class-select').addEventListener('change', event => {
+  $('#teacher-refresh-button')?.addEventListener('click', loadTeacherClasses);
+  $('#teacher-class-select')?.addEventListener('change', event => {
     teacherState.classId = event.target.value;
     loadTeacherClassStudents();
   });
@@ -18062,7 +18062,7 @@
   });
   $('#logout-button').addEventListener('click', logout);
   $('#reset-demo-button')?.addEventListener('click', resetDemo);
-  $('#teacher-select-all').addEventListener('change', event => {
+  $('#teacher-select-all')?.addEventListener('change', event => {
     $all('[data-teacher-student]').forEach(input => { input.checked = event.target.checked; });
   });
   $('#pet-name-input').addEventListener('input', updateAdoptionConfirmState);
@@ -19224,7 +19224,6 @@
     const pwdInput = document.getElementById('teacher-password-input');
     if (pwdInput) {
       pwdInput.focus();
-      if (!pwdInput.value) pwdInput.value = '5+1tuition';
     }
   }
 
@@ -20859,6 +20858,13 @@
 
   // Event Listeners for EduVerse Auth & Navigation
   document.addEventListener('DOMContentLoaded', () => {
+    const setAuthElementVisible = (elementId, visible) => {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+      element.hidden = !visible;
+      element.setAttribute('aria-hidden', String(!visible));
+      element.classList.toggle('hidden', !visible);
+    };
     renderTeacherQuickGrid();
     handleHashRoute();
 
@@ -20871,15 +20877,15 @@
     document.getElementById('auth-tab-student')?.addEventListener('click', () => {
       document.getElementById('auth-tab-student')?.classList.add('active');
       document.getElementById('auth-tab-teacher')?.classList.remove('active');
-      document.getElementById('student-auth-panel')?.classList.remove('hidden');
-      document.getElementById('teacher-auth-panel')?.classList.add('hidden');
+      setAuthElementVisible('student-auth-panel', true);
+      setAuthElementVisible('teacher-auth-panel', false);
     });
 
     document.getElementById('auth-tab-teacher')?.addEventListener('click', () => {
       document.getElementById('auth-tab-teacher')?.classList.add('active');
       document.getElementById('auth-tab-student')?.classList.remove('active');
-      document.getElementById('teacher-auth-panel')?.classList.remove('hidden');
-      document.getElementById('student-auth-panel')?.classList.add('hidden');
+      setAuthElementVisible('teacher-auth-panel', true);
+      setAuthElementVisible('student-auth-panel', false);
       if (!document.getElementById('teacher-selected-id-input')?.value) {
         selectTeacher('TCH01_JIE');
       }
@@ -20889,25 +20895,25 @@
     document.getElementById('show-phone-login-button')?.addEventListener('click', () => {
       document.querySelectorAll('.login-mode-button').forEach(b => b.classList.remove('active'));
       document.getElementById('show-phone-login-button')?.classList.add('active');
-      document.getElementById('student-phone-login-form')?.classList.remove('hidden');
-      document.getElementById('student-register-form')?.classList.add('hidden');
-      document.getElementById('login-form')?.classList.add('hidden');
+      setAuthElementVisible('student-phone-login-form', true);
+      setAuthElementVisible('student-register-form', false);
+      setAuthElementVisible('login-form', false);
     });
 
     document.getElementById('show-register-form-button')?.addEventListener('click', () => {
       document.querySelectorAll('.login-mode-button').forEach(b => b.classList.remove('active'));
       document.getElementById('show-register-form-button')?.classList.add('active');
-      document.getElementById('student-register-form')?.classList.remove('hidden');
-      document.getElementById('student-phone-login-form')?.classList.add('hidden');
-      document.getElementById('login-form')?.classList.add('hidden');
+      setAuthElementVisible('student-register-form', true);
+      setAuthElementVisible('student-phone-login-form', false);
+      setAuthElementVisible('login-form', false);
     });
 
     document.getElementById('show-legacy-login-button')?.addEventListener('click', () => {
       document.querySelectorAll('.login-mode-button').forEach(b => b.classList.remove('active'));
       document.getElementById('show-legacy-login-button')?.classList.add('active');
-      document.getElementById('login-form')?.classList.remove('hidden');
-      document.getElementById('student-phone-login-form')?.classList.add('hidden');
-      document.getElementById('student-register-form')?.classList.add('hidden');
+      setAuthElementVisible('login-form', true);
+      setAuthElementVisible('student-phone-login-form', false);
+      setAuthElementVisible('student-register-form', false);
     });
 
     // Teacher quick click

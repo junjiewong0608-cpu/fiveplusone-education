@@ -2874,20 +2874,22 @@ async function getPermanentRoomOwner(preferredStudentId: string, fallbackStudent
 }
 
 async function ensurePermanentInteractionRooms(requestStudentId: string) {
-  const desiredRooms = PERMANENT_INTERACTION_ROOMS.map(config => {
-    const ownerStudentId = normalizeId(config.ownerStudentId || requestStudentId);
+  const desiredRooms = (await Promise.all(PERMANENT_INTERACTION_ROOMS.map(async config => {
+    const owner = await getPermanentRoomOwner(config.ownerStudentId, requestStudentId);
+    if (!owner) return null;
+    const ownerStudentId = owner.studentId;
     return {
       room_id: normalizeInteractionRoomId(config.roomId),
       room_name: config.roomName,
       owner_student_id: ownerStudentId,
-      owner_name: config.ownerName || getCanonicalStudentName(ownerStudentId, ownerStudentId),
+      owner_name: config.ownerName || owner.studentName,
       map_set_id: normalizeInteractionRoomMapSetId(config.mapSetId),
       member_limit: normalizeInteractionRoomMemberLimit(config.memberLimit),
       is_locked: false,
       password_code: '',
       is_permanent: true
     };
-  }).filter(room => room.room_id && room.owner_student_id);
+  }))).filter((room): room is JsonRecord => Boolean(room?.room_id && room.owner_student_id));
   if (!desiredRooms.length) return;
 
   const roomIds = desiredRooms.map(room => room.room_id);
@@ -3752,14 +3754,12 @@ async function registerStudentPhone(payload: JsonRecord = {}) {
 
   const normalizedPhone = normalizePhoneNumber(rawPhone);
 
-  try {
-    const existing = await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=student_id`, {
-      method: 'GET'
-    });
-    if (existing && (existing as JsonRecord[]).length > 0) {
-      return { ok: false, error: '该电话号码已被注册，请直接使用手机号登录。' };
-    }
-  } catch (_err) {}
+  const existing = await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=student_id`, {
+    method: 'GET'
+  });
+  if (existing && (existing as JsonRecord[]).length > 0) {
+    return { ok: false, error: '该电话号码已被注册，请直接使用手机号登录。' };
+  }
 
   const randomDigits = Math.floor(1000 + Math.random() * 9000);
   const studentId = `CY${randomDigits}`;
@@ -3806,23 +3806,21 @@ async function registerStudentPhone(payload: JsonRecord = {}) {
     status: 'active'
   };
 
-  try {
-    await supabaseRequest('students', {
-      method: 'POST',
-      body: studentRow,
-      prefer: 'resolution=merge-duplicates,return=representation'
-    });
-    await supabaseRequest('student_game_states', {
-      method: 'POST',
-      body: {
-        student_id: studentId,
-        state: initialGameState,
-        coins: 50,
-        total_stars: 0
-      },
-      prefer: 'resolution=merge-duplicates,return=minimal'
-    });
-  } catch (_err) {}
+  await supabaseRequest('students', {
+    method: 'POST',
+    body: studentRow,
+    prefer: 'resolution=merge-duplicates,return=representation'
+  });
+  await supabaseRequest('student_game_states', {
+    method: 'POST',
+    body: {
+      student_id: studentId,
+      state: initialGameState,
+      coins: 50,
+      total_stars: 0
+    },
+    prefer: 'resolution=merge-duplicates,return=minimal'
+  });
 
   return { ok: true, studentId, student: initialGameState };
 }
@@ -3837,36 +3835,17 @@ async function loginStudentPhone(payload: JsonRecord = {}) {
   const normalizedPhone = normalizePhoneNumber(rawPhone);
   const inputHash = hashPasswordSync(pin);
 
-  try {
-    const rows = (await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=*`, {
-      method: 'GET'
-    })) as JsonRecord[];
-    if (rows && rows.length > 0) {
-      const studentData = rows[0];
-      if (studentData.password_hash && studentData.password_hash !== inputHash) {
-        return { ok: false, error: 'PIN 码或密码错误。' };
-      }
-      return getStudent({ studentId: studentData.student_id });
-    }
-  } catch (_err) {}
-
-  const mockStudent = {
-    studentId: `CY${normalizedPhone.slice(-4)}`,
-    studentName: '学习伙伴',
-    phone: normalizedPhone,
-    form: 'Form 2',
-    level: 1,
-    experience: 120,
-    coins: 80,
-    totalStars: 5,
-    streak: 3,
-    lastCheckinDate: new Date().toISOString().slice(0, 10),
-    ownedPets: ['sunny-wing'],
-    equippedItems: {},
-    status: 'active'
-  };
-
-  return { ok: true, student: mockStudent };
+  const rows = (await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=*`, {
+    method: 'GET'
+  })) as JsonRecord[];
+  if (!rows || rows.length === 0) {
+    return { ok: false, error: '找不到这个手机号对应的学生账号。' };
+  }
+  const studentData = rows[0];
+  if (studentData.password_hash && studentData.password_hash !== inputHash) {
+    return { ok: false, error: 'PIN 码或密码错误。' };
+  }
+  return getStudent({ studentId: studentData.student_id });
 }
 
 async function listSubjects() {
