@@ -7,11 +7,11 @@ const PERMANENT_ROOM_LIMIT = 30;
 const MAX_CHAT_MESSAGES = 30;
 const INTERACTION_ROOM_MAP_SET_IDS = new Set(['cy-town', 'cy-bay', 'tokyo-night', 'kl-pavilion-night', 'sunset-farm', 'movie-park', 'cy-school', 'paris-trip', 'xian-trip', 'beijing-trip', 'usa-trip', 'uk-trip']);
 const PERMANENT_INTERACTION_ROOMS = [
-  { roomId: 'MKPRIMARY', roomName: 'Demo Branch A', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'paris-trip', memberLimit: 30 },
-  { roomId: 'STPPRIMARY', roomName: 'Demo Branch B', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'xian-trip', memberLimit: 30 },
-  { roomId: 'CYMEET2026', roomName: 'Demo Meeting Room', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'cy-school', memberLimit: 30 },
-  { roomId: 'WSPRIMARY', roomName: 'Demo Branch C', ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'uk-trip', memberLimit: 30 },
-  { roomId: 'LEARNERS2026', roomName: "Demo Learners Club", ownerStudentId: 'CY0000', ownerName: 'CY PETS STORY', mapSetId: 'beijing-trip', memberLimit: 30 }
+  { roomId: 'MKPRIMARY', roomName: '5+1 智慧总院', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'paris-trip', memberLimit: 30 },
+  { roomId: 'STPPRIMARY', roomName: '5+1 旗舰校区', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'xian-trip', memberLimit: 30 },
+  { roomId: 'CYMEET2026', roomName: '5+1 教师研讨室', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'cy-school', memberLimit: 30 },
+  { roomId: 'WSPRIMARY', roomName: '5+1 菁英校区', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'uk-trip', memberLimit: 30 },
+  { roomId: 'LEARNERS2026', roomName: "5+1 荣耀研习社", ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'beijing-trip', memberLimit: 30 }
 ];
 const SUPABASE_FUNCTION_URL = process.env.SUPABASE_FUNCTION_URL || 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'YOUR_PUBLIC_FUNCTION_KEY';
@@ -415,7 +415,7 @@ async function ensurePermanentRooms() {
       roomId,
       roomName: sanitizePublicText(config.roomName, 24, roomId),
       ownerStudentId: normalizeId(config.ownerStudentId),
-      ownerName: sanitizePublicText(config.ownerName, 24, 'CY PETS STORY'),
+      ownerName: sanitizePublicText(config.ownerName, 24, '5+1教育补习中心'),
       isLocked: false,
       passwordHash: '',
       isPermanent: true,

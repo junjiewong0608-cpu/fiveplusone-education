@@ -24,8 +24,8 @@
 
   <section id="login-screen" class="screen login-screen">
     <div class="eduverse-brand-header">
-      <img class="center-logo" src="assets/brand/center-logo.png?v=20260830-21" alt="诚意教育 您的补习专家" />
-      <h1 class="eduverse-title">诚意教育 · 5+1 补习中心</h1>
+      <img class="center-logo" src="assets/brand/center-logo.png" alt="5+1教育补习中心" />
+      <h1 class="eduverse-title">5+1教育补习中心</h1>
       <p class="eduverse-subtitle">FIVE + ONE TUITION CENTER · 🎮 游戏化学科试炼与多重小游戏乐园</p>
     </div>
 
@@ -178,6 +178,28 @@
             <button type="button" class="primary-button" data-teacher-jump="tab-challenges">+ 开启每日挑战</button>
             <button type="button" class="secondary-button" data-teacher-jump="tab-import-export">📥 批量导入 CSV</button>
             <button type="button" class="secondary-button" data-teacher-jump="tab-sheet-sync">🔄 实时同步 Google Sheet</button>
+          </div>
+        <section class="panel-card supabase-config-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">SUPABASE CLOUD DATABASE</p>
+              <h3>⚡ 5+1 Supabase 云端数据库连接</h3>
+              <p class="muted-text">连接后系统将自动由本地演示切换为 Supabase 实时云端存储（学生档案、答题记录、宠物数据、对决积分）。</p>
+            </div>
+            <button id="test-supabase-btn" type="button" class="primary-button compact-button action-glow-button">⚡ 测试连接并保存</button>
+          </div>
+          <div class="supabase-config-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 14px;">
+            <div class="field-row">
+              <label for="supabase-url-input" style="font-weight: 700; margin-bottom: 6px; display: block;">Supabase Function URL / Edge Function 地址：</label>
+              <input id="supabase-url-input" class="search-input" style="width: 100%; box-sizing: border-box;" placeholder="例如 https://YOUR_PROJECT_REF.supabase.co/functions/v1/cy-pets-api" />
+            </div>
+            <div class="field-row">
+              <label for="supabase-key-input" style="font-weight: 700; margin-bottom: 6px; display: block;">Supabase Anon Key / Public Function Key (公钥)：</label>
+              <input id="supabase-key-input" class="search-input" style="width: 100%; box-sizing: border-box;" type="password" placeholder="请输入你的 Supabase Public Anon Key" />
+            </div>
+            <div id="supabase-status-message" class="supabase-status-notice" style="font-size: 14px; color: #6f520c; background: #fffbe6; padding: 12px 16px; border-radius: 8px; border: 1px solid #ffe58f; line-height: 1.5;">
+              ℹ️ 当前状态：待连接配置（填入你的 Supabase URL 与 Anon Key 后点击上方“测试连接并保存”即可秒级连通云端数据库）。
+            </div>
           </div>
         </section>
       </section>
@@ -438,8 +460,8 @@
   <section id="app-screen" class="screen app-screen hidden">
     <header class="topbar eduverse-topbar">
       <div class="app-logo-lockup">
-        <img class="app-header-logo" src="assets/brand/center-logo.png?v=20260830-21" alt="诚意教育" />
-        <span class="eduverse-header-title">诚意教育 · 5+1 补习中心</span>
+        <img class="app-header-logo" src="assets/brand/center-logo.png?v=20260830-22" alt="5+1教育补习中心" />
+        <span class="eduverse-header-title">5+1教育补习中心</span>
       </div>
       <div class="topbar-actions">
         <button id="sound-toggle-btn" type="button" class="icon-button sound-toggle-button" aria-label="音效开关" title="音效开关">🔊</button>
@@ -973,7 +995,7 @@
                 <!-- Classmates list items -->
               </div>
               <div class="duel-manual-search">
-                <input id="duel-target-id-input" placeholder="输入指定学生 ID (例如 CY1002)..." />
+                <input id="duel-target-id-input" placeholder="输入指定学生 ID (例如 510002)..." />
                 <button id="duel-start-friend-btn" type="button" class="primary-button action-glow-button">⚔️ 发起好友对决</button>
               </div>
             </div>
@@ -1364,7 +1386,7 @@
       </section>
 
           <footer class="app-footer">
-            <span>CY PETS STORY · 系统原型版</span>
+            <span>5+1教育补习中心 · 专属学习世界</span>
           </footer>
     </main>
   </section>
@@ -1400,7 +1422,7 @@
 
   <div id="registration-success-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="registration-success-title">
     <div class="registration-success-card">
-      <p class="eyebrow">WELCOME TO CY PETS STORY</p>
+      <p class="eyebrow">WELCOME TO FIVE + ONE TUITION CENTER</p>
       <h2 id="registration-success-title">请记住你的学生 ID</h2>
       <strong id="registration-success-id" class="registration-success-id">CY0000</strong>
       <p class="muted-text">请记住这个 ID，下次登录会用到。</p>

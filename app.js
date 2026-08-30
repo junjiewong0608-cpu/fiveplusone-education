@@ -1293,9 +1293,8 @@
       '5+1 朋友 ID': '5+1 Friend ID',
       '5+1 教师教学管理控制台': '5+1 Teacher Management Console',
       '进入 5+1 学习世界 🚀': 'Enter 5+1 Learning World 🚀',
-      '诚意教育': 'Sincere Education',
-      'CY PETS STORY': 'CY PETS STORY',
-      '假期学习宠物打卡': 'CY PETS STORY',
+      '5+1 学习乐园': '5+1 Learning Realm',
+      '假期学习宠物打卡': '5+1 Pets Learning',
       '每天学习一点点，陪伴你的宠物一起成长！': 'Learn a little every day and grow with your pet!',
       '请输入学生 ID': 'Enter Student ID',
       '请输入老师给你的 ID': 'Enter the ID from your teacher',
@@ -2230,7 +2229,7 @@
       title: '重新出发吧！',
       titleEn: 'Let’s continue!',
       copyEn: student => `${getNewPlayerGuidePetName(student)} is ready to keep adventuring with you. Thank you for being patient with us.`,
-      copy: student => `${getNewPlayerGuidePetName(student)}已经准备好继续陪你冒险啦。谢谢你的耐心，也谢谢你帮我们把 CY PETS STORY 变得更好。`
+      copy: student => `${getNewPlayerGuidePetName(student)}已经准备好继续陪你冒险啦。谢谢你的耐心，也谢谢你帮我们把 5+1 学习乐园 变得更好。`
     }
   ];
 
@@ -2848,7 +2847,7 @@
     'Bit Pets': '#49bea7'
   });
   const MUSIC_BOX_TRACKS = [
-    { id: DEFAULT_MUSIC_TRACK_ID, title: 'CY PETS STORY Theme', series: 'Default', src: 'assets/bgm.mp3', accent: '#6f67f1', defaultOwned: true },
+    { id: DEFAULT_MUSIC_TRACK_ID, title: '5+1 学习乐园主题曲', series: 'Default', src: 'assets/bgm.mp3', accent: '#6f67f1', defaultOwned: true },
     { id: 'marvel-the-avengers', title: 'The Avengers', series: 'Marvel', src: 'assets/music-box/marvel/the-avengers-from-32s.mp3', accent: '#cf2634' },
     { id: 'marvel-sunflower-spider-verse', title: 'Sunflower', series: 'Marvel', src: 'assets/music-box/marvel/sunflower-spider-verse.mp3', accent: '#f6b135' },
     { id: 'aot-akuma-no-ko', title: 'Akuma no Ko', series: 'AOT', src: 'assets/music-box/aot/akuma-no-ko.mp3', accent: '#8f4c32' },
@@ -2909,7 +2908,7 @@
     { id: 'hachimi-daily-hachimi', title: '每日一哈', series: 'Hachimi', src: 'assets/music-box/hachimi/daily-hachimi.mp3', accent: '#46a6c9' }
   ];
 
-  const STORAGE_KEY = 'cy-pets-story-branch-v1';
+  const STORAGE_KEY = 'five-plus-one-pets-story-v1';
   const SESSION_KEY = 'holiday-checkin-session-v1';
   const WALL_STORAGE_KEY = 'holiday-checkin-wall-v1';
   const TEACHER_REWARD_NOTICE_STORAGE_KEY = 'holiday-teacher-reward-notices-v1';
@@ -15889,7 +15888,7 @@
     ctx.fillText(storyLabel, canvas.width / 2, cardY - 94, canvas.width - 132);
     ctx.fillStyle = 'rgba(38,34,82,.74)';
     ctx.font = '800 24px sans-serif';
-    ctx.fillText('CY PETS STORY · SHARE CARD', canvas.width / 2, cardY - 52, canvas.width - 132);
+    ctx.fillText('5+1教育补习中心 · 学习战报', canvas.width / 2, cardY - 52, canvas.width - 132);
     ctx.restore();
     ctx.save();
     ctx.shadowColor = 'rgba(22,24,60,.32)';
@@ -15986,7 +15985,7 @@
     drawShareBrandLogo(ctx, brandLogo, 72, 44, { height: 72, maxWidth: 300 });
     ctx.fillStyle = '#4541c9';
     ctx.font = '700 48px sans-serif';
-    ctx.fillText(shareData.title || 'CY PETS STORY', 400, 92, 980);
+    ctx.fillText(shareData.title || '5+1教育补习中心', 400, 92, 980);
     ctx.fillStyle = '#757399';
     ctx.font = '700 26px sans-serif';
     ctx.fillText(shareData.meta || 'Before / After Evolution', 402, 140, 980);
@@ -16035,19 +16034,19 @@
     });
     ctx.fillStyle = '#262252';
     ctx.font = '900 34px sans-serif';
-    ctx.fillText('CY PETS STORY', 80, 926);
+    ctx.fillText('5+1教育补习中心', 80, 926);
     ctx.fillStyle = '#77759a';
     ctx.font = '700 24px sans-serif';
     ctx.fillText(currentLanguage === 'en' ? 'My pet evolved!' : '我的宠物完成进化！', 80, 964);
-    return canvasToShareFile(canvas, `${shareData.title || 'your-cy-pets-project'}-evolution`);
+    return canvasToShareFile(canvas, `${shareData.title || '5plus1-tuition'}-evolution`);
   }
 
   function getExternalShareInviteText(student = getStudent()) {
     const id = HolidayBackendClient.normalizeId(student?.studentId || session.studentId || '');
-    return id ? `来和我一起玩吧，我的id是：${id}` : '来和我一起玩 CY PETS STORY 吧！';
+    return id ? `来和我一起玩吧，我的id是：${id}` : '来和我一起玩 5+1 学习乐园 吧！';
   }
 
-  async function shareImageFile(file, { title = 'CY PETS STORY', fallbackUrl = '', text = '' } = {}) {
+  async function shareImageFile(file, { title = '5+1教育补习中心', fallbackUrl = '', text = '' } = {}) {
     if (shareInProgress) {
       showToast('分享选单已经打开，请先完成这一次分享。');
       return false;
@@ -16095,7 +16094,7 @@
       const student = getStudent();
       const pet = getPetInfo(student?.petType);
       const file = await createRoleCardShareFile({ frameId });
-      return shareImageFile(file, { title: `${getSimpleRoleShareDisplayName(student, pet) || pet?.name || 'CY PETS STORY'} · CY PETS STORY` });
+      return shareImageFile(file, { title: `${getSimpleRoleShareDisplayName(student, pet) || pet?.name || '5+1 学习乐园'} · 5+1教育补习中心` });
     } catch (error) {
       showToast(error.message || '暂时无法分享图片，请稍后再试。');
       return false;
@@ -16107,7 +16106,7 @@
       const student = getStudent();
       const pet = getPetInfo(student?.petType);
       const file = await createPetInteractionShareFile();
-      return shareImageFile(file, { title: `${getPetNickname(student, student?.petType) || pet?.name || localize('我的宠物墙合照')} · CY PETS STORY` });
+      return shareImageFile(file, { title: `${getPetNickname(student, student?.petType) || pet?.name || localize('我的宠物墙合照')} · 5+1教育补习中心` });
     } catch (error) {
       showToast(error.message || '暂时无法分享图片，请稍后再试。');
       return false;
@@ -16119,8 +16118,8 @@
       if (!activeImageViewerShare) return false;
       const file = activeImageViewerShare.type === 'evolution-comparison'
         ? await createEvolutionComparisonShareFile(activeImageViewerShare)
-        : await imageSourceToShareFile(activeImageViewerShare.images?.[0]?.src || '', activeImageViewerShare.title || 'your-cy-pets-project');
-      return shareImageFile(file, { title: activeImageViewerShare.title || 'CY PETS STORY' });
+        : await imageSourceToShareFile(activeImageViewerShare.images?.[0]?.src || '', activeImageViewerShare.title || '5plus1-tuition');
+      return shareImageFile(file, { title: activeImageViewerShare.title || '5+1教育补习中心' });
     } catch (error) {
       showToast(error.message || '暂时无法分享图片，请稍后再试。');
       return false;
@@ -19277,6 +19276,81 @@
     renderTeacherQuestionsTable();
     renderTeacherClassesTable();
     renderGoogleSheetSyncStatus();
+    renderSupabaseConfigPanel();
+  }
+
+  function renderSupabaseConfigPanel() {
+    const urlInput = document.getElementById('supabase-url-input');
+    const keyInput = document.getElementById('supabase-key-input');
+    const msgEl = document.getElementById('supabase-status-message');
+    const btn = document.getElementById('test-supabase-btn');
+    if (!urlInput || !keyInput || !msgEl) return;
+
+    if (!urlInput.value) {
+      urlInput.value = APP_CONFIG.supabaseFunctionUrl.includes('YOUR_SUPABASE_PROJECT_REF') ? '' : APP_CONFIG.supabaseFunctionUrl;
+    }
+    if (!keyInput.value) {
+      keyInput.value = APP_CONFIG.supabaseAnonKey.includes('YOUR_PUBLIC_FUNCTION_KEY') ? '' : APP_CONFIG.supabaseAnonKey;
+    }
+
+    const isConnected = APP_CONFIG.supabaseFunctionUrl && !APP_CONFIG.supabaseFunctionUrl.includes('YOUR_SUPABASE_PROJECT_REF') && APP_CONFIG.supabaseAnonKey && !APP_CONFIG.supabaseAnonKey.includes('YOUR_PUBLIC_FUNCTION_KEY');
+    if (isConnected) {
+      msgEl.style.color = '#15803d';
+      msgEl.style.background = '#f0fdf4';
+      msgEl.style.borderColor = '#bbf7d0';
+      msgEl.innerHTML = '🟢 <strong>已连接 Supabase 云端数据库</strong> · 当前系统处于实时云端同步模式。';
+    }
+
+    if (btn && !btn._supabaseConfigBound) {
+      btn._supabaseConfigBound = true;
+      btn.addEventListener('click', async () => {
+        const inputUrl = (urlInput.value || '').trim();
+        const inputKey = (keyInput.value || '').trim();
+        if (!inputUrl || !inputKey) {
+          msgEl.style.color = '#b91c1c';
+          msgEl.style.background = '#fef2f2';
+          msgEl.style.borderColor = '#fecaca';
+          msgEl.innerHTML = '⚠️ 请先输入完整的 Supabase Function URL 与 Anon Key。';
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = '⏳ 正在测试连接...';
+        msgEl.innerHTML = '⏳ 正在发起 Supabase 云端握手测试...';
+
+        try {
+          APP_CONFIG.supabaseFunctionUrl = inputUrl;
+          APP_CONFIG.supabaseAnonKey = inputKey;
+          try {
+            localStorage.setItem('fo_supabase_url', inputUrl);
+            localStorage.setItem('fo_supabase_anon_key', inputKey);
+          } catch {}
+
+          const testRes = await backend.requestSupabase('warmup', {});
+          btn.disabled = false;
+          btn.textContent = '⚡ 测试连接并保存';
+          if (testRes && (testRes.ok || testRes.source || testRes.serverTime)) {
+            msgEl.style.color = '#15803d';
+            msgEl.style.background = '#f0fdf4';
+            msgEl.style.borderColor = '#bbf7d0';
+            msgEl.innerHTML = '🎉 <strong>Supabase 云端握手成功！</strong>已为您成功保存并立即生效实时云端存储。';
+            showToast('Supabase 云端数据库连接成功！');
+          } else {
+            msgEl.style.color = '#b91c1c';
+            msgEl.style.background = '#fef2f2';
+            msgEl.style.borderColor = '#fecaca';
+            msgEl.innerHTML = `⚠️ 连接返回异常：${testRes?.error || '请检查 Function URL 是否正确部署并开启 CORS。'}`;
+          }
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = '⚡ 测试连接并保存';
+          msgEl.style.color = '#b91c1c';
+          msgEl.style.background = '#fef2f2';
+          msgEl.style.borderColor = '#fecaca';
+          msgEl.innerHTML = `⚠️ 连接失败：${err.message || '网络请求错误，请核对 Supabase URL 与 Anon Key。'}`;
+        }
+      });
+    }
   }
 
   function renderTeacherSubjectBars() {
@@ -19311,11 +19385,11 @@
     const tbody = document.getElementById('teacher-students-tbody');
     if (!tbody) return;
     const mockStudents = [
-      { studentId: 'CY1001', name: '林子轩', form: 'Form 2', phone: '012-3456789', level: 14, exp: 3850, streak: 15, status: 'active' },
-      { studentId: 'CY1002', name: '陈思琪', form: 'Form 3', phone: '019-8765432', level: 13, exp: 3620, streak: 12, status: 'active' },
-      { studentId: 'CY1003', name: '张凯文', form: 'Form 1', phone: '016-1122334', level: 12, exp: 3410, streak: 10, status: 'active' },
-      { studentId: 'CY1004', name: '李美华', form: 'Form 2', phone: '017-9988776', level: 11, exp: 3100, streak: 8, status: 'active' },
-      { studentId: 'CY1005', name: '黄俊杰', form: 'Form 3', phone: '011-2345678', level: 10, exp: 2950, streak: 7, status: 'active' }
+      { studentId: '511001', name: '林子轩', form: 'Form 2', phone: '012-3456789', level: 14, exp: 3850, streak: 15, status: 'active' },
+      { studentId: '511002', name: '陈思琪', form: 'Form 3', phone: '019-8765432', level: 13, exp: 3620, streak: 12, status: 'active' },
+      { studentId: '511003', name: '张凯文', form: 'Form 1', phone: '016-1122334', level: 12, exp: 3410, streak: 10, status: 'active' },
+      { studentId: '511004', name: '李美华', form: 'Form 2', phone: '017-9988776', level: 11, exp: 3100, streak: 8, status: 'active' },
+      { studentId: '511005', name: '黄俊杰', form: 'Form 3', phone: '011-2345678', level: 10, exp: 2950, streak: 7, status: 'active' }
     ];
 
     tbody.innerHTML = mockStudents.map(s => `

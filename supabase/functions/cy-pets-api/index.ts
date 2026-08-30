@@ -20,41 +20,41 @@ const INTERACTION_ROOM_MAP_SET_IDS = new Set(['cy-town', 'cy-bay', 'tokyo-night'
 const PERMANENT_INTERACTION_ROOMS = [
   {
     roomId: 'MKPRIMARY',
-    roomName: 'Demo Branch A',
-    ownerStudentId: 'CY0000',
-    ownerName: 'CY PETS STORY',
+    roomName: '5+1 智慧总院',
+    ownerStudentId: '510000',
+    ownerName: '5+1教育补习中心',
     mapSetId: 'paris-trip',
     memberLimit: 30
   },
   {
     roomId: 'STPPRIMARY',
-    roomName: 'Demo Branch B',
-    ownerStudentId: 'CY0000',
-    ownerName: 'CY PETS STORY',
+    roomName: '5+1 旗舰校区',
+    ownerStudentId: '510000',
+    ownerName: '5+1教育补习中心',
     mapSetId: 'xian-trip',
     memberLimit: 30
   },
   {
     roomId: 'CYMEET2026',
-    roomName: 'Demo Meeting Room',
-    ownerStudentId: 'CY0000',
-    ownerName: 'CY PETS STORY',
+    roomName: '5+1 教师研讨室',
+    ownerStudentId: '510000',
+    ownerName: '5+1教育补习中心',
     mapSetId: 'cy-school',
     memberLimit: 30
   },
   {
     roomId: 'WSPRIMARY',
-    roomName: 'Demo Branch C',
-    ownerStudentId: 'CY0000',
-    ownerName: 'CY PETS STORY',
+    roomName: '5+1 菁英校区',
+    ownerStudentId: '510000',
+    ownerName: '5+1教育补习中心',
     mapSetId: 'uk-trip',
     memberLimit: 30
   },
   {
     roomId: 'LEARNERS2026',
-    roomName: "Demo Learners Club",
-    ownerStudentId: 'CY0000',
-    ownerName: 'CY PETS STORY',
+    roomName: "5+1 荣耀研习社",
+    ownerStudentId: '510000',
+    ownerName: '5+1教育补习中心',
     mapSetId: 'beijing-trip',
     memberLimit: 30
   }

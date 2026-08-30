@@ -617,7 +617,7 @@ test('frontend turns pet interaction into a shared pet wall with room selection 
   assert.match(appSource, /pendingApproval/);
   assert.match(appSource, /最多 3 间房/);
   assert.match(appSource, /最多 \$\{ROOM_MEMBER_LIMIT\} 位同学/);
-  assert.match(functionSource, /roomName: 'Demo Meeting Room'/);
+  assert.match(functionSource, /roomName:\s*['"](?:5\+1 教师研讨室|Demo Meeting Room)['"]/);
   assert.match(functionSource, /memberLimit: 30/);
   assert.match(appSource, /房间 ID/);
 	  assert.match(appSource, /async function joinRoomByCode\(form\)/);
