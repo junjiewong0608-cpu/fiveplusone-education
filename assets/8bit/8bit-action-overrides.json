@@ -1,0 +1,73 @@
+{
+  "description": "8bit action sprites generated as right-facing run, jump, crouch, and lie sets for CY PETS STORY. Left-facing sets are mirrored companions for gameplay and asset export.",
+  "sourceSheets": {
+    "run-right": "tmp/8bit-run-right-imagen-sheet.png",
+    "jump": "tmp/8bit-jump-imagen-sheet.png",
+    "crouch": "tmp/8bit-crouch-imagen-sheet.png",
+    "lie": "assets/8bit/pose-reference-sheets/imagen-lie-reference.png"
+  },
+  "characterOrder": [
+    "sunny-wing",
+    "sprouty",
+    "hydroblob",
+    "fluffbit",
+    "shadow-wing",
+    "flame-rex",
+    "thunder-beetle",
+    "frost-fang",
+    "volt-cheetah",
+    "shadow-stalker",
+    "crybaby",
+    "hacipupu",
+    "labubu",
+    "skullpanda",
+    "twinkle-twinkle",
+    "pikachu",
+    "mewtwo",
+    "lucario",
+    "greninja",
+    "charizard",
+    "wolf",
+    "steve",
+    "enderman",
+    "enderdragon",
+    "creeper",
+    "kuromi",
+    "my-melody",
+    "cinnamoroll",
+    "pochacco",
+    "hello-kitty",
+    "winnie-the-pooh",
+    "crayon-shinchan",
+    "ugly-fish",
+    "yoyo",
+    "psyduck",
+    "squirtle"
+  ],
+  "actions": [
+    "run-right",
+    "jump",
+    "crouch",
+    "lie"
+  ],
+  "directionRequirement": "Every action sprite must read as facing or moving toward screen-right.",
+  "motionRequirement": {
+    "jump": "Sprite must be visibly airborne/off the ground.",
+    "crouch": "Sprite must be visibly lowered/ducking/crouching, not standing.",
+    "lie": "Sprite must be visibly lying down or sleeping, not standing."
+  },
+  "mirroredActions": [
+    "idle-left",
+    "run-left",
+    "jump-left",
+    "crouch-left",
+    "lie-left"
+  ],
+  "leftAssetFolders": {
+    "idle": "assets/8bit/characters-idle-left",
+    "run": "assets/8bit/characters-run-left",
+    "jump": "assets/8bit/characters-jump-left",
+    "crouch": "assets/8bit/characters-crouch-left",
+    "lie": "assets/8bit/characters-lie-left"
+  }
+}

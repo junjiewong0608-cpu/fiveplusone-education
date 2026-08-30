@@ -1,0 +1,3936 @@
+[
+  {
+    "source": "assets/roles/cute-evolved/charizard.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-charizard.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 44278
+  },
+  {
+    "source": "assets/roles/cute-evolved/crayon-shinchan.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-crayon-shinchan.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 36470
+  },
+  {
+    "source": "assets/roles/cute-evolved/creeper.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-creeper.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 49050
+  },
+  {
+    "source": "assets/roles/cute-evolved/enderdragon.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-enderdragon.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 33382
+  },
+  {
+    "source": "assets/roles/cute-evolved/enderman.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-enderman.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 33982
+  },
+  {
+    "source": "assets/roles/cute-evolved/flame-rex.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-flame-rex.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 32810
+  },
+  {
+    "source": "assets/roles/cute-evolved/fluffbit.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-fluffbit.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 24326
+  },
+  {
+    "source": "assets/roles/cute-evolved/frost-fang.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-frost-fang.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 33554
+  },
+  {
+    "source": "assets/roles/cute-evolved/greninja.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-greninja.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 41280
+  },
+  {
+    "source": "assets/roles/cute-evolved/hydroblob.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-hydroblob.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 57174
+  },
+  {
+    "source": "assets/roles/cute-evolved/lucario.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-lucario.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 34704
+  },
+  {
+    "source": "assets/roles/cute-evolved/mewtwo.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-mewtwo.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 29464
+  },
+  {
+    "source": "assets/roles/cute-evolved/my-melody.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-my-melody.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 53014
+  },
+  {
+    "source": "assets/roles/cute-evolved/pikachu.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-pikachu.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 48008
+  },
+  {
+    "source": "assets/roles/cute-evolved/shadow-stalker.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-shadow-stalker.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 39450
+  },
+  {
+    "source": "assets/roles/cute-evolved/shadow-wing.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-shadow-wing.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 34590
+  },
+  {
+    "source": "assets/roles/cute-evolved/sprouty.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-sprouty.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 66002
+  },
+  {
+    "source": "assets/roles/cute-evolved/steve.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-steve.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 50802
+  },
+  {
+    "source": "assets/roles/cute-evolved/sunny-wing.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-sunny-wing.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 41386
+  },
+  {
+    "source": "assets/roles/cute-evolved/thunder-beetle.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-thunder-beetle.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 44846
+  },
+  {
+    "source": "assets/roles/cute-evolved/ugly-fish.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-ugly-fish.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 69390
+  },
+  {
+    "source": "assets/roles/cute-evolved/volt-cheetah.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-volt-cheetah.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 67012
+  },
+  {
+    "source": "assets/roles/cute-evolved/winnie-the-pooh.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-winnie-the-pooh.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 58386
+  },
+  {
+    "source": "assets/roles/cute-evolved/wolf.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-wolf.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 49498
+  },
+  {
+    "source": "assets/roles/cute-evolved/yoyo.png",
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-yoyo.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 27018
+  },
+  {
+    "source": "assets/roles/evolved/flame-rex.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-flame-rex.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 53026
+  },
+  {
+    "source": "assets/roles/evolved/fluffbit.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-fluffbit.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 65018
+  },
+  {
+    "source": "assets/roles/evolved/frost-fang.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-frost-fang.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 55694
+  },
+  {
+    "source": "assets/roles/evolved/hydroblob.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-hydroblob.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 64560
+  },
+  {
+    "source": "assets/roles/evolved/shadow-stalker.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-shadow-stalker.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 27868
+  },
+  {
+    "source": "assets/roles/evolved/shadow-wing.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-shadow-wing.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 40462
+  },
+  {
+    "source": "assets/roles/evolved/sprouty.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-sprouty.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 63834
+  },
+  {
+    "source": "assets/roles/evolved/sunny-wing.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-sunny-wing.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 65868
+  },
+  {
+    "source": "assets/roles/evolved/thunder-beetle.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-thunder-beetle.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 54712
+  },
+  {
+    "source": "assets/roles/evolved/volt-cheetah.png",
+    "thumb": "assets/optimized/role-thumbs/evolved-volt-cheetah.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 58208
+  },
+  {
+    "source": "assets/roles/flame rex 专属/ChatGPT Image 2026年8月9日 20_08_40.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-chatgpt-image-2026-8-9-20-08-40.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 53026
+  },
+  {
+    "source": "assets/roles/flame rex 专属/Gemini_Generated_Image_6eh1ln6eh1ln6eh1.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-gemini-generated-image-6eh1ln6eh1ln6eh1.webp",
+    "width": 640,
+    "height": 180,
+    "bytes": 26312
+  },
+  {
+    "source": "assets/roles/flame rex 专属/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-after-skill-1.webp",
+    "width": 309,
+    "height": 360,
+    "bytes": 24868
+  },
+  {
+    "source": "assets/roles/flame rex 专属/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-after-skill-2.webp",
+    "width": 309,
+    "height": 360,
+    "bytes": 19830
+  },
+  {
+    "source": "assets/roles/flame rex 专属/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-after-skill-3.webp",
+    "width": 309,
+    "height": 360,
+    "bytes": 22224
+  },
+  {
+    "source": "assets/roles/flame rex 专属/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-after-skill-passive.webp",
+    "width": 308,
+    "height": 360,
+    "bytes": 23360
+  },
+  {
+    "source": "assets/roles/flame rex 专属/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-after-skill-ultimate.webp",
+    "width": 309,
+    "height": 360,
+    "bytes": 23818
+  },
+  {
+    "source": "assets/roles/flame rex 专属/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-skill-1.webp",
+    "width": 364,
+    "height": 360,
+    "bytes": 24182
+  },
+  {
+    "source": "assets/roles/flame rex 专属/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-skill-2.webp",
+    "width": 364,
+    "height": 360,
+    "bytes": 30970
+  },
+  {
+    "source": "assets/roles/flame rex 专属/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-skill-3.webp",
+    "width": 368,
+    "height": 360,
+    "bytes": 26168
+  },
+  {
+    "source": "assets/roles/flame rex 专属/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-skill-passive.webp",
+    "width": 364,
+    "height": 360,
+    "bytes": 28438
+  },
+  {
+    "source": "assets/roles/flame rex 专属/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-skill-ultimate.webp",
+    "width": 383,
+    "height": 360,
+    "bytes": 32816
+  },
+  {
+    "source": "assets/roles/flame rex 专属/前.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex.webp",
+    "width": 554,
+    "height": 360,
+    "bytes": 42052
+  },
+  {
+    "source": "assets/roles/flame rex 专属/后.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-2.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 26048
+  },
+  {
+    "source": "assets/roles/flame-rex-sr.png",
+    "thumb": "assets/optimized/role-thumbs/flame-rex-sr.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 40212
+  },
+  {
+    "source": "assets/roles/fluffbit-a.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-a.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 19328
+  },
+  {
+    "source": "assets/roles/fluffbit/ChatGPT Image 2026年8月9日 16_22_47.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-chatgpt-image-2026-8-9-16-22-47.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 65018
+  },
+  {
+    "source": "assets/roles/fluffbit/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-after-skill-1.webp",
+    "width": 276,
+    "height": 360,
+    "bytes": 20796
+  },
+  {
+    "source": "assets/roles/fluffbit/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-after-skill-2.webp",
+    "width": 275,
+    "height": 360,
+    "bytes": 17346
+  },
+  {
+    "source": "assets/roles/fluffbit/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-after-skill-3.webp",
+    "width": 275,
+    "height": 360,
+    "bytes": 18826
+  },
+  {
+    "source": "assets/roles/fluffbit/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-after-skill-passive.webp",
+    "width": 278,
+    "height": 360,
+    "bytes": 20878
+  },
+  {
+    "source": "assets/roles/fluffbit/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-after-skill-ultimate.webp",
+    "width": 284,
+    "height": 360,
+    "bytes": 25380
+  },
+  {
+    "source": "assets/roles/fluffbit/fluffbit_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-fluffbit-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 32944
+  },
+  {
+    "source": "assets/roles/fluffbit/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 24488
+  },
+  {
+    "source": "assets/roles/fluffbit/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 20522
+  },
+  {
+    "source": "assets/roles/fluffbit/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21586
+  },
+  {
+    "source": "assets/roles/fluffbit/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 22676
+  },
+  {
+    "source": "assets/roles/fluffbit/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 37850
+  },
+  {
+    "source": "assets/roles/fluffbit/前.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 40134
+  },
+  {
+    "source": "assets/roles/fluffbit/后.png",
+    "thumb": "assets/optimized/role-thumbs/fluffbit-2.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 21606
+  },
+  {
+    "source": "assets/roles/frost fang 专属/ChatGPT Image 2026年8月9日 16_14_01.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-chatgpt-image-2026-8-9-16-14-01.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 55694
+  },
+  {
+    "source": "assets/roles/frost fang 专属/Gemini_Generated_Image_85c3o785c3o785c3.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-gemini-generated-image-85c3o785c3o785c3.webp",
+    "width": 640,
+    "height": 180,
+    "bytes": 26008
+  },
+  {
+    "source": "assets/roles/frost fang 专属/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-after-skill-1.webp",
+    "width": 286,
+    "height": 360,
+    "bytes": 25572
+  },
+  {
+    "source": "assets/roles/frost fang 专属/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-after-skill-2.webp",
+    "width": 286,
+    "height": 360,
+    "bytes": 22510
+  },
+  {
+    "source": "assets/roles/frost fang 专属/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-after-skill-3.webp",
+    "width": 284,
+    "height": 360,
+    "bytes": 19386
+  },
+  {
+    "source": "assets/roles/frost fang 专属/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-after-skill-passive.webp",
+    "width": 289,
+    "height": 360,
+    "bytes": 22682
+  },
+  {
+    "source": "assets/roles/frost fang 专属/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-after-skill-ultimate.webp",
+    "width": 290,
+    "height": 360,
+    "bytes": 26632
+  },
+  {
+    "source": "assets/roles/frost fang 专属/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-skill-1.webp",
+    "width": 336,
+    "height": 360,
+    "bytes": 35886
+  },
+  {
+    "source": "assets/roles/frost fang 专属/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-skill-2.webp",
+    "width": 332,
+    "height": 360,
+    "bytes": 37720
+  },
+  {
+    "source": "assets/roles/frost fang 专属/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-skill-3.webp",
+    "width": 341,
+    "height": 360,
+    "bytes": 37210
+  },
+  {
+    "source": "assets/roles/frost fang 专属/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-skill-passive.webp",
+    "width": 336,
+    "height": 360,
+    "bytes": 33310
+  },
+  {
+    "source": "assets/roles/frost fang 专属/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-skill-ultimate.webp",
+    "width": 375,
+    "height": 360,
+    "bytes": 50708
+  },
+  {
+    "source": "assets/roles/frost fang 专属/前.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang.webp",
+    "width": 454,
+    "height": 360,
+    "bytes": 45968
+  },
+  {
+    "source": "assets/roles/frost fang 专属/后.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-2.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 23292
+  },
+  {
+    "source": "assets/roles/frost-fang-ssr.png",
+    "thumb": "assets/optimized/role-thumbs/frost-fang-ssr.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 42112
+  },
+  {
+    "source": "assets/roles/hydroblob-a.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-a.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 42046
+  },
+  {
+    "source": "assets/roles/hydroblob/ChatGPT Image 2026年8月9日 16_22_09.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-chatgpt-image-2026-8-9-16-22-09.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 64560
+  },
+  {
+    "source": "assets/roles/hydroblob/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 36676
+  },
+  {
+    "source": "assets/roles/hydroblob/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 35908
+  },
+  {
+    "source": "assets/roles/hydroblob/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 34074
+  },
+  {
+    "source": "assets/roles/hydroblob/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 34110
+  },
+  {
+    "source": "assets/roles/hydroblob/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-after-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 57402
+  },
+  {
+    "source": "assets/roles/hydroblob/hydroblob_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-hydroblob-equipment-strip.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 35340
+  },
+  {
+    "source": "assets/roles/hydroblob/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30106
+  },
+  {
+    "source": "assets/roles/hydroblob/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30304
+  },
+  {
+    "source": "assets/roles/hydroblob/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 32028
+  },
+  {
+    "source": "assets/roles/hydroblob/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 31110
+  },
+  {
+    "source": "assets/roles/hydroblob/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 47850
+  },
+  {
+    "source": "assets/roles/hydroblob/前.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 54622
+  },
+  {
+    "source": "assets/roles/hydroblob/后.png",
+    "thumb": "assets/optimized/role-thumbs/hydroblob-2.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 57966
+  },
+  {
+    "source": "assets/roles/mini-evolved/charizard.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-charizard.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 37528
+  },
+  {
+    "source": "assets/roles/mini-evolved/cinnamoroll.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-cinnamoroll.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 20864
+  },
+  {
+    "source": "assets/roles/mini-evolved/crayon-shinchan.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-crayon-shinchan.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 11796
+  },
+  {
+    "source": "assets/roles/mini-evolved/creeper.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-creeper.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 47884
+  },
+  {
+    "source": "assets/roles/mini-evolved/crybaby.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-crybaby.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 27438
+  },
+  {
+    "source": "assets/roles/mini-evolved/enderdragon.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-enderdragon.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 35224
+  },
+  {
+    "source": "assets/roles/mini-evolved/enderman.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-enderman.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 25550
+  },
+  {
+    "source": "assets/roles/mini-evolved/flame-rex.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-flame-rex.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 32474
+  },
+  {
+    "source": "assets/roles/mini-evolved/fluffbit.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-fluffbit.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 19196
+  },
+  {
+    "source": "assets/roles/mini-evolved/frost-fang.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-frost-fang.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 37828
+  },
+  {
+    "source": "assets/roles/mini-evolved/greninja.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-greninja.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 41178
+  },
+  {
+    "source": "assets/roles/mini-evolved/hacipupu.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-hacipupu.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 35214
+  },
+  {
+    "source": "assets/roles/mini-evolved/hello-kitty.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-hello-kitty.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 27736
+  },
+  {
+    "source": "assets/roles/mini-evolved/hydroblob.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-hydroblob.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 40290
+  },
+  {
+    "source": "assets/roles/mini-evolved/kuromi.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-kuromi.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 24592
+  },
+  {
+    "source": "assets/roles/mini-evolved/labubu.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-labubu.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 29858
+  },
+  {
+    "source": "assets/roles/mini-evolved/lucario.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-lucario.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 39848
+  },
+  {
+    "source": "assets/roles/mini-evolved/mewtwo.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-mewtwo.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 30086
+  },
+  {
+    "source": "assets/roles/mini-evolved/my-melody.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-my-melody.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 29948
+  },
+  {
+    "source": "assets/roles/mini-evolved/pikachu.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-pikachu.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 34992
+  },
+  {
+    "source": "assets/roles/mini-evolved/pochacco.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-pochacco.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 29048
+  },
+  {
+    "source": "assets/roles/mini-evolved/shadow-stalker.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-shadow-stalker.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 24268
+  },
+  {
+    "source": "assets/roles/mini-evolved/shadow-wing.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-shadow-wing.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 19662
+  },
+  {
+    "source": "assets/roles/mini-evolved/skullpanda.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-skullpanda.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 39916
+  },
+  {
+    "source": "assets/roles/mini-evolved/sprouty.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-sprouty.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 35548
+  },
+  {
+    "source": "assets/roles/mini-evolved/steve.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-steve.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 35690
+  },
+  {
+    "source": "assets/roles/mini-evolved/sunny-wing.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-sunny-wing.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 28798
+  },
+  {
+    "source": "assets/roles/mini-evolved/thunder-beetle.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-thunder-beetle.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 26532
+  },
+  {
+    "source": "assets/roles/mini-evolved/twinkle-twinkle.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-twinkle-twinkle.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 29592
+  },
+  {
+    "source": "assets/roles/mini-evolved/ugly-fish.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-ugly-fish.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 42926
+  },
+  {
+    "source": "assets/roles/mini-evolved/volt-cheetah.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-volt-cheetah.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 44682
+  },
+  {
+    "source": "assets/roles/mini-evolved/winnie-the-pooh.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-winnie-the-pooh.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 35210
+  },
+  {
+    "source": "assets/roles/mini-evolved/wolf.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-wolf.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 56054
+  },
+  {
+    "source": "assets/roles/mini-evolved/yoyo.png",
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-yoyo.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 25716
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 11110
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 11128
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8702
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 11614
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8828
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/crayon-shinchan_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-crayon-shinchan-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 10838
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/crayon-shinchan_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-crayon-shinchan-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 12468
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 10876
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 10988
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8572
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 11290
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8910
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/前.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-前.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 12552
+  },
+  {
+    "source": "assets/roles/new character/cartoon/crayon-shinchan/后.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-crayon-shinchan-后.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 10838
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 45744
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 37952
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39126
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39332
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 49054
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 45744
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 37952
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39126
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39332
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 49054
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/ugly-fish_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-ugly-fish-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 69284
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/ugly-fish_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-ugly-fish-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 33054
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/前.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-前.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 61980
+  },
+  {
+    "source": "assets/roles/new character/cartoon/ugly-fish/后.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-ugly-fish-后.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 54864
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8290
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8208
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 7744
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8934
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 7672
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8644
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8634
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8134
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 9266
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 8246
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/winnie-the-pooh_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-winnie-the-pooh-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 58090
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/winnie-the-pooh_before-v2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-winnie-the-pooh-before-v2.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 27616
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/winnie-the-pooh_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-winnie-the-pooh-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 14174
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/前.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-前.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 14138
+  },
+  {
+    "source": "assets/roles/new character/cartoon/winnie-the-pooh/后.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-winnie-the-pooh-后.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 12512
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 24346
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21284
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30292
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21670
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 32284
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 24346
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21284
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30292
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21670
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 32284
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/yoyo_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-yoyo-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 27326
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/yoyo_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-yoyo-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 16170
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/前.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-前.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 16396
+  },
+  {
+    "source": "assets/roles/new character/cartoon/yoyo/后.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-cartoon-yoyo-后.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 14002
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 19570
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 19816
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20448
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17624
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 27152
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/creeper_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-creeper-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 36872
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/creeper_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-creeper-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 17046
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/creeper_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-creeper-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 18230
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/creeper_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-creeper-skill-icons-after.webp",
+    "width": 640,
+    "height": 213,
+    "bytes": 24118
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/creeper_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-creeper-skill-icons-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 12230
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 5914
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 5468
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 7418
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 8086
+  },
+  {
+    "source": "assets/roles/new character/minecraft/creeper/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-creeper-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 10898
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-after-skill-1.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 18156
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 13696
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-after-skill-3.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 19576
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-after-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 15378
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 21838
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/enderdragon_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-enderdragon-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 39672
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/enderdragon_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-enderdragon-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 28634
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/enderdragon_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-enderdragon-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 19320
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/enderdragon_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-enderdragon-skill-icons-after.webp",
+    "width": 640,
+    "height": 309,
+    "bytes": 22596
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/enderdragon_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-enderdragon-skill-icons-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 15804
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9268
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 10034
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9814
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 10446
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderdragon/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderdragon-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13760
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12158
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-after-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12050
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 10856
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-after-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 8470
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-after-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12882
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/enderman_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-enderman-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 21770
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/enderman_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-enderman-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 22176
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/enderman_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-enderman-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 11698
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/enderman_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-enderman-skill-icons-after.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 15522
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/enderman_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-enderman-skill-icons-before.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 10990
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 7758
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 7270
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 8346
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 4670
+  },
+  {
+    "source": "assets/roles/new character/minecraft/enderman/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-enderman-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12672
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 25998
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-after-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 23876
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 22522
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20320
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-after-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 26914
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14272
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12658
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 11098
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13634
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14998
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/steve_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-steve-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 39390
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/steve_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-steve-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 24810
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/steve_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-steve-equipment-strip.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 18610
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/steve_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-steve-skill-icons-after.webp",
+    "width": 640,
+    "height": 265,
+    "bytes": 27574
+  },
+  {
+    "source": "assets/roles/new character/minecraft/steve/steve_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-steve-steve-skill-icons-before.webp",
+    "width": 640,
+    "height": 291,
+    "bytes": 19512
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15546
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-after-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13060
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13808
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14292
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-after-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15134
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12060
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 8480
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9026
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 8370
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12302
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/wolf_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-wolf-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 30918
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/wolf_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-wolf-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 29898
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/wolf_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-wolf-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 15542
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/wolf_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-wolf-skill-icons-after.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 17286
+  },
+  {
+    "source": "assets/roles/new character/minecraft/wolf/wolf_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-minecraft-wolf-wolf-skill-icons-before.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 14092
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 27424
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-after-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 27524
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 29484
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-after-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 25072
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-after-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 30728
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/chalizard_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-chalizard-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 57210
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/chalizard_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-chalizard-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 37740
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/chalizard_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-chalizard-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 28480
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/chalizard_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-chalizard-skill-icons-after.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 32710
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/chalizard_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-chalizard-skill-icons-before.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 19230
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14310
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13936
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15794
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13302
+  },
+  {
+    "source": "assets/roles/new character/pokemon/chalizard/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-chalizard-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17550
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-after-skill-1.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 22518
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 22838
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-after-skill-3.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 24422
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-after-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 24016
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 25012
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/greninja_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-greninja-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 53308
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/greninja_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-greninja-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 50462
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/greninja_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-greninja-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 27844
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/greninja_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-greninja-skill-icons-after.webp",
+    "width": 640,
+    "height": 221,
+    "bytes": 25376
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/greninja_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-greninja-skill-icons-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 21540
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14476
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13668
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15322
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 12228
+  },
+  {
+    "source": "assets/roles/new character/pokemon/greninja/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-greninja-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17302
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-after-skill-1.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 21260
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 22340
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-after-skill-3.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 24912
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-after-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 19684
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 20710
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/lucario_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-lucario-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 35574
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/lucario_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-lucario-before.webp",
+    "width": 550,
+    "height": 360,
+    "bytes": 27234
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/lucario_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-lucario-equipment-strip.webp",
+    "width": 640,
+    "height": 240,
+    "bytes": 22500
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/lucario_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-lucario-skill-icons-after.webp",
+    "width": 640,
+    "height": 258,
+    "bytes": 26124
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/lucario_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-lucario-skill-icons-before.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 19796
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 16828
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14800
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15572
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13458
+  },
+  {
+    "source": "assets/roles/new character/pokemon/lucario/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-lucario-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17848
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-after-skill-1.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 22912
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 21840
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-after-skill-3.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 21910
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20750
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 23014
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/mewtwo_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-mewtwo-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 45128
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/mewtwo_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-mewtwo-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 41118
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/mewtwo_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-mewtwo-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 20312
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/mewtwo_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-mewtwo-skill-icons-after.webp",
+    "width": 640,
+    "height": 327,
+    "bytes": 26302
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/mewtwo_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-mewtwo-skill-icons-before.webp",
+    "width": 640,
+    "height": 313,
+    "bytes": 23670
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 19498
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17934
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20572
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17948
+  },
+  {
+    "source": "assets/roles/new character/pokemon/mewtwo/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-mewtwo-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 23934
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 26588
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 28742
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 30596
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 32948
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 31608
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/pikachu_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 71292
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/pikachu_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 42310
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/pikachu_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 18442
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/pikachu_equipment_strip_optimized.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-equipment-strip-optimized.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 33862
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/pikachu_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-skill-icons-after.webp",
+    "width": 640,
+    "height": 213,
+    "bytes": 31906
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/pikachu_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-skill-icons-before.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 23502
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15884
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 16360
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20256
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15108
+  },
+  {
+    "source": "assets/roles/new character/pokemon/pikachu/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-pikachu-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20514
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13784
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-after-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 11944
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12664
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14146
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-after-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17066
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/crybaby_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-crybaby-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 38576
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/crybaby_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-crybaby-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 10218
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/crybaby_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-crybaby-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 11096
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/crybaby_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-crybaby-skill-icons-after.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 16740
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/crybaby_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-crybaby-skill-icons-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 14634
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 10678
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 8742
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9908
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 8474
+  },
+  {
+    "source": "assets/roles/new character/popmart/crybaby/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-crybaby-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12510
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15984
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 13948
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 17432
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15316
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 20090
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/hacipupu_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-hacipupu-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 36732
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/hacipupu_before.jpg",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-hacipupu-before.webp",
+    "width": 640,
+    "height": 358,
+    "bytes": 35796
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/hacipupu_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-hacipupu-equipment-strip.webp",
+    "width": 640,
+    "height": 282,
+    "bytes": 13642
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/hacipupu_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-hacipupu-skill-icons-after.webp",
+    "width": 640,
+    "height": 213,
+    "bytes": 19612
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/hacipupu_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-hacipupu-skill-icons-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 16952
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9424
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9092
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 11620
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 12844
+  },
+  {
+    "source": "assets/roles/new character/popmart/hacipupu/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-hacipupu-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 13458
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 24114
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-after-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 25512
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 24642
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-after-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 25974
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-after-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 28002
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/labubu_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-labubu-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 45334
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/labubu_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-labubu-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 40662
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/labubu_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-labubu-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 25748
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/labubu_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-labubu-skill-icons-after.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 30732
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/labubu_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-labubu-skill-icons-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 16280
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 12100
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 10294
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 11518
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-skill-passive.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 11572
+  },
+  {
+    "source": "assets/roles/new character/popmart/labubu/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-labubu-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15598
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-after-skill-1.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 17556
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 19136
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-after-skill-3.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 17750
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15956
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 22040
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 11116
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9882
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 11684
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 9298
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 15704
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skullpanda_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skullpanda-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 40928
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skullpanda_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skullpanda-before.webp",
+    "width": 640,
+    "height": 357,
+    "bytes": 32946
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skullpanda_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skullpanda-equipment-strip.webp",
+    "width": 640,
+    "height": 293,
+    "bytes": 18872
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skullpanda_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skullpanda-skill-icons-after.webp",
+    "width": 640,
+    "height": 231,
+    "bytes": 22190
+  },
+  {
+    "source": "assets/roles/new character/popmart/skullpanda/skullpanda_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-skullpanda-skullpanda-skill-icons-before.webp",
+    "width": 640,
+    "height": 298,
+    "bytes": 17166
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-after-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 22352
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-after-skill-2.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 20374
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-after-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 23404
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-after-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 25590
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-after-skill-ultimate.webp",
+    "width": 322,
+    "height": 360,
+    "bytes": 21982
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-skill-1.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 16612
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-skill-2.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 14268
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-skill-3.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 15436
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-skill-passive.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 18412
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-skill-ultimate.webp",
+    "width": 321,
+    "height": 360,
+    "bytes": 20142
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/twinkle_twinkle_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-twinkle-twinkle-after.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 29004
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/twinkle_twinkle_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-twinkle-twinkle-equipment-strip.webp",
+    "width": 640,
+    "height": 284,
+    "bytes": 24424
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/twinkle_twinkle_knight_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-twinkle-twinkle-knight-before.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 25238
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/twinkle_twinkle_skill_icons_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-twinkle-twinkle-skill-icons-after.webp",
+    "width": 640,
+    "height": 213,
+    "bytes": 26300
+  },
+  {
+    "source": "assets/roles/new character/popmart/twinkle_twinkle/twinkle_twinkle_skill_icons_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-popmart-twinkle-twinkle-twinkle-twinkle-skill-icons-before.webp",
+    "width": 640,
+    "height": 256,
+    "bytes": 23104
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 28856
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 31792
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 33182
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 27750
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 36774
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/cinnamoroll_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-cinnamoroll-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 36810
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/cinnamoroll_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-cinnamoroll-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 6274
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 13966
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 14148
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 13996
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 13854
+  },
+  {
+    "source": "assets/roles/new character/sanrio/cinnamoroll/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-cinnamoroll-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 22990
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 33130
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 36358
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39986
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 36930
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 46048
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/hello-kitty_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-hello-kitty-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 38500
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/hello-kitty_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-hello-kitty-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 14880
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 17882
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 18916
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21742
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 18144
+  },
+  {
+    "source": "assets/roles/new character/sanrio/hello-kitty/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-hello-kitty-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29972
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 32138
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30548
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 37378
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29282
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39272
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/kuromi_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-kuromi-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 38178
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/kuromi_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-kuromi-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 7224
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 17598
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 16498
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 17626
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 15920
+  },
+  {
+    "source": "assets/roles/new character/sanrio/kuromi/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-kuromi-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 27344
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29108
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 31910
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 36012
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 33208
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 41978
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/my-melody_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-my-melody-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 38696
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/my-melody_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-my-melody-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 20750
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 17094
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 18324
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 22762
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 18344
+  },
+  {
+    "source": "assets/roles/new character/sanrio/my-melody/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-my-melody-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 27338
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 34716
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 37506
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 38848
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 36710
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-after-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 45098
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/pochacco_after.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-pochacco-after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 44762
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/pochacco_before.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-pochacco-before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 23546
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 22786
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 25734
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 25984
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 26510
+  },
+  {
+    "source": "assets/roles/new character/sanrio/pochacco/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/new-character-sanrio-pochacco-skill-ultimate.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 35804
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/ChatGPT Image 2026年8月9日 15_22_45.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-chatgpt-image-2026-8-9-15-22-45.webp",
+    "width": 640,
+    "height": 356,
+    "bytes": 34642
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/ChatGPT Image 2026年8月9日 16_11_25.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-chatgpt-image-2026-8-9-16-11-25.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 27868
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 33558
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 34582
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30270
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30450
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-after-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 39406
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 23134
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 21794
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 23686
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 23208
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 34266
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/前.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 35874
+  },
+  {
+    "source": "assets/roles/shadow stalker 专属/后.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-2.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 43890
+  },
+  {
+    "source": "assets/roles/shadow wing专属/ChatGPT Image 2026年8月9日 16_07_10.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-chatgpt-image-2026-8-9-16-07-10.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 40462
+  },
+  {
+    "source": "assets/roles/shadow wing专属/Gemini_Generated_Image_w5vxmw5vxmw5vxmw.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-gemini-generated-image-w5vxmw5vxmw5vxmw.webp",
+    "width": 640,
+    "height": 180,
+    "bytes": 23318
+  },
+  {
+    "source": "assets/roles/shadow wing专属/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-after-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 25184
+  },
+  {
+    "source": "assets/roles/shadow wing专属/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-after-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 25112
+  },
+  {
+    "source": "assets/roles/shadow wing专属/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-after-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30114
+  },
+  {
+    "source": "assets/roles/shadow wing专属/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-after-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 23494
+  },
+  {
+    "source": "assets/roles/shadow wing专属/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-after-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 40120
+  },
+  {
+    "source": "assets/roles/shadow wing专属/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 32596
+  },
+  {
+    "source": "assets/roles/shadow wing专属/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29110
+  },
+  {
+    "source": "assets/roles/shadow wing专属/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29468
+  },
+  {
+    "source": "assets/roles/shadow wing专属/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 25790
+  },
+  {
+    "source": "assets/roles/shadow wing专属/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 43050
+  },
+  {
+    "source": "assets/roles/shadow wing专属/前.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 51820
+  },
+  {
+    "source": "assets/roles/shadow wing专属/后.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-2.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 40530
+  },
+  {
+    "source": "assets/roles/shadow-stalker-legend.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-stalker-legend.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 27154
+  },
+  {
+    "source": "assets/roles/shadow-wing-r.png",
+    "thumb": "assets/optimized/role-thumbs/shadow-wing-r.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 26532
+  },
+  {
+    "source": "assets/roles/sprouty-a.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-a.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 42292
+  },
+  {
+    "source": "assets/roles/sprouty/ChatGPT Image 2026年8月9日 20_12_05.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-chatgpt-image-2026-8-9-20-12-05.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 63834
+  },
+  {
+    "source": "assets/roles/sprouty/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-after-skill-1.webp",
+    "width": 327,
+    "height": 360,
+    "bytes": 31310
+  },
+  {
+    "source": "assets/roles/sprouty/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-after-skill-2.webp",
+    "width": 327,
+    "height": 360,
+    "bytes": 24958
+  },
+  {
+    "source": "assets/roles/sprouty/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-after-skill-3.webp",
+    "width": 326,
+    "height": 360,
+    "bytes": 21520
+  },
+  {
+    "source": "assets/roles/sprouty/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-after-skill-passive.webp",
+    "width": 329,
+    "height": 360,
+    "bytes": 18806
+  },
+  {
+    "source": "assets/roles/sprouty/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-after-skill-ultimate.webp",
+    "width": 328,
+    "height": 360,
+    "bytes": 18448
+  },
+  {
+    "source": "assets/roles/sprouty/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30280
+  },
+  {
+    "source": "assets/roles/sprouty/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 31118
+  },
+  {
+    "source": "assets/roles/sprouty/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29090
+  },
+  {
+    "source": "assets/roles/sprouty/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 30004
+  },
+  {
+    "source": "assets/roles/sprouty/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 45478
+  },
+  {
+    "source": "assets/roles/sprouty/sprouty_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-sprouty-equipment-strip.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 32750
+  },
+  {
+    "source": "assets/roles/sprouty/前.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 51002
+  },
+  {
+    "source": "assets/roles/sprouty/后.png",
+    "thumb": "assets/optimized/role-thumbs/sprouty-2.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 25310
+  },
+  {
+    "source": "assets/roles/sunny wing /ChatGPT Image 2026年8月9日 20_08_54.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-chatgpt-image-2026-8-9-20-08-54.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 65868
+  },
+  {
+    "source": "assets/roles/sunny wing /after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-after-skill-1.webp",
+    "width": 294,
+    "height": 360,
+    "bytes": 29218
+  },
+  {
+    "source": "assets/roles/sunny wing /after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-after-skill-2.webp",
+    "width": 294,
+    "height": 360,
+    "bytes": 19072
+  },
+  {
+    "source": "assets/roles/sunny wing /after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-after-skill-3.webp",
+    "width": 297,
+    "height": 360,
+    "bytes": 24330
+  },
+  {
+    "source": "assets/roles/sunny wing /after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-after-skill-passive.webp",
+    "width": 293,
+    "height": 360,
+    "bytes": 20366
+  },
+  {
+    "source": "assets/roles/sunny wing /after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-after-skill-ultimate.webp",
+    "width": 298,
+    "height": 360,
+    "bytes": 25622
+  },
+  {
+    "source": "assets/roles/sunny wing /phoenix_equipment_strip.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-phoenix-equipment-strip.webp",
+    "width": 640,
+    "height": 213,
+    "bytes": 39452
+  },
+  {
+    "source": "assets/roles/sunny wing /skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 24570
+  },
+  {
+    "source": "assets/roles/sunny wing /skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 24012
+  },
+  {
+    "source": "assets/roles/sunny wing /skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 24162
+  },
+  {
+    "source": "assets/roles/sunny wing /skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 25806
+  },
+  {
+    "source": "assets/roles/sunny wing /skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 32260
+  },
+  {
+    "source": "assets/roles/sunny wing /前.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 42774
+  },
+  {
+    "source": "assets/roles/sunny wing /后.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-2.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 28272
+  },
+  {
+    "source": "assets/roles/sunny-wing-a.png",
+    "thumb": "assets/optimized/role-thumbs/sunny-wing-a.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 25074
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/ChatGPT Image 2026年8月9日 15_20_49.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-chatgpt-image-2026-8-9-15-20-49.webp",
+    "width": 640,
+    "height": 358,
+    "bytes": 40184
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/ChatGPT Image 2026年8月9日 16_03_34.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-chatgpt-image-2026-8-9-16-03-34.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 54712
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-after-skill-1.webp",
+    "width": 314,
+    "height": 360,
+    "bytes": 28992
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-after-skill-2.webp",
+    "width": 313,
+    "height": 360,
+    "bytes": 23526
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-after-skill-3.webp",
+    "width": 314,
+    "height": 360,
+    "bytes": 17360
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-after-skill-passive.webp",
+    "width": 314,
+    "height": 360,
+    "bytes": 21604
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-after-skill-ultimate.webp",
+    "width": 314,
+    "height": 360,
+    "bytes": 31524
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 33116
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 28014
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 29904
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 28948
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 41826
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/前.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 49318
+  },
+  {
+    "source": "assets/roles/thunder beetle 专属/后.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-2.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 26574
+  },
+  {
+    "source": "assets/roles/thunder-beetle-ssr.png",
+    "thumb": "assets/optimized/role-thumbs/thunder-beetle-ssr.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 47136
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/ChatGPT Image 2026年8月9日 15_56_05.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-chatgpt-image-2026-8-9-15-56-05.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 58208
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/Gemini_Generated_Image_qp2ncmqp2ncmqp2n.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-gemini-generated-image-qp2ncmqp2ncmqp2n.webp",
+    "width": 640,
+    "height": 224,
+    "bytes": 27650
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/after-skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-after-skill-1.webp",
+    "width": 316,
+    "height": 360,
+    "bytes": 30740
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/after-skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-after-skill-2.webp",
+    "width": 316,
+    "height": 360,
+    "bytes": 27076
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/after-skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-after-skill-3.webp",
+    "width": 315,
+    "height": 360,
+    "bytes": 24222
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/after-skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-after-skill-passive.webp",
+    "width": 317,
+    "height": 360,
+    "bytes": 24646
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/after-skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-after-skill-ultimate.webp",
+    "width": 319,
+    "height": 360,
+    "bytes": 32118
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/skill-1.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-skill-1.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 40646
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/skill-2.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-skill-2.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39724
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/skill-3.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-skill-3.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39954
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/skill-passive.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-skill-passive.webp",
+    "width": 360,
+    "height": 360,
+    "bytes": 39456
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/skill-ultimate.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-skill-ultimate.webp",
+    "width": 427,
+    "height": 360,
+    "bytes": 58240
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/前.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah.webp",
+    "width": 540,
+    "height": 360,
+    "bytes": 64926
+  },
+  {
+    "source": "assets/roles/volt cheetah 专属/后.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-2.webp",
+    "width": 640,
+    "height": 320,
+    "bytes": 28930
+  },
+  {
+    "source": "assets/roles/volt-cheetah-legend.png",
+    "thumb": "assets/optimized/role-thumbs/volt-cheetah-legend.webp",
+    "width": 640,
+    "height": 349,
+    "bytes": 47842
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "assets/roles/cute-evolved/psyduck.png": {
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-psyduck.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 31682
+  },
+  "assets/roles/cute-evolved/squirtle.png": {
+    "thumb": "assets/optimized/role-thumbs/cute-evolved-squirtle.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 29066
+  },
+  "assets/roles/mini-evolved/psyduck.png": {
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-psyduck.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 43486
+  },
+  "assets/roles/mini-evolved/squirtle.png": {
+    "thumb": "assets/optimized/role-thumbs/mini-evolved-squirtle.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 36234
+  },
+  "assets/roles/new character/pokemon/psyduck/psyduck_after.png": {
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-psyduck-psyduck_after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 53498
+  },
+  "assets/roles/new character/pokemon/psyduck/psyduck_before.png": {
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-psyduck-psyduck_before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 36284
+  },
+  "assets/roles/new character/pokemon/squirtle/squirtle_after.png": {
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-squirtle-squirtle_after.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 59562
+  },
+  "assets/roles/new character/pokemon/squirtle/squirtle_before.png": {
+    "thumb": "assets/optimized/role-thumbs/new-character-pokemon-squirtle-squirtle_before.webp",
+    "width": 640,
+    "height": 360,
+    "bytes": 30652
+  }
+}
