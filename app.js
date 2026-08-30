@@ -1143,9 +1143,17 @@
 
   // 本机演示名单只给 DEMO 账号使用；正式学生名单由 Supabase 提供。
   const DEMO_STUDENTS = {
-    DEMO001: { name: '小明', branch: 'Wangsa Maju', className: 'Year 3', avatar: '🌟' },
-    DEMO002: { name: '小美', branch: 'Setapak', className: 'Year 4', avatar: '🌈' },
-    DEMO003: { name: '小杰', branch: 'Mentakab', className: 'Year 2', avatar: '🚀' }
+    '511001': { name: '林子轩', branch: '5+1 智慧总院', className: 'Form 2', avatar: '🌟' },
+    '511002': { name: '陈思琪', branch: '5+1 旗舰校区', className: 'Form 3', avatar: '🌈' },
+    '511003': { name: '张凯文', branch: '5+1 菁英校区', className: 'Form 1', avatar: '⚡' },
+    '511004': { name: '李美华', branch: '5+1 智慧总院', className: 'Form 2', avatar: '🌸' },
+    '511005': { name: '黄俊杰', branch: '5+1 旗舰校区', className: 'Form 3', avatar: '🔥' },
+    DEMO001: { name: '小明', branch: '5+1 智慧总院', className: 'Form 2', avatar: '🌟' },
+    DEMO002: { name: '小美', branch: '5+1 旗舰校区', className: 'Form 3', avatar: '🌈' },
+    DEMO003: { name: '小杰', branch: '5+1 菁英校区', className: 'Form 1', avatar: '🚀' },
+    CY0000: { name: '5+1 管理员', branch: '5+1 智慧总院', className: 'Admin', avatar: '👑' },
+    CY1001: { name: '林子轩', branch: '5+1 智慧总院', className: 'Form 2', avatar: '🌟' },
+    CY1002: { name: '陈思琪', branch: '5+1 旗舰校区', className: 'Form 3', avatar: '🌈' }
   };
 
   // 稀有度规则先集中放在这里，之后可以按学校的奖励经济调整价格和条件。
@@ -3923,6 +3931,14 @@
 
   function renderActiveStudentView() {
     const viewId = session.activeView || DEFAULT_APP_VIEW;
+    if (viewId === 'dashboard-view') renderDashboardView();
+    if (viewId === 'subjects-view') renderSubjectsView();
+    if (viewId === 'quest-view') renderQuestView();
+    if (viewId === 'leaderboard-view') renderGloryLeaderboard();
+    if (viewId === 'achievements-view') renderAchievementsView();
+    if (viewId === 'arcade-view') renderArcadeView();
+    if (viewId === 'characters-view') renderCharactersView();
+    if (viewId === 'duel-view') renderDuelView();
     if (viewId === 'guide-view') renderPetInteraction();
     if (viewId === 'home-view') renderHome();
     if (viewId === 'checkin-view') {
@@ -17804,17 +17820,19 @@
       if (rawNormalized !== normalized && database[rawNormalized]) delete database[rawNormalized];
       database[normalized] = normalizedStudent;
     } else {
-      // 原型阶段接受 DEMO 账号；正式阶段改成后端验证学生名单。
-      if (!DEMO_STUDENTS[normalized] && !database[normalized] && !(rawNormalized !== normalized && database[rawNormalized]) && !isFreeDemo) {
-        $('#login-error').textContent = '暂时找不到这个演示 ID，请使用 DEMO001、DEMO002 或 DEMO003。';
-        return false;
+      if (!database[normalized]) {
+        const demoInfo = DEMO_STUDENTS[normalized] || { name: normalized, branch: '5+1 智慧总院', className: 'Form 2', avatar: '🌟' };
+        database[normalized] = createStudentProfile(normalized);
+        database[normalized].studentName = demoInfo.name;
+        database[normalized].name = demoInfo.name;
+        database[normalized].className = demoInfo.className;
+        database[normalized].form = demoInfo.className;
+        database[normalized].avatar = demoInfo.avatar;
       }
-      if (isFreeDemo && !database[normalized]) database[normalized] = createStudentProfile(normalized);
-      if (!database[normalized] && rawNormalized !== normalized && database[rawNormalized]) {
+      if (rawNormalized !== normalized && database[rawNormalized]) {
         database[normalized] = { ...database[rawNormalized], studentId: normalized };
         delete database[rawNormalized];
       }
-      if (!database[normalized]) database[normalized] = createStudentProfile(normalized);
       database[normalized].studentName = HolidayBackendClient.getCanonicalStudentName(
         normalized,
         database[normalized].studentName || database[normalized].name || normalized,
@@ -19554,12 +19572,51 @@
   }
 
   function loginSuccess(student) {
-    session.currentStudent = student;
-    session.activeStudentId = student.studentId;
-    localStorage.setItem('eduverse_student_session', JSON.stringify(student));
-    showToast(`欢迎回来，${student.studentName}！`);
+    if (!student) return;
+    const rawId = String(student.studentId || student.phone || '511001').trim();
+    const studentId = HolidayBackendClient.normalizeId(rawId) || '511001';
+
+    const normalizedStudent = {
+      ...createStudentProfile(studentId),
+      ...student,
+      studentId,
+      studentName: student.studentName || student.name || '5+1 学员',
+      name: student.studentName || student.name || '5+1 学员',
+      form: student.form || 'Form 2',
+      className: student.form || 'Form 2',
+      avatar: student.avatar || '🌟',
+      petType: student.petType || 'pikachu',
+      petName: student.petName || '皮卡丘',
+      coins: Number(student.coins) || 120,
+      experience: Number(student.experience) || 120
+    };
+
+    database[studentId] = normalizedStudent;
+    saveDatabase();
+
+    session = {
+      studentId,
+      activeView: DEFAULT_APP_VIEW,
+      quiz: null,
+      demoFree: Boolean(student.demoMode),
+      teacherMode: false,
+      currentStudent: normalizedStudent
+    };
+    saveLoginSession(studentId);
+    localStorage.setItem('eduverse_student_session', JSON.stringify(normalizedStudent));
+
+    renderedCombatState = { studentId: null, stats: null, power: null };
+    const errorEl = document.getElementById('login-error');
+    if (errorEl) errorEl.textContent = '';
+
+    document.getElementById('login-screen')?.classList.add('hidden');
+    document.getElementById('teacher-screen')?.classList.add('hidden');
+    document.getElementById('app-screen')?.classList.remove('hidden');
+    setScreenMode('app');
+
+    showToast(`欢迎回来，${normalizedStudent.studentName}！`);
     renderAppShell();
-    switchView('dashboard-view');
+    switchView(DEFAULT_APP_VIEW);
     window.location.hash = '#/dashboard';
   }
 
@@ -20945,6 +21002,24 @@
 
     // Google Sheet Sync trigger
     document.getElementById('trigger-sheet-sync-btn')?.addEventListener('click', triggerGoogleSheetSync);
+
+    // Teacher Switch Student View
+    document.getElementById('teacher-switch-student-btn')?.addEventListener('click', () => {
+      document.getElementById('teacher-screen')?.classList.add('hidden');
+      loginSuccess({
+        studentId: '511001',
+        studentName: '林子轩 (Form 2)',
+        form: 'Form 2',
+        phone: '0123456789',
+        level: 12,
+        experience: 3500,
+        currentStreak: 12,
+        coins: 520,
+        petType: 'pikachu',
+        petName: '皮卡丘',
+        demoMode: true
+      });
+    });
 
     // Teacher Password Modal
     document.getElementById('teacher-change-pwd-btn')?.addEventListener('click', () => {
