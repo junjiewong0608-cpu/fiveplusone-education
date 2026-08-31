@@ -19,7 +19,7 @@
     requestRetryDelayMs: 650
   };
   const DEFAULT_APP_VIEW = 'dashboard-view';
-  const APP_ASSET_VERSION = '20260831-09';
+  const APP_ASSET_VERSION = '20260831-10';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
   const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
@@ -19202,56 +19202,23 @@
     }
   ];
 
-  function renderTeacherQuickGrid() {
-    const grid = document.getElementById('teacher-quick-select-grid');
-    if (!grid) return;
-    grid.innerHTML = PRESET_TEACHERS.map(t => `
-      <button type="button" class="teacher-quick-btn" data-teacher-id="${t.teacherId}">
-        <span class="teacher-btn-avatar">${t.avatar}</span>
-        <span class="teacher-btn-name">${t.name}</span>
-      </button>
-    `).join('');
-  }
-
-  function selectTeacher(teacherId) {
-    const teacher = PRESET_TEACHERS.find(t => t.teacherId === teacherId);
-    if (!teacher) return;
-
-    document.querySelectorAll('.teacher-quick-btn').forEach(btn => {
-      btn.classList.toggle('selected', btn.dataset.teacherId === teacherId);
-    });
-
-    const nameEl = document.getElementById('selected-teacher-name');
-    const avatarEl = document.getElementById('selected-teacher-avatar');
-    const idEl = document.getElementById('selected-teacher-id');
-    const inputHidden = document.getElementById('teacher-selected-id-input');
-    const submitBtn = document.getElementById('teacher-login-submit-btn');
-
-    if (nameEl) nameEl.textContent = teacher.name;
-    if (avatarEl) avatarEl.textContent = teacher.avatar;
-    if (idEl) idEl.textContent = `ID: ${teacher.teacherId}`;
-    if (inputHidden) inputHidden.value = teacher.teacherId;
-    if (submitBtn) submitBtn.disabled = false;
-
-    const pwdInput = document.getElementById('teacher-password-input');
-    if (pwdInput) {
-      pwdInput.focus();
-    }
-  }
+  const normalizeTeacherLoginName = value => String(value || '').trim().replace(/\s+/g, '').toLocaleLowerCase().replace(/老师$/, '');
 
   async function handleTeacherLogin(e) {
     e.preventDefault();
-    const teacherId = document.getElementById('teacher-selected-id-input')?.value;
+    const teacherName = document.getElementById('teacher-name-input')?.value;
+    const normalizedName = normalizeTeacherLoginName(teacherName);
+    const teacher = PRESET_TEACHERS.find(item => normalizeTeacherLoginName(item.name) === normalizedName);
     const password = document.getElementById('teacher-password-input')?.value;
     const errorEl = document.getElementById('login-error');
 
-    if (!teacherId) {
-      if (errorEl) errorEl.textContent = '请先点击上方快捷选择一位老师。';
+    if (!teacher) {
+      if (errorEl) errorEl.textContent = '老师名字不正确，请输入您的完整姓名，例如：杰老师。';
       return;
     }
 
     try {
-      const res = await backendClient.teacherLogin({ teacherId, password });
+      const res = await backendClient.teacherLogin({ teacherId: teacher.teacherId, password });
       if (!res.ok) {
         if (errorEl) errorEl.textContent = res.error || '密码错误，请输入正确的教师密码。';
         return;
@@ -20798,7 +20765,6 @@
   window.__eduverseApp = {
     playAudioFx,
     toggleAudioMute,
-    selectTeacher,
     openView: viewId => {
       switchView(viewId);
       const hash = viewId.replace('-view', '');
@@ -20857,7 +20823,6 @@
       element.setAttribute('aria-hidden', String(!visible));
       element.classList.toggle('hidden', !visible);
     };
-    renderTeacherQuickGrid();
     handleHashRoute();
 
     // Sound toggle buttons
@@ -20878,9 +20843,7 @@
       document.getElementById('auth-tab-student')?.classList.remove('active');
       setAuthElementVisible('teacher-auth-panel', true);
       setAuthElementVisible('student-auth-panel', false);
-      if (!document.getElementById('teacher-selected-id-input')?.value) {
-        selectTeacher('TCH01_JIE');
-      }
+      document.getElementById('teacher-name-input')?.focus();
     });
 
     // Student Login Mode Switch
@@ -20906,14 +20869,6 @@
       setAuthElementVisible('login-form', true);
       setAuthElementVisible('student-phone-login-form', false);
       setAuthElementVisible('student-register-form', false);
-    });
-
-    // Teacher quick click
-    document.getElementById('teacher-quick-select-grid')?.addEventListener('click', e => {
-      const btn = e.target.closest('.teacher-quick-btn');
-      if (btn && btn.dataset.teacherId) {
-        selectTeacher(btn.dataset.teacherId);
-      }
     });
 
     // Teacher forms
