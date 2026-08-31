@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#5c5ce6" />
   <title>5+1教育补习中心 - EDUVERSE 学习世界</title>
-  <link rel="manifest" href="manifest.webmanifest?v=20260831-05" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=20260831-05" />
-  <link rel="icon" sizes="192x192" href="assets/icons/cy-pets-icon-192.png?v=20260831-05" />
-  <link rel="stylesheet" href="styles.css?v=20260831-05" />
+  <link rel="manifest" href="manifest.webmanifest?v=20260831-06" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=20260831-06" />
+  <link rel="icon" sizes="192x192" href="assets/icons/cy-pets-icon-192.png?v=20260831-06" />
+  <link rel="stylesheet" href="styles.css?v=20260831-06" />
   <script defer src="equipment-engine.js"></script>
-  <script defer src="equipment-catalog.js?v=20260831-05"></script>
-  <script defer src="backend-client.js?v=20260831-05"></script>
-  <script defer src="app.js?v=20260831-05"></script>
+  <script defer src="equipment-catalog.js?v=20260831-06"></script>
+  <script defer src="backend-client.js?v=20260831-06"></script>
+  <script defer src="app.js?v=20260831-06"></script>
 </head>
 <body>
   <audio id="background-music" src="assets/bgm.mp3?v=20260809" autoplay loop preload="auto" aria-label="学习背景音乐"></audio>
@@ -25,32 +25,76 @@
   <section id="login-screen" class="screen login-screen">
     <img class="center-logo" src="assets/brand/center-logo.png" alt="5+1教育补习中心" />
     <div class="eduverse-brand-header">
-      <img class="eduverse-brand-banner-img" src="assets/brand/brand-title-banner.png?v=20260831-05" alt="5+1教育补习中心 · FIVE + ONE TUITION CENTER" />
+      <img class="eduverse-brand-banner-img" src="assets/brand/brand-title-banner.png?v=20260831-06" alt="5+1教育补习中心 · FIVE + ONE TUITION CENTER" />
     </div>
 
-    <div class="login-card main-auth-card">
-      <div class="auth-role-switch" role="group" aria-label="用户角色选择">
-        <button id="auth-tab-student" type="button" class="auth-role-tab active" data-auth-role="student">🎮 学生入口</button>
-        <button id="auth-tab-teacher" type="button" class="auth-role-tab" data-auth-role="teacher">🧑‍🏫 教师通道 (12位教师快捷入口)</button>
-      </div>
+    <div class="login-card-wrapper">
+      <img class="login-ornament-crest" src="assets/decorations/login-top-crest.png" alt="" />
+      <img class="login-ornament-wing-left" src="assets/decorations/login-crystal-wing-left.png" alt="" />
+      <img class="login-ornament-wing-right" src="assets/decorations/login-crystal-wing-right.png" alt="" />
+      
+      <!-- Chibi Fantasy RPG Characters -->
+      <img class="login-chibi-knight" src="assets/decorations/login-chibi-knight.png" alt="Knight" />
+      <img class="login-chibi-mage" src="assets/decorations/login-chibi-mage.png" alt="Mage" />
 
-      <!-- Student Auth Panel -->
-      <div id="student-auth-panel" class="auth-subpanel">
-        <div class="login-mode-switch" role="group" aria-label="学生登录或注册">
-          <button id="show-phone-login-button" type="button" class="login-mode-button active" data-login-mode="phone-login">🎮 学生账号登入</button>
-          <button id="show-register-form-button" type="button" class="login-mode-button" data-login-mode="register">✨ 新生注册</button>
+      <div class="login-card main-auth-card">
+        <!-- 1. Top Big Role Cards -->
+        <div class="auth-role-switch" role="group" aria-label="用户角色选择">
+          <button id="auth-tab-student" type="button" class="auth-role-tab role-card-student active" data-auth-role="student">
+            <span class="role-icon-box">🎮</span>
+            <span class="role-card-title">学生入口</span>
+            <span class="sparkle-dot top-left">✦</span>
+            <span class="sparkle-dot top-right">✦</span>
+            <span class="sparkle-dot btm-left">✦</span>
+            <span class="sparkle-dot btm-right">✦</span>
+          </button>
+          <button id="auth-tab-teacher" type="button" class="auth-role-tab role-card-teacher" data-auth-role="teacher">
+            <span class="role-icon-box">🎓</span>
+            <span class="role-card-title">教师通道</span>
+            <small class="role-card-sub">(12位教师快捷入口)</small>
+            <span class="sparkle-dot top-left">✦</span>
+            <span class="sparkle-dot top-right">✦</span>
+            <span class="sparkle-dot btm-left">✦</span>
+            <span class="sparkle-dot btm-right">✦</span>
+          </button>
         </div>
 
-        <!-- Student Phone & Name Login Form -->
-        <form id="student-phone-login-form" class="login-form">
-          <label for="student-name-input">学生姓名</label>
-          <input id="student-name-input" name="name" type="text" autocomplete="name" placeholder="请输入你的姓名" required />
-          <label for="student-phone-input">马来西亚手机号码</label>
-          <input id="student-phone-input" name="phone" type="tel" autocomplete="tel" placeholder="例如 0123456789 或 60123456789" required />
-          <label for="student-pin-input">登录密码 / PIN 码</label>
-          <input id="student-pin-input" name="pin" type="password" autocomplete="current-password" placeholder="请输入你的密码或 PIN 码" required />
-          <button class="primary-button full-width action-glow-button" type="submit">登入</button>
-        </form>
+        <!-- Student Auth Panel -->
+        <div id="student-auth-panel" class="auth-subpanel">
+          <div class="login-mode-switch" role="group" aria-label="学生登录或注册">
+            <button id="show-phone-login-button" type="button" class="login-mode-button active" data-login-mode="phone-login">🎮 学生账号登入</button>
+            <button id="show-register-form-button" type="button" class="login-mode-button" data-login-mode="register">✨ 新生注册</button>
+          </div>
+
+          <!-- Student Phone & Name Login Form -->
+          <form id="student-phone-login-form" class="login-form">
+            <label class="rpg-input-label" for="student-name-input"><span class="label-icon">👤</span> 学生姓名</label>
+            <div class="rpg-input-wrapper">
+              <input id="student-name-input" name="name" type="text" autocomplete="name" placeholder="请输入你的姓名" required />
+              <span class="rpg-field-icon user-icon">👤</span>
+            </div>
+
+            <label class="rpg-input-label" for="student-phone-input"><span class="label-icon">📱</span> 马来西亚手机号码</label>
+            <div class="rpg-input-wrapper">
+              <input id="student-phone-input" name="phone" type="tel" autocomplete="tel" placeholder="例如 0123456789 或 60123456789" required />
+              <span class="rpg-field-icon phone-icon">📞</span>
+            </div>
+
+            <label class="rpg-input-label" for="student-pin-input"><span class="label-icon">🔒</span> 登录密码 / PIN 码</label>
+            <div class="rpg-input-wrapper">
+              <input id="student-pin-input" name="pin" type="password" autocomplete="current-password" placeholder="请输入你的密码或 PIN 码" required />
+              <span class="rpg-field-icon lock-icon">🛡️</span>
+            </div>
+
+            <div class="login-action-btn-wrap">
+              <button class="primary-button action-glow-button royal-login-btn" type="submit">
+                <span class="btn-sparkle-left">✦</span>
+                <span class="btn-text">登入</span>
+                <span class="btn-sparkle-right">✦</span>
+              </button>
+              <img class="login-button-laurel-img" src="assets/decorations/login-button-laurel.png" alt="" />
+            </div>
+          </form>
 
         <!-- Student Phone Registration Form -->
         <form id="student-register-form" class="login-form hidden" hidden aria-hidden="true">
