@@ -19,7 +19,7 @@
     requestRetryDelayMs: 650
   };
   const DEFAULT_APP_VIEW = 'dashboard-view';
-  const APP_ASSET_VERSION = '20260831-12';
+  const APP_ASSET_VERSION = '20260831-13';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
   const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
@@ -19260,57 +19260,13 @@
   function renderTeacherSubjectBars() {
     const container = document.getElementById('teacher-subject-bars');
     if (!container) return;
-
-    const stats = [
-      { name: '华文 (BC)', acc: 78, color: '#d32f2f' },
-      { name: '国文 (BM)', acc: 72, color: '#e65100' },
-      { name: '英文 (BI)', acc: 81, color: '#1565c0' },
-      { name: '数学 (Math)', acc: 65, color: '#00838f' },
-      { name: '科学 (Science)', acc: 74, color: '#4527a0' },
-      { name: '历史 (Sejarah)', acc: 69, color: '#8d6e63' },
-      { name: '地理 (Geografi)', acc: 76, color: '#2e7d32' },
-      { name: '道德 (Moral)', acc: 85, color: '#ad1457' }
-    ];
-
-    container.innerHTML = stats.map(s => `
-      <div style="margin-bottom: 12px;">
-        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700; margin-bottom:4px;">
-          <span>${s.name}</span>
-          <span style="color:${s.color}">${s.acc}% 正确率</span>
-        </div>
-        <div style="height:10px; background:#f1f5f9; border-radius:999px; overflow:hidden;">
-          <div style="width:${s.acc}%; height:100%; background:${s.color}; border-radius:999px; transition: width 0.6s ease;"></div>
-        </div>
-      </div>
-    `).join('');
+    container.innerHTML = '<div class="empty-state"><div class="result-icon">📈</div><h3>还没有真实作答数据</h3><p>发布练习并有学生完成后，八大学科正确率才会显示。</p></div>';
   }
 
   async function renderTeacherStudentsTable() {
     const tbody = document.getElementById('teacher-students-tbody');
     if (!tbody) return;
-    const mockStudents = [
-      { studentId: '511001', name: '林子轩', form: 'Form 2', phone: '012-3456789', level: 14, exp: 3850, streak: 15, status: 'active' },
-      { studentId: '511002', name: '陈思琪', form: 'Form 3', phone: '019-8765432', level: 13, exp: 3620, streak: 12, status: 'active' },
-      { studentId: '511003', name: '张凯文', form: 'Form 1', phone: '016-1122334', level: 12, exp: 3410, streak: 10, status: 'active' },
-      { studentId: '511004', name: '李美华', form: 'Form 2', phone: '017-9988776', level: 11, exp: 3100, streak: 8, status: 'active' },
-      { studentId: '511005', name: '黄俊杰', form: 'Form 3', phone: '011-2345678', level: 10, exp: 2950, streak: 7, status: 'active' }
-    ];
-
-    tbody.innerHTML = mockStudents.map(s => `
-      <tr>
-        <td><strong>${s.studentId}</strong></td>
-        <td>${s.name}</td>
-        <td><span class="kssm-chip">${s.form}</span></td>
-        <td><span style="color:#0284c7; font-family:monospace;">${s.phone}</span></td>
-        <td>Lv.${s.level}</td>
-        <td>${s.exp}</td>
-        <td>🔥 ${s.streak}天</td>
-        <td><span style="color:#10b981; font-weight:700;">正常</span></td>
-        <td>
-          <button type="button" class="secondary-button compact-button" onclick="window.__eduverseApp.editStudent('${s.studentId}')">编辑</button>
-        </td>
-      </tr>
-    `).join('');
+    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><div class="result-icon">👥</div><h3>还没有学生资料</h3><p>这里不会再显示虚拟学生。请通过上方导入功能加入真实学生。</p></div></td></tr>';
   }
 
   async function renderTeacherQuestionsTable() {
@@ -19318,6 +19274,11 @@
     if (!tbody) return;
     const res = await backendClient.listQuestions();
     const questions = res.questions || [];
+
+    if (!questions.length) {
+      tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><div class="result-icon">📝</div><h3>题库目前为空</h3><p>点击“创建新题目”或使用 CSV 导入真实练习。</p></div></td></tr>';
+      return;
+    }
 
     tbody.innerHTML = questions.map(q => `
       <tr>
@@ -19339,22 +19300,7 @@
   function renderTeacherClassesTable() {
     const tbody = document.getElementById('teacher-classes-tbody');
     if (!tbody) return;
-    const mockClasses = [
-      { classId: 'cls-f1-a', name: 'Form 1 卓越班 (1A)', form: 'Form 1', teacherName: '杰老师', count: 32 },
-      { classId: 'cls-f2-a', name: 'Form 2 精英班 (2A)', form: 'Form 2', teacherName: 'Rachel老师', count: 35 },
-      { classId: 'cls-f3-a', name: 'Form 3 冲刺班 (3A)', form: 'Form 3', teacherName: '黄老师', count: 28 }
-    ];
-    tbody.innerHTML = mockClasses.map(c => `
-      <tr>
-        <td><strong>${c.classId}</strong></td>
-        <td>${c.name}</td>
-        <td><span class="kssm-chip">${c.form}</span></td>
-        <td>${c.teacherName}</td>
-        <td>${c.count} 人</td>
-        <td><span style="color:#10b981; font-weight:700;">启用</span></td>
-        <td><button type="button" class="secondary-button compact-button">管理班级</button></td>
-      </tr>
-    `).join('');
+    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="result-icon">🏫</div><h3>还没有班级资料</h3><p>这里不会再显示虚拟班级。建立真实班级后才会出现。</p></div></td></tr>';
   }
 
   async function renderGoogleSheetSyncStatus() {
@@ -19556,6 +19502,7 @@
   async function renderDailyChallengeCard() {
     try {
       const res = await backendClient.getDailyChallenge({ form: getStudent()?.form || 'Form 2' });
+      const button = document.getElementById('start-daily-challenge-btn');
       if (res && res.ok && res.challenge) {
         const c = res.challenge;
         const titleEl = document.getElementById('challenge-title-text');
@@ -19564,8 +19511,18 @@
         if (titleEl) titleEl.textContent = c.title;
         if (descEl) descEl.textContent = c.description;
         if (subPill) subPill.textContent = c.subjectId.toUpperCase();
+        if (button) {
+          button.disabled = false;
+          button.textContent = '⚔️ 立即挑战 (PLAY NOW)';
+        }
 
         startChallengeCountdown(c.endTime);
+      } else {
+        if (challengeCountdownTimerId) clearInterval(challengeCountdownTimerId);
+        if (button) {
+          button.disabled = true;
+          button.textContent = '⚔️ 暂无挑战';
+        }
       }
     } catch (_err) {}
   }
@@ -19736,46 +19693,19 @@
 
   // Quest Gameplay Engine
   async function startQuest(chapterId, subjectId = 'math') {
+    const res = await backendClient.listQuestions({ subjectId, chapterId });
+    const rawQuestions = Array.isArray(res?.questions) ? res.questions : [];
+    if (!rawQuestions.length) {
+      showToast('这个单元还没有练习，请等老师发布。');
+      return;
+    }
+
     switchView('quest-view');
     window.location.hash = `#/quest/${chapterId}`;
 
     const sub = EDUVERSE_SUBJECTS_CATALOG.find(s => s.subjectId === subjectId) || EDUVERSE_SUBJECTS_CATALOG[3];
     const titleEl = document.getElementById('quest-subject-title');
     if (titleEl) titleEl.textContent = `${sub.nameZh} · ${chapterId}`;
-
-    const res = await backendClient.listQuestions({ subjectId, chapterId });
-    const rawQuestions = (res && res.questions && res.questions.length) ? res.questions : [
-      {
-        questionId: 'q-demo-01',
-        questionText: 'Hitung nilai bagi: -12 + 4 × (-3) - (-8)',
-        options: ['-16', '-20', '-4', '8'],
-        correctAnswer: '-16',
-        explanation: 'Ikut hukum BODMAS: 4 × (-3) = -12. Kemudian: -12 + (-12) - (-8) = -24 + 8 = -16.',
-        kssmFocus: '🔥 代数解题',
-        expReward: 40,
-        coinReward: 12
-      },
-      {
-        questionId: 'q-demo-02',
-        questionText: 'Cari Faktor Sepunya Terbesar (FSTB / HCF) bagi 24, 36 dan 60.',
-        options: ['12', '6', '18', '24'],
-        correctAnswer: '12',
-        explanation: 'Faktor bagi 24, 36, 60. FSTB = 12.',
-        kssmFocus: '⭐ 几何公式',
-        expReward: 35,
-        coinReward: 10
-      },
-      {
-        questionId: 'q-demo-03',
-        questionText: 'Diberi jujukan nombor: 3, 7, 11, 15, ... Cari sebutan ke-10 (T10).',
-        options: ['39', '36', '43', '40'],
-        correctAnswer: '39',
-        explanation: 'Pola ialah +4. Tn = 3 + 9(4) = 39.',
-        kssmFocus: '🧠 KBAT 逻辑',
-        expReward: 45,
-        coinReward: 15
-      }
-    ];
 
     activeQuestSession = {
       subjectId,
@@ -20902,19 +20832,11 @@
     // Teacher Switch Student View
     document.getElementById('teacher-switch-student-btn')?.addEventListener('click', () => {
       document.getElementById('teacher-screen')?.classList.add('hidden');
-      loginSuccess({
-        studentId: '511001',
-        studentName: '林子轩 (Form 2)',
-        form: 'Form 2',
-        phone: '0123456789',
-        level: 12,
-        experience: 3500,
-        currentStreak: 12,
-        coins: 520,
-        petType: 'pikachu',
-        petName: '皮卡丘',
-        demoMode: true
-      });
+      document.getElementById('app-screen')?.classList.add('hidden');
+      document.getElementById('login-screen')?.classList.remove('hidden');
+      setScreenMode('login');
+      document.getElementById('show-student-auth-button')?.click();
+      showToast('已切换到学生登录，请使用真实学生账号进入。');
     });
 
     // Teacher Password Modal

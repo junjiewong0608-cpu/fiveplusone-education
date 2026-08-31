@@ -3350,268 +3350,7 @@ const SEED_CHAPTERS = [
   { chapterId: 'mor-f3-c1', subjectId: 'moral', form: 'Form 3', chapterNumber: 1, title: 'Unit 1: Integriti Pilihan Keluarga Harmoni', description: 'Memupuk sikap jujur dan bertanggungjawab dalam keluarga.', kssmFocus: '🧠 道德思辨', difficulty: 'Normal' }
 ];
 
-const SEED_QUESTIONS = [
-  {
-    questionId: 'q-bc-001',
-    subjectId: 'bc',
-    form: 'Form 1',
-    chapterId: 'bc-f1-c1',
-    questionType: 'single_choice',
-    questionText: '下列哪一个句子使用了“比喻”修辞手法？',
-    options: ['他急得像热锅上的蚂蚁。', '小鸟在枝头欢快地唱歌。', '教室里安静得连针掉地上都能听见。', '难道我们不应该保护环境吗？'],
-    correctAnswer: '他急得像热锅上的蚂蚁。',
-    explanation: '“像热锅上的蚂蚁”将焦急的心理比作蚂蚁，属于明喻修辞。',
-    kssmFocus: '🔥 高频考点',
-    difficulty: 'Easy',
-    expReward: 30,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-bc-002',
-    subjectId: 'bc',
-    form: 'Form 1',
-    chapterId: 'bc-f1-c1',
-    questionType: 'single_choice',
-    questionText: '“小明做事总是_______，常常顾此失彼。”横线上最适合填入哪个成语？',
-    options: ['捉襟见肘', '按部就班', '一丝不苟', '雷厉风行'],
-    correctAnswer: '捉襟见肘',
-    explanation: '“捉襟见肘”比喻顾此失彼，处境窘困。',
-    kssmFocus: '⭐ 必会',
-    difficulty: 'Normal',
-    expReward: 35,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-bc-003',
-    subjectId: 'bc',
-    form: 'Form 2',
-    chapterId: 'bc-f2-c1',
-    questionType: 'single_choice',
-    questionText: '“这座桥长约300米，宽约20米，由10个桥墩支撑。”本句使用了哪种说明方法？',
-    options: ['列数字', '打比方', '作比较', '举例子'],
-    correctAnswer: '列数字',
-    explanation: '通过具体的数值精确说明物体的特征，属于列数字说明方法。',
-    kssmFocus: '🔥 高频考点',
-    difficulty: 'Normal',
-    expReward: 35,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-bm-001',
-    subjectId: 'bm',
-    form: 'Form 1',
-    chapterId: 'bm-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Pilih ayat yang menggunakan kata ganda berentak dengan betul.',
-    options: [
-      'Ibu memasak kuih-muih tradisional untuk majlis berbuka puasa.',
-      'Murid-murid sedang membaca buku-buku di dalam perpustakaan.',
-      'Ali berjalan kaki ke sekolah setiap hari-hari.',
-      'Meja-meja di bilik darjah itu disusun dengan rapi.'
-    ],
-    correctAnswer: 'Ibu memasak kuih-muih tradisional untuk majlis berbuka puasa.',
-    explanation: '"Kuih-muih" ialah contoh kata ganda berentak pengulangan vokal.',
-    kssmFocus: '🔥 Tatabahasa',
-    difficulty: 'Normal',
-    expReward: 30,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-bm-002',
-    subjectId: 'bm',
-    form: 'Form 1',
-    chapterId: 'bm-f1-c2',
-    questionType: 'single_choice',
-    questionText: 'Ayat manakah yang mempunyai pola ayat Frasa Nama + Frasa Sendi Nama (FN + FS)?',
-    options: [
-      'Rumah banglo itu di atas bukit.',
-      'Encik Rosli seorang peguam ternama.',
-      'Adik sedang melukis gambar pemandangan.',
-      'Bunga mawar di taman sangat harum.'
-    ],
-    correctAnswer: 'Rumah banglo itu di atas bukit.',
-    explanation: '"Rumah banglo itu" (FN) + "di atas bukit" (FS).',
-    kssmFocus: '⭐ 必会',
-    difficulty: 'Normal',
-    expReward: 35,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-bi-001',
-    subjectId: 'bi',
-    form: 'Form 1',
-    chapterId: 'bi-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Neither the teacher nor the students _______ aware of the sudden schedule change.',
-    options: ['were', 'was', 'is', 'has been'],
-    correctAnswer: 'were',
-    explanation: 'When using "neither... nor", the verb agrees with the subject closest to it ("the students" -> plural "were").',
-    kssmFocus: '🔥 Grammar Wizard',
-    difficulty: 'Normal',
-    expReward: 30,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-bi-002',
-    subjectId: 'bi',
-    form: 'Form 2',
-    chapterId: 'bi-f2-c1',
-    questionType: 'single_choice',
-    questionText: 'The scientist _______ discovered the new energy formula won the prestigious award.',
-    options: ['who', 'which', 'whom', 'whose'],
-    correctAnswer: 'who',
-    explanation: '"Who" is used as the relative pronoun for a person acting as the subject.',
-    kssmFocus: '⭐ Vocab Pro',
-    difficulty: 'Easy',
-    expReward: 25,
-    coinReward: 8,
-    status: 'published'
-  },
-  {
-    questionId: 'q-math-001',
-    subjectId: 'math',
-    form: 'Form 1',
-    chapterId: 'math-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Hitung nilai bagi: -12 + 4 × (-3) - (-8)',
-    options: ['-16', '-20', '-4', '8'],
-    correctAnswer: '-16',
-    explanation: 'Ikut hukum BODMAS: 4 × (-3) = -12. Kemudian: -12 + (-12) - (-8) = -24 + 8 = -16.',
-    kssmFocus: '🔥 代数解题',
-    difficulty: 'Normal',
-    expReward: 40,
-    coinReward: 12,
-    status: 'published'
-  },
-  {
-    questionId: 'q-math-002',
-    subjectId: 'math',
-    form: 'Form 1',
-    chapterId: 'math-f1-c2',
-    questionType: 'single_choice',
-    questionText: 'Cari Faktor Sepunya Terbesar (FSTB / HCF) bagi 24, 36 dan 60.',
-    options: ['12', '6', '18', '24'],
-    correctAnswer: '12',
-    explanation: 'Faktor bagi 24: 1,2,3,4,6,8,12,24. Bagi 36: 1,2,3,4,6,9,12,18,36. Bagi 60: 1,2,3,4,5,6,10,12,15,20,30,60. FSTB = 12.',
-    kssmFocus: '⭐ 几何公式',
-    difficulty: 'Normal',
-    expReward: 35,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-math-003',
-    subjectId: 'math',
-    form: 'Form 2',
-    chapterId: 'math-f2-c1',
-    questionType: 'single_choice',
-    questionText: 'Diberi jujukan nombor: 3, 7, 11, 15, ... Cari sebutan ke-10 (T10).',
-    options: ['39', '36', '43', '40'],
-    correctAnswer: '39',
-    explanation: 'Pola ialah +4. Rumus Tn = a + (n-1)d = 3 + (10-1)(4) = 3 + 36 = 39.',
-    kssmFocus: '🧠 KBAT 逻辑',
-    difficulty: 'Normal',
-    expReward: 45,
-    coinReward: 15,
-    status: 'published'
-  },
-  {
-    questionId: 'q-sci-001',
-    subjectId: 'science',
-    form: 'Form 1',
-    chapterId: 'sci-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Antara berikut, yang manakah merupakan unit S.I. bagi suhu?',
-    options: ['Kelvin (K)', 'Darjah Celsius (°C)', 'Fahrenheit (°F)', 'Joule (J)'],
-    correctAnswer: 'Kelvin (K)',
-    explanation: 'Unit S.I. rasmi untuk kuantiti asas suhu termodinamik ialah Kelvin (K).',
-    kssmFocus: '⭐ 科学原理',
-    difficulty: 'Easy',
-    expReward: 30,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-sci-002',
-    subjectId: 'science',
-    form: 'Form 2',
-    chapterId: 'sci-f2-c1',
-    questionType: 'single_choice',
-    questionText: 'Haiwan vertebrata yang berdarah sejuk (poikiloterma) dan bernafas melalui insang semasa kecil ialah:',
-    options: ['Amfibia', 'Reptilia', 'Mamalia', 'Burung'],
-    correctAnswer: 'Amfibia',
-    explanation: 'Amfibia (seperti katak) bernafas melalui insang pada peringkat berudu dan paru-paru/kulit lembap apabila dewasa.',
-    kssmFocus: '🔥 实验探究',
-    difficulty: 'Normal',
-    expReward: 35,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-sej-001',
-    subjectId: 'sejarah',
-    form: 'Form 1',
-    chapterId: 'sej-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Apakah ciri utama sumber primer dalam kajian sejarah?',
-    options: [
-      'Bersifat asli, belum diolah dan belum diterbitkan.',
-      'Bahan bertulis yang telah ditafsir oleh sejarawan.',
-      'Buku teks dan ensiklopedia rujukan umum.',
-      'Surat khabar yang dicetak pada zaman moden.'
-    ],
-    correctAnswer: 'Bersifat asli, belum diolah dan belum diterbitkan.',
-    explanation: 'Sumber primer ialah sumber pertama yang belum melalui proses tafsiran atau pengolahan.',
-    kssmFocus: '⭐ 重点年表',
-    difficulty: 'Normal',
-    expReward: 30,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-geo-001',
-    subjectId: 'geografi',
-    form: 'Form 1',
-    chapterId: 'geo-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Garisan lintang utama yang membahagikan bumi kepada Hemisfera Utara dan Hemisfera Selatan ialah:',
-    options: ['Garisan Khatulistiwa (0°)', 'Garisan Sartan (23½° U)', 'Garisan Jadi (23½° S)', 'Garisan Meridian Greenwich (0°)'],
-    correctAnswer: 'Garisan Khatulistiwa (0°)',
-    explanation: 'Garisan Khatulistiwa terletak pada latitud 0° dan membahagikan bumi kepada dua hemisfera.',
-    kssmFocus: '🗺️ 经纬等高线',
-    difficulty: 'Easy',
-    expReward: 30,
-    coinReward: 10,
-    status: 'published'
-  },
-  {
-    questionId: 'q-mor-001',
-    subjectId: 'moral',
-    form: 'Form 1',
-    chapterId: 'mor-f1-c1',
-    questionType: 'single_choice',
-    questionText: 'Tindakan manakah yang menunjukkan perlakuan insan bermoral dalam situasi di sekolah?',
-    options: [
-      'Membantu rakan yang tercicir buku tanpa mengharapkan balasan.',
-      'Menyembunyikan kesalahan kawan rapat daripada guru disiplin.',
-      'Membuang sampah ke dalam laci meja kerana tong sampah jauh.',
-      'Bercakap kasar dengan pengawas bertugas.'
-    ],
-    correctAnswer: 'Membantu rakan yang tercicir buku tanpa mengharapkan balasan.',
-    explanation: 'Membantu dengan ikhlas mencerminkan nilai kasih sayang, baik hati dan bertanggungjawab.',
-    kssmFocus: '🔥 核心价值',
-    difficulty: 'Easy',
-    expReward: 25,
-    coinReward: 8,
-    status: 'published'
-  }
-];
+const SEED_QUESTIONS: JsonRecord[] = [];
 
 const SEED_ACHIEVEMENTS = [
   { achievementId: 'ach-first-quest', category: 'Study', title: 'FIRST QUEST', description: '完成你的第一场学科试炼。', rarity: 'Common', badgeIcon: '🌱', requirementType: 'quest_count', targetValue: 1, expReward: 100 },
@@ -3623,32 +3362,14 @@ const SEED_ACHIEVEMENTS = [
   { achievementId: 'ach-all-rounder', category: 'Subject', title: 'ALL ROUNDER', description: '完成全部 8 个学科的试炼挑战。', rarity: 'Legendary', badgeIcon: '🌟', requirementType: 'unique_subjects', targetValue: 8, expReward: 800 }
 ];
 
-let syncLogHistory = [
-  { jobId: 'job-init', status: 'synced', startedAt: new Date(Date.now() - 3600000).toISOString(), finishedAt: new Date(Date.now() - 3590000).toISOString(), rowsSynced: 128, errorMessage: '' }
-];
+let syncLogHistory: JsonRecord[] = [];
 
 const LOCAL_STORAGE_DB = {
   questions: [...SEED_QUESTIONS],
   chapters: [...SEED_CHAPTERS],
   questRecords: [] as JsonRecord[],
   studentAchievements: new Map<string, Set<string>>(),
-  dailyChallenges: [
-    {
-      challengeId: 'daily-math-f1',
-      title: 'Math Speed Trial · 赛博数理竞速',
-      subjectId: 'math',
-      form: 'All',
-      classId: '',
-      description: '挑战四则运算与代数难题，赢取双倍 EXP 与金币赏金！',
-      questionIds: ['q-math-001', 'q-math-002', 'q-math-003'],
-      startTime: new Date(Date.now() - 1000 * 3600 * 2).toISOString(),
-      endTime: new Date(Date.now() + 1000 * 3600 * 10).toISOString(),
-      expBounty: 500,
-      coinReward: 100,
-      difficulty: 'Medium',
-      status: 'active'
-    }
-  ]
+  dailyChallenges: [] as JsonRecord[]
 };
 
 async function listTeachers() {
@@ -3948,6 +3669,7 @@ async function publishQuestion(payload: JsonRecord = {}) {
 async function getDailyChallenge(payload: JsonRecord = {}) {
   const form = String(payload.form || 'All');
   const challenge = LOCAL_STORAGE_DB.dailyChallenges.find(c => c.form === 'All' || c.form === form) || LOCAL_STORAGE_DB.dailyChallenges[0];
+  if (!challenge) return { ok: true, challenge: null };
   const questions = LOCAL_STORAGE_DB.questions.filter(q => (challenge.questionIds || []).includes(q.questionId));
 
   return {
@@ -4130,49 +3852,25 @@ async function listAchievements(payload: JsonRecord = {}) {
 
 async function getTeacherAnalytics(_payload: JsonRecord = {}) {
   const records = LOCAL_STORAGE_DB.questRecords;
-  const totalQuestionsAnswered = records.reduce((sum, r) => sum + (Number(r.totalQuestions) || 0), 0) + 148;
-  const totalCorrect = records.reduce((sum, r) => sum + (Number(r.correctCount) || 0), 0) + 115;
+  const totalQuestionsAnswered = records.reduce((sum, r) => sum + (Number(r.totalQuestions) || 0), 0);
+  const totalCorrect = records.reduce((sum, r) => sum + (Number(r.correctCount) || 0), 0);
   const avgAccuracy = Math.round((totalCorrect / Math.max(1, totalQuestionsAnswered)) * 100);
-
-  const subjectStats = {
-    bc: { name: '华文', accuracy: 78, attempts: 45 },
-    bm: { name: '国文', accuracy: 72, attempts: 38 },
-    bi: { name: '英文', accuracy: 81, attempts: 52 },
-    math: { name: '数学', accuracy: 65, attempts: 60 },
-    science: { name: '科学', accuracy: 74, attempts: 40 },
-    sejarah: { name: '历史', accuracy: 69, attempts: 35 },
-    geografi: { name: '地理', accuracy: 76, attempts: 30 },
-    moral: { name: '道德', accuracy: 85, attempts: 28 }
-  };
-
-  const formStats = {
-    'Form 1': { students: 48, accuracy: 76 },
-    'Form 2': { students: 56, accuracy: 73 },
-    'Form 3': { students: 42, accuracy: 71 }
-  };
 
   return {
     ok: true,
     summary: {
-      totalStudents: 146,
-      activeToday: 42,
+      totalStudents: 0,
+      activeToday: 0,
       questionsAnsweredToday: totalQuestionsAnswered,
       averageAccuracy: avgAccuracy,
-      dailyChallengeCompletionRate: 68,
-      firstAttemptAccuracy: 71,
-      retryAccuracy: 88
+      dailyChallengeCompletionRate: 0,
+      firstAttemptAccuracy: avgAccuracy,
+      retryAccuracy: 0
     },
-    subjectStats,
-    formStats,
-    weakestChapters: [
-      { chapter: 'Math F1 Bab 1: Nombor Nisbah', accuracy: 58, subject: '数学' },
-      { chapter: 'Sejarah F2 Bab 1: Kerajaan Alam Melayu', accuracy: 62, subject: '历史' },
-      { chapter: 'BM F1 Bab 2: Sintaksis Pola Ayat', accuracy: 64, subject: '国文' }
-    ],
-    mostWrongQuestions: [
-      { questionId: 'q-math-001', text: 'Hitung nilai bagi: -12 + 4 × (-3) - (-8)', wrongCount: 18, accuracy: 45 },
-      { questionId: 'q-bm-002', text: 'Ayat manakah yang mempunyai pola ayat FN + FS?', wrongCount: 14, accuracy: 52 }
-    ]
+    subjectStats: {},
+    formStats: {},
+    weakestChapters: [],
+    mostWrongQuestions: []
   };
 }
 

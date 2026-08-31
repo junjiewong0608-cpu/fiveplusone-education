@@ -8,11 +8,11 @@
   <link rel="manifest" href="manifest.webmanifest?v=20260831-12" />
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=20260831-12" />
   <link rel="icon" sizes="192x192" href="assets/icons/cy-pets-icon-192.png?v=20260831-12" />
-  <link rel="stylesheet" href="styles.css?v=20260831-12" />
+  <link rel="stylesheet" href="styles.css?v=20260831-13" />
   <script defer src="equipment-engine.js"></script>
   <script defer src="equipment-catalog.js?v=20260831-12"></script>
   <script defer src="backend-client.js?v=20260831-12"></script>
-  <script defer src="app.js?v=20260831-12"></script>
+  <script defer src="app.js?v=20260831-13"></script>
 </head>
 <body>
   <audio id="background-music" src="assets/bgm.mp3?v=20260809" autoplay loop preload="auto" aria-label="学习背景音乐"></audio>
@@ -206,11 +206,11 @@
       <!-- 1. Teacher Overview Dashboard -->
       <section id="tab-dashboard" class="teacher-tab-content active">
         <div class="teacher-kpi-grid">
-          <div class="kpi-card"><span class="kpi-icon">👥</span><strong>146</strong><small>全校在册学生</small></div>
-          <div class="kpi-card"><span class="kpi-icon">⚡</span><strong>42</strong><small>今日活跃学生</small></div>
-          <div class="kpi-card"><span class="kpi-icon">🎯</span><strong>148 题</strong><small>今日作答总题数</small></div>
-          <div class="kpi-card"><span class="kpi-icon">📈</span><strong>75%</strong><small>全校平均正确率</small></div>
-          <div class="kpi-card"><span class="kpi-icon">🔥</span><strong>68%</strong><small>今日挑战完成率</small></div>
+          <div class="kpi-card"><span class="kpi-icon">👥</span><strong>0</strong><small>全校在册学生</small></div>
+          <div class="kpi-card"><span class="kpi-icon">⚡</span><strong>0</strong><small>今日活跃学生</small></div>
+          <div class="kpi-card"><span class="kpi-icon">🎯</span><strong>0 题</strong><small>今日作答总题数</small></div>
+          <div class="kpi-card"><span class="kpi-icon">📈</span><strong>—</strong><small>全校平均正确率</small></div>
+          <div class="kpi-card"><span class="kpi-icon">🔥</span><strong>—</strong><small>今日挑战完成率</small></div>
         </div>
 
         <section class="panel-card">
@@ -449,21 +449,7 @@
       <section id="tab-analytics" class="teacher-tab-content hidden">
         <section class="panel-card">
           <div class="panel-heading"><div><p class="eyebrow">ACADEMIC ANALYTICS</p><h3>多维学情与作答分析</h3></div></div>
-          <div class="analytics-metrics-grid">
-            <div class="analytics-metric-box">
-              <h4>首次尝试正确率 vs 重做正确率</h4>
-              <p class="metric-big"><strong>71%</strong> <span>(首次作答)</span> → <strong>88%</strong> <span>(错题重练)</span></p>
-              <small class="muted-text">错题重练帮助学生掌握度平均提升 +17%</small>
-            </div>
-            <div class="analytics-metric-box">
-              <h4>薄弱章节排行榜 (重点关注)</h4>
-              <ul class="weak-chapters-list">
-                <li><span>⚠️ 数学 F1 Bab 1: Nombor Nisbah</span> <strong>58% 正确率</strong></li>
-                <li><span>⚠️ 历史 F2 Bab 1: Kerajaan Alam Melayu</span> <strong>62% 正确率</strong></li>
-                <li><span>⚠️ 国文 F1 Bab 2: Sintaksis Pola Ayat</span> <strong>64% 正确率</strong></li>
-              </ul>
-            </div>
-          </div>
+          <div class="empty-state"><div class="result-icon">📊</div><h3>还没有学情数据</h3><p>学生完成老师发布的练习后，这里才会显示真实统计。</p></div>
         </section>
       </section>
 
@@ -638,23 +624,21 @@
             <div class="challenge-info-col">
               <div class="challenge-tags-row">
                 <span class="challenge-type-pill">⚡ 今日限时挑战</span>
-                <span id="challenge-subject-pill" class="challenge-subject-pill">数学 · MATEMATIK</span>
-                <span id="challenge-form-pill" class="kssm-chip">KSSM 全部年级</span>
+                <span id="challenge-subject-pill" class="challenge-subject-pill">等待老师发布</span>
+                <span id="challenge-form-pill" class="kssm-chip">暂无练习</span>
               </div>
-              <h2 id="challenge-title-text">Math Speed Trial · 赛博数理竞速</h2>
-              <p id="challenge-desc-text" class="challenge-desc">挑战代数与几何难题，赢取双倍 EXP 与金币赏金！</p>
+              <h2 id="challenge-title-text">今天还没有发布挑战</h2>
+              <p id="challenge-desc-text" class="challenge-desc">老师发布新的练习后，这里会自动显示。</p>
               <div class="challenge-rewards-row">
-                <span class="reward-tag">⭐ +500 EXP</span>
-                <span class="reward-tag">🪙 +100 Coins</span>
-                <span class="reward-tag">🔥 Streak +1</span>
+                <span class="reward-tag">题库目前为空</span>
               </div>
             </div>
             <div class="challenge-action-col">
               <div class="live-countdown-box">
-                <span class="timer-label">⏳ 距离挑战结束仅剩</span>
-                <strong id="challenge-countdown-timer">06:45:12</strong>
+                <span class="timer-label">⏳ 挑战状态</span>
+                <strong id="challenge-countdown-timer">等待发布</strong>
               </div>
-              <button id="start-daily-challenge-btn" type="button" class="primary-button action-glow-button challenge-play-btn">⚔️ 立即挑战 (PLAY NOW)</button>
+              <button id="start-daily-challenge-btn" type="button" class="primary-button action-glow-button challenge-play-btn" disabled>⚔️ 暂无挑战</button>
             </div>
           </div>
         </section>
