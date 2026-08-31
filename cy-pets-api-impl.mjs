@@ -3623,13 +3623,13 @@ async function registerStudentPhone(payload = {}) {
 
 async function loginStudentPhone(payload = {}) {
   const rawPhone = String(payload.phone || payload.phoneNumber || '').trim();
+  const rawName = String(payload.name || payload.studentName || '').trim();
   const pin = String(payload.pin || payload.password || '').trim();
 
   if (!rawPhone) return { ok: false, error: '请输入手机号码。' };
-  if (!pin) return { ok: false, error: '请输入 PIN / 密码。' };
 
   const normalizedPhone = normalizePhoneNumber(rawPhone);
-  const inputHash = hashPasswordSync(pin);
+  const inputHash = pin ? hashPasswordSync(pin) : null;
 
   try {
     const rows = await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=*`, {
@@ -3637,7 +3637,7 @@ async function loginStudentPhone(payload = {}) {
     });
     if (rows && rows.length > 0) {
       const studentData = rows[0];
-      if (studentData.password_hash && studentData.password_hash !== inputHash) {
+      if (inputHash && studentData.password_hash && studentData.password_hash !== inputHash) {
         return { ok: false, error: 'PIN 码或密码错误。' };
       }
       return getStudent({ studentId: studentData.student_id });
@@ -3648,8 +3648,8 @@ async function loginStudentPhone(payload = {}) {
 
   // Compatible mock response if database offline
   const mockStudent = {
-    studentId: `CY${normalizedPhone.slice(-4)}`,
-    studentName: '学习伙伴',
+    studentId: `51${normalizedPhone.slice(-4)}`,
+    studentName: rawName || '学习伙伴',
     phone: normalizedPhone,
     form: 'Form 2',
     level: 1,

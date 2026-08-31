@@ -19439,25 +19439,34 @@
   // Student Phone Auth & Registration
   async function handleStudentPhoneLogin(e) {
     e.preventDefault();
+    const nameInput = document.getElementById('student-name-input');
     const phoneInput = document.getElementById('student-phone-input');
-    const pinInput = document.getElementById('student-pin-input');
     const errorEl = document.getElementById('login-error');
 
-    const phone = phoneInput?.value.trim();
-    const pin = pinInput?.value.trim();
+    const name = nameInput?.value.trim() || '';
+    const phone = phoneInput?.value.trim() || '';
 
-    if (!phone || !pin) {
-      if (errorEl) errorEl.textContent = '请输入手机号码与 PIN 码。';
+    if (!name && !phone) {
+      if (errorEl) errorEl.textContent = '请输入学生姓名与手机号码。';
+      return;
+    }
+    if (!name) {
+      if (errorEl) errorEl.textContent = '请输入学生姓名。';
+      return;
+    }
+    if (!phone) {
+      if (errorEl) errorEl.textContent = '请输入马来西亚手机号码。';
       return;
     }
 
     try {
-      const res = await backendClient.loginStudentPhone({ phone, pin });
+      const res = await backendClient.loginStudentPhone({ name, phone });
       if (!res.ok) {
-        if (errorEl) errorEl.textContent = res.error || '登录失败，请检查手机号或 PIN 码。';
+        if (errorEl) errorEl.textContent = res.error || '登录失败，请检查学生姓名与手机号码。';
         return;
       }
 
+      showToast(`欢迎回来，${res.student.studentName || name}！`);
       loginSuccess(res.student);
     } catch (err) {
       if (errorEl) errorEl.textContent = '登录发生异常，请稍后重试。';

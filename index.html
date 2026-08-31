@@ -38,18 +38,17 @@
       <!-- Student Auth Panel -->
       <div id="student-auth-panel" class="auth-subpanel">
         <div class="login-mode-switch" role="group" aria-label="学生登录或注册">
-          <button id="show-phone-login-button" type="button" class="login-mode-button active" data-login-mode="phone-login">📱 手机号登录</button>
+          <button id="show-phone-login-button" type="button" class="login-mode-button active" data-login-mode="phone-login">🎮 学生账号登入</button>
           <button id="show-register-form-button" type="button" class="login-mode-button" data-login-mode="register">✨ 新生注册</button>
-          <button id="show-legacy-login-button" type="button" class="login-mode-button" data-login-mode="legacy-login">🔑 学生 ID 登录</button>
         </div>
 
-        <!-- Student Phone Login Form -->
+        <!-- Student Phone & Name Login Form -->
         <form id="student-phone-login-form" class="login-form">
-          <label for="student-phone-input">马来西亚手机号码 (Login Identifier)</label>
+          <label for="student-name-input">学生姓名</label>
+          <input id="student-name-input" name="name" type="text" autocomplete="name" placeholder="请输入你的姓名" required />
+          <label for="student-phone-input">马来西亚手机号码</label>
           <input id="student-phone-input" name="phone" type="tel" autocomplete="tel" placeholder="例如 0123456789 或 60123456789" required />
-          <label for="student-pin-input">PIN 码 / 密码</label>
-          <input id="student-pin-input" name="pin" type="password" autocomplete="current-password" placeholder="请输入你的 PIN 码" required />
-          <button class="primary-button full-width action-glow-button" type="submit">进入 5+1 学习世界 🚀</button>
+          <button class="primary-button full-width action-glow-button" type="submit">登入</button>
         </form>
 
         <!-- Student Phone Registration Form -->
@@ -66,7 +65,7 @@
           </select>
           <label for="reg-student-pin">设置 PIN 码 / 密码 (至少 4 位)</label>
           <input id="reg-student-pin" name="pin" type="password" placeholder="请设置安全 PIN 码" minlength="4" maxlength="20" required />
-          <button class="primary-button full-width action-glow-button" type="submit">立即注册并开启学科冒险 🌟</button>
+          <button class="primary-button full-width action-glow-button" type="submit">立即注册 🌟</button>
         </form>
 
         <!-- Legacy ID Registration Form (Compatibility) -->
@@ -89,18 +88,6 @@
           <input id="student-id" name="studentId" autocomplete="off" placeholder="请输入老师给你的 ID" maxlength="20" />
           <button class="primary-button full-width" type="submit">以 ID 登录</button>
         </form>
-
-        <div class="quick-demo-login">
-          <span>演示快速体验：</span>
-          <button type="button" class="text-button demo-phone-btn" data-demo-phone="60123456789">Form 2 体验生</button>
-          <button type="button" class="text-button demo-phone-btn" data-demo-phone="60198765432">Form 3 体验生</button>
-        </div>
-
-        <div class="demo-login hidden" hidden aria-hidden="true">
-          <button id="free-demo-button" type="button" class="text-button hidden" hidden>自由搭配 Demo</button>
-          <button id="teacher-entry-button" type="button" class="text-button hidden" hidden>老师入口</button>
-          <button id="show-login-form-button" type="button" class="text-button hidden" hidden>已有 ID 登录</button>
-        </div>
       </div>
 
       <!-- Teacher Quick Login Panel -->
