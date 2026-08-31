@@ -139,8 +139,8 @@ function roomChatKey(roomId) {
 }
 
 function getRedisConfig() {
-  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '';
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || '';
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_KV_REST_API_URL || process.env.KV_REST_API_URL || '';
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_KV_REST_API_TOKEN || process.env.KV_REST_API_TOKEN || '';
   if (!url || !token) throw Object.assign(new Error('Redis live room is not configured.'), { code: 'REDIS_NOT_CONFIGURED' });
   return { url: url.replace(/\/$/, ''), token };
 }
