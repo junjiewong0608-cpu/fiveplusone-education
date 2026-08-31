@@ -8265,8 +8265,9 @@ button[aria-disabled="true"] {
 }
 
 .login-screen .eduverse-brand-banner-img {
-  width: min(100%, 430px);
-  filter: drop-shadow(0 10px 20px rgba(17, 80, 145, .22));
+  width: 100%;
+  border-radius: 18px;
+  filter: drop-shadow(0 12px 22px rgba(17, 80, 145, .24));
 }
 
 .login-ornament-crest,
@@ -8658,6 +8659,7 @@ button[aria-disabled="true"] {
 
   .login-screen .eduverse-brand-banner-img {
     width: min(88vw, 390px);
+    border-radius: 14px;
   }
 
   .login-screen .login-card {
