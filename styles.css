@@ -57,14 +57,14 @@ button { cursor: pointer; }
   position: relative;
   z-index: 1;
   width: min(100%, 540px);
-  margin-bottom: 22px;
-  padding: 24px 32px 22px;
-  background: linear-gradient(145deg, rgba(8, 14, 34, 0.95) 0%, rgba(22, 28, 64, 0.92) 50%, rgba(10, 16, 38, 0.96) 100%);
-  border: 2px solid rgba(147, 197, 253, 0.55);
-  border-radius: 28px;
-  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.75), 0 0 40px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(24px) saturate(1.3);
-  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
   animation: floatBrandHeader 4s ease-in-out infinite alternate;
 }
 
@@ -73,36 +73,19 @@ button { cursor: pointer; }
   100% { transform: translateY(-5px); }
 }
 
-.eduverse-title {
-  margin: 0 0 14px 0;
-  font-family: "Impact", "Montserrat", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  font-size: clamp(32px, 4.8vw, 45px);
-  font-weight: 900;
-  letter-spacing: 3px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9C4 28%, #FFCA28 55%, #FF8F00 85%, #E65100 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.95);
-  filter: drop-shadow(0 4px 0 #6d2400) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(255, 179, 0, 0.85));
-  line-height: 1.2;
+.eduverse-brand-banner-img {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(99, 102, 241, 0.45)) drop-shadow(0 0 15px rgba(251, 191, 36, 0.3));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
 }
 
-.eduverse-subtitle {
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: clamp(12.5px, 1.8vw, 14.5px);
-  font-weight: 900;
-  color: #ffffff;
-  background: linear-gradient(90deg, rgba(30, 58, 138, 0.85) 0%, rgba(79, 70, 229, 0.85) 100%);
-  border: 1.5px solid rgba(165, 180, 252, 0.75);
-  border-radius: 999px;
-  padding: 8px 24px;
-  letter-spacing: 2px;
-  text-shadow: 0 0 12px rgba(165, 180, 252, 0.9), 0 2px 4px rgba(0, 0, 0, 0.85);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+.eduverse-brand-banner-img:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 45px rgba(99, 102, 241, 0.65)) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5));
 }
 
 .center-logo {
