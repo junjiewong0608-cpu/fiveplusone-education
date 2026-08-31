@@ -54,7 +54,7 @@ button { cursor: pointer; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(circle at center, rgba(8, 14, 40, 0.45) 0%, rgba(4, 7, 24, 0.82) 100%);
+  background: radial-gradient(circle at center, rgba(6, 10, 30, 0.3) 0%, rgba(4, 7, 24, 0.72) 100%);
 }
 .login-card {
   position: relative;
