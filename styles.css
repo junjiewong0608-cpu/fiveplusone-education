@@ -6789,29 +6789,41 @@ button[aria-disabled="true"] {
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
 }
 
-.login-chibi-knight {
+.login-chibi-steve {
   position: absolute;
-  bottom: -32px;
-  left: -68px;
+  bottom: -28px;
+  left: -90px;
   z-index: 10;
-  height: 155px;
+  height: 180px;
   pointer-events: none;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 15px rgba(56, 189, 248, 0.5));
+  animation: steveFloat 3.5s ease-in-out infinite alternate;
 }
 
-.login-chibi-mage {
+.login-chibi-pikachu {
   position: absolute;
-  bottom: -32px;
-  right: -68px;
+  bottom: -28px;
+  right: -90px;
   z-index: 10;
-  height: 150px;
+  height: 175px;
   pointer-events: none;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 18px rgba(250, 204, 21, 0.6));
+  animation: pikaFloat 3s ease-in-out infinite alternate;
 }
 
-@media (max-width: 680px) {
-  .login-chibi-knight,
-  .login-chibi-mage {
+@keyframes steveFloat {
+  0% { transform: translateY(0px) rotate(-1deg); }
+  100% { transform: translateY(-6px) rotate(1deg); }
+}
+
+@keyframes pikaFloat {
+  0% { transform: translateY(0px) rotate(1deg); }
+  100% { transform: translateY(-7px) rotate(-1deg); }
+}
+
+@media (max-width: 720px) {
+  .login-chibi-steve,
+  .login-chibi-pikachu {
     display: none;
   }
 }
