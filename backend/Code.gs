@@ -29,7 +29,7 @@ const HEADERS = {
   MessageWall: ['postId', 'studentId', 'studentName', 'message', 'petType', 'petName', 'petRarity', 'petLevel', 'combatPower', 'petImage', 'petStats', 'equipment', 'likedBy', 'comments', 'createdAt', 'updatedAt']
 };
 
-const TEACHER_DAILY_REWARD_LIMIT = 250;
+const TEACHER_DAILY_REWARD_LIMIT = 999999;
 const TEACHER_REWARD_ADMIN_IDS = ['CY0000', 'CY0001'];
 const TEACHER_REWARD_SHEET_PREFIX = 'Teacher - ';
 const CLASS_REWARD_SHEET_PREFIX = 'Class - ';
@@ -46,7 +46,7 @@ const WRITE_ACTIONS = {
   likeWallPost: true,
   commentWallPost: true
 };
-const SUPABASE_FUNCTION_URL = 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api';
+const SUPABASE_FUNCTION_URL = 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/fiveplusone-education-api';
 const SUPABASE_PUBLIC_FUNCTION_KEY = 'YOUR_PUBLIC_FUNCTION_KEY';
 
 const WALL_POST_PRESETS = [

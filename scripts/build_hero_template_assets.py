@@ -41,13 +41,30 @@ def main() -> None:
     crop_ratio(board, (0.01, 0.01, 0.495, 0.755)).save(hero_dir / "base-card.png", optimize=True)
     crop_ratio(board, (0.505, 0.01, 0.99, 0.755)).save(hero_dir / "evolved-card.png", optimize=True)
 
+    # Slicing 5 skills (144x144 squares on the left)
     for index, filename in enumerate(SKILL_FILES):
-        icon = crop_ratio(board, (0.01 + index * 0.098, 0.785, 0.105 + index * 0.098, 0.985))
+        x1 = round(42 + index * 158)
+        y1 = 737
+        x2 = x1 + 144
+        y2 = 881
+        icon = board.crop((x1, y1, x2, y2))
         icon.save(hero_dir / filename, optimize=True)
         icon.save(hero_dir / f"after-{filename}", optimize=True)
 
+        stem = filename.replace(".png", "")
+        thumb_dir = args.root / "assets" / "optimized" / "role-thumbs"
+        thumb_dir.mkdir(parents=True, exist_ok=True)
+        icon_thumb = icon.resize((96, 96), Image.Resampling.LANCZOS)
+        icon_thumb.save(thumb_dir / f"hero-gacha-{args.hero_id}-{stem}.webp", "WEBP", quality=90)
+        icon_thumb.save(thumb_dir / f"hero-gacha-{args.hero_id}-after-{stem}.webp", "WEBP", quality=90)
+
+    # Slicing 5 equipment items (144x144 squares on the right)
     for index in range(5):
-        icon = crop_ratio(board, (0.505 + index * 0.098, 0.785, 0.599 + index * 0.098, 0.985))
+        x1 = round(878 + index * 158)
+        y1 = 737
+        x2 = x1 + 144
+        y2 = 881
+        icon = board.crop((x1, y1, x2, y2))
         icon.save(equipment_dir / f"{index + 1:02}.png", optimize=True)
 
     thumb_dir = args.root / "assets" / "optimized" / "role-thumbs"

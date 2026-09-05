@@ -19,7 +19,7 @@
     requestRetryDelayMs: 650
   };
   const DEFAULT_APP_VIEW = 'dashboard-view';
-  const APP_ASSET_VERSION = '20260905-06';
+  const APP_ASSET_VERSION = '20260905-07';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
   const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
@@ -2486,7 +2486,7 @@
       icon: '🦊',
       image: 'assets/roles/hero-gacha/arcflare-fox/base-card.png',
       evolvedImage: 'assets/roles/hero-gacha/arcflare-fox/evolved-card.png',
-      cuteEvolvedImage: 'assets/roles/hero-gacha/arcflare-fox/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/arcflare-fox/cute-card.png',
       miniEvolutionImage: 'assets/roles/hero-gacha/arcflare-fox/base-card.png',
       evolutionNames: { base: '赤焰机甲狐', mini: '小炎狐', heroic: '极域天火狐神', cute: '萌焰狐宝' },
       baseStats: { hp: 130, attack: 30, defense: 16, speed: 28, luck: 22 },
@@ -2506,7 +2506,7 @@
       icon: '🐆',
       image: 'assets/roles/hero-gacha/vibranium-panther/base-card.png',
       evolvedImage: 'assets/roles/hero-gacha/vibranium-panther/evolved-card.png',
-      cuteEvolvedImage: 'assets/roles/hero-gacha/vibranium-panther/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/vibranium-panther/cute-card.png',
       miniEvolutionImage: 'assets/roles/hero-gacha/vibranium-panther/base-card.png',
       evolutionNames: { base: '紫能守护豹', mini: '小暗豹', heroic: '振金灭世豹神', cute: '紫萌豹星' },
       baseStats: { hp: 135, attack: 32, defense: 22, speed: 26, luck: 20 },
@@ -2526,7 +2526,7 @@
       icon: '🦁',
       image: 'assets/roles/hero-gacha/stormmane-lion/base-card.png',
       evolvedImage: 'assets/roles/hero-gacha/stormmane-lion/evolved-card.png',
-      cuteEvolvedImage: 'assets/roles/hero-gacha/stormmane-lion/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/stormmane-lion/cute-card.png',
       miniEvolutionImage: 'assets/roles/hero-gacha/stormmane-lion/base-card.png',
       evolutionNames: { base: '雷霆战狮', mini: '幼雷狮', heroic: '九霄万雷狮王', cute: '雷霆狮宝' },
       baseStats: { hp: 145, attack: 35, defense: 20, speed: 22, luck: 18 },
@@ -2546,7 +2546,7 @@
       icon: '🐱',
       image: 'assets/roles/hero-gacha/webshade-lynx/base-card.png',
       evolvedImage: 'assets/roles/hero-gacha/webshade-lynx/evolved-card.png',
-      cuteEvolvedImage: 'assets/roles/hero-gacha/webshade-lynx/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/webshade-lynx/cute-card.png',
       miniEvolutionImage: 'assets/roles/hero-gacha/webshade-lynx/base-card.png',
       evolutionNames: { base: '蛛影战猫', mini: '小夜猫', heroic: '幽冥千刃猫尊', cute: '影影喵' },
       baseStats: { hp: 125, attack: 34, defense: 15, speed: 32, luck: 24 },
@@ -2566,7 +2566,7 @@
       icon: '🐻',
       image: 'assets/roles/hero-gacha/gamma-boulder-bear/base-card.png',
       evolvedImage: 'assets/roles/hero-gacha/gamma-boulder-bear/evolved-card.png',
-      cuteEvolvedImage: 'assets/roles/hero-gacha/gamma-boulder-bear/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/gamma-boulder-bear/cute-card.png',
       miniEvolutionImage: 'assets/roles/hero-gacha/gamma-boulder-bear/base-card.png',
       evolutionNames: { base: '伽马巨岩熊', mini: '小石熊', heroic: '泰坦裂地熊皇', cute: '岩萌熊仔' },
       baseStats: { hp: 165, attack: 28, defense: 38, speed: 12, luck: 16 },
@@ -2586,7 +2586,7 @@
       icon: '🦉',
       image: 'assets/roles/hero-gacha/runeportal-owl/base-card.png',
       evolvedImage: 'assets/roles/hero-gacha/runeportal-owl/evolved-card.png',
-      cuteEvolvedImage: 'assets/roles/hero-gacha/runeportal-owl/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/runeportal-owl/cute-card.png',
       miniEvolutionImage: 'assets/roles/hero-gacha/runeportal-owl/base-card.png',
       evolutionNames: { base: '秘境传送鸮', mini: '小灵鸮', heroic: '星门主宰鸮圣', cute: '时空灵灵鸮' },
       baseStats: { hp: 130, attack: 31, defense: 18, speed: 25, luck: 30 },
