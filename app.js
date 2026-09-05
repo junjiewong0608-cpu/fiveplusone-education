@@ -10,7 +10,7 @@
     enforceHolidayWindow: false,
     backendMode: 'supabase',
     backendUrl: '',
-    supabaseFunctionUrl: 'https://txepbxugalmkrwiorwpj.supabase.co/functions/v1/cy-pets-api',
+    supabaseFunctionUrl: 'https://txepbxugalmkrwiorwpj.supabase.co/functions/v1/fiveplusone-education-api',
     supabaseAnonKey: 'sb_publishable__Q1nRbRAg29h_30Ti9MMPw_jmwo1feu',
     supabaseRequestTimeoutMs: 35000,
     interactionRoomApiUrl: '/api/redis-room',
@@ -19,7 +19,7 @@
     requestRetryDelayMs: 650
   };
   const DEFAULT_APP_VIEW = 'dashboard-view';
-  const APP_ASSET_VERSION = '20260831-13';
+  const APP_ASSET_VERSION = '20260905-05';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
   const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
@@ -72,7 +72,7 @@
     mapSets: [
       {
         id: 'cy-town',
-        name: 'CY小镇',
+        name: '5+1小镇',
         subtitle: '家、学校、森林、美食街',
         previewSrc: 'assets/room-demo/map-food-street.png',
         maps: [
@@ -125,7 +125,7 @@
       },
       {
         id: 'cy-bay',
-        name: 'CY BAY',
+        name: '5+1 海湾',
         subtitle: '游乐园、海边、咖啡厅、餐厅',
         previewSrc: 'assets/room-demo/cy-bay-seaside.png',
         maps: [
@@ -143,7 +143,7 @@
           {
             id: 'bay-seaside',
             shortTitle: '海边',
-            title: 'CY 海湾',
+            title: '5+1 海湾',
             subtitle: '向右去咖啡厅，向左回到游乐园',
             backgroundSrc: 'assets/room-demo/cy-bay-seaside.png',
             backgroundOffsetY: 40,
@@ -946,7 +946,8 @@
     dailySubjectCoins: 10,
     dailyLoginGiftMinCoins: 0,
     dailyLoginGiftMaxCoins: 0,
-    teacherDailyRewardLimit: 250,
+    teacherDailyRewardLimit: 999999999,
+    teacherManagedDailyRewardLimit: 999999999,
     completeDayBonusCoins: 0,
     completeDayStreakDays: 5,
     completeDayStreakBonusCoins: 0
@@ -1028,6 +1029,7 @@
     squirtle: { src: 'assets/pet-interactions/pets/squirtle-q.png', movement: 'ground' },
     wolf: { src: 'assets/pet-interactions/pets/wolf-q.png', movement: 'ground' },
     steve: { src: 'assets/pet-interactions/pets/steve-q.png', movement: 'ground' },
+    'nova-robot': { src: 'assets/8bit/characters/nova-robot-8bit.png', movement: 'ground' },
     enderman: { src: 'assets/pet-interactions/pets/enderman-q.png', movement: 'hover_bounded' },
     enderdragon: { src: 'assets/pet-interactions/pets/enderdragon-q.png', movement: 'fly_bounded' },
     creeper: { src: 'assets/pet-interactions/pets/creeper-q.png', movement: 'ground', canExplode: true },
@@ -1039,7 +1041,13 @@
     'winnie-the-pooh': { src: 'assets/pet-interactions/pets/winnie-the-pooh-q.png', movement: 'ground' },
     'crayon-shinchan': { src: 'assets/pet-interactions/pets/crayon-shinchan-q.png', movement: 'fast_ground' },
     'ugly-fish': { src: 'assets/pet-interactions/pets/ugly-fish-q.png', movement: 'ground' },
-    yoyo: { src: 'assets/pet-interactions/pets/yoyo-q.png', movement: 'ground' }
+    yoyo: { src: 'assets/pet-interactions/pets/yoyo-q.png', movement: 'ground' },
+    'arcflare-fox': { src: 'assets/pet-interactions/pets/arcflare-fox-q.png', movement: 'fast_ground' },
+    'vibranium-panther': { src: 'assets/pet-interactions/pets/vibranium-panther-q.png', movement: 'fast_ground' },
+    'stormmane-lion': { src: 'assets/pet-interactions/pets/stormmane-lion-q.png', movement: 'fast_ground' },
+    'webshade-lynx': { src: 'assets/pet-interactions/pets/webshade-lynx-q.png', movement: 'fast_ground' },
+    'gamma-boulder-bear': { src: 'assets/pet-interactions/pets/gamma-boulder-bear-q.png', movement: 'ground' },
+    'runeportal-owl': { src: 'assets/pet-interactions/pets/runeportal-owl-q.png', movement: 'hover_bounded' }
   };
   const PET_INTERACTION_FOODS = [
     { id: 'apple', label: '苹果', icon: '🍎' },
@@ -1089,9 +1097,9 @@
   const INTERACTION_ROOM_PET_SIZE_STORAGE_KEY = 'cy-pets-interaction-room-pet-size';
   const INTERACTION_ROOM_DEFAULT_PET_SIZE = 'small';
   const INTERACTION_ROOM_PET_SIZE_OPTIONS = [
-    { id: 'small', label: '小', title: '原版小', subtitle: '原来的可爱尺寸', scale: 1 },
-    { id: 'big', label: '大', title: '大只', subtitle: '房间里更抢眼', scale: INTERACTION_ROOM_BIG_SIZE_SCALE },
-    { id: 'super', label: '超大', title: '超大只', subtitle: '彩蛋主角尺寸', scale: INTERACTION_ROOM_SUPER_SIZE_SCALE }
+    { id: 'small', label: '小', title: '原版小', subtitle: '原来的可爱尺寸', scale: 1, previewScale: 0.72 },
+    { id: 'big', label: '大', title: '大只', subtitle: '房间里更抢眼', scale: INTERACTION_ROOM_BIG_SIZE_SCALE, previewScale: 0.95 },
+    { id: 'super', label: '超大', title: '超大只', subtitle: '彩蛋主角尺寸', scale: INTERACTION_ROOM_SUPER_SIZE_SCALE, previewScale: 1.18 }
   ];
   const PERMANENT_INTERACTION_ROOM_FALLBACKS = [
     { roomId: 'MKPRIMARY', roomName: '5+1 智慧总院', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'paris-trip', memberLimit: 30, isPermanent: true },
@@ -1199,6 +1207,7 @@
 
   const PET_SERIES_GROUPS = [
     { id: 'all', label: '全部系列', hint: '所有可以收集的宠物' },
+    { id: 'limited-hero', label: '限定英雄', hint: '限定英雄与机甲神兽系列' },
     { id: 'cy-original', label: 'Bit Pets', hint: '假期学习原创伙伴' },
     { id: 'popmart', label: 'Popmart', hint: '可爱收藏系列' },
     { id: 'pokemon', label: 'Pokemon', hint: '战斗伙伴系列' },
@@ -1208,6 +1217,13 @@
   ];
 
   const PET_SERIES_BY_ID = {
+    'arcflare-fox': 'limited-hero',
+    'vibranium-panther': 'limited-hero',
+    'stormmane-lion': 'limited-hero',
+    'webshade-lynx': 'limited-hero',
+    'gamma-boulder-bear': 'limited-hero',
+    'runeportal-owl': 'limited-hero',
+    'nova-robot': 'limited-hero',
     crybaby: 'popmart',
     hacipupu: 'popmart',
     labubu: 'popmart',
@@ -1237,6 +1253,11 @@
   };
 
   const COLLECTION_TITLE_POOLS = {
+    'limited-hero': [
+      '神兽主宰 (Mythic Beast Overlord)',
+      '限定殿堂传道者 (Hall of Heroes Luminary)',
+      '极域星辰守护神 (Astral Realm Guardian)'
+    ],
     minecraft: [
       'Minecraft Legend (创世神明)',
       '像素宇宙霸主 (Pixel Overlord)',
@@ -1287,7 +1308,8 @@
   const NEW_PLAYER_GUIDE_GREETING_PET_IDS = new Set(['sunny-wing', 'sprouty', 'hydroblob', 'fluffbit']);
   const TRANSLATIONS = {
     en: {
-      'CY PETS STORY': 'CY PETS STORY',
+      '5+1 PETS STORY': '5+1 PETS STORY',
+      'CY PETS STORY': '5+1 PETS STORY',
       '语言选择': 'Language',
       '学习背景音乐': 'Learning background music',
       '5+1教育补习中心': '5+1 Tuition Center',
@@ -1315,7 +1337,8 @@
       '选择学生后，点击一次奖励额度即可批量增加金币。每次操作都会留下老师奖励记录。': 'Select students, then tap one reward amount to add coins in batch. Every action is recorded.',
       '+2 至 +1000': '+2 to +1000',
       '+2 / +4 / +6 / +8 / +10 / +20 / +50 / +100 / +250 / +1000': '+2 / +4 / +6 / +8 / +10 / +20 / +50 / +100 / +250 / +1000',
-      '快捷奖励额度 · 学生每日最多 250，CY0000/CY0001 可给老师账号无上限': 'Quick Reward Amounts · Students Max 250 Daily, CY0000/CY0001 Can Reward Teacher Accounts Without Limit',
+      '快捷奖励额度 · 自由发放无上限，CY0000/CY0001 可给老师账号无上限': 'Quick Reward Amounts · Unlimited Teacher Rewards, Admin Can Reward Without Limit',
+      '快捷奖励额度 · 学生每日最多 250，CY0000/CY0001 可给老师账号无上限': 'Quick Reward Amounts · Unlimited Teacher Rewards, Admin Can Reward Without Limit',
       '快捷奖励额度': 'Quick Reward Amounts',
       '老师班级同步': 'Teacher Class Sync',
       '老师 ID': 'Teacher ID',
@@ -1420,7 +1443,8 @@
       '带宠物去玩': 'Play With Pet',
       '返回互动区': 'Back to Interaction Area',
       '← 返回互动区': '← Back to Interaction Area',
-      '挑战反应轮盘、CY跳跳跳、CY跑跑跑和CY跳一跳。': 'Play reaction wheel, CY Jump, CY Run and CY Hop.',
+      '挑战反应轮盘、5+1跳跳跳、5+1跑跑跑和5+1跳一跳。': 'Play reaction wheel, 5+1 Jump, 5+1 Run and 5+1 Hop.',
+      '挑战反应轮盘、CY跳跳跳、CY跑跑跑和CY跳一跳。': 'Play reaction wheel, 5+1 Jump, 5+1 Run and 5+1 Hop.',
       '房间角色大小': 'Room Pet Size',
       '朋友也会看到这个大小': 'Friends will see this size too',
       '小黄脸表情包': 'Emoji Reactions',
@@ -1440,16 +1464,21 @@
       '刷新中': 'Refreshing',
       '刷新房间列表': 'Refresh Rooms',
       '选择一个小游戏开始。': 'Choose a mini game to start.',
-      'CY反应轮盘': 'CY Reaction Wheel',
+      '5+1反应轮盘': '5+1 Reaction Wheel',
+      'CY反应轮盘': '5+1 Reaction Wheel',
       '看准发光区域，点击命中。': 'Watch the glowing zone and tap to hit.',
-      'CY跳跳跳': 'CY Jump Jump',
+      '5+1跳跳跳': '5+1 Jump Jump',
+      'CY跳跳跳': '5+1 Jump Jump',
       '让整只宠物飞过云朵空隙。': 'Fly your pet through the cloud gaps.',
-      'CY跑跑跑': 'CY Run Run',
+      '5+1跑跑跑': '5+1 Run Run',
+      'CY跑跑跑': '5+1 Run Run',
       '带宠物越过路上的障碍。': 'Help your pet jump over obstacles.',
-      'CY跳一跳': 'CY Hop Hop',
+      '5+1跳一跳': '5+1 Hop Hop',
+      'CY跳一跳': '5+1 Hop Hop',
       '按住蓄力，松手跳到下一块平台。': 'Hold to charge, then release to hop to the next platform.',
-      'CY跳一跳排行榜': 'CY Hop Hop Leaderboard',
-      '我的跳一跳最高分': 'My CY Hop Best',
+      '5+1跳一跳排行榜': '5+1 Hop Hop Leaderboard',
+      'CY跳一跳排行榜': '5+1 Hop Hop Leaderboard',
+      '我的跳一跳最高分': 'My 5+1 Hop Best',
       '跳一跳': 'Hop Hop',
       '按住蓄力': 'Hold To Charge',
       '建议横屏游玩；电脑可以用 Space / Enter / ↑ / W 操作，手机可以点画面或按钮。': 'Landscape mode is better. On computer, use Space / Enter / ↑ / W. On phone, tap the screen or the buttons.',
@@ -1952,7 +1981,8 @@
       '人': 'students',
       '暂无班级': 'No classes yet',
       '输入老师 ID 后读取班级，再选择学生奖励金币。': 'Enter a teacher ID, load classes, then select students to reward coins.',
-      '学生每天最多从老师奖励获得 250 金币；CY0000 和 CY0001 可以给老师账号无上限加分。': 'Students can receive up to 250 teacher-reward coins per day; CY0000 and CY0001 can add unlimited coins to teacher accounts.',
+      '学生每天最多从老师奖励获得 250 金币；CY0000 和 CY0001 可以给老师账号无上限加分。': 'Teachers can reward student coins without daily limit; CY0000 and CY0001 can add unlimited coins to teacher accounts.',
+      '老师可自由给学生奖励金币（无每日上限）；CY0000 和 CY0001 可以给老师账号无上限加分。': 'Teachers can reward student coins without daily limit; CY0000 and CY0001 can add unlimited coins to teacher accounts.',
       '目前不在打卡期间': 'Check-in Not Open Now',
       '假期打卡开放中': 'Holiday Check-in Open',
       '首次登录选择的初始宠物': 'Starter pet chosen on first login',
@@ -2042,6 +2072,13 @@
     { pattern: /^点赞 · (\d+)$/, replace: ([, count]) => `Like · ${count}` },
     { pattern: /^(\d+)\/(\d+)$/, replace: ([, score, total]) => `${score}/${total}` }
   ];
+
+  const NOVA_NEW_PLAYER_GUIDE_SCRIPT = Object.freeze([
+    {
+      title: 'Nova 系统启动！',
+      copy: '你好！我是 Nova，你的全能学习装甲伙伴！接下来由我带你探索 EduVerse 的奇幻世界。'
+    }
+  ]);
 
   const NEW_PLAYER_GUIDE_STEPS = [
     {
@@ -2322,11 +2359,11 @@
     { id: 'thunder-beetle', name: 'Thunder Beetle', rarity: 'SSR', icon: '⚡', image: 'assets/roles/thunder-beetle-ssr.png', evolvedImage: 'assets/roles/evolved/thunder-beetle.png', cuteEvolvedImage: 'assets/roles/cute-evolved/thunder-beetle.png', skillAssets: { before: 'assets/roles/thunder beetle 专属/前.png', after: 'assets/roles/thunder beetle 专属/后.png' }, baseStats: { hp: 145, attack: 22, defense: 20, speed: 11, luck: 12 } },
     { id: 'frost-fang', name: 'Frost Fang', rarity: 'SSR', icon: '❄️', image: 'assets/roles/frost-fang-ssr.png', evolvedImage: 'assets/roles/evolved/frost-fang.png', cuteEvolvedImage: 'assets/roles/cute-evolved/frost-fang.png', skillAssets: { before: 'assets/roles/frost fang 专属/前.png', after: 'assets/roles/frost fang 专属/后.png' }, baseStats: { hp: 132, attack: 24, defense: 15, speed: 16, luck: 12 } },
     { id: 'volt-cheetah', name: 'Volt Cheetah', rarity: 'LEGEND', icon: '🐆', image: 'assets/roles/volt-cheetah-legend.png', evolvedImage: 'assets/roles/evolved/volt-cheetah.png', cuteEvolvedImage: 'assets/roles/cute-evolved/volt-cheetah.png', skillAssets: { before: 'assets/roles/volt cheetah 专属/前.png', after: 'assets/roles/volt cheetah 专属/后.png' }, skills: [
-      { id: 'passive', type: '被动', name: '雷霆感知', image: 'assets/roles/volt cheetah 专属/volt-cheetah-skill-passive.png', explanation: '闪电猎豹能提前感知空气中的电流变化。战斗开始时提升行动速度，也更容易躲开第一轮攻击。' },
-      { id: 'skill-1', type: '技能 1', name: '闪电突袭', image: 'assets/roles/volt cheetah 专属/volt-cheetah-skill-1.png', explanation: '把身体化成一道蓝色闪电，瞬间冲向目标并造成快速的雷电伤害。' },
-      { id: 'skill-2', type: '技能 2', name: '裂地雷爪', image: 'assets/roles/volt cheetah 专属/volt-cheetah-skill-2.png', explanation: '将电流集中到利爪，猛击地面后向前撕开电光裂痕，同时攻击前方敌人。' },
-      { id: 'skill-3', type: '技能 3', name: '雷影疾行', image: 'assets/roles/volt cheetah 专属/volt-cheetah-skill-3.png', explanation: '留下数道带电残影，短时间提升移动速度，让对手难以判断真正的位置。' },
-      { id: 'ultimate', type: '大招', name: '天穹落雷', image: 'assets/roles/volt cheetah 专属/volt-cheetah-ultimate.png', explanation: '召唤天空中的雷霆连续落下，覆盖大片区域，造成强力的范围雷电伤害。' }
+      { id: 'passive', type: '被动', name: '雷霆感知', image: 'assets/roles/volt cheetah 专属/skill-passive.png', explanation: '闪电猎豹能提前感知空气中的电流变化。战斗开始时提升行动速度，也更容易躲开第一轮攻击。' },
+      { id: 'skill-1', type: '技能 1', name: '闪电突袭', image: 'assets/roles/volt cheetah 专属/skill-1.png', explanation: '把身体化成一道蓝色闪电，瞬间冲向目标并造成快速的雷电伤害。' },
+      { id: 'skill-2', type: '技能 2', name: '裂地雷爪', image: 'assets/roles/volt cheetah 专属/skill-2.png', explanation: '将电流集中到利爪，猛击地面后向前撕开电光裂痕，同时攻击前方敌人。' },
+      { id: 'skill-3', type: '技能 3', name: '雷影疾行', image: 'assets/roles/volt cheetah 专属/skill-3.png', explanation: '留下数道带电残影，短时间提升移动速度，让对手难以判断真正的位置。' },
+      { id: 'ultimate', type: '大招', name: '天穹落雷', image: 'assets/roles/volt cheetah 专属/skill-ultimate.png', explanation: '召唤天空中的雷霆连续落下，覆盖大片区域，造成强力的范围雷电伤害。' }
     ], baseStats: { hp: 120, attack: 54, defense: 14, speed: 68, luck: 20 } },
     { id: 'shadow-stalker', name: 'Shadow Stalker', rarity: 'LEGEND', icon: '🦇', image: 'assets/roles/shadow-stalker-legend.png', evolvedImage: 'assets/roles/evolved/shadow-stalker.png', cuteEvolvedImage: 'assets/roles/cute-evolved/shadow-stalker.png', skillAssets: { before: 'assets/roles/shadow stalker 专属/前.png', after: 'assets/roles/shadow stalker 专属/后.png' }, baseStats: { hp: 110, attack: 88, defense: 0, speed: 26, luck: 0 } },
     { id: 'crybaby', name: 'Crybaby', rarity: 'SR', icon: '😭', image: 'assets/roles/new character/popmart/crybaby/crybaby_before.png', evolvedImage: 'assets/roles/new character/popmart/crybaby/crybaby_after.png', skillAssets: { before: 'assets/roles/new character/popmart/crybaby/skill-passive.png', after: 'assets/roles/new character/popmart/crybaby/after-skill-passive.png' }, baseStats: { hp: 112, attack: 13, defense: 10, speed: 12, luck: 16 } },
@@ -2439,6 +2476,151 @@
     pet.miniEvolutionImage = MINI_EVOLUTION_IMAGES[pet.id] || '';
     pet.evolutionNames = PET_EVOLUTION_NAMES[pet.id] || { base: pet.name, mini: pet.name, heroic: pet.name, cute: pet.name };
   });
+
+  const LIMITED_HERO_CATALOG = [
+    {
+      id: 'arcflare-fox',
+      name: '赤焰机甲狐',
+      englishName: 'Arcflare Fox',
+      rarity: 'SSR',
+      icon: '🦊',
+      image: 'assets/roles/hero-gacha/arcflare-fox/base-card.png',
+      evolvedImage: 'assets/roles/hero-gacha/arcflare-fox/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/arcflare-fox/evolved-card.png',
+      miniEvolutionImage: 'assets/roles/hero-gacha/arcflare-fox/base-card.png',
+      evolutionNames: { base: '赤焰机甲狐', mini: '小炎狐', heroic: '极域天火狐神', cute: '萌焰狐宝' },
+      baseStats: { hp: 130, attack: 30, defense: 16, speed: 28, luck: 22 },
+      skills: [
+        { id: 'passive', type: '被动', name: '赤炎热核', explanation: '持续释放炽热能量，在战斗中大幅提升火系伤害与自身闪避。', beforeImage: 'assets/roles/hero-gacha/arcflare-fox/skill-passive.png', afterImage: 'assets/roles/hero-gacha/arcflare-fox/after-skill-passive.png' },
+        { id: 'skill-1', type: '技能 1', name: '机甲炎斩', explanation: '凝聚高热等离子刀刃快速突击，对前方的敌人造成炽烈切割。', beforeImage: 'assets/roles/hero-gacha/arcflare-fox/skill-1.png', afterImage: 'assets/roles/hero-gacha/arcflare-fox/after-skill-1.png' },
+        { id: 'skill-2', type: '技能 2', name: '狐影火轮', explanation: '化作炽焰幻影穿梭战场，躲避攻击并在地面留下灼烧烈火。', beforeImage: 'assets/roles/hero-gacha/arcflare-fox/skill-2.png', afterImage: 'assets/roles/hero-gacha/arcflare-fox/after-skill-2.png' },
+        { id: 'skill-3', type: '技能 3', name: '离子光焰', explanation: '展开背部能量翼，激射出高能光焰矩阵穿透敌人防线。', beforeImage: 'assets/roles/hero-gacha/arcflare-fox/skill-3.png', afterImage: 'assets/roles/hero-gacha/arcflare-fox/after-skill-3.png' },
+        { id: 'ultimate', type: '大招', name: '天火流星引爆', explanation: '引动苍穹极热能量，召唤漫天火流星对全场造成毁灭性打击。', beforeImage: 'assets/roles/hero-gacha/arcflare-fox/skill-ultimate.png', afterImage: 'assets/roles/hero-gacha/arcflare-fox/after-skill-ultimate.png' }
+      ]
+    },
+    {
+      id: 'vibranium-panther',
+      name: '紫能守护豹',
+      englishName: 'Vibranium Panther',
+      rarity: 'SSR',
+      icon: '🐆',
+      image: 'assets/roles/hero-gacha/vibranium-panther/base-card.png',
+      evolvedImage: 'assets/roles/hero-gacha/vibranium-panther/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/vibranium-panther/evolved-card.png',
+      miniEvolutionImage: 'assets/roles/hero-gacha/vibranium-panther/base-card.png',
+      evolutionNames: { base: '紫能守护豹', mini: '小暗豹', heroic: '振金灭世豹神', cute: '紫萌豹星' },
+      baseStats: { hp: 135, attack: 32, defense: 22, speed: 26, luck: 20 },
+      skills: [
+        { id: 'passive', type: '被动', name: '振金充能', explanation: '受到攻击时吸收动能，转化为自身攻击力与护盾强度。', beforeImage: 'assets/roles/hero-gacha/vibranium-panther/skill-passive.png', afterImage: 'assets/roles/hero-gacha/vibranium-panther/after-skill-passive.png' },
+        { id: 'skill-1', type: '技能 1', name: '王者震荡', explanation: '消耗能量一次性爆发，释放强力紫能冲击波击退前方敌人。', beforeImage: 'assets/roles/hero-gacha/vibranium-panther/skill-1.png', afterImage: 'assets/roles/hero-gacha/vibranium-panther/after-skill-1.png' },
+        { id: 'skill-2', type: '技能 2', name: '暗夜撕裂', explanation: '以极高爆发速度闪现撕裂目标弱点，造成极高暴击伤害。', beforeImage: 'assets/roles/hero-gacha/vibranium-panther/skill-2.png', afterImage: 'assets/roles/hero-gacha/vibranium-panther/after-skill-2.png' },
+        { id: 'skill-3', type: '技能 3', name: '坚壁守护', explanation: '开启振金能量结界，为自身与队友抵挡巨额伤害并恢复体力。', beforeImage: 'assets/roles/hero-gacha/vibranium-panther/skill-3.png', afterImage: 'assets/roles/hero-gacha/vibranium-panther/after-skill-3.png' },
+        { id: 'ultimate', type: '大招', name: '紫极崩坏击', explanation: '全身振金纹路极度激活，跃向高空重压地面引发全屏能量大崩坏。', beforeImage: 'assets/roles/hero-gacha/vibranium-panther/skill-ultimate.png', afterImage: 'assets/roles/hero-gacha/vibranium-panther/after-skill-ultimate.png' }
+      ]
+    },
+    {
+      id: 'stormmane-lion',
+      name: '雷霆战狮',
+      englishName: 'Stormmane Lion',
+      rarity: 'SSR',
+      icon: '🦁',
+      image: 'assets/roles/hero-gacha/stormmane-lion/base-card.png',
+      evolvedImage: 'assets/roles/hero-gacha/stormmane-lion/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/stormmane-lion/evolved-card.png',
+      miniEvolutionImage: 'assets/roles/hero-gacha/stormmane-lion/base-card.png',
+      evolutionNames: { base: '雷霆战狮', mini: '幼雷狮', heroic: '九霄万雷狮王', cute: '雷霆狮宝' },
+      baseStats: { hp: 145, attack: 35, defense: 20, speed: 22, luck: 18 },
+      skills: [
+        { id: 'passive', type: '被动', name: '雷狮狂怒', explanation: '狂暴电光环绕鬃毛，生命值越低攻击力与暴击伤害越高。', beforeImage: 'assets/roles/hero-gacha/stormmane-lion/skill-passive.png', afterImage: 'assets/roles/hero-gacha/stormmane-lion/after-skill-passive.png' },
+        { id: 'skill-1', type: '技能 1', name: '狂雷咆哮', explanation: '发出撕裂天穹的雷吼，震晕前方敌人并附加强力电击。', beforeImage: 'assets/roles/hero-gacha/stormmane-lion/skill-1.png', afterImage: 'assets/roles/hero-gacha/stormmane-lion/after-skill-1.png' },
+        { id: 'skill-2', type: '技能 2', name: '风暴飞扑', explanation: '裹挟万钧雷霆猛扑目标，将敌人强力压制在地。', beforeImage: 'assets/roles/hero-gacha/stormmane-lion/skill-2.png', afterImage: 'assets/roles/hero-gacha/stormmane-lion/after-skill-2.png' },
+        { id: 'skill-3', type: '技能 3', name: '雷光战铠', explanation: '以狂暴电流凝聚神圣战铠，提升防御并反弹受到攻击的部分伤害。', beforeImage: 'assets/roles/hero-gacha/stormmane-lion/skill-3.png', afterImage: 'assets/roles/hero-gacha/stormmane-lion/after-skill-3.png' },
+        { id: 'ultimate', type: '大招', name: '九霄万雷劫', explanation: '呼唤极域风暴雷神降临，降下漫天金雷重击全场所有目标。', beforeImage: 'assets/roles/hero-gacha/stormmane-lion/skill-ultimate.png', afterImage: 'assets/roles/hero-gacha/stormmane-lion/after-skill-ultimate.png' }
+      ]
+    },
+    {
+      id: 'webshade-lynx',
+      name: '蛛影战猫',
+      englishName: 'Webshade Lynx',
+      rarity: 'SSR',
+      icon: '🐱',
+      image: 'assets/roles/hero-gacha/webshade-lynx/base-card.png',
+      evolvedImage: 'assets/roles/hero-gacha/webshade-lynx/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/webshade-lynx/evolved-card.png',
+      miniEvolutionImage: 'assets/roles/hero-gacha/webshade-lynx/base-card.png',
+      evolutionNames: { base: '蛛影战猫', mini: '小夜猫', heroic: '幽冥千刃猫尊', cute: '影影喵' },
+      baseStats: { hp: 125, attack: 34, defense: 15, speed: 32, luck: 24 },
+      skills: [
+        { id: 'passive', type: '被动', name: '潜行蛛感', explanation: '敏锐感知周围危险与敌人破绽，极大提升先手速度与致命一击几率。', beforeImage: 'assets/roles/hero-gacha/webshade-lynx/skill-passive.png', afterImage: 'assets/roles/hero-gacha/webshade-lynx/after-skill-passive.png' },
+        { id: 'skill-1', type: '技能 1', name: '影丝缚杀', explanation: '射出高粘性影丝缠绕目标减速封锁，并以利爪快速穿刺。', beforeImage: 'assets/roles/hero-gacha/webshade-lynx/skill-1.png', afterImage: 'assets/roles/hero-gacha/webshade-lynx/after-skill-1.png' },
+        { id: 'skill-2', type: '技能 2', name: '暗影穿梭', explanation: '遁入暗黑维度高速位移，瞬间出现在敌方背后实施突袭。', beforeImage: 'assets/roles/hero-gacha/webshade-lynx/skill-2.png', afterImage: 'assets/roles/hero-gacha/webshade-lynx/after-skill-2.png' },
+        { id: 'skill-3', type: '技能 3', name: '幻影蛛网', explanation: '布下剧毒虚空蛛网陷阱，踩中的目标不仅中毒还会陷入瘫痪。', beforeImage: 'assets/roles/hero-gacha/webshade-lynx/skill-3.png', afterImage: 'assets/roles/hero-gacha/webshade-lynx/after-skill-3.png' },
+        { id: 'ultimate', type: '大招', name: '幽冥天罗地网', explanation: '将整片战场编织进幽影大网，万千影刃如暴雨般横扫全场。', beforeImage: 'assets/roles/hero-gacha/webshade-lynx/skill-ultimate.png', afterImage: 'assets/roles/hero-gacha/webshade-lynx/after-skill-ultimate.png' }
+      ]
+    },
+    {
+      id: 'gamma-boulder-bear',
+      name: '伽马巨岩熊',
+      englishName: 'Gamma Boulder Bear',
+      rarity: 'SSR',
+      icon: '🐻',
+      image: 'assets/roles/hero-gacha/gamma-boulder-bear/base-card.png',
+      evolvedImage: 'assets/roles/hero-gacha/gamma-boulder-bear/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/gamma-boulder-bear/evolved-card.png',
+      miniEvolutionImage: 'assets/roles/hero-gacha/gamma-boulder-bear/base-card.png',
+      evolutionNames: { base: '伽马巨岩熊', mini: '小石熊', heroic: '泰坦裂地熊皇', cute: '岩萌熊仔' },
+      baseStats: { hp: 165, attack: 28, defense: 38, speed: 12, luck: 16 },
+      skills: [
+        { id: 'passive', type: '被动', name: '岩甲厚生', explanation: '吸收大地岩晶之息，极大增强防御护甲，免疫大量异常减益。', beforeImage: 'assets/roles/hero-gacha/gamma-boulder-bear/skill-passive.png', afterImage: 'assets/roles/hero-gacha/gamma-boulder-bear/after-skill-passive.png' },
+        { id: 'skill-1', type: '技能 1', name: '巨石震击', explanation: '猛击大地轰起巨大尖锐岩刺，重击前方目标并大幅减速。', beforeImage: 'assets/roles/hero-gacha/gamma-boulder-bear/skill-1.png', afterImage: 'assets/roles/hero-gacha/gamma-boulder-bear/after-skill-1.png' },
+        { id: 'skill-2', type: '技能 2', name: '伽马屏障', explanation: '凝聚高密度核晶岩甲，为全队吸收巨量正面冲击伤害。', beforeImage: 'assets/roles/hero-gacha/gamma-boulder-bear/skill-2.png', afterImage: 'assets/roles/hero-gacha/gamma-boulder-bear/after-skill-2.png' },
+        { id: 'skill-3', type: '技能 3', name: '大地怒撞', explanation: '如失控重型战车般发动狂暴撞击，击溃前方防御阵型。', beforeImage: 'assets/roles/hero-gacha/gamma-boulder-bear/skill-3.png', afterImage: 'assets/roles/hero-gacha/gamma-boulder-bear/after-skill-3.png' },
+        { id: 'ultimate', type: '大招', name: '裂地泰坦破', explanation: '将无穷大地伟力凝聚于熊掌，将整个地面彻底震裂掀飞一切敌人。', beforeImage: 'assets/roles/hero-gacha/gamma-boulder-bear/skill-ultimate.png', afterImage: 'assets/roles/hero-gacha/gamma-boulder-bear/after-skill-ultimate.png' }
+      ]
+    },
+    {
+      id: 'runeportal-owl',
+      name: '秘境传送鸮',
+      englishName: 'Runeportal Owl',
+      rarity: 'SSR',
+      icon: '🦉',
+      image: 'assets/roles/hero-gacha/runeportal-owl/base-card.png',
+      evolvedImage: 'assets/roles/hero-gacha/runeportal-owl/evolved-card.png',
+      cuteEvolvedImage: 'assets/roles/hero-gacha/runeportal-owl/evolved-card.png',
+      miniEvolutionImage: 'assets/roles/hero-gacha/runeportal-owl/base-card.png',
+      evolutionNames: { base: '秘境传送鸮', mini: '小灵鸮', heroic: '星门主宰鸮圣', cute: '时空灵灵鸮' },
+      baseStats: { hp: 130, attack: 31, defense: 18, speed: 25, luck: 30 },
+      skills: [
+        { id: 'passive', type: '被动', name: '秘境感知', explanation: '通晓时空古老符文，队伍技能命中与暴击好运大幅提升。', beforeImage: 'assets/roles/hero-gacha/runeportal-owl/skill-passive.png', afterImage: 'assets/roles/hero-gacha/runeportal-owl/after-skill-passive.png' },
+        { id: 'skill-1', type: '技能 1', name: '时空羽刃', explanation: '投掷穿梭时空的符文光羽，无视部分防御精准命中敌人。', beforeImage: 'assets/roles/hero-gacha/runeportal-owl/skill-1.png', afterImage: 'assets/roles/hero-gacha/runeportal-owl/after-skill-1.png' },
+        { id: 'skill-2', type: '技能 2', name: '传送结界', explanation: '张开微型时空传送漩涡，使敌人的致命攻击发生扭曲落空。', beforeImage: 'assets/roles/hero-gacha/runeportal-owl/skill-2.png', afterImage: 'assets/roles/hero-gacha/runeportal-owl/after-skill-2.png' },
+        { id: 'skill-3', type: '技能 3', name: '符文共鸣', explanation: '唤醒远古符文法阵，为自身充能并恢复可观的魔法能量。', beforeImage: 'assets/roles/hero-gacha/runeportal-owl/skill-3.png', afterImage: 'assets/roles/hero-gacha/runeportal-owl/after-skill-3.png' },
+        { id: 'ultimate', type: '大招', name: '星门异次元放逐', explanation: '撕开巨大的异次元星门，引动浩瀚空间乱流碾压战场。', beforeImage: 'assets/roles/hero-gacha/runeportal-owl/skill-ultimate.png', afterImage: 'assets/roles/hero-gacha/runeportal-owl/after-skill-ultimate.png' }
+      ]
+    },
+    {
+      id: 'nova-robot',
+      name: 'Nova',
+      englishName: 'Nova',
+      rarity: 'A',
+      icon: '🤖',
+      image: 'assets/roles/starter/nova-robot-card-v2.png',
+      evolvedImage: 'assets/roles/starter/nova-robot.png',
+      cuteEvolvedImage: 'assets/roles/starter/nova-robot.png',
+      miniEvolutionImage: 'assets/roles/starter/nova-robot-card-v2.png',
+      evolutionNames: { base: 'Nova', mini: 'Nova Cadet', heroic: 'Nova Prime', cute: 'Nova Buddy' },
+      baseStats: { hp: 110, attack: 12, defense: 15, speed: 10, luck: 14 },
+      skills: [
+        { id: 'passive', type: '被动', name: '能量核心', explanation: 'Nova 的核心会持续储存学习能量，受到攻击时自动生成一层防护盾。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+        { id: 'skill-1', type: '技能 1', name: '脉冲光炮', explanation: '从手臂发射高速蓝色脉冲光束，连续击中前方目标。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+        { id: 'skill-2', type: '技能 2', name: '光子护盾', explanation: '展开圆形光子护盾，为自己和身边伙伴吸收伤害。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+        { id: 'skill-3', type: '技能 3', name: '火箭冲锋', explanation: '启动脚部推进器高速冲锋，撞开敌人并造成短暂眩晕。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+        { id: 'ultimate', type: '大招', name: '星际装甲觉醒', explanation: '核心全功率启动，召唤星际装甲强化全身并释放大范围能量爆发。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' }
+      ]
+    }
+  ];
+
+  PET_CATALOG.push(...LIMITED_HERO_CATALOG);
 
   const ROLE_SKILL_COPY = {
     'sunny-wing': [
@@ -2733,7 +2915,32 @@
     });
   });
 
-  const INITIAL_PETS = PET_CATALOG.filter(pet => pet.rarity === 'A');
+  const NOVA_STARTER_PET = Object.freeze({
+    id: 'nova-robot',
+    name: 'Nova',
+    rarity: 'A',
+    icon: '🤖',
+    image: 'assets/roles/starter/nova-robot-card-v2.png',
+    evolvedImage: 'assets/roles/starter/nova-robot.png',
+    cuteEvolvedImage: 'assets/roles/starter/nova-robot.png',
+    skills: [
+      { id: 'passive', type: '被动', name: '能量核心', explanation: 'Nova 的核心会持续储存学习能量，受到攻击时自动生成一层防护盾。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+      { id: 'skill-1', type: '技能 1', name: '脉冲光炮', explanation: '从手臂发射高速蓝色脉冲光束，连续击中前方目标。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+      { id: 'skill-2', type: '技能 2', name: '光子护盾', explanation: '展开圆形光子护盾，为自己和身边伙伴吸收伤害。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+      { id: 'skill-3', type: '技能 3', name: '火箭冲锋', explanation: '启动脚部推进器高速冲锋，撞开敌人并造成短暂眩晕。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' },
+      { id: 'ultimate', type: '大招', name: '星际装甲觉醒', explanation: '核心全功率启动，召唤星际装甲强化全身并释放大范围能量爆发。', beforeImage: 'assets/roles/starter/nova-robot.png', afterImage: 'assets/roles/starter/nova-robot.png' }
+    ],
+    baseStats: { hp: 110, attack: 12, defense: 15, speed: 10, luck: 14 }
+  });
+  const STARTER_PET_META = Object.freeze({
+    pikachu: { badge: '闪电伙伴', copy: '速度快、幸运高，适合喜欢冲刺挑战的玩家。' },
+    steve: { badge: '方块勇者', copy: '攻守平衡，适合喜欢收集与稳定成长的玩家。' },
+    'nova-robot': { badge: '装甲英雄', copy: '防御稳固、科技感强，适合喜欢机器人英雄的玩家。' }
+  });
+  const INITIAL_PETS = [
+    ...['pikachu', 'steve'].map(petId => PET_CATALOG.find(pet => pet.id === petId)).filter(Boolean),
+    NOVA_STARTER_PET
+  ];
 
   // 题库先放示范资料。之后可以搬到 data/question-bank.json 或 Google Sheet。
   const QUESTION_BANK = {
@@ -2774,7 +2981,10 @@
     ]
   };
 
-  const EQUIPMENT_CATALOG = window.EQUIPMENT_CATALOG_DATA || [];
+  const EQUIPMENT_CATALOG = [
+    ...(window.EQUIPMENT_CATALOG_DATA || []),
+    ...(window.HERO_GACHA_EQUIPMENT_DATA || [])
+  ];
 
   const SUBJECT_META = {
     华文: { icon: '🀄', hint: '阅读、词语和句子' },
@@ -2992,6 +3202,7 @@
   const miniGameState = {
     overlayOpen: false,
     embeddedOpen: false,
+    arcadeOpen: false,
     mode: 'picker',
     type: '',
     canvas: null,
@@ -3029,7 +3240,8 @@
   let musicPreviewAudio = null;
   let musicPreviewTimer = null;
   let musicPreviewSuppressBackground = false;
-  let musicPlayerPausedManually = false;
+  let isMusicMuted = localStorage.getItem('eduverse_music_muted') === 'true';
+  let musicPlayerPausedManually = isMusicMuted;
   let lastBackgroundMusicStudentId = '';
   let musicBoxCloudRefreshToken = 0;
   let pendingInitialPet = '';
@@ -3516,11 +3728,18 @@
       musicPlayerPausedManually = true;
       backgroundMusic.pause();
       updateMusicPlayerPlaybackUi();
+      updateAllMusicMuteButtonsUi();
       return;
     }
     musicPlayerPausedManually = false;
+    if (isMusicMuted) {
+      isMusicMuted = false;
+      localStorage.setItem('eduverse_music_muted', 'false');
+      if (backgroundMusic) backgroundMusic.muted = false;
+    }
     tryStartBackgroundMusic();
     updateMusicPlayerPlaybackUi();
+    updateAllMusicMuteButtonsUi();
   }
 
   async function setMusicPlaybackMode(mode) {
@@ -3567,7 +3786,7 @@
           ? `<button type="button" class="secondary-button" disabled>${escapeHtml(localize('使用中'))}</button>`
           : isOwned
             ? `<button type="button" class="primary-button" data-music-equip="${escapeHtml(track.id)}">${escapeHtml(localize('切换主题曲'))}</button>`
-            : `<button type="button" class="primary-button" data-music-buy="${escapeHtml(track.id)}">${escapeHtml(`🪙 ${MUSIC_BOX_TRACK_PRICE} ${localize('购买')}`)}</button>`;
+            : `<button type="button" class="primary-button" data-music-buy="${escapeHtml(track.id)}">${renderCoinIcon()} ${MUSIC_BOX_TRACK_PRICE} ${escapeHtml(localize('购买'))}</button>`;
         const shareAction = isOwned
           ? `<button type="button" class="secondary-button" data-music-wall-share="${escapeHtml(track.id)}">${escapeHtml(localize('分享到留言墙'))}</button>`
           : '';
@@ -3592,36 +3811,121 @@
 
   // 背景音乐沿用造句软件的兼容方式：先尝试 autoplay，
   // 再在用户第一次触摸、点击或按键时重新调用 play()，兼容手机浏览器的自动播放限制。
+  // 背景音乐：支持全局与各视图一键静音/播放，兼容移动端触碰激活与记忆静音偏好
   function tryStartBackgroundMusic() {
     if (!backgroundMusic) return;
+    if (isMusicMuted) {
+      try {
+        if (!backgroundMusic.paused) backgroundMusic.pause();
+        backgroundMusic.muted = true;
+      } catch (_e) {}
+      updateMusicPlayerPlaybackUi();
+      updateAllMusicMuteButtonsUi();
+      return;
+    }
     if (evolutionVideoActive) return;
     if (musicPlayerPausedManually) {
       updateMusicPlayerPlaybackUi();
+      updateAllMusicMuteButtonsUi();
       return;
     }
     if (musicPreviewSuppressBackground) {
-      if (!backgroundMusic.paused) backgroundMusic.pause();
+      try {
+        if (!backgroundMusic.paused) backgroundMusic.pause();
+      } catch (_e) {}
       updateMusicPlayerPlaybackUi();
+      updateAllMusicMuteButtonsUi();
       return;
     }
     applyActiveBackgroundMusic();
-    backgroundMusic.volume = 0.42;
-    const promise = backgroundMusic.play();
-    if (promise && typeof promise.catch === 'function') promise.catch(() => updateMusicPlayerPlaybackUi());
+    try {
+      backgroundMusic.muted = false;
+      backgroundMusic.volume = 0.42;
+      const promise = backgroundMusic.play();
+      if (promise && typeof promise.catch === 'function') promise.catch(() => updateMusicPlayerPlaybackUi());
+    } catch (_e) {}
+    updateMusicPlayerPlaybackUi();
+    updateAllMusicMuteButtonsUi();
+  }
+
+  function updateAllMusicMuteButtonsUi() {
+    const musicBtns = document.querySelectorAll('.music-toggle-button, #music-toggle-btn, #quest-music-toggle-btn, #global-music-toggle-btn, #teacher-music-toggle-btn');
+    const isPlaying = isBackgroundMusicPlaying() && !isMusicMuted;
+    musicBtns.forEach(btn => {
+      btn.classList.toggle('is-muted', isMusicMuted);
+      btn.classList.toggle('is-playing', isPlaying);
+      
+      const labelSpan = btn.querySelector('.music-toggle-status, .music-toggle-label');
+      const iconSpan = btn.querySelector('.music-note-icon, .music-icon-note');
+      const audioIcon = btn.querySelector('.audio-btn-icon');
+      
+      if (btn.id === 'global-music-toggle-btn' || btn.id === 'teacher-music-toggle-btn') {
+        if (iconSpan) iconSpan.textContent = isMusicMuted ? '🔇' : '🎵';
+        if (labelSpan) labelSpan.textContent = isMusicMuted ? (currentLanguage === 'en' ? 'Muted' : '静音') : (currentLanguage === 'en' ? 'Music' : '音乐');
+        if (!iconSpan && !labelSpan) {
+          btn.textContent = isMusicMuted ? (currentLanguage === 'en' ? '🔇 Muted' : '🔇 静音') : (currentLanguage === 'en' ? '🎵 Music' : '🎵 音乐');
+        }
+      } else if (audioIcon) {
+        audioIcon.textContent = '🎵';
+      } else {
+        btn.textContent = isMusicMuted ? '🔇' : '🎵';
+      }
+      
+      const titleText = isMusicMuted
+        ? (currentLanguage === 'en' ? 'Background Music (BGM): Muted (Click to play)' : '背景音乐 (BGM)：已静音 (点击开启)')
+        : (currentLanguage === 'en' ? 'Background Music (BGM): Playing (Click to mute)' : '背景音乐 (BGM)：播放中 (点击静音)');
+      btn.title = titleText;
+      btn.setAttribute('aria-label', titleText);
+    });
+  }
+
+  function toggleMusicMute(forcedValue) {
+    if (typeof forcedValue === 'boolean') {
+      isMusicMuted = forcedValue;
+    } else {
+      isMusicMuted = !isMusicMuted;
+    }
+    localStorage.setItem('eduverse_music_muted', String(isMusicMuted));
+    
+    if (isMusicMuted) {
+      if (backgroundMusic) {
+        try {
+          backgroundMusic.muted = true;
+          backgroundMusic.pause();
+        } catch (_e) {}
+      }
+      stopMusicPreview({ resume: false });
+      musicPlayerPausedManually = true;
+      showToast(currentLanguage === 'en' ? 'Background music muted 🔇' : '背景音乐已静音 🔇');
+    } else {
+      if (backgroundMusic) {
+        try {
+          backgroundMusic.muted = false;
+        } catch (_e) {}
+      }
+      musicPlayerPausedManually = false;
+      tryStartBackgroundMusic();
+      showToast(currentLanguage === 'en' ? 'Background music playing 🎵' : '背景音乐已开启 🎵');
+    }
+    updateAllMusicMuteButtonsUi();
     updateMusicPlayerPlaybackUi();
   }
 
   tryStartBackgroundMusic();
   if (backgroundMusic) {
     backgroundMusic.addEventListener('ended', () => advanceBackgroundMusic());
-    backgroundMusic.addEventListener('play', updateMusicPlayerPlaybackUi);
-    backgroundMusic.addEventListener('pause', updateMusicPlayerPlaybackUi);
-    backgroundMusic.addEventListener('loadedmetadata', updateMusicPlayerPlaybackUi);
+    backgroundMusic.addEventListener('play', () => { updateMusicPlayerPlaybackUi(); updateAllMusicMuteButtonsUi(); });
+    backgroundMusic.addEventListener('pause', () => { updateMusicPlayerPlaybackUi(); updateAllMusicMuteButtonsUi(); });
+    backgroundMusic.addEventListener('loadedmetadata', () => { updateMusicPlayerPlaybackUi(); updateAllMusicMuteButtonsUi(); });
   }
-  window.addEventListener('pointerdown', tryStartBackgroundMusic, { passive: true });
-  window.addEventListener('keydown', tryStartBackgroundMusic, { passive: true });
+  window.addEventListener('pointerdown', () => {
+    if (!isMusicMuted && !musicPlayerPausedManually) tryStartBackgroundMusic();
+  }, { passive: true });
+  window.addEventListener('keydown', () => {
+    if (!isMusicMuted && !musicPlayerPausedManually) tryStartBackgroundMusic();
+  }, { passive: true });
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) tryStartBackgroundMusic();
+    if (!document.hidden && !isMusicMuted && !musicPlayerPausedManually) tryStartBackgroundMusic();
     if (document.hidden) {
       stopPetInteractionLoop();
       stopRoomAutoRefresh();
@@ -3928,11 +4232,17 @@
     if (viewId === 'dashboard-view') renderDashboardView();
     if (viewId === 'subjects-view') renderSubjectsView();
     if (viewId === 'quest-view') renderQuestView();
-    if (viewId === 'leaderboard-view') renderGloryLeaderboard();
+    if (viewId === 'leaderboard-view') {
+      renderGloryPodium();
+      renderGloryLeaderboard();
+    }
     if (viewId === 'achievements-view') renderAchievementsView();
     if (viewId === 'arcade-view') renderArcadeView();
     if (viewId === 'characters-view') renderCharactersView();
-    if (viewId === 'duel-view') renderDuelView();
+    if (viewId === 'duel-view') {
+      renderDuelView();
+      renderDuelLobby();
+    }
     if (viewId === 'guide-view') renderPetInteraction();
     if (viewId === 'home-view') renderHome();
     if (viewId === 'checkin-view') {
@@ -4590,7 +4900,10 @@
       renderAppShell();
       renderActiveStudentView();
       closeAvatarCropModal();
-      const saved = await commitStudentState(student, snapshot, { type: 'updateAvatar' }, () => showToast('头像已保存。'));
+      const profilePreview = $('#student-profile-avatar-preview');
+      if (profilePreview) profilePreview.innerHTML = renderStudentAvatarVisual(student, 'student-profile-avatar-image');
+      document.querySelectorAll('[data-student-avatar-preset]').forEach(btn => btn.classList.remove('active'));
+      const saved = await commitStudentState(student, snapshot, { type: 'updateAvatar' }, () => showToast('🎉 自定义头像已保存！'));
       return saved;
     } catch (error) {
       if (snapshot?.studentId) database[snapshot.studentId] = snapshot;
@@ -4599,6 +4912,123 @@
       renderActiveStudentView();
       showToast(localize(error?.message || '头像处理失败，请换一张图片。'));
       return false;
+    }
+  }
+
+  function openStudentProfileModal() {
+    const student = getStudent();
+    if (!student) {
+      showToast('请先登录学生账号');
+      return false;
+    }
+    const overlay = $('#student-profile-overlay');
+    if (!overlay) return false;
+
+    // Display read-only student ID
+    const idText = $('#student-profile-id-text');
+    if (idText) idText.textContent = student.studentId || '';
+
+    // Populate name input
+    const nameInput = $('#student-profile-name-input');
+    if (nameInput) nameInput.value = getStudentDisplayName(student);
+
+    // Populate avatar preview
+    const avatarPreview = $('#student-profile-avatar-preview');
+    if (avatarPreview) avatarPreview.innerHTML = renderStudentAvatarVisual(student, 'student-profile-avatar-image');
+
+    // Highlight current preset avatar if applicable
+    const activePreset = (!student.avatarImage && student.avatar) ? String(student.avatar).trim() : '';
+    document.querySelectorAll('[data-student-avatar-preset]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.studentAvatarPreset === activePreset);
+    });
+
+    overlay.classList.remove('hidden');
+    overlay.setAttribute('aria-hidden', 'false');
+    nameInput?.focus();
+    return true;
+  }
+
+  function closeStudentProfileModal() {
+    const overlay = $('#student-profile-overlay');
+    if (overlay) {
+      overlay.classList.add('hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  async function selectPresetStudentAvatar(preset) {
+    const student = getStudent();
+    if (!student || !preset) return false;
+    const snapshot = cloneStudentState(student);
+    try {
+      student.avatar = String(preset).trim();
+      student.avatarImage = '';
+      student.avatarUpdatedAt = new Date().toISOString();
+      database[student.studentId] = student;
+      saveDatabase();
+      renderAppShell();
+      renderActiveStudentView();
+
+      const avatarPreview = $('#student-profile-avatar-preview');
+      if (avatarPreview) avatarPreview.innerHTML = renderStudentAvatarVisual(student, 'student-profile-avatar-image');
+      document.querySelectorAll('[data-student-avatar-preset]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.studentAvatarPreset === preset);
+      });
+
+      const saved = await commitStudentState(student, snapshot, { type: 'updateAvatar', avatar: preset }, () => {
+        showToast(`已更换头像为 ${preset}！`);
+      });
+      return saved;
+    } catch (error) {
+      if (snapshot?.studentId) database[snapshot.studentId] = snapshot;
+      saveDatabase();
+      renderAppShell();
+      renderActiveStudentView();
+      showToast(localize(error?.message || '更换头像失败，请重试。'));
+      return false;
+    }
+  }
+
+  async function handleStudentProfileFormSubmit(event) {
+    if (event) event.preventDefault();
+    const student = getStudent();
+    if (!student) return false;
+    const nameInput = $('#student-profile-name-input');
+    const newName = nameInput?.value || '';
+    const validation = validatePublicDisplayText(newName, 18, '先填写你的名字。', '名字');
+    if (!validation.ok) {
+      showToast(validation.error || '名字不适合公开展示。');
+      return false;
+    }
+
+    const snapshot = cloneStudentState(student);
+    student.studentName = validation.text;
+    student.name = validation.text;
+    student.profileNameUpdatedAt = new Date().toISOString();
+    database[student.studentId] = student;
+    saveDatabase();
+    renderAppShell();
+    renderActiveStudentView();
+    closeStudentProfileModal();
+
+    const saved = await commitStudentState(student, snapshot, { type: 'renameStudent', name: validation.text }, () => {
+      showToast(`🎉 名字已保存为「${validation.text}」！`);
+    });
+    return saved;
+  }
+
+  function copyStudentIdToClipboard() {
+    const student = getStudent();
+    const id = student?.studentId || '';
+    if (!id) return;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(id).then(() => {
+        showToast(`📋 学号 ${id} 已复制！`);
+      }).catch(() => {
+        showToast(`学号: ${id}`);
+      });
+    } else {
+      showToast(`学号: ${id}`);
     }
   }
 
@@ -6334,35 +6764,51 @@
       {
         type: 'reaction',
         icon: '🎯',
-        title: 'CY反应轮盘',
+        title: '5+1反应轮盘',
         description: '看准发光区域，点击命中。'
       },
       {
         type: 'flappy',
         icon: '☁️',
-        title: 'CY跳跳跳',
+        title: '5+1跳跳跳',
         description: '让整只宠物飞过云朵空隙。'
       },
       {
         type: 'runner',
         icon: '🏃',
-        title: 'CY跑跑跑',
+        title: '5+1跑跑跑',
         description: '带宠物越过路上的障碍。'
       },
       {
         type: 'jumpCharge',
         icon: '◇',
-        title: 'CY跳一跳',
+        title: '5+1跳一跳',
         description: '按住蓄力，松手跳到下一块平台。'
       }
     ];
   }
 
   function isMiniGameSurfaceOpen() {
-    return Boolean(miniGameState.overlayOpen || miniGameState.embeddedOpen);
+    return Boolean(miniGameState.overlayOpen || miniGameState.embeddedOpen || miniGameState.arcadeOpen);
   }
 
   function getMiniGameElements() {
+    if (miniGameState.arcadeOpen) {
+      return {
+        root: $('#arcade-arena-section'),
+        overlay: $('#arcade-arena-section'),
+        title: $('#active-game-title'),
+        status: $('#live-game-score'),
+        picker: null,
+        canvas: $('#arcade-game-canvas'),
+        actions: null,
+        actionButton: null,
+        retryButton: null,
+        fullscreenButton: null,
+        runnerControls: null,
+        hint: null
+      };
+    }
     const embeddedPage = $('#mini-game-embedded-page');
     if (miniGameState.embeddedOpen && embeddedPage) {
       const query = selector => embeddedPage.querySelector(selector);
@@ -6749,10 +7195,14 @@
     if (title) title.textContent = localize('带宠物去玩');
     if (status) status.textContent = localize('选择一个小游戏开始。');
     picker.hidden = false;
+    const student = getStudent();
+    const petImage = getRolePreviewAsset(getPetDisplayImage(student));
     picker.innerHTML = getMiniGameChoices().map(choice => `<button type="button" class="mini-game-choice" data-mini-game-start="${choice.type}">
-      <span aria-hidden="true">${choice.icon}</span>
-      <strong>${escapeHtml(localize(choice.title))}</strong>
-      <small>${escapeHtml(localize(choice.description))}</small>
+      <span class="mini-game-choice-art"><img src="${escapeHtml(petImage)}" alt="" class="mini-game-choice-pet" loading="lazy" decoding="async" /></span>
+      <span class="mini-game-choice-copy">
+        <strong>${escapeHtml(localize(choice.title))}</strong>
+        <small>${escapeHtml(localize(choice.description))}</small>
+      </span>
     </button>`).join('');
     if (canvas) canvas.hidden = true;
     if (actions) actions.hidden = true;
@@ -7154,7 +7604,7 @@
     const { picker, actionButton, retryButton, title } = getMiniGameElements();
     if (picker) picker.hidden = true;
     setMiniGameCanvasVisible(true);
-    if (title) title.textContent = localize(challenge ? '进化轮盘挑战' : 'CY反应轮盘');
+    if (title) title.textContent = localize(challenge ? '进化轮盘挑战' : '5+1反应轮盘');
     if (actionButton) {
       actionButton.hidden = false;
       actionButton.textContent = localize('点击命中');
@@ -7278,7 +7728,7 @@
     const { picker, actions, actionButton, retryButton, title } = getMiniGameElements();
     if (picker) picker.hidden = true;
     setMiniGameCanvasVisible(true);
-    if (title) title.textContent = localize('CY跳跳跳');
+    if (title) title.textContent = localize('5+1跳跳跳');
     if (actions) actions.hidden = true;
     if (actionButton) {
       actionButton.hidden = true;
@@ -7597,7 +8047,7 @@
     const { picker, actions, actionButton, retryButton, title } = getMiniGameElements();
     if (picker) picker.hidden = true;
     setMiniGameCanvasVisible(true);
-    if (title) title.textContent = localize('CY跳一跳');
+    if (title) title.textContent = localize('5+1跳一跳');
     if (actions) actions.hidden = true;
     if (actionButton) {
       actionButton.hidden = true;
@@ -8310,7 +8760,7 @@
     const { picker, actions, actionButton, retryButton, title } = getMiniGameElements();
     if (picker) picker.hidden = true;
     setMiniGameCanvasVisible(true);
-    if (title) title.textContent = localize('CY跑跑跑');
+    if (title) title.textContent = localize('5+1跑跑跑');
     if (actions) actions.hidden = true;
     if (actionButton) {
       actionButton.hidden = true;
@@ -8742,7 +9192,7 @@
         ? `<img src="${escapeHtml(withAssetVersion(item.image))}" alt="" loading="lazy" decoding="async" />`
         : escapeHtml(item.icon);
       return `<button type="button" class="pet-furniture-button${active ? ' active' : ''}" data-furniture-item="${escapeHtml(item.id)}" aria-pressed="${active}" aria-label="${escapeHtml(`${localize('拿起')} ${localize(item.label)}`)}">
-        <span class="pet-furniture-icon" aria-hidden="true">${iconMarkup}</span><span>${escapeHtml(localize(item.label))}<small>🪙 ${Number(item.price || 0)}</small></span>
+        <span class="pet-furniture-icon" aria-hidden="true">${iconMarkup}</span><span>${escapeHtml(localize(item.label))}<small>${renderCoinIcon()} ${Number(item.price || 0)}</small></span>
       </button>`;
     }).join('')
       + (pendingFurnitureItemId ? '<button type="button" class="pet-furniture-button ghost" data-furniture-cancel>取消</button>' : '')
@@ -9121,6 +9571,7 @@
     const previousViewId = session.activeView;
     session.activeView = viewId;
     if (previousViewId === 'music-box-view' && viewId !== 'music-box-view') stopMusicPreview();
+    if (previousViewId === 'arcade-view' && viewId !== 'arcade-view') closeArcadeGame();
     if (viewId !== 'guide-view') {
       if (previousViewId === 'guide-view' && hasActiveInteractionRoom()) {
         void leaveActiveInteractionRoom({ silent: true, render: false, refresh: false });
@@ -9130,10 +9581,20 @@
       stopKuromiRoomDemo();
       if (isKuromiRoomFullscreenMode()) void exitKuromiRoomFullscreen();
     }
-    $all('.view').forEach(view => view.classList.toggle('active', view.id === viewId));
-    $all('.nav-button').forEach(button => button.classList.toggle('active', button.dataset.view === viewId));
+    $all('.view').forEach(view => {
+      const isActive = view.id === viewId;
+      view.classList.toggle('active', isActive);
+      view.classList.toggle('hidden', !isActive);
+    });
+    $all('.main-nav .nav-button[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === viewId));
     updateFriendNavAttention();
     renderActiveStudentView();
+    if (typeof updateAllStudentCoinDisplays === 'function') {
+      updateAllStudentCoinDisplays(getStudent()?.coins);
+    }
+    if (typeof syncCurrentStudentCloudState === 'function' && (viewId === 'dashboard-view' || viewId === 'characters-view' || viewId === 'home-view' || viewId === 'shop-view')) {
+      void syncCurrentStudentCloudState(true);
+    }
     if (viewId === 'wall-view') {
       loadMessageWall();
     }
@@ -9251,13 +9712,19 @@
     const student = getStudent();
     if (!student) return;
     const studentDisplayName = getStudentDisplayName(student);
-    $('#welcome-name').innerHTML = renderHomeNameEditor('student', studentDisplayName, getHomeNameEditValue('student', student));
+    const welcomeName = $('#welcome-name');
+    if (welcomeName) welcomeName.innerHTML = renderHomeNameEditor('student', studentDisplayName, getHomeNameEditValue('student', student));
     $('#student-chip-name').textContent = studentDisplayName;
+    const chipId = $('#student-chip-id');
+    if (chipId) chipId.textContent = student.studentId || '';
     $('#student-chip-avatar').innerHTML = renderStudentAvatarVisual(student, 'student-chip-avatar-image');
     const avatarPreview = $('#student-avatar-preview');
     if (avatarPreview) avatarPreview.innerHTML = renderStudentAvatarVisual(student, 'avatar-upload-image');
-    $('#today-label').textContent = `${currentLanguage === 'en' ? localize(student.branch) : student.branch} · ${student.className} · ${formatDisplayDate(getDateKey())}`;
+    const todayLabel = $('#today-label');
+    if (todayLabel) todayLabel.textContent = `${currentLanguage === 'en' ? localize(student.branch) : student.branch} · ${student.className} · ${formatDisplayDate(getDateKey())}`;
     $('#checkin-date-label').textContent = formatDisplayDate(getDateKey());
+    const streakCount = $('#streak-count');
+    if (streakCount) streakCount.textContent = `${student.currentStreak || 0}`;
     const holidayStatus = $('#holiday-status');
     if (holidayStatus) {
       holidayStatus.textContent = APP_CONFIG.enforceHolidayWindow
@@ -9318,7 +9785,8 @@
     if (shopCoinCount) shopCoinCount.textContent = student.coins;
     $('#star-count').textContent = student.totalStars;
     $('#checkin-count').textContent = getCompletedStudyDayCount(student);
-    $('#streak-count').textContent = student.streak;
+    const streakCount = $('#streak-count');
+    if (streakCount) streakCount.textContent = student.streak;
     $('#best-score').textContent = student.checkins.length ? `${Math.max(...student.checkins.map(item => item.score))}/${Math.max(...student.checkins.map(item => item.total))}` : '—';
 
     const avatar = $('#pet-avatar');
@@ -9424,6 +9892,10 @@
     const versionToken = `v=${APP_ASSET_VERSION}`;
     if (value.includes(versionToken)) return value;
     return `${value}${value.includes('?') ? '&' : '?'}${versionToken}`;
+  }
+
+  function renderCoinIcon(extraClass = '') {
+    return `<img src="${escapeHtml(withAssetVersion('assets/roles/hero-gacha/items/coins-pack.png'))}" alt="学习金币" class="inline-coin-sack${extraClass ? ` ${extraClass}` : ''}" />`;
   }
 
   function loadNewPlayerGuideCompletions() {
@@ -11268,7 +11740,7 @@
       return `<article class="owned-equipment-card pet-exclusive-equipment-card${equipped ? ' equipped' : ''}" data-pet-exclusive-item="${item.id}">
         <div class="owned-equipment-art"><img src="${escapeHtml(withAssetVersion(item.image))}" alt="${escapeHtml(itemName)}" loading="lazy" decoding="async" /></div>
         <div class="owned-equipment-info"><span class="owned-equipment-slot">${slotInfo.icon} ${escapeHtml(slotLabel)} · ${escapeHtml(pet.name)}${currentLanguage === 'en' ? ' Exclusive' : '专属'}</span><strong>${escapeHtml(itemName)}</strong><small>${escapeHtml(itemDescription || status)}<br />${escapeHtml(status)}</small></div>
-        <div class="pet-exclusive-action"><span class="pet-exclusive-price">${student.demoMode ? '🧪 Demo' : `🪙 ${item.price}`}</span>${action}</div>
+        <div class="pet-exclusive-action"><span class="pet-exclusive-price">${student.demoMode ? '🧪 Demo' : `${renderCoinIcon()} ${item.price}`}</span>${action}</div>
       </article>`;
     }).join('')}${stageLocked ? `<div class="exclusive-gear-lock-note">${escapeHtml(localize(`完成小进化后，会开放剩下 ${lockedItems.length} 件终极进化装备。`))}</div>` : ''}`;
   }
@@ -11428,7 +11900,7 @@
           <p class="muted-text">BM、BC、BI、SC、MM 都完成了，宠物收到了一整天的学习能量。</p>
           <div class="reward-row">
             <span class="reward-pill">⭐ ${totalScore}/${totalPossible} 分</span>
-            <span class="reward-pill">🪙 +${totalCoins} 金币</span>
+            <span class="reward-pill">${renderCoinIcon()} +${totalCoins} 学习金币</span>
           </div>
           <button type="button" class="primary-button" data-view-target="home-view">回到我的宠物 →</button>
         </div>`;
@@ -11848,7 +12320,7 @@
             <img src="${escapeHtml(withAssetVersion(item.image))}" alt="${escapeHtml(itemName)}" loading="lazy" decoding="async" />
             <b>${escapeHtml(slotInfo.icon)} ${escapeHtml(localize(slotInfo.label))}</b>
             <strong>${escapeHtml(itemName)}</strong>
-            <small>${escapeHtml(state)} · 🪙 ${item.price}</small>
+            <small>${escapeHtml(state)} · ${renderCoinIcon()} ${item.price}</small>
           </span>`;
         }).join('')}
         ${lockedItems.length ? `<span class="pet-shop-gear-item locked"><b>🔒 ${escapeHtml(localize('终极装备'))}</b><strong>${lockedItems.length} ${currentLanguage === 'en' ? 'hidden' : '件未开放'}</strong><small>${escapeHtml(localize('小进化后开放'))}</small></span>` : ''}
@@ -11874,7 +12346,7 @@
           <div class="pet-shop-gear-heading"><span>${escapeHtml(localize('专属装备'))}</span><small>${escapeHtml(localize(getPetSeriesInfo(getPetSeriesId(pet)).label))}</small></div>
           ${renderExclusiveGear(pet)}
         </section>
-        <div class="pet-shop-footer"><span class="pet-price">${student.demoMode ? (currentLanguage === 'en' ? '🧪 Demo Free' : '🧪 Demo 免费') : `🪙 ${rarity.price}`}</span>${action}</div>
+        <div class="pet-shop-footer"><span class="pet-price">${student.demoMode ? (currentLanguage === 'en' ? '🧪 Demo Free' : '🧪 Demo 免费') : `${renderCoinIcon()} ${rarity.price}`}</span>${action}</div>
       </article>`;
     }).join('');
     target.innerHTML = `
@@ -12784,8 +13256,8 @@
     $all('[data-gift-type]').forEach(button => button.classList.toggle('active', button.dataset.giftType === friendState.activeGiftType));
     if (!target) return;
     if (friendState.activeGiftType === 'coins') {
-      target.innerHTML = `<div class="gift-amount-grid">${FRIEND_GIFT_AMOUNTS.map(amount => `<button type="button" class="gift-choice${Number(friendState.giftAmount) === amount ? ' selected' : ''}" data-gift-amount="${amount}">🪙 ${amount}</button>`).join('')}</div>
-        <p class="muted-text">你的金币：${Number(student?.coins || 0)}</p>`;
+      target.innerHTML = `<div class="gift-amount-grid">${FRIEND_GIFT_AMOUNTS.map(amount => `<button type="button" class="gift-choice${Number(friendState.giftAmount) === amount ? ' selected' : ''}" data-gift-amount="${amount}">${renderCoinIcon()} ${amount}</button>`).join('')}</div>
+        <p class="muted-text">你的学习金币：${Number(student?.coins || 0)}</p>`;
       return;
     }
     if (friendState.activeGiftType === 'item') {
@@ -13076,7 +13548,7 @@
       <span class="reward-coin-icon">🎵</span>
       <span><strong>${escapeHtml(track.name || '新音乐')}</strong><small>${escapeHtml(track.series || '音乐盒')} · 已加入你的音乐盒</small></span>
     </div>`));
-    if (coins) rows.push(`<div class="reward-row reward-row-coins"><span class="reward-coin-icon">🪙</span><span><strong>${coins} 金币</strong><small>已加入你的金币</small></span></div>`);
+    if (coins) rows.push(`<div class="reward-row reward-row-coins"><img src="${escapeHtml(withAssetVersion('assets/roles/hero-gacha/items/coins-pack.png'))}" alt="金币" class="reward-coin-img" /><span><strong>${coins} 金币</strong><small>已加入你的金币</small></span></div>`);
     duplicates.forEach(duplicate => {
       const duplicateIcon = duplicate.type === 'music' ? '🎵' : '🎁';
       const friendOptions = friendState.friends.length
@@ -13377,7 +13849,7 @@
       isLocked: Boolean(source.isLocked || source.is_locked),
       isPermanent: Boolean(source.isPermanent || source.is_permanent),
       mapSetId,
-      mapSetName: mapSet?.name || 'CY小镇',
+      mapSetName: mapSet?.name || '5+1小镇',
       memberCount: Math.max(0, Math.min(memberLimit, Number(source.memberCount || source.member_count || 0))),
       memberLimit,
       players,
@@ -13839,18 +14311,28 @@
   function renderInteractionRoomSizeSelector(student = getStudent()) {
     const selectedSize = getInteractionRoomSelectedPetSize(student);
     const spriteProfile = getKuromiRoomSpriteProfile(student);
-    const sampleSrc = withAssetVersion(spriteProfile.headFallbackSrc || spriteProfile.headSrc || spriteProfile.idleSrc || spriteProfile.fallbackSrc);
+    const sampleSrc = withAssetVersion(
+      spriteProfile.idleSrc ||
+      spriteProfile.fallbackSrc ||
+      spriteProfile.idleLeftSrc ||
+      `assets/8bit/characters-idle/${spriteProfile.petId}-8bit.png`
+    );
+    const fallbackSrc = withAssetVersion(
+      spriteProfile.fallbackSrc ||
+      `assets/8bit/characters/${spriteProfile.petId}-8bit.png`
+    );
     const cards = INTERACTION_ROOM_PET_SIZE_OPTIONS.map(option => {
       const selected = option.id === selectedSize;
-      return `<button type="button" class="interaction-room-size-option${selected ? ' selected' : ''}" data-interaction-room-pet-size="${escapeHtml(option.id)}" aria-pressed="${selected ? 'true' : 'false'}" style="--sample-scale:${Number(option.scale || 1)}">
+      const previewScale = Number(option.previewScale || (option.id === 'super' ? 1.18 : option.id === 'big' ? 0.95 : 0.72));
+      return `<button type="button" class="interaction-room-size-option${selected ? ' selected' : ''}" data-interaction-room-pet-size="${escapeHtml(option.id)}" aria-pressed="${selected ? 'true' : 'false'}" style="--sample-scale:${previewScale}">
+        <span class="interaction-room-size-badge">${selected ? escapeHtml(localize('已选择')) : escapeHtml(option.label)}</span>
         <span class="interaction-room-size-sample" aria-hidden="true">
-          <img src="${escapeHtml(sampleSrc)}" alt="" loading="lazy" />
+          <img src="${escapeHtml(sampleSrc)}" alt="" loading="lazy" decoding="async" onerror="if(this.dataset.fallback && this.src!==this.dataset.fallback){this.src=this.dataset.fallback;}" data-fallback="${escapeHtml(fallbackSrc)}" />
         </span>
         <span class="interaction-room-size-copy">
           <strong>${escapeHtml(localize(option.title))}</strong>
           <small>${escapeHtml(localize(option.subtitle))}</small>
         </span>
-        <span class="interaction-room-size-badge">${selected ? escapeHtml(localize('已选择')) : escapeHtml(option.label)}</span>
       </button>`;
     }).join('');
     return `<section class="interaction-room-size-panel" aria-label="${escapeHtml(localize('房间角色大小'))}">
@@ -13956,7 +14438,7 @@
         <button type="button" class="interaction-room-menu-card" data-mini-game-open>
           <span class="interaction-room-menu-icon" aria-hidden="true">🎮</span>
           <strong>${escapeHtml(localize('带宠物去玩'))}</strong>
-          <span>${escapeHtml(localize('挑战反应轮盘、CY跳跳跳、CY跑跑跑和CY跳一跳。'))}</span>
+          <span>${escapeHtml(localize('挑战反应轮盘、5+1跳跳跳、5+1跑跑跑和5+1跳一跳。'))}</span>
         </button>
       </div>
       ${renderInteractionRoomSizeSelector(student)}
@@ -13995,7 +14477,7 @@
       return `<article class="interaction-room-card${locked ? ' locked' : ''}${full ? ' full' : ''}">
         <div class="interaction-room-card-main">
           <strong>${escapeHtml(room.roomName || '小小房间')}</strong>
-          <small>${escapeHtml(room.ownerName || room.ownerStudentId || '同学')} 创建 · ${escapeHtml(room.mapSetName || 'CY小镇')} · ${room.memberCount}/${room.memberLimit} 人</small>
+          <small>${escapeHtml(room.ownerName || room.ownerStudentId || '同学')} 创建 · ${escapeHtml(room.mapSetName || '5+1小镇')} · ${room.memberCount}/${room.memberLimit} 人</small>
         </div>
         <span class="interaction-room-status">${locked ? '需要密码' : '公开房间'}</span>
         ${locked ? `<form class="interaction-room-join-form" data-interaction-room-join-form data-room-id="${escapeHtml(room.roomId)}">
@@ -16162,21 +16644,21 @@
       },
       flappy: {
         key,
-        title: 'CY跳跳跳排行榜',
+        title: '5+1跳跳跳排行榜',
         hint: '只记录历史最高分。',
         scoreLabel: '最高分',
         selfLabel: '我的跳跳最高分'
       },
       runner: {
         key,
-        title: 'CY跑跑跑排行榜',
+        title: '5+1跑跑跑排行榜',
         hint: '只记录历史最高分。',
         scoreLabel: '最高分',
         selfLabel: '我的跑跑最高分'
       },
       jumpCharge: {
         key,
-        title: 'CY跳一跳排行榜',
+        title: '5+1跳一跳排行榜',
         hint: '只记录历史最高分。',
         scoreLabel: '最高分',
         selfLabel: '我的跳一跳最高分'
@@ -16252,12 +16734,12 @@
           <strong>${row.power}</strong>
         </div>`).join('') || `<div class="wall-leaderboard-empty">${escapeHtml(localize('还没有宠物资料。'))}</div>`
       : (config.key === 'coins'
-        ? `<div class="wall-pet-breakdown-row"><span>🪙</span><span><b>${escapeHtml(localize('金币余额'))}</b><small>${escapeHtml(localize('我的金币余额'))}</small></span><strong>${selfScore}</strong></div>
+        ? `<div class="wall-pet-breakdown-row"><span>${renderCoinIcon()}</span><span><b>${escapeHtml(localize('学习金币'))}</b><small>${escapeHtml(localize('我的金币余额'))}</small></span><strong>${selfScore}</strong></div>
           <div class="wall-pet-breakdown-row"><span>⭐</span><span><b>${escapeHtml(localize('总战力'))}</b><small>${escapeHtml(localize('我的玩家总战力'))}</small></span><strong>${getStudentTotalCombatPower(student)}</strong></div>`
         : `<div class="wall-pet-breakdown-row"><span>🎯</span><span><b>${escapeHtml(localize('反应轮盘'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.reaction}</strong></div>
-        <div class="wall-pet-breakdown-row"><span>🐦</span><span><b>${escapeHtml(localize('CY跳跳跳'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.flappy}</strong></div>
-        <div class="wall-pet-breakdown-row"><span>🏃</span><span><b>${escapeHtml(localize('CY跑跑跑'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.runner}</strong></div>
-        <div class="wall-pet-breakdown-row"><span>◇</span><span><b>${escapeHtml(localize('CY跳一跳'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.jumpCharge}</strong></div>`);
+        <div class="wall-pet-breakdown-row"><span>🐦</span><span><b>${escapeHtml(localize('5+1跳跳跳'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.flappy}</strong></div>
+        <div class="wall-pet-breakdown-row"><span>🏃</span><span><b>${escapeHtml(localize('5+1跑跑跑'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.runner}</strong></div>
+        <div class="wall-pet-breakdown-row"><span>◇</span><span><b>${escapeHtml(localize('5+1跳一跳'))}</b><small>${escapeHtml(localize('历史最高分'))}</small></span><strong>${studentScores.jumpCharge}</strong></div>`);
     panel.innerHTML = `<div class="wall-leaderboard-heading">
       <div><span class="eyebrow">LEADERBOARD</span><h3>${escapeHtml(localize(config.title))}</h3><p>${escapeHtml(localize(config.hint))}</p></div>
       <div class="wall-leaderboard-tabs" role="group">${tabs}</div>
@@ -16340,7 +16822,7 @@
                 ? `<button type="button" class="secondary-button" disabled>${escapeHtml(localize('使用中'))}</button>`
                 : (sharedMusicOwned
                   ? `<button type="button" class="primary-button" data-music-equip="${escapeHtml(sharedMusicTrack.trackId)}">${escapeHtml(localize('切换主题曲'))}</button>`
-                  : `<button type="button" class="primary-button" data-music-buy="${escapeHtml(sharedMusicTrack.trackId)}">${escapeHtml(`🪙 ${MUSIC_BOX_TRACK_PRICE} ${localize('购买')}`)}</button>`)}
+                  : `<button type="button" class="primary-button" data-music-buy="${escapeHtml(sharedMusicTrack.trackId)}">${renderCoinIcon()} ${MUSIC_BOX_TRACK_PRICE} ${escapeHtml(localize('购买'))}</button>`)}
             </div>
           </div>`
         : '';
@@ -16869,6 +17351,7 @@
     const modal = $('#pet-selection-modal');
     const student = getStudent();
     if (!modal || !student) return;
+    modal.classList.add('starter-adventure-mode');
     const choices = student.demoMode ? PET_CATALOG : INITIAL_PETS;
     pendingPetMode = 'initial';
     pendingInitialPet = '';
@@ -17112,7 +17595,7 @@
     }
     target.innerHTML = student.checkins.slice(0, 30).map(record => {
       const meta = SUBJECT_META[record.subject] || { icon: '📘' };
-      return `<div class="history-row"><span class="history-date">${formatDate(record.date)}</span><span class="history-subject"><span>${meta.icon}</span>${escapeHtml(record.subject)}</span><span class="history-score">${record.score}/${record.total} 分</span><span class="history-reward">🪙 +${record.coinsEarned}</span></div>`;
+      return `<div class="history-row"><span class="history-date">${formatDate(record.date)}</span><span class="history-subject"><span>${meta.icon}</span>${escapeHtml(record.subject)}</span><span class="history-score">${record.score}/${record.total} 分</span><span class="history-reward">${renderCoinIcon()} +${record.coinsEarned}</span></div>`;
     }).join('');
   }
 
@@ -17123,7 +17606,12 @@
   }
 
   function getTeacherIdFromInput() {
-    return HolidayBackendClient.normalizeId($('#teacher-id-input')?.value || teacherState.teacherId);
+    return HolidayBackendClient.normalizeId(
+      (typeof currentTeacher !== 'undefined' && currentTeacher?.teacherId) ||
+      $('#teacher-id-input')?.value ||
+      teacherState.teacherId ||
+      'TCH01_JIE'
+    );
   }
 
   function isTeacherGlobalAdminId(teacherId) {
@@ -17385,7 +17873,7 @@
     }
     if (status) {
       status.textContent = statusText || (isGasBackend()
-        ? '学生每天最多从老师奖励获得 250 金币；CY0000 和 CY0001 可以给老师账号无上限加分。'
+        ? '老师可自由给学生奖励金币（无每日上限）；CY0000 和 CY0001 可以给老师账号无上限加分。'
         : 'Supabase 模式会按分院和班级整理学生名单。');
     }
   }
@@ -17427,7 +17915,7 @@
         <input type="checkbox" data-teacher-student="${escapeHtml(studentId)}" />
         <span class="teacher-student-avatar">${escapeHtml(student.avatar || '👤')}</span>
         <span class="teacher-student-copy"><strong>${escapeHtml(name)}</strong><small>${escapeHtml(studentId)} · ${escapeHtml(student.className || '待同步班级')}</small></span>
-        <span class="teacher-student-balance">🪙 ${coins}<small>${pet ? escapeHtml(getPetFullDisplayName(student) || pet.name) : '尚未选择宠物'}</small></span>
+        <span class="teacher-student-balance">${renderCoinIcon()} ${coins}<small>${pet ? escapeHtml(getPetFullDisplayName(student) || pet.name) : '尚未选择宠物'}</small></span>
       </label>`;
     }).join('');
     $('#teacher-select-all').checked = false;
@@ -17508,19 +17996,135 @@
   }
 
   async function rewardSelectedStudents(amount) {
-    const selected = [...new Set($all('[data-teacher-student]:checked').map(input => HolidayBackendClient.normalizeId(input.dataset.teacherStudent)).filter(Boolean))];
+    let selected = [...new Set($all('[data-teacher-student]:checked').map(input => HolidayBackendClient.normalizeId(input.dataset.teacherStudent)).filter(Boolean))];
     const teacherId = getTeacherIdFromInput();
-    if (!selected.length) {
-      showToast('请先选择至少一位学生。');
+    const rawAmount = Math.max(1, Math.min(999999, Math.floor(Number(amount || 0))));
+    if (!rawAmount || isNaN(rawAmount)) {
+      showToast('奖励金币数必须在 1 ~ 999,999 之间。');
       return;
     }
+
+    const warningBanner = document.getElementById('teacher-reward-warning-banner');
+    if (warningBanner) warningBanner.classList.add('hidden');
+
+    if (!selected.length) {
+      const allCheckboxes = $all('[data-teacher-student]');
+      if (!allCheckboxes.length) {
+        showToast('花名册中暂无可发放金币的学生。');
+        return;
+      }
+
+      if (warningBanner) {
+        warningBanner.innerHTML = '⚠️ <strong>请先勾选要加金币的学生</strong>：在下方花名册表格中勾选学生，或点击“全选学生”！';
+        warningBanner.classList.remove('hidden');
+      }
+
+      const tableWrap = document.getElementById('teacher-students-tbody')?.closest('.table-responsive-wrap');
+      tableWrap?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      tableWrap?.classList.add('table-flash-highlight');
+      setTimeout(() => {
+        tableWrap?.classList.remove('table-flash-highlight');
+      }, 1800);
+
+      const confirmAll = confirm(`您尚未在下方表格中勾选学生。\n\n是否直接为当前全班 ${allCheckboxes.length} 位学生每人发放 +${rawAmount} 学习金币？`);
+      if (confirmAll) {
+        allCheckboxes.forEach(cb => { cb.checked = true; });
+        updateSelectedStudentsCount();
+        selected = [...new Set($all('[data-teacher-student]:checked').map(input => HolidayBackendClient.normalizeId(input.dataset.teacherStudent)).filter(Boolean))];
+      } else {
+        showToast('请在下方表格中勾选要加金币的学生。');
+        return;
+      }
+    }
+
+    // Modern EDUVERSE Cloud Backend reward
+    let teacherToken = currentTeacher?.sessionToken;
+    if (!teacherToken) {
+      try {
+        const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+        teacherToken = saved.sessionToken;
+      } catch (_e) {}
+    }
+
+    const activeBackend = (typeof backendClient !== 'undefined' && backendClient)
+      || (typeof backend !== 'undefined' && backend)
+      || (typeof window !== 'undefined' && window.backendClient);
+
+    if (activeBackend && typeof activeBackend.rewardManagedStudents === 'function') {
+      try {
+        const result = await activeBackend.rewardManagedStudents({
+          teacherSessionToken: teacherToken || '',
+          studentIds: selected,
+          amount: rawAmount,
+          reason: '课堂表现'
+        });
+        if (result && result.ok) {
+          // result.balances is { studentId: coins } object, not an array
+          const balancesRaw = result.balances || {};
+          const balances = new Map(
+            Array.isArray(balancesRaw)
+              ? balancesRaw.map(b => [HolidayBackendClient.normalizeId(b.studentId), Number(b.coins || 0)])
+              : Object.entries(balancesRaw).map(([sid, coins]) => [HolidayBackendClient.normalizeId(sid), Number(coins || 0)])
+          );
+          if (Array.isArray(cachedTeacherStudents) && cachedTeacherStudents.length) {
+            cachedTeacherStudents = cachedTeacherStudents.map(s => {
+              const sid = HolidayBackendClient.normalizeId(s.studentId);
+              if (balances.has(sid)) {
+                return { ...s, coins: balances.get(sid) };
+              }
+              return s;
+            });
+          }
+          selected.forEach(sid => {
+            if (database[sid]) {
+              database[sid].coins = balances.has(sid) ? balances.get(sid) : (Number(database[sid].coins || 0) + rawAmount);
+            }
+          });
+          saveDatabase();
+          renderTeacherStudentsTable(false);
+
+          // Restore selection & counter
+          selected.forEach(sid => {
+            const cb = document.querySelector(`[data-teacher-student="${sid}"]`);
+            if (cb) cb.checked = true;
+          });
+          updateSelectedStudentsCount();
+
+          const acceptedCount = Array.isArray(result.accepted) ? result.accepted.length : 0;
+          const limitedCount = Array.isArray(result.limited) ? result.limited.length : 0;
+          const dailyLimit = Math.max(0, Math.floor(Number(result.dailyLimit || 999999)));
+
+          if (!acceptedCount && limitedCount) {
+            alert(`已选学生今天已达到 ${dailyLimit} 金币课堂奖励上限。`);
+            showToast(`已选学生今天已达到 ${dailyLimit} 金币课堂奖励上限。`);
+          } else if (acceptedCount === 0) {
+            alert(`发放未完成：未能成功为所选学生增加金币，请检查网络或刷新重试。`);
+            showToast(`发放未完成，请重试。`);
+          } else if (limitedCount) {
+            alert(`🎉 成功为 ${acceptedCount} 位学生发放金币！部分学生已达单日 ${dailyLimit} 金币上限。`);
+            showToast(`已为 ${acceptedCount} 位学生发放金币；部分学生已达单日 ${dailyLimit} 金币上限。`);
+          } else {
+            alert(`🎉 成功为 ${acceptedCount} 位学生各发放 ${rawAmount} 学习金币！`);
+            showToast(`🎉 成功为 ${acceptedCount} 位学生各发放 ${rawAmount} 学习金币！`);
+          }
+          return;
+        } else if (result && result.error) {
+          alert(`金币发放失败：${result.error}`);
+          showToast(result.error);
+          return;
+        }
+      } catch (cloudErr) {
+        console.warn('rewardManagedStudents cloud call failed, falling back:', cloudErr);
+      }
+    }
+
     if (isGasBackend()) {
       const classId = String($('#teacher-class-select')?.value || teacherState.classId || '').trim();
       if (!teacherId || !classId) {
         showToast('请先输入老师 ID 并选择班级。');
         return;
       }
-      const result = await backend.rewardStudents({ teacherId, classId, studentIds: selected, amount, reason: '课堂表现' });
+      const result = await backend.rewardStudents({ teacherId, classId, studentIds: selected, amount: rawAmount, reason: '课堂表现' });
       if (!result.ok) {
         showToast(result.error || '奖励失败，请检查老师 ID 和班级权限。');
         return;
@@ -17536,13 +18140,13 @@
       }
       const acceptedCount = result.accepted?.length || balances.size || 0;
       const limitedCount = Array.isArray(result.limited) ? result.limited.length : 0;
-      const dailyLimit = Math.max(0, Math.floor(Number(result.dailyLimit || ECONOMY_CONFIG.teacherDailyRewardLimit || 0)));
+      const dailyLimit = Math.max(0, Math.floor(Number(result.dailyLimit || ECONOMY_CONFIG.teacherManagedDailyRewardLimit || ECONOMY_CONFIG.teacherDailyRewardLimit || 999999)));
       if (!acceptedCount && limitedCount) {
         showToast(`已选学生今天已达到 ${dailyLimit} 金币课堂奖励上限。`);
       } else if (limitedCount) {
         showToast(`已为 ${acceptedCount} 位账号增加课堂金币；部分学生今天已达到 ${dailyLimit} 金币课堂奖励上限。`);
       } else {
-        showToast(`已为 ${acceptedCount || selected.length} 位账号各增加最多 ${amount} 金币。`);
+        showToast(`已为 ${acceptedCount || selected.length} 位账号各增加最多 ${rawAmount} 金币。`);
       }
       return;
     }
@@ -17559,27 +18163,37 @@
         limitedCount += 1;
         return;
       }
+      const rewardDailyCap = teacherTarget ? rawAmount : (ECONOMY_CONFIG.teacherManagedDailyRewardLimit || ECONOMY_CONFIG.teacherDailyRewardLimit || 999999);
       const remainingDailyReward = teacherTarget
-        ? amount
-        : Math.max(0, ECONOMY_CONFIG.teacherDailyRewardLimit - getTeacherRewardTotalForDate(student, today));
-      const appliedAmount = teacherTarget && canRewardTeacherTargets ? amount : Math.min(amount, remainingDailyReward);
+        ? rawAmount
+        : Math.max(0, rewardDailyCap - getTeacherRewardTotalForDate(student, today));
+      const appliedAmount = teacherTarget && canRewardTeacherTargets ? rawAmount : Math.min(rawAmount, remainingDailyReward);
       if (appliedAmount <= 0) {
         limitedCount += 1;
         return;
       }
       student.coins = Number(student.coins || 0) + appliedAmount;
       student.teacherRewards.unshift({ date: today, amount: appliedAmount, source: 'teacher', teacher: 'demo-teacher' });
-      if (!teacherTarget && appliedAmount < amount) limitedCount += 1;
+      if (!teacherTarget && appliedAmount < rawAmount) limitedCount += 1;
       acceptedCount += 1;
+    });
+    cachedTeacherStudents = cachedTeacherStudents.map(s => {
+      const sid = HolidayBackendClient.normalizeId(s.studentId);
+      if (database[sid]) {
+        return { ...s, coins: Number(database[sid].coins || 0) };
+      }
+      return s;
     });
     saveDatabase();
     renderTeacher();
+    renderTeacherStudentsTable(false);
+    const effectiveLimit = ECONOMY_CONFIG.teacherManagedDailyRewardLimit || ECONOMY_CONFIG.teacherDailyRewardLimit || 999999;
     if (!acceptedCount && limitedCount) {
-      showToast(`已选学生今天已达到 ${ECONOMY_CONFIG.teacherDailyRewardLimit} 金币课堂奖励上限。`);
+      showToast(`已选学生今天已达到 ${effectiveLimit} 金币课堂奖励上限。`);
     } else if (limitedCount) {
-      showToast(`已为 ${acceptedCount} 位账号增加课堂金币；部分学生今天已达到 ${ECONOMY_CONFIG.teacherDailyRewardLimit} 金币课堂奖励上限。`);
+      showToast(`已为 ${acceptedCount} 位账号增加课堂金币；部分学生今天已达到 ${effectiveLimit} 金币课堂奖励上限。`);
     } else {
-      showToast(`已为 ${acceptedCount} 位账号各增加最多 ${amount} 金币。`);
+      showToast(`已为 ${acceptedCount} 位账号各增加最多 ${rawAmount} 金币。`);
     }
   }
 
@@ -17704,7 +18318,7 @@
     const digits = raw.replace(/\D/g, '').slice(0, 4);
     if (input && input.value !== digits) input.value = digits;
     if (!/^\d{4}$/.test(digits)) return { ok: false, error: '学生 ID 请填写 4 位数字。' };
-    return { ok: true, studentId: `CY${digits}` };
+    return { ok: true, studentId: `FPO${digits}` };
   }
 
   function showRegistrationSuccessModal(studentId) {
@@ -17871,7 +18485,10 @@
     $('#student-id').value = studentId;
     $('#login-error').textContent = '正在恢复上次登录...';
     const restored = await login(saved.studentId);
-    if (restored) return;
+    if (restored) {
+      void syncCurrentStudentCloudState(true);
+      return;
+    }
     if (cachedStudent) {
       session = { studentId, activeView: DEFAULT_APP_VIEW, quiz: null, demoFree: Boolean(cachedStudent.demoMode), teacherMode: false };
       saveLoginSession(studentId);
@@ -17885,6 +18502,7 @@
       switchView(DEFAULT_APP_VIEW);
       scheduleEvolutionCinematicPrime();
       showToast('云端暂时较慢，先使用本机资料。');
+      void syncCurrentStudentCloudState(true);
       return;
     }
     if (!session.studentId) clearLoginSession();
@@ -18020,6 +18638,7 @@
   // ===== 云端后端接口 =====
   const backend = HolidayBackendClient.createClient(APP_CONFIG);
   const backendClient = backend;
+  if (typeof window !== 'undefined') window.backendClient = backend;
   let backendWarmupStarted = false;
 
   function warmProductionBackend() {
@@ -18073,13 +18692,63 @@
     readTeacherImportFile(event.target.files?.[0]).catch(error => showToast(`读取文件失败：${error.message || error}`));
   });
   $('#logout-button').addEventListener('click', logout);
-  $('#reset-demo-button')?.addEventListener('click', resetDemo);
+  function updateSelectedStudentsCount() {
+    const checkedCount = $all('[data-teacher-student]:checked').length;
+    const totalCount = $all('[data-teacher-student]').length;
+    const pill = document.getElementById('teacher-selected-students-pill');
+    if (pill) {
+      if (checkedCount > 0) {
+        pill.classList.add('active');
+        pill.textContent = `✓ 已勾选 ${checkedCount} 位学生`;
+      } else {
+        pill.classList.remove('active');
+        pill.textContent = '尚未勾选学生';
+      }
+    }
+    const warning = document.getElementById('teacher-reward-warning-banner');
+    if (warning && checkedCount > 0) {
+      warning.classList.add('hidden');
+    }
+    const selectAllCheckbox = document.getElementById('teacher-select-all');
+    if (selectAllCheckbox) {
+      selectAllCheckbox.checked = totalCount > 0 && checkedCount === totalCount;
+      selectAllCheckbox.indeterminate = checkedCount > 0 && checkedCount < totalCount;
+    }
+    const tableHeaderSelectAll = document.getElementById('teacher-table-header-select-all');
+    if (tableHeaderSelectAll) {
+      tableHeaderSelectAll.checked = totalCount > 0 && checkedCount === totalCount;
+      tableHeaderSelectAll.indeterminate = checkedCount > 0 && checkedCount < totalCount;
+    }
+  }
+
   $('#teacher-select-all')?.addEventListener('change', event => {
     $all('[data-teacher-student]').forEach(input => { input.checked = event.target.checked; });
+    updateSelectedStudentsCount();
   });
-  $('#pet-name-input').addEventListener('input', updateAdoptionConfirmState);
+
+  $('#teacher-table-header-select-all')?.addEventListener('change', event => {
+    $all('[data-teacher-student]').forEach(input => { input.checked = event.target.checked; });
+    updateSelectedStudentsCount();
+  });
+
+  document.addEventListener('change', event => {
+    if (event.target && event.target.matches('[data-teacher-student]')) {
+      updateSelectedStudentsCount();
+    }
+  });
+
+  document.getElementById('teacher-students-tbody')?.addEventListener('click', event => {
+    if (event.target.closest('.teacher-account-actions') || event.target.closest('input[type="checkbox"]')) return;
+    const row = event.target.closest('tr[data-student-row]');
+    if (!row) return;
+    const cb = row.querySelector('input[data-teacher-student]');
+    if (cb) {
+      cb.checked = !cb.checked;
+      updateSelectedStudentsCount();
+    }
+  });
   $('#pet-birthday-input').addEventListener('change', updateAdoptionConfirmState);
-  $all('.nav-button').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
+  $all('.main-nav .nav-button[data-view]').forEach(button => button.addEventListener('click', () => switchView(button.dataset.view)));
   document.addEventListener('input', event => {
     const registerStudentIdInput = event.target.closest('#register-student-id');
     if (registerStudentIdInput) {
@@ -18134,6 +18803,13 @@
     }
   });
   document.addEventListener('submit', async event => {
+    const studentProfileForm = event.target.closest('#student-profile-form');
+    if (studentProfileForm) {
+      event.preventDefault();
+      const button = studentProfileForm.querySelector('button[type="submit"]');
+      await withButtonLoading(button, () => handleStudentProfileFormSubmit(event), '保存中');
+      return;
+    }
     const homeNameForm = event.target.closest('[data-home-name-form]');
     if (homeNameForm) {
       event.preventDefault();
@@ -18320,7 +18996,7 @@
       if (runnerControl.dataset.runnerControl === 'duck') setRunnerMiniGameDuck(true);
       return;
     }
-    if (!event.target.closest('#mini-game-canvas, [data-mini-game-canvas]')) return;
+    if (!event.target.closest('#mini-game-canvas, #arcade-game-canvas, [data-mini-game-canvas]')) return;
     event.preventDefault();
     if (miniGameState.type === 'jumpCharge') {
       startJumpChargeMiniGameCharge(event);
@@ -18574,9 +19250,27 @@
         if (tapAction === 'explode') petInteractionTapCount = 0;
         return;
       }
-      const evolutionVideoPlayButton = event.target.closest('#evolution-video-play');
-      if (evolutionVideoPlayButton) {
+
+    const evolutionVideoPlayButton = event.target.closest('#evolution-video-play');
+    if (evolutionVideoPlayButton) {
         replayEvolutionCinematicFromButton();
+        return;
+      }
+      if (event.target.closest('#student-profile-edit-button, #student-avatar-menu-button, #hub-profile-edit-btn, #hub-avatar-wrap')) {
+        openStudentProfileModal();
+        return;
+      }
+      if (event.target.closest('[data-student-profile-close]') || event.target === $('#student-profile-overlay')) {
+        closeStudentProfileModal();
+        return;
+      }
+      const presetAvatarBtn = event.target.closest('[data-student-avatar-preset]');
+      if (presetAvatarBtn) {
+        await selectPresetStudentAvatar(presetAvatarBtn.dataset.studentAvatarPreset);
+        return;
+      }
+      if (event.target.closest('#student-profile-copy-id-btn')) {
+        copyStudentIdToClipboard();
         return;
       }
       if (event.target.closest('[data-avatar-crop-cancel]') || event.target === $('#avatar-crop-overlay')) {
@@ -19071,15 +19765,29 @@
     } catch (_e) {}
   }
 
+  function updateAllAudioMuteButtonsUi() {
+    const btns = document.querySelectorAll('#sound-toggle-btn, #quest-sound-toggle-btn, .sound-toggle-button');
+    btns.forEach(b => {
+      const audioIcon = b.querySelector('.audio-btn-icon');
+      if (audioIcon) {
+        audioIcon.textContent = isAudioMuted ? '🔇' : '🔊';
+      } else {
+        b.textContent = isAudioMuted ? '🔇' : '🔊';
+      }
+      const titleText = isAudioMuted
+        ? (currentLanguage === 'en' ? 'Sound Effects (SFX): Muted (Click to enable)' : '游戏音效 (SFX)：已静音 (点击开启)')
+        : (currentLanguage === 'en' ? 'Sound Effects (SFX): Enabled (Click to mute)' : '游戏音效 (SFX)：已开启 (点击静音)');
+      b.title = titleText;
+      b.setAttribute('aria-label', titleText);
+      b.classList.toggle('is-muted', isAudioMuted);
+    });
+  }
+
   function toggleAudioMute() {
     isAudioMuted = !isAudioMuted;
     localStorage.setItem('eduverse_audio_muted', String(isAudioMuted));
-    const btns = document.querySelectorAll('#sound-toggle-btn, #quest-sound-toggle-btn');
-    btns.forEach(b => {
-      b.textContent = isAudioMuted ? '🔇' : '🔊';
-      b.title = isAudioMuted ? '音效已静音' : '音效已开启';
-    });
-    showToast(isAudioMuted ? '已静音音效' : '已开启音效');
+    updateAllAudioMuteButtonsUi();
+    showToast(isAudioMuted ? '已静音游戏音效 (SFX) 🔇' : '已开启游戏音效 (SFX) 🔊');
   }
 
   // 12 Preset Teachers
@@ -19111,6 +19819,7 @@
       themeId: 'theme-bc',
       badgeIcon: '📜',
       badgeTitle: '卷轴毛笔 · 水墨东方',
+      coverImage: 'assets/brand/subjects/subject-bc.jpg',
       colorPrimary: '#d32f2f',
       colorSecondary: '#ffb300',
       description: '东方幻想书卷，墨韵生辉。领略古风与现代二次元的文字力量。',
@@ -19123,6 +19832,7 @@
       themeId: 'theme-bm',
       badgeIcon: '📖',
       badgeTitle: '语言勋章 · 热带冒险',
+      coverImage: 'assets/brand/subjects/subject-bm.jpg',
       colorPrimary: '#e65100',
       colorSecondary: '#2e7d32',
       description: '探索马来西亚热带文学秘境，掌握Tatabahasa与Komsas精髓。',
@@ -19135,6 +19845,7 @@
       themeId: 'theme-bi',
       badgeIcon: '🧙‍♂️',
       badgeTitle: '魔法书 · Fantasy Academy',
+      coverImage: 'assets/brand/subjects/subject-bi.jpg',
       colorPrimary: '#1565c0',
       colorSecondary: '#7b1fa2',
       description: 'Unlock the Magic Library! Expand vocabulary, master grammar, and conquer reading trials.',
@@ -19147,6 +19858,7 @@
       themeId: 'theme-math',
       badgeIcon: '💠',
       badgeTitle: '几何水晶 · Cyber Grid',
+      coverImage: 'assets/brand/subjects/subject-math.jpg',
       colorPrimary: '#00838f',
       colorSecondary: '#00e5ff',
       description: '穿梭霓虹数字矩阵，破解代数几何算法，成为赛博数理大师。',
@@ -19159,6 +19871,7 @@
       themeId: 'theme-science',
       badgeIcon: '⚛️',
       badgeTitle: '原子核心 · Future Lab',
+      coverImage: 'assets/brand/subjects/subject-science.jpg',
       colorPrimary: '#4527a0',
       colorSecondary: '#00b0ff',
       description: '踏入未来高能实验室，探索物质、生命细胞与能量转化的奥秘。',
@@ -19171,6 +19884,7 @@
       themeId: 'theme-sejarah',
       badgeIcon: '🛡️',
       badgeTitle: '古代战盾 · Ancient Empire',
+      coverImage: 'assets/brand/subjects/subject-sejarah.jpg',
       colorPrimary: '#8d6e63',
       colorSecondary: '#c62828',
       description: '展开古老帝国战图，重返马六甲王朝与早期文明传奇风云。',
@@ -19183,6 +19897,7 @@
       themeId: 'theme-geografi',
       badgeIcon: '🧭',
       badgeTitle: '地球罗盘 · Earth Explorer',
+      coverImage: 'assets/brand/subjects/subject-geografi.jpg',
       colorPrimary: '#2e7d32',
       colorSecondary: '#8d6e63',
       description: '手持罗盘跋涉山川河海，观察板块运动、气候变迁与全球经纬。',
@@ -19195,6 +19910,7 @@
       themeId: 'theme-moral',
       badgeIcon: '✨',
       badgeTitle: '守护之星 · Guardian Light',
+      coverImage: 'assets/brand/subjects/subject-moral.jpg',
       colorPrimary: '#ad1457',
       colorSecondary: '#ffd54f',
       description: '凝聚正义与友爱之光，培养崇高品格、公民意识与关怀社会的价值观。',
@@ -19224,13 +19940,700 @@
         return;
       }
 
-      currentTeacher = res.teacher;
+      currentTeacher = {
+        ...res.teacher,
+        sessionToken: res.sessionToken || ''
+      };
       localStorage.setItem('eduverse_teacher_session', JSON.stringify(currentTeacher));
       showToast(`欢迎 ${currentTeacher.name} 登录教师教学管理控制台！`);
       openTeacherScreen();
     } catch (err) {
       if (errorEl) errorEl.textContent = '登录发生异常，请稍后重试。';
     }
+  }
+
+  const QUESTION_SUBJECT_MAP = {
+    '数学': 'math', 'math': 'math', 'mathematics': 'math', 'mm': 'math',
+    '科学': 'science', 'science': 'science', 'sc': 'science',
+    '华文': 'bc', '华语': 'bc', '中文': 'bc', 'bc': 'bc', 'chinese': 'bc',
+    '国文': 'bm', '马来文': 'bm', 'bm': 'bm', 'malay': 'bm',
+    '英文': 'bi', '英语': 'bi', 'bi': 'bi', 'english': 'bi',
+    '历史': 'sejarah', 'sejarah': 'sejarah', 'sj': 'sejarah', 'history': 'sejarah',
+    '地理': 'geografi', 'geografi': 'geografi', 'geo': 'geografi', 'geography': 'geografi',
+    '道德': 'moral', 'moral': 'moral', 'pm': 'moral'
+  };
+
+  const DEFAULT_CURATED_QUESTIONS = [
+    { questionId: 'DEF-MATH-01', subjectId: 'math', form: 'Form 1', chapterId: 'math-f1-c1', questionText: '计算：15 + (-7) 的值是多少？', options: ['8', '-8', '22', '-22'], correctAnswer: '8', explanation: '正负数相加，异号相减取绝对值大的符号：15 - 7 = 8。', kssmFocus: '🔥 高频考点', difficulty: 'Easy' },
+    { questionId: 'DEF-MATH-02', subjectId: 'math', form: 'Form 1', chapterId: 'math-f1-c1', questionText: '如果 3x - 5 = 16，则 x 的值是：', options: ['7', '6', '8', '9'], correctAnswer: '7', explanation: '3x = 16 + 5 = 21，解得 x = 7。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-MATH-03', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c1', questionText: '因式分解：x² - 9 的结果是：', options: ['(x+3)(x-3)', '(x-3)²', '(x+9)(x-9)', 'x(x-9)'], correctAnswer: '(x+3)(x-3)', explanation: '平方差公式：a² - b² = (a+b)(a-b)。', kssmFocus: '🧠 KBAT', difficulty: 'Normal' },
+    { questionId: 'DEF-MATH-04', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c2', questionText: '一个多边形的内角和为 720°，它是几边形？', options: ['六边形 (6)', '五边形 (5)', '七边形 (7)', '八边形 (8)'], correctAnswer: '六边形 (6)', explanation: '内角和公式 (n-2) × 180° = 720°，n - 2 = 4，所以 n = 6。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-MATH-05', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c3', questionText: '在直角三角形中，两直角边分别为 6cm 和 8cm，斜边长为：', options: ['10cm', '12cm', '14cm', '9cm'], correctAnswer: '10cm', explanation: '根据毕氏定理：c = √(6² + 8²) = √(36 + 64) = √100 = 10cm。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-MATH-06', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c4', questionText: '圆的半径为 7cm，其周长是多少？(取 π = 22/7)', options: ['44cm', '88cm', '154cm', '22cm'], correctAnswer: '44cm', explanation: '周长公式 C = 2πr = 2 × (22/7) × 7 = 44cm。', kssmFocus: '⭐ 必会', difficulty: 'Normal' },
+    { questionId: 'DEF-MATH-07', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c5', questionText: '已知直线方程 y = 2x + 3，该直线的斜率 (gradient) 是：', options: ['2', '3', '-2', '1/2'], correctAnswer: '2', explanation: '直线方程斜截式 y = mx + c 中，m 即为斜率，故斜率为 2。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-MATH-08', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c6', questionText: '一组数据：3, 7, 7, 8, 10，这组数据的众数 (mode) 是：', options: ['7', '3', '8', '10'], correctAnswer: '7', explanation: '出现次数最多的数值为 7（出现 2 次），即众数是 7。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-MATH-09', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c7', questionText: '掷一枚均匀硬币，出现正面的概率是多少？', options: ['1/2', '1/4', '1', '0'], correctAnswer: '1/2', explanation: '硬币有两个面，正面概率为 1/2。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-MATH-10', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c8', questionText: '解不等式：2x + 1 > 7，则 x 的取值范围是：', options: ['x > 3', 'x < 3', 'x > 4', 'x < 4'], correctAnswer: 'x > 3', explanation: '2x > 7 - 1 = 6，x > 3。', kssmFocus: '🧠 KBAT', difficulty: 'Normal' },
+    { questionId: 'DEF-MATH-11', subjectId: 'math', form: 'Form 2', chapterId: 'math-f2-c9', questionText: '如果 2^n = 32，则 n 的值是：', options: ['5', '4', '6', '3'], correctAnswer: '5', explanation: '2^5 = 32，因此 n = 5。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-MATH-12', subjectId: 'math', form: 'Form 3', chapterId: 'math-f3-c1', questionText: '指数法则：(a³)² 的计算结果是：', options: ['a⁶', 'a⁵', 'a⁹', 'a¹'], correctAnswer: 'a⁶', explanation: '幂的乘方，底数不变，指数相乘：(aᵐ)ⁿ = a^(m×n)。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-SCI-01', subjectId: 'science', form: 'Form 1', chapterId: 'sci-f1-c1', questionText: '国际单位制（S.I.）中质量的基本单位是：', options: ['千克 (kg)', '克 (g)', '牛顿 (N)', '米 (m)'], correctAnswer: '千克 (kg)', explanation: '质量的标准国际单位是千克 (kg)。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-SCI-02', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c1', questionText: '人类产生听觉的感觉器官是：', options: ['耳朵', '眼睛', '舌头', '鼻子'], correctAnswer: '耳朵', explanation: '耳朵是负责接收声波并传导听觉信号的感觉器官。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-SCI-03', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c2', questionText: '植物进行光合作用所需的绿色色素是：', options: ['叶绿素', '花青素', '胡萝卜素', '黑色素'], correctAnswer: '叶绿素', explanation: '叶绿素吸收光能，是植物进行光合作用的关键色素。', kssmFocus: '🔥 高频考点', difficulty: 'Easy' },
+    { questionId: 'DEF-SCI-04', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c3', questionText: '水在标准大气压下的沸点是多少？', options: ['100°C', '0°C', '80°C', '120°C'], correctAnswer: '100°C', explanation: '纯水在 1 个标准大气压下的沸点为 100°C。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-SCI-05', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c4', questionText: '下列哪种物质属于纯净物？', options: ['蒸馏水', '空气', '海水', '泥土'], correctAnswer: '蒸馏水', explanation: '蒸馏水由纯水分子构成，是纯净物；空气与海水为混合物。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-SCI-06', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c5', questionText: '中和反应中，酸和碱反应生成的产物是：', options: ['盐和水', '盐和酸', '碱和水', '金属和氧气'], correctAnswer: '盐和水', explanation: '酸 + 碱 → 盐 + 水，称为中和反应。', kssmFocus: '⭐ 必会', difficulty: 'Normal' },
+    { questionId: 'DEF-SCI-07', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c6', questionText: '人体的血液循环系统中，运送血液离开心脏的血管是：', options: ['动脉', '静脉', '毛细血管', '淋巴管'], correctAnswer: '动脉', explanation: '动脉将血液泵离心脏运往全身。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-SCI-08', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c7', questionText: '物体受重力作用的方向始终是：', options: ['竖直向下', '水平向前', '垂直于斜面', '向上'], correctAnswer: '竖直向下', explanation: '地球引力方向始终指向地心，即竖直向下。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-SCI-09', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c8', questionText: '光在真空中的传播速度大约是：', options: ['3 × 10⁸ m/s', '340 m/s', '3 × 10⁵ m/s', '3 × 10⁶ m/s'], correctAnswer: '3 × 10⁸ m/s', explanation: '光在真空中的光速约为 300,000,000 m/s。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
+    { questionId: 'DEF-SCI-10', subjectId: 'science', form: 'Form 2', chapterId: 'sci-f2-c9', questionText: '生态系统中，能够自己制造有机营养物质的生物被称为：', options: ['生产者', '消费者', '分解者', '寄生虫'], correctAnswer: '生产者', explanation: '绿色植物通过光合作用制造养料，属于生产者。', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-BI-01', subjectId: 'bi', form: 'Form 2', chapterId: 'bi-f2-c1', questionText: 'Choose the correct form: She _____ to school by bus every day.', options: ['goes', 'go', 'went', 'going'], correctAnswer: 'goes', explanation: 'Simple present tense for third person singular (she goes).', kssmFocus: '🔥 Grammar Wizard', difficulty: 'Easy' },
+    { questionId: 'DEF-BI-02', subjectId: 'bi', form: 'Form 2', chapterId: 'bi-f2-c2', questionText: 'Which word is the opposite (antonym) of "courageous"?', options: ['Cowardly', 'Brave', 'Strong', 'Polite'], correctAnswer: 'Cowardly', explanation: 'Courageous means brave; its opposite is cowardly.', kssmFocus: '⭐ 必会', difficulty: 'Easy' },
+    { questionId: 'DEF-BM-01', subjectId: 'bm', form: 'Form 2', chapterId: 'bm-f2-c1', questionText: 'Pilih kata ganda yang betul: Kanak-kanak itu bermain _____ di padang.', options: ['layang-layang', 'gunung-ganang', 'kuih-muih', 'calar-balar'], correctAnswer: 'layang-layang', explanation: 'Layang-layang merujuk kepada permainan tradisional.', kssmFocus: '🔥 Tatabahasa', difficulty: 'Easy' },
+    { questionId: 'DEF-BC-01', subjectId: 'bc', form: 'Form 2', chapterId: 'bc-f2-c1', questionText: '下列句子使用了哪种修辞手法：“风儿在树叶间悄悄私语”？', options: ['拟人', '比喻', '排比', '夸张'], correctAnswer: '拟人', explanation: '将风儿赋予“私语”的人格化动作，属于拟人修辞。', kssmFocus: '⭐ 必会', difficulty: 'Normal' }
+  ];
+
+  let teacherQuestionImportState = {
+    rows: [],
+    errors: [],
+    rawText: ''
+  };
+
+  function normalizeQuestionSubject(raw) {
+    if (!raw) return 'math';
+    const clean = String(raw).trim().toLowerCase();
+    return QUESTION_SUBJECT_MAP[clean] || clean;
+  }
+
+  function normalizeQuestionForm(raw) {
+    const val = String(raw || '').trim();
+    if (/form\s*1|f1|初一|中一|tingkatan\s*1/i.test(val)) return 'Form 1';
+    if (/form\s*2|f2|初二|中二|tingkatan\s*2/i.test(val)) return 'Form 2';
+    if (/form\s*3|f3|初三|中三|tingkatan\s*3/i.test(val)) return 'Form 3';
+    if (/form\s*4|f4|高一|中四|tingkatan\s*4/i.test(val)) return 'Form 4';
+    if (/form\s*5|f5|高二|中五|tingkatan\s*5/i.test(val)) return 'Form 5';
+    return val || 'Form 2';
+  }
+
+  function downloadQuestionCsvTemplate() {
+    const requestedForm = arguments[0];
+    const requestedSubject = arguments[1];
+    const forceGeneric = arguments[2] === true;
+
+    const activeForm = !forceGeneric && requestedForm
+      ? requestedForm
+      : (typeof document !== 'undefined' ? (document.getElementById('question-import-form-override')?.value || 'Form 2') : 'Form 2');
+    const activeSubject = !forceGeneric && requestedSubject
+      ? requestedSubject
+      : (typeof document !== 'undefined' ? (document.getElementById('question-import-subject-override')?.value || 'math') : 'math');
+
+    const headers = '年级,科目,单元章节,题目内容,选项A,选项B,选项C,选项D,正确答案,考点重点,难度,解析';
+
+    let sampleRows = [];
+    let downloadFileName = '5+1教育_全科目练习导入标准模版.csv';
+
+    const normalizedSubject = activeSubject !== 'auto' ? normalizeQuestionSubject(activeSubject) : 'math';
+    const normalizedForm = activeForm !== 'auto' ? normalizeQuestionForm(activeForm) : 'Form 2';
+
+    if (forceGeneric || (activeForm === 'auto' && activeSubject === 'auto')) {
+      sampleRows = [
+        'Form 1,数学,第一单元：有理数,计算：15 + (-7) 的值是多少？,8,-8,22,-22,A,🔥 高频考点,Easy,正负数相加：异号相减取绝对值大的符号 15 - 7 = 8。',
+        'Form 1,科学,第一单元：科学探索,国际单位制（S.I.）中质量的基本单位是什么？,千克 (kg),克 (g),牛顿 (N),米 (m),A,⭐ 必会,Easy,质量的国际标准单位为千克 (kg)。',
+        'Form 2,数学,第二单元：因式分解,因式分解：x² - 9 的结果是？,(x+3)(x-3),(x-3)²,x(x-9),(x+9)(x-1),A,🧠 KBAT,Normal,利用平方差公式：a² - b² = (a+b)(a-b)。',
+        'Form 2,英文,Chapter 2: Grammar,Choose the correct form: She _____ to the library every weekend.,goes,go,went,going,A,🔥 Grammar Wizard,Normal,Simple present tense for third person singular (she goes).',
+        'Form 2,国文,Bab 3: Tatabahasa,Pilih kata ganda yang betul: Kanak-kanak itu sedang bermain _____ di padang.,layang-layang,gunung-ganang,kuih-muih,calar-balar,A,🔥 Tatabahasa,Normal,Layang-layang merujuk kepada permainan tradisional.',
+        'Form 3,华文,第二单元：修辞手法,下列句子使用了哪种修辞手法：“风儿在树叶间悄悄私语”？,拟人,比喻,排比,夸张,A,⭐ 必会,Normal,将风儿人格化，赋予“私语”动作，属于拟人修辞。'
+      ];
+      downloadFileName = '5+1教育_全科目练习导入标准模版.csv';
+    } else {
+      const subjectZh = QUESTION_SUBJECT_MAP[normalizedSubject] || normalizedSubject;
+      downloadFileName = `5+1教育_${normalizedForm.replace(/\s+/g, '')}_${subjectZh}_标准练习模版.csv`;
+
+      if (normalizedSubject === 'math') {
+        if (normalizedForm === 'Form 1') {
+          sampleRows = [
+            'Form 1,数学,第一单元：有理数,计算：15 + (-7) 的值是多少？,8,-8,22,-22,A,🔥 高频考点,Easy,正负数相加：异号相减取绝对值大的符号 15 - 7 = 8。',
+            'Form 1,数学,第二单元：因数与倍数,12 和 18 的最大公因数（FSTB）是多少？,6,3,12,36,A,⭐ 必会,Easy,12 的因数与 18 的公因数中最大的是 6。',
+            'Form 1,数学,第三单元：代数表达式,若 x = 3，求代数式 2x + 5 的值是多少？,11,10,12,16,A,⭐ 必会,Easy,代入计算：2(3) + 5 = 6 + 5 = 11。',
+            'Form 1,数学,第四单元：线性方程,求解一元一次方程：3x - 4 = 11，x 的值是多少？,5,4,3,6,A,🔥 高频考点,Normal,移项计算：3x = 15，两边同除以 3 得 x = 5。'
+          ];
+        } else if (normalizedForm === 'Form 3') {
+          sampleRows = [
+            'Form 3,数学,第一单元：指数定律,化简：(2³)² 的值是多少？,64,32,16,128,A,⭐ 必会,Normal,指数性质：(a^m)^n = a^(m×n)，2^6 = 64。',
+            'Form 3,数学,第二单元：标准计数法,把 45000 写成科学计数法（Scientific Notation）：,4.5 × 10⁴,4.5 × 10³,45 × 10³,0.45 × 10⁵,A,🔥 高频考点,Easy,形式为 A × 10^n，其中 1 ≤ A < 10。',
+            'Form 3,数学,第六单元：圆的几何性质,在圆中，半径与切线的交点夹角是多少度？,90°,60°,45°,180°,A,⭐ 必会,Easy,切线与经过切点的半径互相垂直，夹角为 90 度。'
+          ];
+        } else {
+          sampleRows = [
+            'Form 2,数学,第二单元：因式分解,因式分解：x² - 9 的结果是？,(x+3)(x-3),(x-3)²,x(x-9),(x+9)(x-1),A,🧠 KBAT,Normal,利用平方差公式：a² - b² = (a+b)(a-b)。',
+            'Form 2,数学,第十三章：勾股定理,直角三角形两直角边长为 3cm 和 4cm，斜边长度是多少？,5cm,6cm,7cm,8cm,A,🔥 高频考点,Easy,勾股定理：3² + 4² = 9 + 16 = 25，斜边为 5cm。',
+            'Form 2,数学,第三单元：代数公式,公式 v = u + at，若 u=2, a=3, t=4，求 v 的值。,14,12,10,18,A,⭐ 必会,Easy,代入：v = 2 + (3)(4) = 2 + 12 = 14。',
+            'Form 2,数学,第五单元：圆,直径为 14cm 的圆，其周长是多少？（取 π = 22/7）,44cm,88cm,154cm,22cm,A,🔥 高频考点,Normal,圆周长公式 C = πd = (22/7) × 14 = 44cm。'
+          ];
+        }
+      } else if (normalizedSubject === 'science') {
+        sampleRows = [
+          `${normalizedForm},科学,第三单元：营养,下列哪种食物富含维生素 C，能有效预防坏血病？,柑橘类水果,白米饭,牛肉,黄油,A,🔥 高频考点,Easy,柑橘、柠檬等新鲜水果富含丰富的维生素 C。`,
+          `${normalizedForm},科学,第八单元：力与运动,重力的方向始终指向哪里？,地心,上方,水平方向,与物体运动方向相同,A,⭐ 必会,Easy,地球上的物体受重力作用，方向总是竖直向下指向地心。`,
+          `${normalizedForm},科学,第五单元：水与溶液,在 1 个标准大气压下，纯水的沸点是多少摄氏度？,100℃,90℃,120℃,80℃,A,⭐ 必会,Easy,纯水在标准大气压下的沸点为 100℃。`,
+          `${normalizedForm},科学,第一单元：生物多样性,下列哪种动物属于无脊椎动物？,蚯蚓,青蛙,金鱼,鸽子,A,🧠 KBAT,Normal,蚯蚓体内没有脊椎骨，属于环节动物门无脊椎生物。`
+        ];
+      } else if (normalizedSubject === 'bc') {
+        sampleRows = [
+          `${normalizedForm},华文,第二单元：修辞手法,下列句子使用了哪种修辞手法：“风儿在树叶间悄悄私语”？,拟人,比喻,排比,夸张,A,⭐ 必会,Normal,将风儿人格化，赋予“私语”动作，属于拟人修辞。`,
+          `${normalizedForm},华文,第四单元：成语运用,下列句子中成语使用最恰当的一项是？,他做事情总是按部就班，井井有条,他学习非常刻苦，经常走投无路,听到这个好消息，大家面面相觑地欢呼起来,拔苗助长让他短时间内掌握了所有知识,A,🔥 高频考点,Normal,按部就班指按照一定的条理和步骤做事，符合语境。`,
+          `${normalizedForm},华文,第六单元：古诗文常识,《静夜思》“举头望明月，低头思故乡”的作者是哪位唐代诗人？,李白,杜甫,白居易,苏轼,A,⭐ 必会,Easy,《静夜思》是唐代浪漫主义诗人李白的经典传世名篇。`
+        ];
+      } else if (normalizedSubject === 'english') {
+        sampleRows = [
+          `${normalizedForm},英文,Chapter 2: Grammar,Choose the correct form: She _____ to the library every weekend.,goes,go,went,going,A,🔥 Grammar Wizard,Normal,Simple present tense for third person singular (she goes).`,
+          `${normalizedForm},英文,Chapter 4: Vocabulary,The antonym of 'generous' is:,stingy,kind,polite,brave,A,⭐ 必会,Easy,'Stingy' means unwilling to spend or give, which is the opposite of generous.`,
+          `${normalizedForm},英文,Chapter 7: Conjunctions,He was exhausted _____ he kept walking until he reached the camp.,yet,so,because,since,A,🧠 KBAT,Normal,'Yet' introduces a contrast with surprising outcome.`
+        ];
+      } else if (normalizedSubject === 'bm') {
+        sampleRows = [
+          `${normalizedForm},国文,Bab 3: Tatabahasa,Pilih kata ganda yang betul: Kanak-kanak itu sedang bermain _____ di padang.,layang-layang,gunung-ganang,kuih-muih,calar-balar,A,🔥 Tatabahasa,Normal,Layang-layang merujuk kepada permainan tradisional.`,
+          `${normalizedForm},国文,Bab 6: Peribahasa,Peribahasa yang sesuai untuk orang yang rajin dan tidak putus asa ialah:,genggam bara api biar sampai jadi arang,seperti kera mendapat bunga,bagai enau dalam belukar,ada gula ada semut,A,⭐ 必会,Normal,Genggam bara api biar sampai jadi arang bermaksud berusaha bersungguh-sungguh hingga berjaya.`,
+          `${normalizedForm},国文,Bab 8: Imbuhan,Pilih kata terbitan berimbuhan awalan yang betul bagi kata dasar 'tulis':,menulis,tertuliskan,penulisan,menulisi,A,⭐ 必会,Easy,Awalan 'meN-' digabungkan dengan huruf 't' menjadi 'menulis'.`
+        ];
+      } else if (normalizedSubject === 'sejarah') {
+        sampleRows = [
+          `${normalizedForm},历史,Bab 1: Kerajaan Alam Melayu,Kerajaan Funan berpusat di lembah sungai manakah?,Sungai Mekong,Sungai Musi,Sungai Brantas,Sungai Chao Phraya,A,⭐ 必会,Normal,Pusat kerajaan Funan terletak di Vyadhapura di lembah Sungai Mekong.`,
+          `${normalizedForm},历史,Bab 3: Sosiobudaya Kerajaan Alam Melayu,Masyarakat kerajaan Alam Melayu terkenal dengan kegiatan maritim kerana:,kedudukan strategik di laluan perdagangan timur-barat,tidak mempunyai tanah subur,larangan bercucuk tanam,ancaman musuh,A,🔥 高频考点,Normal,Kedudukan Selat Melaka dan Laut China Selatan merupakan laluan penting perdagangan antarabangsa.`
+        ];
+      } else {
+        sampleRows = [
+          `${normalizedForm},${subjectZh},第一单元：核心考点,下列关于本学科基础概念的叙述哪项是正确的？,概念清晰论据充足,概念模糊,互相矛盾,没有依据,A,⭐ 必会,Normal,学习基础核心知识应当条理清晰且论据充分。`,
+          `${normalizedForm},${subjectZh},第二单元：考点精练,解答本章节题目时最关键的策略是？,理解重点并结合习题练习,死记硬背不求甚解,完全不看教材,考试前临时抱佛脚,A,🔥 高频考点,Easy,理解概念本质并加以练习是掌握学科考点的核心方法。`
+        ];
+      }
+    }
+
+    const csvContent = '\uFEFF' + [headers, ...sampleRows].join('\n') + '\n';
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = downloadFileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    showToast(`已下载 ${downloadFileName}`);
+  }
+
+  function parseCsvRawGrid(text) {
+    const cleanText = String(text || '').replace(/^\uFEFF/, '');
+    const p = [];
+    let row = [''];
+    let inQuotes = false;
+    for (let i = 0; i < cleanText.length; i++) {
+      const c = cleanText[i];
+      const next = cleanText[i + 1];
+      if (c === '"') {
+        if (inQuotes && next === '"') {
+          row[row.length - 1] += '"';
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (c === ',' && !inQuotes) {
+        row.push('');
+      } else if ((c === '\r' || c === '\n') && !inQuotes) {
+        if (c === '\r' && next === '\n') i++;
+        p.push(row);
+        row = [''];
+      } else {
+        row[row.length - 1] += c;
+      }
+    }
+    if (row.length > 1 || (row.length === 1 && row[0].trim() !== '')) p.push(row);
+    return p;
+  }
+
+  function parseQuestionCsvRows(text, { formOverride, subjectOverride, chapterOverride } = {}) {
+    const grid = parseCsvRawGrid(text);
+    if (!grid.length) return { rows: [], errors: ['CSV 内容为空。'], total: 0 };
+    const rawHeader = grid[0].map(h => String(h || '').trim());
+    const isHeaderRow = rawHeader.some(h => /年级|科目|题目|form|grade|subject|question/i.test(h));
+    const dataRows = isHeaderRow ? grid.slice(1) : grid;
+
+    const targetFormOverride = formOverride !== undefined
+      ? formOverride
+      : (typeof document !== 'undefined' ? (document.getElementById('question-import-form-override')?.value || 'auto') : 'auto');
+    const targetSubjectOverride = subjectOverride !== undefined
+      ? subjectOverride
+      : (typeof document !== 'undefined' ? (document.getElementById('question-import-subject-override')?.value || 'auto') : 'auto');
+    const targetChapterOverride = chapterOverride !== undefined
+      ? chapterOverride
+      : (typeof document !== 'undefined' ? (document.getElementById('question-import-chapter-input')?.value?.trim() || '') : '');
+
+    const colIndex = {
+      form: rawHeader.findIndex(h => /年级|form|grade/i.test(h)),
+      subject: rawHeader.findIndex(h => /科目|学科|subject/i.test(h)),
+      chapter: rawHeader.findIndex(h => /单元|章节|chapter/i.test(h)),
+      question: rawHeader.findIndex(h => /题目|题干|question/i.test(h)),
+      optA: rawHeader.findIndex(h => /选项a|optiona|opt_a/i.test(h)),
+      optB: rawHeader.findIndex(h => /选项b|optionb|opt_b/i.test(h)),
+      optC: rawHeader.findIndex(h => /选项c|optionc|opt_c/i.test(h)),
+      optD: rawHeader.findIndex(h => /选项d|optiond|opt_d/i.test(h)),
+      answer: rawHeader.findIndex(h => /正确答案|答案|answer|correct/i.test(h)),
+      focus: rawHeader.findIndex(h => /考点|重点|kssm|focus/i.test(h)),
+      difficulty: rawHeader.findIndex(h => /难度|diff|difficulty/i.test(h)),
+      explanation: rawHeader.findIndex(h => /解析|说明|explanation|guide/i.test(h))
+    };
+
+    if (colIndex.question === -1) colIndex.question = 3;
+    if (colIndex.form === -1) colIndex.form = 0;
+    if (colIndex.subject === -1) colIndex.subject = 1;
+    if (colIndex.chapter === -1) colIndex.chapter = 2;
+    if (colIndex.optA === -1) colIndex.optA = 4;
+    if (colIndex.optB === -1) colIndex.optB = 5;
+    if (colIndex.optC === -1) colIndex.optC = 6;
+    if (colIndex.optD === -1) colIndex.optD = 7;
+    if (colIndex.answer === -1) colIndex.answer = 8;
+    if (colIndex.focus === -1) colIndex.focus = 9;
+    if (colIndex.difficulty === -1) colIndex.difficulty = 10;
+    if (colIndex.explanation === -1) colIndex.explanation = 11;
+
+    const rows = [];
+    const errors = [];
+
+    dataRows.forEach((cols, idx) => {
+      const lineNum = (isHeaderRow ? 2 : 1) + idx;
+      if (cols.every(c => !String(c || '').trim())) return;
+      const questionText = String(cols[colIndex.question] || '').trim();
+      if (!questionText) {
+        errors.push(`第 ${lineNum} 行：题目内容不能为空。`);
+        return;
+      }
+
+      let form = 'Form 2';
+      if (targetFormOverride && targetFormOverride !== 'auto') {
+        form = normalizeQuestionForm(targetFormOverride);
+      } else {
+        const rawForm = String(cols[colIndex.form] || '').trim() || 'Form 2';
+        form = normalizeQuestionForm(rawForm);
+      }
+
+      let subjectId = 'math';
+      if (targetSubjectOverride && targetSubjectOverride !== 'auto') {
+        subjectId = normalizeQuestionSubject(targetSubjectOverride);
+      } else {
+        const rawSubject = String(cols[colIndex.subject] || '').trim() || 'math';
+        subjectId = normalizeQuestionSubject(rawSubject);
+      }
+
+      const chapterId = String(cols[colIndex.chapter] || '').trim() || targetChapterOverride || `${subjectId}-${form.toLowerCase().replace(/\s+/g, '')}-c1`;
+
+      const options = [
+        String(cols[colIndex.optA] || '').trim(),
+        String(cols[colIndex.optB] || '').trim(),
+        String(cols[colIndex.optC] || '').trim(),
+        String(cols[colIndex.optD] || '').trim()
+      ].filter(Boolean);
+
+      if (options.length < 2) {
+        errors.push(`第 ${lineNum} 行：“${questionText.slice(0, 15)}...” 至少需要提供 2 个选项。`);
+        return;
+      }
+
+      const rawAns = String(cols[colIndex.answer] || '').trim();
+      let correctAnswer = '';
+      if (/^[aA]$/.test(rawAns) && options[0]) correctAnswer = options[0];
+      else if (/^[bB]$/.test(rawAns) && options[1]) correctAnswer = options[1];
+      else if (/^[cC]$/.test(rawAns) && options[2]) correctAnswer = options[2];
+      else if (/^[dD]$/.test(rawAns) && options[3]) correctAnswer = options[3];
+      else if (options.includes(rawAns)) correctAnswer = rawAns;
+      else if (/^[1-4]$/.test(rawAns) && options[Number(rawAns) - 1]) correctAnswer = options[Number(rawAns) - 1];
+      else {
+        errors.push(`第 ${lineNum} 行：正确答案 [${rawAns}] 未匹配给出的任何选项 (${options.join(' / ')})。`);
+        return;
+      }
+
+      const kssmFocus = String(cols[colIndex.focus] || '').trim() || '⭐ 必会';
+      let difficulty = String(cols[colIndex.difficulty] || '').trim();
+      if (!/^(Easy|Normal|Hard)$/i.test(difficulty)) difficulty = 'Normal';
+
+      const explanation = String(cols[colIndex.explanation] || '').trim();
+
+      rows.push({
+        questionId: `Q-CSV-${Date.now().toString(36).toUpperCase()}-${idx + 1}`,
+        subjectId,
+        form,
+        chapterId,
+        questionType: 'single_choice',
+        questionText,
+        options,
+        correctAnswer,
+        explanation,
+        kssmFocus,
+        difficulty,
+        expReward: difficulty === 'Hard' ? 40 : (difficulty === 'Easy' ? 20 : 30),
+        coinReward: difficulty === 'Hard' ? 15 : (difficulty === 'Easy' ? 5 : 10),
+        status: 'published',
+        lineNum,
+        selected: true
+      });
+    });
+
+    return {
+      rows,
+      errors,
+      total: dataRows.length,
+      formOverride: targetFormOverride,
+      subjectOverride: targetSubjectOverride
+    };
+  }
+
+  function updateQuestionImportSubmitButton() {
+    const selectedCount = (teacherQuestionImportState.rows || []).filter(r => r.selected).length;
+    const totalCount = (teacherQuestionImportState.rows || []).length;
+    const submitBtn = document.getElementById('submit-question-csv-btn');
+    const counterEl = document.getElementById('q-import-selected-count-label');
+    if (counterEl) counterEl.textContent = `${selectedCount} / ${totalCount}`;
+    if (submitBtn) {
+      submitBtn.disabled = selectedCount === 0;
+      submitBtn.textContent = selectedCount > 0
+        ? `确认导入选中的 ${selectedCount} 道题目 🚀`
+        : '请至少勾选 1 道题目';
+    }
+    const selectAllCb = document.getElementById('q-import-select-all');
+    if (selectAllCb) {
+      selectAllCb.checked = selectedCount === totalCount && totalCount > 0;
+      selectAllCb.indeterminate = selectedCount > 0 && selectedCount < totalCount;
+    }
+  }
+
+  function previewQuestionCsvImport() {
+    const textarea = document.getElementById('question-csv-textarea');
+    const text = textarea?.value || '';
+    const statusEl = document.getElementById('question-csv-parse-status');
+    const submitBtn = document.getElementById('submit-question-csv-btn');
+    const previewContainer = document.getElementById('question-csv-preview-container');
+
+    if (!text.trim()) {
+      if (statusEl) statusEl.textContent = '请先粘贴 CSV 内容或选择文件。';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '确认导入题库 🚀';
+      }
+      if (previewContainer) {
+        previewContainer.innerHTML = '';
+        previewContainer.classList.add('hidden');
+      }
+      return;
+    }
+
+    const formOverride = document.getElementById('question-import-form-override')?.value || 'auto';
+    const subjectOverride = document.getElementById('question-import-subject-override')?.value || 'auto';
+
+    const result = parseQuestionCsvRows(text, { formOverride, subjectOverride });
+    teacherQuestionImportState = {
+      rows: result.rows,
+      errors: result.errors,
+      rawText: text
+    };
+
+    const selectedCount = result.rows.length;
+
+    if (statusEl) {
+      statusEl.innerHTML = result.errors.length
+        ? `<span style="color:#ef4444;">发现 ${result.errors.length} 处格式提示，解析出 ${result.rows.length} 道有效题目（请在下方确认）</span>`
+        : `<span style="color:#10b981;">✅ 校验成功：解析出 ${result.rows.length} 道题目，请在下方核对确认后导入</span>`;
+    }
+
+    if (previewContainer) {
+      previewContainer.classList.remove('hidden');
+
+      const formBadgeText = formOverride === 'auto' ? '自动识别各行年级' : `统一导入为: ${formOverride}`;
+      const subjectBadgeText = subjectOverride === 'auto' ? '自动识别各行学科' : `统一学科: ${(QUESTION_SUBJECT_MAP[subjectOverride] || subjectOverride).toUpperCase()}`;
+
+      const cardsHtml = result.rows.map((r, idx) => {
+        const subDisplay = (QUESTION_SUBJECT_MAP[r.subjectId] || r.subjectId).toUpperCase();
+        return `
+          <div class="question-confirm-card" data-idx="${idx}" id="q-confirm-card-${idx}">
+            <div class="q-confirm-top">
+              <label style="display:flex; align-items:center; gap:9px; cursor:pointer;" onclick="event.stopPropagation();">
+                <input type="checkbox" class="q-import-row-checkbox" data-idx="${idx}" checked style="width:18px; height:18px; cursor:pointer; accent-color:#38bdf8;" />
+                <span style="font-size:14px; font-weight:900; color:#ffffff;">第 ${idx + 1} 题 <small style="color:#94a3b8; font-family:monospace; font-size:11px;">(CSV第${r.lineNum}行)</small></span>
+              </label>
+              <div class="q-confirm-meta">
+                <span class="kssm-chip" style="background:rgba(56,189,248,0.2); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); font-weight:800;">${r.form}</span>
+                <span class="kssm-chip" style="background:rgba(192,132,252,0.2); color:#c084fc; border:1px solid rgba(192,132,252,0.4); font-weight:800;">${subDisplay}</span>
+                <span class="kssm-chip">${r.difficulty || 'Normal'}</span>
+                <span class="kssm-chip">${r.kssmFocus || '⭐ 必会'}</span>
+              </div>
+            </div>
+            <div class="q-confirm-text">${escapeHtml(r.questionText)}</div>
+            <div class="q-confirm-options">
+              ${(r.options || []).map((opt, optIdx) => {
+                const isCorrect = String(opt).trim() === String(r.correctAnswer).trim();
+                return `
+                  <div class="q-confirm-opt ${isCorrect ? 'is-answer' : ''}">
+                    <span style="font-weight:900;">${String.fromCharCode(65 + optIdx)}.</span>
+                    <span style="flex:1;">${escapeHtml(opt)}</span>
+                    ${isCorrect ? '<span style="margin-left:auto; font-size:11px; color:#34d399; font-weight:800;">✓ 正确答案</span>' : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+            ${r.explanation ? `<div class="q-confirm-expl"><strong>💡 答案解析：</strong>${escapeHtml(r.explanation)}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+      previewContainer.innerHTML = `
+        <div class="question-confirm-toolbar">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <label style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:800; color:#f8fafc; cursor:pointer;">
+              <input type="checkbox" id="q-import-select-all" checked style="width:17px; height:17px; cursor:pointer; accent-color:#38bdf8;" />
+              <span>全选所有题目</span>
+            </label>
+            <span style="color:#64748b;">|</span>
+            <span style="font-size:13px; color:#38bdf8; font-weight:700;">
+              已勾选 <strong id="q-import-selected-count-label" style="color:#fbbf24;">${selectedCount} / ${result.rows.length}</strong> 道题目待导入
+            </span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="kssm-chip" style="font-size:11.5px; border-color:rgba(56,189,248,0.4);">${formBadgeText}</span>
+            <span class="kssm-chip" style="font-size:11.5px; border-color:rgba(192,132,252,0.4);">${subjectBadgeText}</span>
+          </div>
+        </div>
+        ${result.errors.length ? `
+          <div style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; font-size: 12.5px; color: #fca5a5; max-height: 120px; overflow-y: auto;">
+            <strong>⚠️ 以下行数据存在格式问题（已自动跳过）：</strong><br/>
+            ${result.errors.map(e => `<div>• ${escapeHtml(e)}</div>`).join('')}
+          </div>
+        ` : ''}
+        <div class="question-confirm-list">
+          ${cardsHtml || '<div class="empty-state compact-empty">没有可导入的有效题目</div>'}
+        </div>
+      `;
+
+      previewContainer.querySelectorAll('.q-import-row-checkbox').forEach(cb => {
+        cb.addEventListener('change', e => {
+          const idx = Number(e.target.dataset.idx);
+          if (teacherQuestionImportState.rows[idx]) {
+            teacherQuestionImportState.rows[idx].selected = e.target.checked;
+            const card = document.getElementById(`q-confirm-card-${idx}`);
+            if (card) {
+              card.classList.toggle('is-unselected', !e.target.checked);
+            }
+            updateQuestionImportSubmitButton();
+          }
+        });
+      });
+
+      previewContainer.querySelectorAll('.question-confirm-card').forEach(card => {
+        card.addEventListener('click', e => {
+          if (e.target.tagName.toLowerCase() === 'input' || e.target.closest('label')) return;
+          const idx = Number(card.dataset.idx);
+          if (teacherQuestionImportState.rows[idx]) {
+            const nextState = !teacherQuestionImportState.rows[idx].selected;
+            teacherQuestionImportState.rows[idx].selected = nextState;
+            const cb = card.querySelector('.q-import-row-checkbox');
+            if (cb) cb.checked = nextState;
+            card.classList.toggle('is-unselected', !nextState);
+            updateQuestionImportSubmitButton();
+          }
+        });
+      });
+
+      document.getElementById('q-import-select-all')?.addEventListener('change', e => {
+        const isChecked = e.target.checked;
+        (teacherQuestionImportState.rows || []).forEach((r, idx) => {
+          r.selected = isChecked;
+          const cb = previewContainer.querySelector(`.q-import-row-checkbox[data-idx="${idx}"]`);
+          if (cb) cb.checked = isChecked;
+          const card = document.getElementById(`q-confirm-card-${idx}`);
+          if (card) card.classList.toggle('is-unselected', !isChecked);
+        });
+        updateQuestionImportSubmitButton();
+      });
+
+      updateQuestionImportSubmitButton();
+    }
+  }
+
+  async function submitQuestionCsvImport() {
+    const selectedRows = (teacherQuestionImportState.rows || []).filter(r => r.selected);
+    if (!selectedRows.length) {
+      showToast('⚠️ 没有勾选任何要导入的题目，请在预览列表中勾选需要导入的题目。');
+      return;
+    }
+
+    const submitBtn = document.getElementById('submit-question-csv-btn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = `⏳ 正在将 ${selectedRows.length} 道题目写入题库...`;
+    }
+
+    try {
+      const res = await backendClient.bulkImportQuestions({
+        teacherId: currentTeacher?.teacherId || 'TCH01_JIE',
+        rows: selectedRows
+      });
+
+      if (res && res.ok) {
+        showToast(`🎉 成功导入 ${res.importedCount || selectedRows.length} 道题目！系统每日将自动为学生轮换分配 10 题。`);
+        document.getElementById('teacher-question-csv-modal')?.classList.add('hidden');
+        const txt = document.getElementById('question-csv-textarea');
+        if (txt) txt.value = '';
+        teacherQuestionImportState = { rows: [], errors: [], rawText: '' };
+        renderTeacherQuestionsTable();
+      } else {
+        showToast(`导入提示：${res?.error || '部分题目已写入'}`);
+        renderTeacherQuestionsTable();
+      }
+    } catch (err) {
+      showToast(`网络或导入异常：${err.message || err}`);
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '确认导入题库 🚀';
+      }
+    }
+  }
+
+  function pseudoRandomSeed(seedStr) {
+    let h = 2166136261 >>> 0;
+    const str = String(seedStr || 'seed');
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+    }
+    return function() {
+      h += h << 13; h ^= h >>> 7;
+      h += h << 3;  h ^= h >>> 17;
+      return ((h += h << 5) >>> 0) / 4294967296;
+    };
+  }
+
+  async function getDailyDistributedQuestions({ form = 'Form 2', subjectId = 'math', dateKey = getDateKey() } = {}) {
+    const normForm = normalizeQuestionForm(form);
+    const normSub = normalizeQuestionSubject(subjectId);
+    let pool = [];
+
+    try {
+      const res = await backendClient.listQuestions({ form: normForm, subjectId: normSub });
+      if (res && res.ok && Array.isArray(res.questions) && res.questions.length) {
+        pool = [...res.questions];
+      }
+    } catch (_e) {}
+
+    const cur = DEFAULT_CURATED_QUESTIONS.filter(q => normalizeQuestionSubject(q.subjectId) === normSub);
+    const existingTexts = new Set(pool.map(q => q.questionText));
+    for (const c of cur) {
+      if (!existingTexts.has(c.questionText)) {
+        pool.push(c);
+        existingTexts.add(c.questionText);
+      }
+    }
+
+    if (!pool.length) {
+      pool = DEFAULT_CURATED_QUESTIONS.slice(0, 10);
+    }
+
+    const seedFn = pseudoRandomSeed(`${dateKey}:${normForm}:${normSub}`);
+    const shuffled = [...pool];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(seedFn() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    const selected = shuffled.slice(0, 10);
+    while (selected.length < 10) {
+      const fallbackQ = DEFAULT_CURATED_QUESTIONS[selected.length % DEFAULT_CURATED_QUESTIONS.length];
+      selected.push({
+        ...fallbackQ,
+        questionId: `${fallbackQ.questionId}-PAD-${selected.length}`
+      });
+    }
+
+    return selected;
+  }
+
+  async function renderTeacherDailyAllocation(targetForm = 'Form 2', targetSubject = 'math') {
+    const container = document.getElementById('daily-allocation-questions-list');
+    if (!container) return;
+    container.innerHTML = '<div class="empty-state compact-empty">⏳ 正在提取今日专属 10 道题目...</div>';
+
+    const questions = await getDailyDistributedQuestions({
+      form: targetForm,
+      subjectId: targetSubject,
+      dateKey: getDateKey()
+    });
+
+    const infoPill = document.getElementById('daily-alloc-info-pill');
+    if (infoPill) {
+      infoPill.textContent = `今日专属：10 题分配就绪 (${getDateKey()})`;
+    }
+
+    container.innerHTML = questions.map((q, idx) => `
+      <div class="daily-alloc-card">
+        <div class="daily-alloc-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="daily-alloc-num">第 ${idx + 1} 题</span>
+            <span class="kssm-chip kssm-chip-glow">${q.kssmFocus || '⭐ 必会'}</span>
+            <span class="kssm-chip">${q.difficulty || 'Normal'}</span>
+          </div>
+          <small style="color:#94a3b8; font-family:monospace;">${q.questionId}</small>
+        </div>
+        <div class="daily-alloc-question-text">${escapeHtml(q.questionText)}</div>
+        <div class="daily-alloc-options-grid">
+          ${(q.options || []).map((opt, i) => {
+            const isCorrect = String(opt).trim() === String(q.correctAnswer).trim();
+            return `
+              <div class="daily-alloc-option ${isCorrect ? 'is-correct' : ''}">
+                <span>${String.fromCharCode(65 + i)}.</span>
+                <span>${escapeHtml(opt)}</span>
+                ${isCorrect ? '<span style="margin-left:auto; font-size:11px;">(正确答案)</span>' : ''}
+              </div>
+            `;
+          }).join('')}
+        </div>
+        ${q.explanation ? `<div class="daily-alloc-explanation"><strong>💡 解析提示：</strong>${escapeHtml(q.explanation)}</div>` : ''}
+      </div>
+    `).join('');
+  }
+
+  async function renderTeacherQuestionsTable() {
+    const tbody = document.getElementById('teacher-questions-tbody');
+    if (!tbody) return;
+    const filterSub = document.getElementById('question-filter-subject')?.value || '';
+    const filterForm = document.getElementById('question-filter-form')?.value || '';
+    const filterStatus = document.getElementById('question-filter-status')?.value || '';
+
+    const res = await backendClient.listQuestions({
+      subjectId: filterSub,
+      form: filterForm,
+      status: filterStatus
+    });
+    let questions = res.questions || [];
+
+    if (filterSub) questions = questions.filter(q => normalizeQuestionSubject(q.subjectId) === normalizeQuestionSubject(filterSub));
+    if (filterForm) questions = questions.filter(q => normalizeQuestionForm(q.form) === normalizeQuestionForm(filterForm));
+    if (filterStatus) questions = questions.filter(q => (q.status || 'published') === filterStatus);
+
+    if (!questions.length) {
+      tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><div class="result-icon">📝</div><h3>题库目前为空</h3><p>点击“创建新题目”或使用“批量导入 CSV 题目”。导入后系统每天自动为学生轮换 10 题。</p></div></td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = questions.map(q => `
+      <tr>
+        <td><small style="font-family:monospace;">${q.questionId}</small></td>
+        <td><strong>${q.subjectId.toUpperCase()}</strong></td>
+        <td><span class="kssm-chip">${q.form}</span></td>
+        <td style="max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${escapeHtml(q.questionText)}">${escapeHtml(q.questionText)}</td>
+        <td><span style="color:#10b981; font-weight:700;">${escapeHtml(q.correctAnswer)}</span></td>
+        <td><span class="kssm-chip kssm-chip-glow">${q.kssmFocus || '⭐ 必会'}</span></td>
+        <td>${q.difficulty}</td>
+        <td><span style="color:#10b981; font-weight:700;">已发布</span></td>
+        <td>
+          <button type="button" class="secondary-button compact-button" onclick="window.__eduverseApp.editQuestion('${q.questionId}')">编辑</button>
+        </td>
+      </tr>
+    `).join('');
   }
 
   function openTeacherScreen() {
@@ -19245,107 +20648,284 @@
         statusLabel.textContent = `教师：${currentTeacher.name} (${currentTeacher.teacherId})`;
       }
       renderTeacherDashboard();
+      renderTeacherStudentsTable(false);
+      renderTeacherClassesTable();
+      renderTeacherQuestionsTable();
       if (!window.location.hash.startsWith('#/teacher/')) window.location.hash = '#/teacher/dashboard';
     }
   }
 
-  function renderTeacherDashboard() {
-    renderTeacherSubjectBars();
-    renderTeacherStudentsTable();
-    renderTeacherQuestionsTable();
-    renderTeacherClassesTable();
-    renderGoogleSheetSyncStatus();
-  }
+  let cachedTeacherStudents = [];
 
-  function renderTeacherSubjectBars() {
-    const container = document.getElementById('teacher-subject-bars');
-    if (!container) return;
-    container.innerHTML = '<div class="empty-state"><div class="result-icon">📈</div><h3>还没有真实作答数据</h3><p>发布练习并有学生完成后，八大学科正确率才会显示。</p></div>';
-  }
-
-  async function renderTeacherStudentsTable() {
-    const tbody = document.getElementById('teacher-students-tbody');
-    if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><div class="result-icon">👥</div><h3>还没有学生资料</h3><p>这里不会再显示虚拟学生。请通过上方导入功能加入真实学生。</p></div></td></tr>';
-  }
-
-  async function renderTeacherQuestionsTable() {
-    const tbody = document.getElementById('teacher-questions-tbody');
-    if (!tbody) return;
-    const res = await backendClient.listQuestions();
-    const questions = res.questions || [];
-
-    if (!questions.length) {
-      tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><div class="result-icon">📝</div><h3>题库目前为空</h3><p>点击“创建新题目”或使用 CSV 导入真实练习。</p></div></td></tr>';
-      return;
-    }
-
-    tbody.innerHTML = questions.map(q => `
-      <tr>
-        <td><small style="font-family:monospace;">${q.questionId}</small></td>
-        <td><strong>${q.subjectId.toUpperCase()}</strong></td>
-        <td>${q.form}</td>
-        <td style="max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${escapeHtml(q.questionText)}">${escapeHtml(q.questionText)}</td>
-        <td><span style="color:#10b981; font-weight:700;">${escapeHtml(q.correctAnswer)}</span></td>
-        <td><span class="kssm-chip kssm-chip-glow">${q.kssmFocus || '⭐ 必会'}</span></td>
-        <td>${q.difficulty}</td>
-        <td><span style="color:#10b981; font-weight:700;">已发布</span></td>
-        <td>
-          <button type="button" class="secondary-button compact-button" onclick="window.__eduverseApp.editQuestion('${q.questionId}')">编辑</button>
-        </td>
-      </tr>
-    `).join('');
-  }
-
-  function renderTeacherClassesTable() {
-    const tbody = document.getElementById('teacher-classes-tbody');
-    if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="result-icon">🏫</div><h3>还没有班级资料</h3><p>这里不会再显示虚拟班级。建立真实班级后才会出现。</p></div></td></tr>';
-  }
-
-  async function renderGoogleSheetSyncStatus() {
+  function saveStudentToRegisteredCache(student) {
+    if (!student) return;
     try {
-      const res = await backendClient.getGoogleSheetSyncStatus();
-      if (res && res.ok) {
-        const timeEl = document.getElementById('sync-last-time-label');
-        if (timeEl && res.lastSyncedAt) {
-          timeEl.textContent = `上次同步时间：${new Date(res.lastSyncedAt).toLocaleTimeString()}`;
-        }
-        const tbody = document.getElementById('sync-logs-tbody');
-        if (tbody && res.logs) {
-          tbody.innerHTML = res.logs.map(log => `
-            <tr>
-              <td><small style="font-family:monospace;">${log.jobId}</small></td>
-              <td>${log.triggeredBy || '系统'}</td>
-              <td><span style="color:#10b981; font-weight:700;">Synced (成功)</span></td>
-              <td>${log.rowsSynced || 120} 行</td>
-              <td>${new Date(log.finishedAt).toLocaleTimeString()}</td>
-            </tr>
-          `).join('');
-        }
-      }
+      const cached = JSON.parse(localStorage.getItem('eduverse_registered_students') || '[]');
+      const studentId = HolidayBackendClient.normalizeId(student.studentId || student.phone);
+      if (!studentId) return;
+
+      const filtered = cached.filter(s => HolidayBackendClient.normalizeId(s.studentId) !== studentId);
+      filtered.unshift({
+        studentId,
+        studentName: student.studentName || student.name || studentId,
+        phone: student.phone || '',
+        form: student.form || student.className || 'Form 2',
+        className: student.className || student.form || 'Form 2',
+        teacherId: student.teacherId || 'TCH01_JIE',
+        level: Number(student.petLevel || student.level || 1),
+        experience: Number(student.experience || 0),
+        currentStreak: Number(student.streak || student.currentStreak || 1),
+        status: student.status || 'active',
+        createdAt: student.createdAt || new Date().toISOString()
+      });
+
+      localStorage.setItem('eduverse_registered_students', JSON.stringify(filtered.slice(0, 100)));
     } catch (_e) {}
   }
 
-  async function triggerGoogleSheetSync() {
-    const btn = document.getElementById('trigger-sheet-sync-btn');
-    if (btn) {
-      btn.disabled = true;
-      btn.textContent = '⏳ 正在非阻塞同步 Google Sheet...';
-    }
+  function maskStudentPhone(rawPhone) {
+    if (!rawPhone) return '未登记';
+    const clean = String(rawPhone).replace(/[^\d+]/g, '');
+    if (clean.length <= 6) return clean;
+    return clean.slice(0, 4) + '****' + clean.slice(-3);
+  }
+
+  async function renderTeacherDashboard() {
+    renderTeacherSubjectBars();
+  }
+
+  async function renderTeacherSubjectBars() {
+    const container = document.getElementById('teacher-subject-bars');
+    if (!container) return;
     try {
-      const res = await backendClient.syncGoogleSheetsData({ teacherId: currentTeacher?.teacherId || 'TCH01_JIE' });
-      if (res.ok) {
-        showToast('Google Sheet 5 个工作表同步成功！');
-        renderGoogleSheetSyncStatus();
+      const res = await backendClient.getTeacherAnalytics();
+      if (res && res.ok && res.subjectStats) {
+        const subjects = [
+          { key: 'bc', name: '华文 (Bahasa Cina)', color1: '#d32f2f', color2: '#ffb300' },
+          { key: 'bm', name: '国文 (Bahasa Melayu)', color1: '#1976d2', color2: '#ffca28' },
+          { key: 'bi', name: '英文 (English)', color1: '#0288d1', color2: '#26c6da' },
+          { key: 'math', name: '数学 (Mathematics)', color1: '#f57c00', color2: '#ffd54f' },
+          { key: 'science', name: '科学 (Sains)', color1: '#388e3c', color2: '#81c784' },
+          { key: 'sejarah', name: '历史 (Sejarah)', color1: '#7b1fa2', color2: '#ba68c8' },
+          { key: 'geografi', name: '地理 (Geografi)', color1: '#00796b', color2: '#4db6ac' },
+          { key: 'moral', name: '道德 (Pendidikan Moral)', color1: '#c2185b', color2: '#f06292' }
+        ];
+        container.innerHTML = subjects.map(s => {
+          const stat = res.subjectStats[s.key] || { accuracy: 75 };
+          const acc = Math.min(100, Math.max(0, Math.round(stat.accuracy || 75)));
+          return `<div class="teacher-subject-row">
+            <div>
+              <strong>${s.name}</strong>
+              <span>${acc}%</span>
+            </div>
+            <i><b style="width: ${acc}%; background: linear-gradient(90deg, ${s.color1}, ${s.color2});"></b></i>
+          </div>`;
+        }).join('');
+        return;
       }
-    } catch (err) {
-      showToast('Google Sheet 同步未就绪，数据库正常运行中。');
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = '🔄 立即同步 (SYNC NOW)';
+    } catch (_e) {}
+    container.innerHTML = '<div class="empty-state"><div class="result-icon">📈</div><h3>还没有真实作答数据</h3><p>发布练习并有学生完成后，八大学科正确率才会显示。</p></div>';
+  }
+
+  async function renderTeacherStudentsTable(forceRefresh = false) {
+    const tbody = document.getElementById('teacher-students-tbody');
+    if (!tbody) return;
+
+    if (forceRefresh || !cachedTeacherStudents.length) {
+      tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:36px;color:#94a3b8;"><div class="loading-spinner" style="display:inline-block;width:18px;height:18px;border:2px solid #38bdf8;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;vertical-align:middle;margin-right:8px;"></div> 正在连接云端读取学生花名册...</td></tr>';
+
+      if (!currentTeacher?.sessionToken) {
+        try {
+          const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+          if (saved && saved.sessionToken) {
+            currentTeacher = currentTeacher ? { ...saved, ...currentTeacher } : saved;
+          }
+        } catch (_e) {}
       }
+
+      let students = [];
+      try {
+        const res = await backendClient.listStudentAccounts(currentTeacher?.sessionToken);
+        if (res && res.ok && Array.isArray(res.students)) {
+          students = res.students;
+        }
+      } catch (err) {
+        console.warn('Failed to fetch students from cloud:', err);
+      }
+
+      // Merge with locally registered students in database or localStorage
+      const existingIds = new Set(students.map(s => HolidayBackendClient.normalizeId(s.studentId)).filter(Boolean));
+
+      // 1. From database
+      Object.values(database || {}).forEach(dbStudent => {
+        const normId = HolidayBackendClient.normalizeId(dbStudent.studentId);
+        if (normId && !existingIds.has(normId)) {
+          existingIds.add(normId);
+          students.push({
+            studentId: normId,
+            studentName: dbStudent.studentName || dbStudent.name || normId,
+            phone: dbStudent.phone || '',
+            form: dbStudent.form || dbStudent.className || 'Form 2',
+            className: dbStudent.className || dbStudent.form || 'Form 2',
+            teacherId: dbStudent.teacherId || 'TCH01_JIE',
+            coins: Number(dbStudent.coins || 0),
+            level: Number(dbStudent.petLevel || dbStudent.level || 1),
+            experience: Number(dbStudent.experience || 0),
+            currentStreak: Number(dbStudent.streak || dbStudent.currentStreak || 1),
+            status: dbStudent.status || 'active',
+            createdAt: dbStudent.createdAt || null
+          });
+        }
+      });
+
+      // 2. From eduverse_registered_students cache in localStorage
+      try {
+        const cachedList = JSON.parse(localStorage.getItem('eduverse_registered_students') || '[]');
+        if (Array.isArray(cachedList)) {
+          cachedList.forEach(regStudent => {
+            const normId = HolidayBackendClient.normalizeId(regStudent.studentId);
+            if (normId && !existingIds.has(normId)) {
+              existingIds.add(normId);
+              students.push({
+                studentId: normId,
+                studentName: regStudent.studentName || regStudent.name || normId,
+                phone: regStudent.phone || '',
+                form: regStudent.form || regStudent.className || 'Form 2',
+                className: regStudent.className || regStudent.form || 'Form 2',
+                teacherId: regStudent.teacherId || 'TCH01_JIE',
+                coins: Number(regStudent.coins || 0),
+                level: Number(regStudent.level || 1),
+                experience: Number(regStudent.experience || 0),
+                currentStreak: Number(regStudent.currentStreak || 1),
+                status: regStudent.status || 'active',
+                createdAt: regStudent.createdAt || null
+              });
+            }
+          });
+        }
+      } catch (_e) {}
+
+      cachedTeacherStudents = students;
+      students.forEach(s => {
+        const normId = HolidayBackendClient.normalizeId(s.studentId);
+        if (normId && typeof s.coins === 'number' && Number.isFinite(s.coins)) {
+          if (!database[normId]) database[normId] = createStudentProfile(normId);
+          database[normId].coins = s.coins;
+        }
+      });
+      saveDatabase();
+    }
+
+    // Update KPI counters on overview dashboard
+    const totalCount = cachedTeacherStudents.length;
+    const activeCount = cachedTeacherStudents.filter(s => s.status !== 'disabled').length;
+    const kpiStudents = document.getElementById('teacher-kpi-students');
+    const kpiActive = document.getElementById('teacher-kpi-active');
+    if (kpiStudents) kpiStudents.textContent = String(totalCount);
+    if (kpiActive) kpiActive.textContent = String(activeCount);
+
+    // Apply search filter and dropdown filters
+    const searchBox = document.getElementById('student-search-box');
+    const filterForm = document.getElementById('student-filter-form');
+    const filterStatus = document.getElementById('student-filter-status');
+
+    const query = (searchBox?.value || '').trim().toLowerCase();
+    const selectedForm = (filterForm?.value || '').trim();
+    const selectedStatus = (filterStatus?.value || '').trim();
+
+    let filtered = cachedTeacherStudents;
+
+    if (selectedForm) {
+      filtered = filtered.filter(s => String(s.form || s.className || '').toLowerCase() === selectedForm.toLowerCase());
+    }
+    if (selectedStatus) {
+      filtered = filtered.filter(s => String(s.status || 'active').toLowerCase() === selectedStatus.toLowerCase());
+    }
+    if (query) {
+      filtered = filtered.filter(s => 
+        String(s.studentName || '').toLowerCase().includes(query) ||
+        String(s.phone || '').includes(query) ||
+        String(s.studentId || '').toLowerCase().includes(query)
+      );
+    }
+
+    if (!filtered.length) {
+      tbody.innerHTML = `<tr><td colspan="11"><div class="empty-state"><div class="result-icon">👥</div><h3>未找到学生资料</h3><p>${cachedTeacherStudents.length ? '没有符合当前筛选条件的学生，请尝试调整年级或搜索词。' : '还没有学生资料。请让学生通过登录界面的“新学生注册”加入，或点击上方“+ 新增学生”。'}</p></div></td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(s => {
+      const studentId = escapeHtml(s.studentId);
+      const name = escapeHtml(s.studentName || s.name || s.studentId);
+      const form = escapeHtml(s.form || s.className || 'Form 2');
+      const maskedPhone = escapeHtml(maskStudentPhone(s.phone));
+      const fullPhone = escapeHtml(s.phone || '');
+      const coins = Math.max(0, Math.floor(Number(s.coins || 0)));
+      const level = Number(s.level || 1);
+      const exp = Number(s.experience || 0);
+      const streak = Number(s.currentStreak || s.streak || 1);
+      const isDisabled = s.status === 'disabled';
+      const statusBadge = isDisabled
+        ? '<span class="status-badge disabled" style="background:rgba(239,68,68,0.15);color:#ef4444;padding:4px 10px;border-radius:12px;font-weight:600;font-size:12px;">🔴 已停用</span>'
+        : '<span class="status-badge active" style="background:rgba(16,185,129,0.15);color:#10b981;padding:4px 10px;border-radius:12px;font-weight:600;font-size:12px;">🟢 正常</span>';
+
+      return `<tr data-student-row="${studentId}">
+        <td style="text-align:center;"><input type="checkbox" data-teacher-student="${studentId}" class="student-select-cb" /></td>
+        <td><small class="mono-id" style="font-family:monospace;font-weight:700;color:var(--text-light,#cbd5e1);">${studentId}</small></td>
+        <td><strong>${name}</strong></td>
+        <td><span class="kssm-chip">${form}</span></td>
+        <td><span title="${fullPhone}">${maskedPhone}</span></td>
+        <td><span class="student-coin-badge"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" />${coins.toLocaleString()}</span></td>
+        <td><span class="kssm-chip" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-color:rgba(245,158,11,0.3);">Lv.${level}</span></td>
+        <td><strong>${exp.toLocaleString()}</strong></td>
+        <td>🔥 ${streak} 天</td>
+        <td>${statusBadge}</td>
+        <td>
+          <div class="teacher-account-actions">
+            <button type="button" class="secondary-button compact-button" data-student-account-edit="${studentId}" onclick="window.__eduverseApp.editStudent('${studentId}')">编辑</button>
+            <button type="button" class="secondary-button compact-button" data-student-account-pin="${studentId}" data-student-name="${name}" onclick="window.__eduverseApp.openResetPinModal('${studentId}', this.dataset.studentName || this.getAttribute('data-student-name'))">重设 PIN</button>
+            <button type="button" class="secondary-button compact-button" data-student-account-toggle="${studentId}" onclick="window.__eduverseApp.toggleStudentStatus('${studentId}', '${isDisabled ? 'active' : 'disabled'}')" title="${isDisabled ? '启用学生账号' : '停用学生账号（停用后学生无法登录，游戏资料和排行榜记录会保留）'}">${isDisabled ? '启用' : '停用'}</button>
+            <button type="button" class="secondary-button compact-button danger-button" data-student-account-delete="${studentId}" data-student-name="${name}" style="color:#ef4444;border-color:rgba(239,68,68,0.4);" title="永久删除学生账号（删除后原手机号可以重新注册）">删除</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    updateSelectedStudentsCount();
+  }
+
+  async function renderTeacherClassesTable() {
+    const tbody = document.getElementById('teacher-classes-tbody');
+    if (!tbody) return;
+    try {
+      let token = currentTeacher?.sessionToken;
+      if (!token) {
+        try {
+          const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+          token = saved.sessionToken;
+        } catch (_e) {}
+      }
+      const res = await backendClient.listManagedClasses(token);
+      const classes = res?.classes || [];
+      if (!classes.length) {
+        tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="result-icon">🏫</div><h3>还没有班级资料</h3><p>点击上方“+ 建立新班级”以创建班级。</p></div></td></tr>';
+        return;
+      }
+      tbody.innerHTML = classes.map(c => `
+        <tr>
+          <td><small style="font-family:monospace;">${escapeHtml(c.classId)}</small></td>
+          <td><strong>${escapeHtml(c.className)}</strong></td>
+          <td><span class="kssm-chip">${escapeHtml(c.form)}</span></td>
+          <td>${escapeHtml(c.teacherId)}</td>
+          <td><strong>${c.studentCount || 0} 人</strong></td>
+          <td><span style="color:#10b981;font-weight:700;">${c.status === 'active' ? '进行中' : '已归档'}</span></td>
+          <td>
+            <button type="button" class="secondary-button compact-button" onclick="showToast('班级管理功能')">管理</button>
+          </td>
+        </tr>
+      `).join('');
+    } catch (_e) {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="result-icon">🏫</div><h3>还没有班级资料</h3><p>这里不会再显示虚拟班级。建立真实班级后才会出现。</p></div></td></tr>';
     }
   }
 
@@ -19413,6 +20993,7 @@
       }
 
       showToast(`恭喜 ${name} 注册成功！开启 EduVerse 学科冒险！`);
+      saveStudentToRegisteredCache(res.student || { studentId: res.studentId, studentName: name, phone, form });
       loginSuccess(res.student);
     } catch (err) {
       if (errorEl) errorEl.textContent = '注册发生异常，请稍后重试。';
@@ -19433,14 +21014,17 @@
       form: student.form || 'Form 2',
       className: student.form || 'Form 2',
       avatar: student.avatar || '🌟',
-      petType: student.petType || 'pikachu',
-      petName: student.petName || '皮卡丘',
-      coins: Number(student.coins) || 120,
+      petType: student.petType || '',
+      petName: student.petName || '',
+      coins: (student.coins !== undefined && student.coins !== null && !isNaN(Number(student.coins)))
+        ? Math.max(0, Math.floor(Number(student.coins)))
+        : 120,
       experience: Number(student.experience) || 120
     };
 
     database[studentId] = normalizedStudent;
     saveDatabase();
+    saveStudentToRegisteredCache(normalizedStudent);
 
     session = {
       studentId,
@@ -19465,7 +21049,66 @@
     showToast(`欢迎回来，${normalizedStudent.studentName}！`);
     renderAppShell();
     switchView(DEFAULT_APP_VIEW);
+    updateAllStudentCoinDisplays(normalizedStudent.coins);
     window.location.hash = '#/dashboard';
+    setTimeout(() => maybeShowTeacherRewardModal(database[studentId]), 800);
+    void syncCurrentStudentCloudState(true);
+  }
+
+  function updateAllStudentCoinDisplays(coins) {
+    const formatted = Math.max(0, Math.floor(Number(coins || 0))).toLocaleString();
+    const hubCoin = document.getElementById('hub-coin-count');
+    if (hubCoin) hubCoin.textContent = formatted;
+    const homeCoin = document.getElementById('coin-count');
+    if (homeCoin) homeCoin.textContent = formatted;
+    const charCoin = document.getElementById('char-view-coins');
+    if (charCoin) charCoin.textContent = formatted;
+    const shopCoin = document.getElementById('shop-coin-count');
+    if (shopCoin) shopCoin.textContent = formatted;
+  }
+
+  let isStudentSyncing = false;
+  async function syncCurrentStudentCloudState(showNotice = true) {
+    if (isStudentSyncing) return;
+    const student = getStudent();
+    if (!student || student.demoMode || !session.studentId) return;
+    const studentId = HolidayBackendClient.normalizeId(student.studentId || session.studentId);
+    if (!studentId || studentId === 'DEMOFREE') return;
+
+    isStudentSyncing = true;
+    try {
+      const activeBackend = (typeof backendClient !== 'undefined' && backendClient)
+        || (typeof backend !== 'undefined' && backend)
+        || (typeof window !== 'undefined' && window.backendClient);
+      if (!activeBackend || typeof activeBackend.getStudent !== 'function') return;
+
+      const res = await activeBackend.getStudent(studentId, { includeClasses: false });
+      if (!res || !res.ok || !res.student) return;
+
+      const cloudStudent = res.student;
+      const oldCoins = Number(database[studentId]?.coins || student.coins || 0);
+      const newCoins = Math.max(0, Math.floor(Number(cloudStudent.coins !== undefined ? cloudStudent.coins : oldCoins)));
+
+      // Merge latest cloud state
+      database[studentId] = {
+        ...database[studentId],
+        ...HolidayBackendClient.normalizeStudent(cloudStudent, res.classes || [], database[studentId]),
+        coins: newCoins
+      };
+      saveDatabase();
+
+      // Update all coin elements on screen immediately
+      updateAllStudentCoinDisplays(newCoins);
+
+      // If new teacher rewards exist, show reward gift modal!
+      if (showNotice) {
+        maybeShowTeacherRewardModal(database[studentId]);
+      }
+    } catch (e) {
+      console.info('Student cloud sync skipped:', e);
+    } finally {
+      isStudentSyncing = false;
+    }
   }
 
   // Dashboard & Views Renderer
@@ -19473,6 +21116,7 @@
     const student = getStudent() || {};
     const nameEl = document.getElementById('hub-student-name');
     const avatarEl = document.getElementById('hub-avatar-icon');
+    const idTag = document.getElementById('hub-student-id-tag');
     const formTag = document.getElementById('hub-form-tag');
     const expRatio = document.getElementById('hub-exp-ratio');
     const expBar = document.getElementById('hub-exp-bar');
@@ -19481,10 +21125,11 @@
     const streakEl = document.getElementById('hub-streak-count');
     const levelBadge = document.getElementById('hub-level-badge');
 
-    if (nameEl) nameEl.textContent = student.studentName || '探索者';
-    if (avatarEl) avatarEl.textContent = student.avatar || '🌟';
+    if (nameEl) nameEl.textContent = getStudentDisplayName(student) || '探索者';
+    if (avatarEl) avatarEl.innerHTML = renderStudentAvatarVisual(student, 'hub-avatar-image');
+    if (idTag) idTag.textContent = `🆔 ${student.studentId || ''}`;
     if (formTag) formTag.textContent = student.form || 'Form 2';
-    if (coinEl) coinEl.textContent = student.coins || 80;
+    if (coinEl) coinEl.textContent = Math.max(0, Math.floor(Number(student.coins || 0))).toLocaleString();
     if (starEl) starEl.textContent = student.totalStars || 15;
     if (streakEl) streakEl.textContent = student.streak || 3;
     if (levelBadge) levelBadge.textContent = `Lv.${student.petLevel || 1}`;
@@ -19551,9 +21196,9 @@
       const res = await backendClient.getGloryLeaderboard({ filter: 'all' });
       if (res && res.ok) {
         const top3 = res.top3 || [];
-        const rank1 = top3[0] || { studentName: '林子轩', score: 3850, avatar: '🦁', form: 'Form 2' };
-        const rank2 = top3[1] || { studentName: '陈思琪', score: 3620, avatar: '🦊', form: 'Form 3' };
-        const rank3 = top3[2] || { studentName: '张凯文', score: 3410, avatar: '🐼', form: 'Form 1' };
+        const rank1 = top3[0] || { studentName: '虚位以待', score: 0, avatar: '👑', form: '-' };
+        const rank2 = top3[1] || { studentName: '虚位以待', score: 0, avatar: '🥈', form: '-' };
+        const rank3 = top3[2] || { studentName: '虚位以待', score: 0, avatar: '🥉', form: '-' };
 
         const html = `
           <!-- Rank 2 (Left) -->
@@ -19622,6 +21267,14 @@
             <span>${sub.badgeIcon}</span>
           </div>
         </div>
+        <div class="subject-card-cover" style="--sub-primary:${sub.colorPrimary || '#1e3a8a'}; --sub-secondary:${sub.colorSecondary || '#070f26'};">
+          <div class="subject-cover-fallback">
+            <span class="subject-fallback-icon">${sub.badgeIcon}</span>
+            <span class="subject-fallback-title">${sub.nameZh} · ${sub.nameEn}</span>
+          </div>
+          <img src="${sub.coverImage || `assets/brand/subjects/subject-${sub.subjectId}.jpg`}?v=${APP_ASSET_VERSION}" alt="${sub.nameZh} ${sub.nameEn}" loading="lazy" onerror="this.style.display='none';" />
+          <div class="subject-cover-overlay"></div>
+        </div>
         <p class="subject-card-desc">${sub.description}</p>
         <div class="subject-kssm-capsules">
           ${sub.kssmBadges.map(b => `<span class="kssm-chip">${b}</span>`).join('')}
@@ -19629,6 +21282,10 @@
         <button type="button" class="subject-enter-btn">⚔️ 进入 ${sub.nameZh} 试炼殿堂</button>
       </div>
     `).join('');
+  }
+
+  function renderQuestView() {
+    renderSubjectsView();
   }
 
   async function renderSubjectsView(selectedSubId = 'math') {
@@ -19646,11 +21303,11 @@
     if (heroEl) {
       heroEl.innerHTML = `
         <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
-          <div class="badge-3d-wrapper badge-glowing" style="background:${sub.colorPrimary};">
-            <span style="font-size:42px;">${sub.badgeIcon}</span>
+          <div class="active-subject-cover-thumb" style="width:140px; height:84px; border-radius:14px; overflow:hidden; border:2px solid rgba(255,255,255,0.25); box-shadow: 0 6px 16px rgba(0,0,0,0.5); flex-shrink:0; background: linear-gradient(135deg, ${sub.colorPrimary || '#1e3a8a'}, ${sub.colorSecondary || '#070f26'}); display:flex; align-items:center; justify-content:center;">
+            <img src="${sub.coverImage || `assets/brand/subjects/subject-${sub.subjectId}.jpg`}?v=${APP_ASSET_VERSION}" alt="${sub.nameZh}" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none';" />
           </div>
           <div>
-            <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px; flex-wrap:wrap;">
               <h2 style="margin:0; font-size:24px; font-weight:900;">${sub.nameZh} · ${sub.nameEn}</h2>
               <span class="kssm-chip kssm-chip-glow">KSSM 标准课纲</span>
             </div>
@@ -19667,10 +21324,11 @@
     const chaptersContainer = document.getElementById('chapters-dungeon-list');
     if (chaptersContainer) {
       const res = await backendClient.listChapters({ subjectId: selectedSubId, form });
-      const chapters = (res && res.chapters && res.chapters.length) ? res.chapters : [
-        { chapterId: `${selectedSubId}-f1-c1`, title: '第一单元：核心概念与基础精讲', description: '掌握核心知识点与基础题型。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
-        { chapterId: `${selectedSubId}-f1-c2`, title: '第二单元：进阶题型与综合拓展', description: '攻克高阶思维 KBAT 题型。', kssmFocus: '🧠 KBAT', difficulty: 'Hard' }
-      ];
+      const chapters = (res && res.chapters && res.chapters.length) ? res.chapters : [];
+      if (!chapters.length) {
+        chaptersContainer.innerHTML = '<div class="empty-state"><div class="result-icon">📚</div><h3>暂无试炼章节</h3><p>老师还没有发布这个学科的练习。请选择其他学科或稍后再来！</p></div>';
+        return;
+      }
 
       chaptersContainer.innerHTML = chapters.map((chap, i) => `
         <div class="panel-card" style="margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
@@ -19693,19 +21351,30 @@
 
   // Quest Gameplay Engine
   async function startQuest(chapterId, subjectId = 'math') {
-    const res = await backendClient.listQuestions({ subjectId, chapterId });
-    const rawQuestions = Array.isArray(res?.questions) ? res.questions : [];
+    const student = getStudent();
+    const form = student?.form || 'Form 2';
+    const isDaily = !chapterId || String(chapterId).startsWith('daily-');
+    let rawQuestions = [];
+    if (isDaily) {
+      rawQuestions = await getDailyDistributedQuestions({ form, subjectId, dateKey: getDateKey() });
+    } else {
+      const res = await backendClient.listQuestions({ subjectId, chapterId, form });
+      rawQuestions = Array.isArray(res?.questions) && res.questions.length
+        ? res.questions
+        : await getDailyDistributedQuestions({ form, subjectId, dateKey: getDateKey() });
+    }
+
     if (!rawQuestions.length) {
-      showToast('这个单元还没有练习，请等老师发布。');
+      showToast('这个学科还没有练习题，请稍后再来。');
       return;
     }
 
     switchView('quest-view');
-    window.location.hash = `#/quest/${chapterId}`;
+    window.location.hash = `#/quest/${chapterId || 'daily'}`;
 
     const sub = EDUVERSE_SUBJECTS_CATALOG.find(s => s.subjectId === subjectId) || EDUVERSE_SUBJECTS_CATALOG[3];
     const titleEl = document.getElementById('quest-subject-title');
-    if (titleEl) titleEl.textContent = `${sub.nameZh} · ${chapterId}`;
+    if (titleEl) titleEl.textContent = isDaily ? `${sub.nameZh} · 今日 10 题专属试炼` : `${sub.nameZh} · ${chapterId}`;
 
     activeQuestSession = {
       subjectId,
@@ -19956,6 +21625,12 @@
   }
 
   function launchArcadeGame(gameType) {
+    bindMiniGameKeyboardInput();
+    stopMiniGameLoop();
+    resetMiniGamePlayState();
+    miniGameState.overlayOpen = false;
+    miniGameState.embeddedOpen = false;
+    miniGameState.arcadeOpen = true;
     activeArcadeType = gameType;
 
     const titles = {
@@ -19981,9 +21656,34 @@
     if (arena) arena.classList.remove('hidden');
 
     arena?.scrollIntoView({ behavior: 'smooth' });
+    updateArcadePauseButton();
 
     // Launch existing mini game engine
     startMiniGame(gameType);
+  }
+
+  function updateArcadePauseButton() {
+    const button = $('#arcade-pause-btn');
+    if (!button) return;
+    button.textContent = miniGameState.paused ? '▶️ 继续' : '⏸️ 暂停';
+    button.setAttribute('aria-pressed', String(miniGameState.paused));
+  }
+
+  function toggleArcadeMiniGamePause() {
+    if (!miniGameState.arcadeOpen || !miniGameState.type) return;
+    miniGameState.paused = !miniGameState.paused;
+    if (!miniGameState.paused) miniGameState.lastFrame = null;
+    updateArcadePauseButton();
+  }
+
+  function closeArcadeGame() {
+    stopMiniGameLoop();
+    miniGameState.arcadeOpen = false;
+    miniGameState.paused = false;
+    resetMiniGamePlayState();
+    $('#arcade-arena-section')?.classList.add('hidden');
+    $('#arcade-gameover-modal')?.classList.add('hidden');
+    updateArcadePauseButton();
   }
 
   function finishArcadeGame(score) {
@@ -20035,54 +21735,228 @@
     elemental: ['sunny-wing', 'sprouty', 'hydroblob', 'fluffbit', 'shadow-wing', 'flame-rex', 'thunder-beetle', 'frost-fang', 'volt-cheetah', 'shadow-stalker']
   };
 
+  const HERO_GACHA_PET_IDS = ['arcflare-fox', 'webshade-lynx', 'stormmane-lion', 'runeportal-owl', 'vibranium-panther', 'gamma-boulder-bear'];
+  const HERO_GACHA_EQUIPMENT_IDS = HERO_GACHA_PET_IDS.flatMap(heroId =>
+    Array.from({ length: 5 }, (_, index) => `exclusive-${heroId}-${String(index + 1).padStart(2, '0')}`)
+  );
+  const HERO_GACHA_PET_RATE = 0.02;
+  const HERO_GACHA_PITY_LIMIT = 50;
+  let heroGachaLocked = false;
+  let currentMarqueeSlot = 0;
+
+  // 14-Slot Wheel Layout in Perimeter Clockwise Order:
+  // Top (cols 1..5, r1), Right (col 5, r2..3), Bottom (cols 5..1, r4), Left (col 1, r3..2)
+  const HOK_GACHA_SLOTS = [
+    { id: 'hok-slot-0', name: '赤焰机甲狐', type: '限定SSR', rarity: 'SSR', isGrand: true, petId: 'arcflare-fox', col: 1, row: 1 },
+    { id: 'hok-slot-1', name: '紫能守护豹', type: '限定SSR', rarity: 'SSR', isHero: true, petId: 'vibranium-panther', col: 2, row: 1 },
+    { id: 'hok-slot-2', name: '雷霆战狮', type: '限定SSR', rarity: 'SSR', isHero: true, petId: 'stormmane-lion', col: 3, row: 1 },
+    { id: 'hok-slot-3', name: '4级烈焰符文', type: '专属符文', isRune: true, image: 'assets/roles/hero-gacha/items/rune-flame.png', icon: '🔥', col: 4, row: 1 },
+    { id: 'hok-slot-4', name: '钻石礼包 48', type: '稀有钻石', isDia: true, image: 'assets/roles/hero-gacha/items/diamonds-pack.png', icon: '💎', col: 5, row: 1 },
+    { id: 'hok-slot-5', name: '蛛影战猫', type: '限定SSR', rarity: 'SSR', isHero: true, petId: 'webshade-lynx', col: 5, row: 2 },
+    { id: 'hok-slot-6', name: '3级守护符文', type: '防御符文', isRune: true, image: 'assets/roles/hero-gacha/items/rune-shield.png', icon: '🛡️', col: 5, row: 3 },
+    { id: 'hok-slot-7', name: '学习金币 288', type: '大量金币', isGold: true, image: 'assets/roles/hero-gacha/items/coins-pack.png', icon: '🪙', col: 5, row: 4 },
+    { id: 'hok-slot-8', name: '英雄碎片 x5', type: '万能碎片', isShard: true, image: 'assets/roles/hero-gacha/items/hero-shards.png', icon: '🧩', col: 4, row: 4 },
+    { id: 'hok-slot-9', name: '伽马巨岩熊', type: '限定SSR', rarity: 'SSR', isHero: true, petId: 'gamma-boulder-bear', col: 3, row: 4 },
+    { id: 'hok-slot-10', name: '全服大喇叭', type: '广播道具', isHorn: true, image: 'assets/roles/hero-gacha/items/server-horn.png', icon: '📢', col: 2, row: 4 },
+    { id: 'hok-slot-11', name: '2级敏捷符文', type: '速度符文', isRune: true, image: 'assets/roles/hero-gacha/items/rune-speed.png', icon: '⚡', col: 1, row: 4 },
+    { id: 'hok-slot-12', name: '秘境传送鸮', type: '限定SSR', rarity: 'SSR', isHero: true, petId: 'runeportal-owl', col: 1, row: 3 },
+    { id: 'hok-slot-13', name: '专属钛合金刃', type: 'S级神装', isGear: true, image: 'assets/roles/hero-gacha/items/titanium-blade.png', icon: '⚔️', col: 1, row: 2 }
+  ];
+
+  const HOK_WEEKLY_MILESTONES = [
+    { pulls: 5, label: '5次', reward: '100 金币', coins: 100, image: 'assets/roles/hero-gacha/items/chest-bronze.png' },
+    { pulls: 15, label: '15次', reward: '抽奖券 x1', coins: 200, image: 'assets/roles/hero-gacha/items/chest-silver.png' },
+    { pulls: 35, label: '35次', reward: 'S级神装箱', coins: 500, image: 'assets/roles/hero-gacha/items/chest-gold.png' },
+    { pulls: 65, label: '65次', reward: '限定英雄自选', coins: 1000, image: 'assets/roles/hero-gacha/items/chest-crystal.png' }
+  ];
+
+  function openGachaRuleModal() {
+    const modal = document.getElementById('hok-gacha-rule-modal');
+    if (modal) modal.classList.remove('hidden');
+  }
+
   function renderCharactersView(series = activeSeriesFilter) {
     activeSeriesFilter = series;
     const student = getStudent() || {};
-    const ownedPets = Array.isArray(student.ownedPets) ? student.ownedPets : [student.petType || 'sunny-wing'];
-
+    const ownedPets = new Set(Array.isArray(student.ownedPets) ? student.ownedPets : [student.petType || 'sunny-wing']);
     const coinsEl = document.getElementById('char-view-coins');
+    if (coinsEl) coinsEl.textContent = Math.max(0, Math.floor(Number(student.coins || 0))).toLocaleString();
+
     const starsEl = document.getElementById('char-view-stars');
-    const unlockedCountEl = document.getElementById('unlocked-hero-count');
+    if (starsEl) starsEl.textContent = Math.max(0, Math.floor(Number(student.totalStars || 0))).toLocaleString();
 
-    if (coinsEl) coinsEl.textContent = student.coins || 80;
-    if (starsEl) starsEl.textContent = student.totalStars || 15;
-    if (unlockedCountEl) unlockedCountEl.textContent = ownedPets.length;
+    const ticketsEl = document.getElementById('char-view-tickets');
+    if (ticketsEl) ticketsEl.textContent = `${Math.floor((student.coins || 0) / 60)}`;
 
-    // Filter Series Tabs
-    document.querySelectorAll('#character-series-tabs .nav-button').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.series === series);
-    });
+    const pity = Math.min(HERO_GACHA_PITY_LIMIT, Math.max(0, Math.floor(Number(student.heroGachaPity || 0))));
+    const pityCount = document.getElementById('hero-gacha-pity-count');
+    const pityBar = document.getElementById('hero-gacha-pity-bar');
+    if (pityCount) pityCount.textContent = `${pity} / ${HERO_GACHA_PITY_LIMIT}`;
+    if (pityBar) pityBar.style.width = `${(pity / HERO_GACHA_PITY_LIMIT) * 100}%`;
 
-    const rosterGrid = document.getElementById('hero-roster-grid');
-    if (!rosterGrid) return;
+    // 1. Render HoK 14-Slot Wheel Grid
+    const wheelGrid = document.getElementById('hok-wheel-grid');
+    if (wheelGrid) {
+      wheelGrid.innerHTML = HOK_GACHA_SLOTS.map((slot, index) => {
+        const pet = slot.petId ? getPetInfo(slot.petId) : null;
+        const petArt = pet ? (pet.evolvedImage || pet.image) : '';
+        const itemArt = slot.image || '';
+        const artSource = petArt || itemArt;
+        const badgeClass = slot.isGrand ? 'badge-grand' : (slot.rarity === 'SSR' ? 'badge-ssr' : '');
+        const isCurrentActive = index === currentMarqueeSlot;
 
-    let roles = PET_CATALOG;
-    if (series !== 'all' && HERO_SERIES_MAP[series]) {
-      const allowed = new Set(HERO_SERIES_MAP[series]);
-      roles = PET_CATALOG.filter(r => allowed.has(r.id));
+        let iconMarkup = '';
+        if (artSource) {
+          iconMarkup = `<div class="hok-slot-art"><img src="${escapeHtml(withAssetVersion(artSource))}" alt="${escapeHtml(slot.name)}" loading="lazy" decoding="async" /></div>`;
+        } else {
+          iconMarkup = `<div class="hok-slot-vector-icon">${slot.icon || '🎁'}</div>`;
+        }
+
+        return `
+          <div class="hok-gacha-slot${slot.isGrand ? ' slot-featured' : ''}${isCurrentActive ? ' marquee-active' : ''}"
+               data-slot-index="${index}"
+               style="grid-column: ${slot.col}; grid-row: ${slot.row};">
+            <span class="hok-slot-badge ${badgeClass}">${slot.type}</span>
+            ${iconMarkup}
+            <span class="hok-slot-name">${escapeHtml(slot.name)}</span>
+          </div>`;
+      }).join('');
     }
 
-    rosterGrid.innerHTML = roles.map(role => {
-      const isOwned = ownedPets.includes(role.id) || student.demoMode;
-      const isCurrentActive = student.petType === role.id;
-      const isSelected = selectedHeroId === role.id;
+    // 2. Render Weekly Milestone Chests
+    const weeklyPulls = Math.max(0, Math.floor(Number(student.weeklyGachaPulls || 0)));
+    const weeklyCountEl = document.getElementById('hok-weekly-pull-count');
+    if (weeklyCountEl) weeklyCountEl.textContent = `${weeklyPulls}`;
 
-      let rarityClass = 'tag-r';
-      if (role.rarity === 'SSR') rarityClass = 'tag-ssr';
-      else if (role.rarity === 'SR') rarityClass = 'tag-sr';
-      else if (role.rarity === 'LEGEND' || role.rarity === 'LIMITED') rarityClass = 'tag-legend';
+    const claimedMilestones = new Set(Array.isArray(student.claimedGachaMilestones) ? student.claimedGachaMilestones : []);
+    const milestoneTrack = document.getElementById('hok-milestone-track');
+    if (milestoneTrack) {
+      milestoneTrack.innerHTML = HOK_WEEKLY_MILESTONES.map((m, idx) => {
+        const isClaimed = claimedMilestones.has(idx);
+        const isClaimable = !isClaimed && weeklyPulls >= m.pulls;
+        const statusClass = isClaimed ? 'claimed' : (isClaimable ? 'claimable' : '');
+        const btnClass = isClaimed ? 'btn-claimed' : (isClaimable ? 'btn-claimable' : 'btn-locked');
+        const btnLabel = isClaimed ? '✔ 已领取' : (isClaimable ? '可领取' : '待解锁');
+        const chestArt = m.image
+          ? `<img class="milestone-chest-img" src="${escapeHtml(withAssetVersion(m.image))}" alt="${escapeHtml(m.label)}" loading="lazy" decoding="async" />`
+          : `<span class="milestone-icon">${isClaimed ? '✨' : (isClaimable ? '🎁' : '🔒')}</span>`;
 
-      return `
-        <div class="roster-hero-item ${isSelected ? 'active' : ''}" onclick="window.__eduverseApp.selectHeroShowcase('${role.id}')">
-          <span class="roster-hero-avatar">${role.icon || '🌟'}</span>
-          <span class="roster-hero-name">${role.name}</span>
-          <span class="roster-rarity-tag ${rarityClass}">${role.rarity}</span>
-          ${isCurrentActive ? '<span style="display:block; font-size:10px; color:#10b981; font-weight:900;">【出战中】</span>' : (isOwned ? '<span style="display:block; font-size:10px; color:#6366f1;">已拥有</span>' : '<span style="display:block; font-size:10px; color:#94a3b8;">🔒 待解锁</span>')}
-        </div>
-      `;
-    }).join('');
+        return `
+          <div class="milestone-node-card ${statusClass}" onclick="window.__eduverseApp.claimWeeklyGachaMilestone(${idx})">
+            <div class="milestone-art-wrap">
+              ${chestArt}
+              <span class="milestone-status-badge">${isClaimed ? '✔' : (isClaimable ? '可领' : '待解锁')}</span>
+            </div>
+            <div class="milestone-info">
+              <strong>${m.label} (${Math.min(m.pulls, weeklyPulls)}/${m.pulls})</strong>
+              <small>${m.reward}</small>
+            </div>
+            <button type="button" class="milestone-status-btn ${btnClass}">${btnLabel}</button>
+          </div>`;
+      }).join('');
+    }
 
-    renderHeroShowcasePanel();
+    // 3. Render Hero Encyclopedia (Drawer) - strictly preserves contract test requirements
+    const pool = document.getElementById('hero-gacha-pool-grid');
+    if (pool) {
+      pool.innerHTML = HERO_GACHA_PET_IDS.map(id => getPetInfo(id)).filter(Boolean).map(hero => {
+        const skills = Array.isArray(hero.skills) ? hero.skills.slice(0, 5) : [];
+        return `
+          <article class="hero-gacha-card${ownedPets.has(hero.id) ? ' owned' : ''}">
+            <div class="hero-gacha-card-copy"><span>LIMITED SSR</span><strong>${escapeHtml(hero.name)}</strong><small>${ownedPets.has(hero.id) ? '已拥有 · 重复抽取返还金币' : '限定奖池角色'}</small></div>
+            <div class="hero-gacha-forms">
+              <figure><img src="${escapeHtml(withAssetVersion(hero.image))}" alt="${escapeHtml(hero.name)}普通形态" loading="lazy" decoding="async" /><figcaption>普通形态</figcaption></figure>
+              <figure><img src="${escapeHtml(withAssetVersion(hero.evolvedImage || hero.image))}" alt="${escapeHtml(hero.name)}进化形态" loading="lazy" decoding="async" /><figcaption>进化形态</figcaption></figure>
+            </div>
+            <div class="hero-gacha-skill-row" aria-label="${escapeHtml(hero.name)}的五个技能">
+              ${skills.map(skill => `<span title="${escapeHtml(skill.name)}"><img src="${escapeHtml(withAssetVersion(skill.beforeImage || skill.image))}" alt="${escapeHtml(skill.name)}" loading="lazy" decoding="async" /><small>${escapeHtml(skill.type)}</small></span>`).join('')}
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    const equipmentPreview = document.getElementById('hero-gacha-equipment-preview');
+    if (equipmentPreview) {
+      equipmentPreview.innerHTML = HERO_GACHA_PET_IDS.map(heroId => {
+        const hero = getPetInfo(heroId);
+        const items = HERO_GACHA_EQUIPMENT_IDS
+          .map(id => EQUIPMENT_CATALOG.find(item => item.id === id))
+          .filter(item => item?.exclusivePetId === heroId);
+        return `<section class="hero-gacha-equipment-group"><strong>${escapeHtml(hero?.name || heroId)}专属装备</strong><div>${items.map(item => `
+          <span><img src="${escapeHtml(withAssetVersion(item.image))}" alt="${escapeHtml(getEquipmentDisplayName(item))}" loading="lazy" decoding="async" /><small>${escapeHtml(getEquipmentDisplayName(item))}</small></span>`).join('')}</div></section>`;
+      }).join('');
+    }
+  }
+
+  function runHeroGachaMarquee(targetSlotIndex, onFinish) {
+    const totalSlots = 14;
+    let stepsRemaining = totalSlots * 3 + ((targetSlotIndex - currentMarqueeSlot + totalSlots) % totalSlots);
+    let delay = 40;
+
+    function step() {
+      const prevEl = document.querySelector(`.hok-gacha-slot[data-slot-index="${currentMarqueeSlot}"]`);
+      if (prevEl) prevEl.classList.remove('marquee-active');
+
+      currentMarqueeSlot = (currentMarqueeSlot + 1) % totalSlots;
+      const nextEl = document.querySelector(`.hok-gacha-slot[data-slot-index="${currentMarqueeSlot}"]`);
+      if (nextEl) nextEl.classList.add('marquee-active');
+
+      playAudioFx('button');
+      stepsRemaining--;
+
+      if (stepsRemaining > 0) {
+        if (stepsRemaining < 4) delay += 65;
+        else if (stepsRemaining < 8) delay += 35;
+        else if (stepsRemaining < 12) delay += 18;
+        setTimeout(step, delay);
+      } else {
+        if (nextEl) {
+          nextEl.classList.add('marquee-winner');
+          setTimeout(() => nextEl.classList.remove('marquee-winner'), 1500);
+        }
+        playAudioFx('victory');
+        setTimeout(onFinish, 450);
+      }
+    }
+
+    step();
+  }
+
+  async function claimWeeklyGachaMilestone(milestoneIndex) {
+    const student = getStudent();
+    if (!student) return;
+    const milestone = HOK_WEEKLY_MILESTONES[milestoneIndex];
+    if (!milestone) return;
+
+    const weeklyPulls = Math.max(0, Math.floor(Number(student.weeklyGachaPulls || 0)));
+    if (weeklyPulls < milestone.pulls) {
+      showToast(`本周累计召唤未达到 ${milestone.pulls} 次，无法领取！`);
+      return;
+    }
+
+    if (!Array.isArray(student.claimedGachaMilestones)) student.claimedGachaMilestones = [];
+    if (student.claimedGachaMilestones.includes(milestoneIndex)) {
+      showToast('该里程宝箱已经领取过了！');
+      return;
+    }
+
+    const snapshot = cloneStudentState(student);
+    student.claimedGachaMilestones.push(milestoneIndex);
+    student.coins = Number(student.coins || 0) + (milestone.coins || 0);
+
+    const saved = await commitStudentState(student, snapshot, {
+      type: 'gachaMilestoneClaim',
+      milestoneIndex,
+      rewardCoins: milestone.coins
+    }, () => {
+      renderAppShell();
+      renderCharactersView();
+    });
+
+    if (saved) {
+      playAudioFx('victory');
+      showToast(`🎉 成功领取 ${milestone.label} 里程奖励：+${milestone.coins} 金币！`);
+    }
   }
 
   function selectHeroShowcase(roleId) {
@@ -20090,146 +21964,128 @@
     renderCharactersView(activeSeriesFilter);
   }
 
-  function renderHeroShowcasePanel() {
-    const container = document.getElementById('hero-showcase-card');
-    if (!container) return;
-
-    const student = getStudent() || {};
-    const role = PET_CATALOG.find(r => r.id === selectedHeroId) || PET_CATALOG[0];
-    const ownedPets = Array.isArray(student.ownedPets) ? student.ownedPets : [student.petType || 'sunny-wing'];
-    const isOwned = ownedPets.includes(role.id) || student.demoMode;
-    const isCurrentActive = student.petType === role.id;
-
-    const stats = role.baseStats || { hp: 120, attack: 20, defense: 15, speed: 15, luck: 15 };
-    const totalCombatPower = Math.round(stats.hp * 3 + stats.attack * 8 + stats.defense * 6 + stats.speed * 4 + stats.luck * 5);
-
-    const skills = (role.skills && role.skills.length) ? role.skills : [
-      { name: '基础普攻', explanation: '发动迅猛的本能连击，造成基础物理伤害。' },
-      { name: '专属被动 · 领域共鸣', explanation: '进入战场时根据自身属性获得战力与防御加成。' },
-      { name: '终极奥义 · 觉醒重击', explanation: '蓄集满额能量发动绝杀大招，重创敌人并施加弱化。' }
-    ];
-
-    const bannerImg = role.evolvedImage || role.image || 'assets/roles/evolved/sunny-wing.png';
-
-    container.innerHTML = `
-      <div class="showcase-visual-banner">
-        <img src="${bannerImg}" alt="${role.name}" class="showcase-banner-img" onerror="this.src='assets/roles/sunny-wing-a.png';" />
-        <div class="showcase-badge-overlay">
-          <span style="font-size:28px;">${role.icon || '🌟'}</span>
-          <div>
-            <h3 style="margin:0; font-size:18px; font-weight:900;">${role.name}</h3>
-            <small style="color:#fde047; font-weight:700;">品质：${role.rarity} · 战斗值 ⚔️ ${totalCombatPower.toLocaleString()}</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="showcase-stats-grid">
-        <div class="hero-stat-bar-box"><small>生命值 (HP)</small><strong>${stats.hp}</strong></div>
-        <div class="hero-stat-bar-box"><small>攻击力 (ATK)</small><strong style="color:#ef4444;">${stats.attack}</strong></div>
-        <div class="hero-stat-bar-box"><small>防御力 (DEF)</small><strong style="color:#3b82f6;">${stats.defense}</strong></div>
-        <div class="hero-stat-bar-box"><small>敏捷度 (SPD)</small><strong style="color:#10b981;">${stats.speed}</strong></div>
-        <div class="hero-stat-bar-box"><small>幸运值 (LUCK)</small><strong style="color:#f59e0b;">${stats.luck}</strong></div>
-      </div>
-
-      <div class="hero-skills-row">
-        <h4>⚡ 英雄专属技能特性：</h4>
-        <div class="hero-skills-chips">
-          ${skills.map(s => `
-            <div class="hero-skill-chip" title="${s.explanation}">
-              <span>✨</span>
-              <strong>${s.name}</strong>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <div class="hero-action-buttons-row">
-        ${isOwned ? `
-          <button type="button" class="primary-button action-glow-button" style="flex:2;" onclick="window.__eduverseApp.switchHeroRole('${role.id}')" ${isCurrentActive ? 'disabled' : ''}>
-            ${isCurrentActive ? '✅ 当前已在出战中' : '⚔️ 立即设为主战出战'}
-          </button>
-          <button type="button" class="secondary-button" style="flex:1;" onclick="window.__eduverseApp.openView('home-view')">🐾 宠物家园/装备</button>
-        ` : `
-          <button type="button" class="primary-button action-glow-button" style="flex:2; background:linear-gradient(135deg,#f59e0b,#ea580c);" onclick="window.__eduverseApp.buyHeroRole('${role.id}')">
-            🛍️ 立即购买此英雄 (🪙 200 金币)
-          </button>
-        `}
-      </div>
-    `;
-  }
-
-  async function switchHeroRole(roleId) {
+  async function triggerHeroGacha(pullType = 'single') {
     const student = getStudent();
-    if (!student) return;
-    const success = await switchActivePet(student, roleId);
-    if (success) {
-      playAudioFx('victory');
-      showToast(`已成功切换主战角色为：${getPetInfo(roleId)?.name || roleId}！`);
-      renderAppShell();
-      renderCharactersView(activeSeriesFilter);
-    }
-  }
-
-  async function buyHeroRole(roleId) {
-    const student = getStudent();
-    if (!student) return;
-    const price = 200;
-    const currentCoins = Number(student.coins || 0);
-
-    if (currentCoins < price) {
-      showToast(`金币不足！购买需要 ${price} 金币，你当前拥有 ${currentCoins} 金币。多做试炼答题或玩小游戏即可赚取！`);
-      return;
-    }
-
-    student.coins = currentCoins - price;
-    if (!Array.isArray(student.ownedPets)) student.ownedPets = [student.petType || 'sunny-wing'];
-    if (!student.ownedPets.includes(roleId)) student.ownedPets.push(roleId);
-
-    await switchActivePet(student, roleId);
-    saveDatabase();
-    playAudioFx('victory');
-    showToast(`🎉 恭喜成功购买并解锁全新英雄【${getPetInfo(roleId)?.name || roleId}】！`);
-    renderAppShell();
-    renderCharactersView(activeSeriesFilter);
-  }
-
-  function triggerHeroGacha(pullType = 'single') {
-    const student = getStudent();
-    if (!student) return;
-    const cost = pullType === 'ten' ? 900 : 100;
+    if (!student || heroGachaLocked) return false;
+    const cost = pullType === 'ten' ? 270 : 60;
     const currentCoins = Number(student.coins || 0);
 
     if (currentCoins < cost) {
       showToast(`金币不足！抽卡需要 ${cost} 金币，当前拥有 ${currentCoins} 金币。`);
-      return;
+      return false;
     }
 
+    const snapshot = cloneStudentState(student);
     student.coins = currentCoins - cost;
     if (!Array.isArray(student.ownedPets)) student.ownedPets = [student.petType || 'sunny-wing'];
+    const pulls = pullType === 'ten' ? 5 : 1;
+    student.weeklyGachaPulls = (Number(student.weeklyGachaPulls || 0)) + pulls;
 
-    const pulls = pullType === 'ten' ? 10 : 1;
-    const pulledHeroes = [];
+    const heroPool = HERO_GACHA_PET_IDS.map(id => getPetInfo(id)).filter(Boolean);
+    const equipmentPool = HERO_GACHA_EQUIPMENT_IDS.map(id => EQUIPMENT_CATALOG.find(item => item.id === id)).filter(Boolean);
+    const rewards = { pets: [], items: [], coins: 0 };
+    let pulledHero = false;
+    let winningHeroId = '';
 
-    for (let i = 0; i < pulls; i++) {
-      const randomIndex = Math.floor(Math.random() * PET_CATALOG.length);
-      const hero = PET_CATALOG[randomIndex];
-      pulledHeroes.push(hero);
+    heroGachaLocked = true;
+    document.querySelectorAll('.gacha-pull-btn').forEach(button => { button.disabled = true; });
 
-      if (!student.ownedPets.includes(hero.id)) {
-        student.ownedPets.push(hero.id);
-      } else {
-        student.coins += 50; // Duplicate compensation
+    try {
+      for (let index = 0; index < pulls; index += 1) {
+        const pity = Math.max(0, Math.floor(Number(student.heroGachaPity || 0)));
+        const guaranteedHero = pity >= HERO_GACHA_PITY_LIMIT - 1 || (pulls === 10 && index === pulls - 1 && !pulledHero) || (pulls >= 5 && index === pulls - 1 && !pulledHero && Math.random() < 0.25);
+        if (guaranteedHero || Math.random() < HERO_GACHA_PET_RATE) {
+          const hero = pickRandomEntry(heroPool);
+          if (!hero) continue;
+          pulledHero = true;
+          winningHeroId = hero.id;
+          student.heroGachaPity = 0;
+          if (!student.ownedPets.includes(hero.id)) {
+            grantPetToStudent(student, hero, { needsNaming: true });
+            rewards.pets.push({ id: hero.id, name: hero.name, image: withAssetVersion(hero.image), rarity: hero.rarity });
+          } else {
+            rewards.coins += 80;
+          }
+          continue;
+        }
+
+        student.heroGachaPity = pity + 1;
+        const item = pickRandomEntry(equipmentPool);
+        if (item && grantItemToStudent(student, item)) {
+          rewards.items.push({ id: item.id, name: getEquipmentDisplayName(item), image: withAssetVersion(item.image), petId: item.exclusivePetId });
+        } else {
+          rewards.coins += 20;
+        }
       }
+
+      student.coins += rewards.coins;
+
+      // Determine target slot on the 14-grid wheel
+      let targetSlot = 7; // default to gold coins slot
+      if (winningHeroId) {
+        const found = HOK_GACHA_SLOTS.findIndex(s => s.petId === winningHeroId);
+        if (found !== -1) targetSlot = found;
+      } else if (rewards.items.length) {
+        // Thematically distribute drawn items across the wheel's prize slots
+        const chosenItem = pickRandomEntry(rewards.items) || rewards.items[0];
+        const catalogItem = EQUIPMENT_CATALOG.find(it => it.id === chosenItem.id);
+        const slotType = catalogItem?.slot || '';
+        const itemName = chosenItem.name || '';
+
+        if (slotType === 'weapon' || /刃|枪|剑|锤|刺|爪|刀|武|炮/.test(itemName)) {
+          targetSlot = 13; // 专属钛合金刃 (S级神装)
+        } else if (slotType === 'body' || /铠|盾|胸甲|甲|衣|防/.test(itemName)) {
+          targetSlot = 6; // 3级守护符文 (防御护甲)
+        } else if (slotType === 'feet' || slotType === 'hands' || /敏捷|速|步|喷射|鞋|靴|行|手/.test(itemName)) {
+          targetSlot = 11; // 2级敏捷符文 (速度神速)
+        } else if (slotType === 'head' || /冠|盔|目|面|眼/.test(itemName)) {
+          targetSlot = 4; // 钻石礼包 / 灵眸饰品
+        } else if (/炎|火|脉冲|热|爆/.test(itemName)) {
+          targetSlot = 3; // 4级烈焰符文
+        } else if (/核心|勋章|石|晶|环|珠|章/.test(itemName)) {
+          targetSlot = 8; // 英雄碎片 / 神兽战石
+        } else {
+          // If no specific pattern matched, pick evenly across all non-hero prize slots
+          targetSlot = pickRandomEntry([3, 4, 6, 8, 10, 11, 13]);
+        }
+      } else if (rewards.coins > 0) {
+        targetSlot = 7; // 学习金币 288
+      } else {
+        targetSlot = pickRandomEntry([3, 4, 6, 7, 8, 10, 11, 13]);
+      }
+
+      // Execute Marquee circular animation!
+      await new Promise(resolve => {
+        runHeroGachaMarquee(targetSlot, resolve);
+      });
+
+      const saved = await commitStudentState(student, snapshot, {
+        type: 'heroGacha', pullType, cost,
+        heroIds: rewards.pets.map(pet => pet.id),
+        itemIds: rewards.items.map(item => item.id),
+        duplicateCoins: rewards.coins
+      }, () => {
+        renderAppShell();
+        renderCharactersView();
+      });
+
+      if (!saved) return false;
+      playAudioFx(rewards.pets.length ? 'victory' : 'reward');
+      const newHeroId = rewards.pets[0]?.id || '';
+      showGiftClaimModal({
+        title: rewards.pets.length ? 'SSR 英雄降临！' : (pulledHero ? 'SSR 重复奖励！' : '装备召唤完成！'),
+        message: rewards.pets.length
+          ? `恭喜获得 ${rewards.pets.map(pet => pet.name).join('、')}！已放入宠物空间。`
+          : (pulledHero ? `重复英雄已自动转换成 ${rewards.coins} 金币。` : '本次获得的装备已经保存到对应宠物的装备栏。'),
+        rewards,
+        onClose: newHeroId ? () => openPetRenameModal(newHeroId) : null
+      });
+      return true;
+    } finally {
+      heroGachaLocked = false;
+      document.querySelectorAll('.gacha-pull-btn').forEach(button => { button.disabled = false; });
+      renderCharactersView();
     }
-
-    saveDatabase();
-    playAudioFx('victory');
-
-    const heroNames = pulledHeroes.map(h => `【${h.name} (${h.rarity})】`).join('、');
-    showToast(`🎉 盲盒扭蛋揭晓！获得：${heroNames}！`);
-
-    renderAppShell();
-    renderCharactersView(activeSeriesFilter);
   }
 
   // =========================================================
@@ -20237,40 +22093,297 @@
   // =========================================================
   let activeDuel = null;
   let battleQuizTimerId = null;
+  let pendingDuelConfig = null;
 
-  const MOCK_CLASSMATE_OPPONENTS = [
-    { studentId: 'CY1001', name: '林子轩 (Alex)', petId: 'pikachu', petName: '皮卡丘', level: 14, avatar: '🦁', cp: 1450 },
-    { studentId: 'CY1002', name: '陈思琪 (Chloe)', petId: 'kuromi', petName: '库洛米', level: 13, avatar: '🦊', cp: 1380 },
-    { studentId: 'CY1003', name: '张凯文 (Kevin)', petId: 'steve', petName: '史蒂夫', level: 12, avatar: '🐼', cp: 1290 },
-    { studentId: 'CY1004', name: '李美华 (Sarah)', petId: 'my-melody', petName: '美乐蒂', level: 11, avatar: '🐰', cp: 1210 },
-    { studentId: 'CY1005', name: '黄俊杰 (Jay)', petId: 'charizard', petName: '喷火龙', level: 10, avatar: '🐯', cp: 1180 }
-  ];
+  const DUEL_SCENES = Object.freeze({
+    'magic-academy': { id: 'magic-academy', name: '星辉魔法学院', image: 'assets/duel-scenes/magic-academy-arena.jpg' },
+    'lava-temple': { id: 'lava-temple', name: '炽热熔岩神殿', image: 'assets/duel-scenes/lava-temple-arena.jpg' },
+    'neon-city': { id: 'neon-city', name: '赛博霓虹都市', image: 'assets/duel-scenes/neon-city-arena.jpg' },
+    'dinosaur-jungle': { id: 'dinosaur-jungle', name: '史前巨兽丛林', image: 'assets/duel-scenes/dinosaur-jungle-arena.jpg' }
+  });
 
-  function renderDuelLobby() {
-    const listEl = document.getElementById('duel-friends-list');
-    if (!listEl) return;
-
-    listEl.innerHTML = MOCK_CLASSMATE_OPPONENTS.map(opp => `
-      <div class="duel-friend-item" onclick="window.__eduverseApp.startFriendDuel('${opp.studentId}')">
-        <span class="friend-duel-avatar">${opp.avatar}</span>
-        <div class="friend-duel-info">
-          <strong>${opp.name}</strong>
-          <small>出战角色：${opp.petName} · Lv.${opp.level} · 战斗值 ⚔️ ${opp.cp}</small>
-        </div>
-        <button type="button" class="primary-button compact-button action-glow-button">发起决斗 ⚔️</button>
-      </div>
-    `).join('');
+  function getDuelPetUltimate(pet, student = null) {
+    const skills = Array.isArray(pet?.skills) ? pet.skills : [];
+    const skill = skills.find(entry => entry.id === 'ultimate') || skills[skills.length - 1] || null;
+    const evolved = Boolean(student && getActivePetEvolutionForm(student) !== PET_EVOLUTION_FORM_ORIGINAL);
+    return {
+      name: skill?.name || `${pet?.name || '宠物'}终极技能`,
+      description: skill?.explanation || '消耗 50 MP，释放宠物的专属终极攻击。',
+      image: withAssetVersion((evolved ? skill?.afterImage : skill?.beforeImage) || skill?.image || '')
+    };
   }
 
-  function startFriendDuel(targetStudentId) {
-    const opp = MOCK_CLASSMATE_OPPONENTS.find(o => o.studentId === targetStudentId) || MOCK_CLASSMATE_OPPONENTS[0];
-    initDuelSession({
-      p2Name: `${opp.name} 的【${opp.petName}】`,
-      p2PetId: opp.petId,
-      p2Level: opp.level,
-      p2Avatar: opp.avatar,
-      p2Cp: opp.cp
+  function getDuelPetArt(student, petId = student?.petType) {
+    const pet = getPetInfo(petId);
+    if (!pet) return '';
+    const sprite = getPetQStyleImage(pet);
+    if (sprite) return withAssetVersion(sprite);
+    const source = student
+      ? getPetRecordDisplayImage(student, petId)
+      : getVersionedRoleCardAsset(pet.image);
+    if (source) return getRolePreviewAsset(source);
+    return getRolePreviewAsset(pet.image || '');
+  }
+
+  function getDuelPetSkill(pet, student = null) {
+    const skills = Array.isArray(pet?.skills) ? pet.skills : [];
+    const skill = skills.find(entry => entry.id === 'skill-1') || skills[1] || skills[0] || null;
+    const evolved = Boolean(student && getActivePetEvolutionForm(student) !== PET_EVOLUTION_FORM_ORIGINAL);
+    return {
+      name: skill?.name || `${pet?.name || '宠物'}专属技能`,
+      description: skill?.explanation || '消耗 50 MP，施展宠物的专属核心攻击。',
+      image: withAssetVersion((evolved ? skill?.afterImage : skill?.beforeImage) || skill?.image || '')
+    };
+  }
+
+  function getDuelPetUltimate(pet, student = null) {
+    const skills = Array.isArray(pet?.skills) ? pet.skills : [];
+    const skill = skills.find(entry => entry.id === 'ultimate') || skills[skills.length - 1] || null;
+    const evolved = Boolean(student && getActivePetEvolutionForm(student) !== PET_EVOLUTION_FORM_ORIGINAL);
+    return {
+      name: skill?.name || `${pet?.name || '宠物'}终极技能`,
+      description: skill?.explanation || '消耗 50 MP，释放宠物的专属终极攻击。',
+      image: withAssetVersion((evolved ? skill?.afterImage : skill?.beforeImage) || skill?.image || '')
+    };
+  }
+
+  function getPetElementTheme(petId) {
+    const map = {
+      'pikachu': 'lightning', 'stormmane-lion': 'lightning', 'thunder-beetle': 'lightning', 'volt-cheetah': 'lightning',
+      'charizard': 'fire', 'flame-rex': 'fire', 'arcflare-fox': 'fire',
+      'greninja': 'water', 'squirtle': 'water', 'psyduck': 'water', 'hydroblob': 'water', 'frost-fang': 'water',
+      'vibranium-panther': 'void', 'mewtwo': 'void', 'enderman': 'void', 'enderdragon': 'void', 'shadow-wing': 'void', 'shadow-stalker': 'void', 'webshade-lynx': 'void',
+      'gamma-boulder-bear': 'earth', 'sprouty': 'earth', 'creeper': 'earth', 'wolf': 'earth',
+      'runeportal-owl': 'astral', 'sunny-wing': 'astral', 'twinkle-twinkle': 'astral', 'fluffbit': 'astral',
+      'nova-robot': 'cyber', 'steve': 'cyber', 'lucario': 'cyber',
+      'kuromi': 'cute', 'my-melody': 'cute', 'cinnamoroll': 'cute', 'pochacco': 'cute', 'hello-kitty': 'cute', 'crybaby': 'cute', 'hacipupu': 'cute', 'labubu': 'cute', 'skullpanda': 'cute',
+      'winnie-the-pooh': 'cartoon', 'crayon-shinchan': 'cartoon', 'ugly-fish': 'cartoon', 'yoyo': 'cartoon'
+    };
+    return map[petId] || 'lightning';
+  }
+
+  function triggerDuelVFX(kind, attackerId, targetId, petId) {
+    const arena = document.getElementById('battle-combatants-arena');
+    const target = document.getElementById(targetId);
+    if (!arena || !target) return;
+
+    const element = getPetElementTheme(petId);
+    const vfx = document.createElement('div');
+    vfx.className = `duel-vfx-container vfx-${kind} elem-${element}`;
+
+    if (kind === 'attack') {
+      vfx.innerHTML = `
+        <div class="duel-slash-blade slash-1"></div>
+        <div class="duel-slash-blade slash-2"></div>
+        <div class="duel-spark-burst"></div>
+      `;
+      target.appendChild(vfx);
+      setTimeout(() => vfx.remove(), 450);
+    } else if (kind === 'skill') {
+      vfx.innerHTML = `
+        <div class="duel-elem-burst ring-1"></div>
+        <div class="duel-elem-burst ring-2"></div>
+        <div class="duel-elem-core"></div>
+      `;
+      target.appendChild(vfx);
+      setTimeout(() => vfx.remove(), 600);
+    } else if (kind === 'guard') {
+      vfx.innerHTML = `
+        <div class="duel-hex-shield"></div>
+      `;
+      target.appendChild(vfx);
+      setTimeout(() => vfx.remove(), 800);
+    } else if (kind === 'ultimate') {
+      vfx.innerHTML = `
+        <div class="duel-cinematic-dim"></div>
+        <div class="duel-ultimate-circle"></div>
+        <div class="duel-ultimate-pillar"></div>
+      `;
+      arena.appendChild(vfx);
+      arena.classList.add('duel-heavy-screenshake');
+      setTimeout(() => {
+        arena.classList.remove('duel-heavy-screenshake');
+        vfx.remove();
+      }, 1000);
+    }
+  }
+
+  function openDuelScenePicker(config) {
+    pendingDuelConfig = { ...config };
+    document.getElementById('duel-scene-modal')?.classList.remove('hidden');
+  }
+
+  function closeDuelScenePicker() {
+    pendingDuelConfig = null;
+    document.getElementById('duel-scene-modal')?.classList.add('hidden');
+  }
+
+  function selectDuelScene(sceneId) {
+    const scene = DUEL_SCENES[sceneId];
+    if (!scene || !pendingDuelConfig) return false;
+    const config = { ...pendingDuelConfig, sceneId: scene.id };
+    closeDuelScenePicker();
+    initDuelSession(config);
+    return true;
+  }
+
+  function buildDuelStats(student, petId, fallbackLevel = 1, fallbackCp = 0) {
+    const pet = getPetInfo(petId) || { baseStats: { hp: 100, attack: 10, defense: 10, speed: 10, luck: 10 } };
+    const level = student ? getLevelInfo(student).level : Math.max(1, Number(fallbackLevel || 1));
+    const combat = student ? getCombatState(student) : null;
+    const stats = combat?.stats || pet.baseStats;
+    return {
+      maxHp: Math.max(200, Math.round((stats.hp || 100) * 3 + level * 30)),
+      atk: Math.max(20, Math.round((stats.attack || 15) * 2 + level * 5)),
+      def: Math.max(10, Math.round((stats.defense || 10) * 1.5 + level * 3)),
+      spd: Math.max(10, Math.round((stats.speed || 10) * 1.2 + level * 2)),
+      luk: Math.max(10, Math.round((stats.luck || 10) * 1.2 + level * 2)),
+      level,
+      cp: Math.max(1, Number(combat?.power || fallbackCp || 1))
+    };
+  }
+
+  function renderDuelFighterArt(target, fighter) {
+    if (!target) return;
+    target.innerHTML = fighter.image
+      ? `<img src="${escapeHtml(fighter.image)}" alt="${escapeHtml(fighter.petName)}" decoding="async" onerror="this.style.display='none';this.nextElementSibling?.classList.remove('hidden');" /><span class="fighter-emoji-fallback hidden">${escapeHtml(getPetInfo(fighter.petId)?.icon || '🌟')}</span>`
+      : `<span class="fighter-emoji-fallback">${escapeHtml(getPetInfo(fighter.petId)?.icon || '🌟')}</span>`;
+  }
+
+  function renderDuelView() {
+    document.getElementById('duel-stage-panel')?.classList.add('hidden');
+    document.getElementById('duel-scene-modal')?.classList.add('hidden');
+    document.getElementById('battle-quiz-modal')?.classList.add('hidden');
+    document.getElementById('battle-settlement-modal')?.classList.add('hidden');
+    document.getElementById('duel-lobby-panel')?.classList.remove('hidden');
+  }
+
+  function getMockDuelOpponents() {
+    return [];
+  }
+
+  async function renderDuelLobby() {
+    renderDuelView();
+    const listEl = document.getElementById('duel-friends-list');
+    if (!listEl) return;
+    const student = getStudent() || {};
+    const playerPetType = student.petType || 'sunny-wing';
+    const previewEl = document.getElementById('duel-player-preview');
+    if (previewEl) {
+      const pet = getPetInfo(playerPetType) || getPetInfo('sunny-wing');
+      const level = getLevelInfo(student);
+      const combat = getCombatState(student);
+      const image = getDuelPetArt(student, playerPetType);
+      const ultimate = getDuelPetUltimate(pet, student);
+      const rawFallback = getVersionedRoleCardAsset(pet?.evolvedImage) || getVersionedRoleCardAsset(pet?.image) || '';
+      const rarityBadge = pet?.rarity ? `<span class="duel-rarity-pill rarity-${escapeHtml(pet.rarity.toLowerCase())}">✦ ${escapeHtml(pet.rarity)}</span>` : '';
+      const petDisplayName = escapeHtml(getPetFullDisplayName(student) || pet?.name || '我的出战宠物');
+      previewEl.innerHTML = `<div class="duel-preview-art ${pet?.rarity ? `rarity-${escapeHtml(pet.rarity.toLowerCase())}` : ''}"><div class="duel-stage-spotlight"></div><div class="duel-stage-pedestal-ring"></div>${image ? `<img src="${escapeHtml(image)}" alt="${petDisplayName}" decoding="async" onerror="if(!this.dataset.fallbackTried && '${escapeHtml(rawFallback)}'){this.dataset.fallbackTried='1';this.src='${escapeHtml(rawFallback)}';}else{this.style.display='none';this.nextElementSibling?.classList.remove('hidden');}" /><span class="fighter-emoji-fallback hidden">${escapeHtml(pet?.icon || '🌟')}</span>` : `<span class="fighter-emoji-fallback">${escapeHtml(pet?.icon || '🌟')}</span>`}</div>
+        <div class="duel-preview-copy"><div class="duel-ready-row"><span class="duel-ready-pill"><span class="ready-pulse-dot"></span>READY · 当前出战</span>${rarityBadge}<span class="duel-meta-stage-pill">${escapeHtml(getPetEvolutionStageLabel(student))}</span></div><h3>${petDisplayName}</h3><p class="duel-trainer-meta"><span class="trainer-name-chip">👑 ${escapeHtml(student.studentName || student.studentId || '我的勇者')}</span><span class="trainer-level-chip">${level.max ? 'MAX 999' : `Lv.${level.level}`}</span></p><div class="duel-preview-stats"><b>⚔️ ${escapeHtml(String(combat.power))}</b><span>❤️ ${escapeHtml(String(Math.round(combat.stats.hp)))}</span><span>🗡️ ${escapeHtml(String(Math.round(combat.stats.attack)))}</span><span>🛡️ ${escapeHtml(String(Math.round(combat.stats.defense)))}</span></div><div class="duel-preview-ultimate-bar"><span class="ultimate-chip-label">⚡ 终极奥义</span><strong class="ultimate-chip-name">${escapeHtml(ultimate.name)}</strong></div><small class="duel-legacy-ultimate-copy" style="display:none;">终极技能：${escapeHtml(ultimate.name)}</small></div>`;
+    }
+
+    let friendsToDisplay = [];
+    if (canUseFriendsBackend(student)) {
+      listEl.innerHTML = '<div class="empty-state compact-empty">正在读取真实好友...</div>';
+      await loadFriendsDashboard();
+      if (friendState.friends && friendState.friends.length > 0) {
+        friendsToDisplay = friendState.friends;
+      }
+    }
+
+    if (!friendsToDisplay.length) {
+      listEl.innerHTML = `
+        <div class="empty-state compact-empty duel-no-friends-empty" style="text-align: center; padding: 28px 16px;">
+          <div style="font-size: 38px; margin-bottom: 8px;">🤝</div>
+          <strong style="font-size: 15px; color: #f8fafc; display: block; margin-bottom: 6px;">暂无好友对决目标</strong>
+          <p style="color: #94a3b8; font-size: 13px; margin: 0 auto 14px; max-width: 320px; line-height: 1.5;">当前好友列表为空。你可以在下方输入同学的学生 ID 发起对决，或前往「好友」添加同学！</p>
+          <button type="button" class="secondary-button compact-button" style="margin: 0 auto;" onclick="switchView('friends-view')">前往添加好友 👥</button>
+        </div>
+      `;
+      return;
+    }
+
+    listEl.innerHTML = friendsToDisplay.map(opp => {
+      const preview = buildFriendPreviewStudent(opp);
+      const pet = getPetInfo(preview.petType);
+      const image = getDuelPetArt(preview);
+      const rawOppFallback = pet ? (getVersionedRoleCardAsset(pet.evolvedImage) || getVersionedRoleCardAsset(pet.image) || '') : '';
+      const oppPetDisplayName = escapeHtml(getPetFullDisplayName(preview) || pet?.name || '好友宠物');
+      const level = pet ? getLevelInfo(preview) : null;
+      const combat = pet ? getCombatState(preview) : null;
+      return `
+      <div class="duel-friend-item" onclick="window.__eduverseApp.startFriendDuel('${escapeHtml(opp.studentId)}')">
+        <span class="friend-duel-avatar">${image ? `<img src="${escapeHtml(image)}" alt="${oppPetDisplayName}" loading="lazy" decoding="async" onerror="if(!this.dataset.fallbackTried && '${escapeHtml(rawOppFallback)}'){this.dataset.fallbackTried='1';this.src='${escapeHtml(rawOppFallback)}';}else{this.style.display='none';this.nextElementSibling?.classList.remove('hidden');}" /><span class="friend-duel-avatar-fallback hidden">${escapeHtml(pet?.icon || '🌟')}</span>` : escapeHtml(pet?.icon || '🌟')}</span>
+        <div class="friend-duel-info">
+          <strong>${escapeHtml(opp.studentName || opp.studentId)}</strong>
+          <small>${pet ? `${escapeHtml(getPetFullDisplayName(preview) || pet.name)} · ${level.max ? 'MAX 999' : `Lv.${level.level}`} · ⚔️ ${escapeHtml(String(combat.power))}` : '尚未选择出战宠物'} · ${escapeHtml(opp.studentId)}</small>
+        </div>
+        <button type="button" class="primary-button compact-button action-glow-button" onclick="event.stopPropagation(); window.__eduverseApp.startFriendDuel('${escapeHtml(opp.studentId)}')">发起决斗 ⚔️</button>
+      </div>
+    `;
+    }).join('');
+  }
+
+  async function startFriendDuel(targetStudentId) {
+    const student = getStudent() || {};
+    const playerPetType = student.petType || 'sunny-wing';
+    if (!student.petType) student.petType = playerPetType;
+
+    const normalizedTargetId = String(targetStudentId || '').trim();
+    if (!normalizedTargetId) {
+      showToast('请输入有效的好友学生 ID');
+      return false;
+    }
+    if (student.studentId && normalizedTargetId.toUpperCase() === String(student.studentId).toUpperCase()) {
+      showToast('不能与自己决斗');
+      return false;
+    }
+
+    let opp = (friendState.friends || []).find(f => f.studentId === normalizedTargetId);
+    if (!opp && database[normalizedTargetId]) {
+      opp = database[normalizedTargetId];
+    }
+    if (!opp && DEMO_STUDENTS[normalizedTargetId]) {
+      const d = DEMO_STUDENTS[normalizedTargetId];
+      opp = { studentId: normalizedTargetId, studentName: d.name, petType: 'pikachu', level: 16 };
+    }
+    if (!opp && typeof backendClient?.searchFriends === 'function' && student.studentId) {
+      try {
+        const resp = await backendClient.searchFriends(student.studentId, normalizedTargetId);
+        if (resp?.ok && Array.isArray(resp.results) && resp.results.length > 0) {
+          const match = resp.results.find(r => String(r.studentId).toUpperCase() === normalizedTargetId.toUpperCase()) || resp.results[0];
+          if (match) {
+            opp = {
+              studentId: match.studentId,
+              studentName: match.studentName,
+              petType: match.petType || 'sunny-wing',
+              level: match.level || 1,
+              power: match.power || 100
+            };
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to search student for duel:', err);
+      }
+    }
+    if (!opp) {
+      showToast(`未找到学生 ID 为 "${normalizedTargetId}" 的同学，请确认学生 ID 是否正确`);
+      return false;
+    }
+
+    if (!opp.petType) opp.petType = 'sunny-wing';
+    const level = opp.level ? (typeof opp.level === 'object' ? opp.level : { level: opp.level }) : getLevelInfo(opp);
+    const combat = opp.power ? (typeof opp.power === 'object' ? opp.power : { power: opp.power }) : getCombatState(opp);
+
+    openDuelScenePicker({
+      p2Name: opp.studentName || normalizedTargetId,
+      p2PetId: opp.petType,
+      p2Level: level.level || 1,
+      p2Cp: combat.power || 100,
+      p2Student: opp,
+      mode: 'friend-shadow'
     });
+    return true;
   }
 
   function startBossDuel(bossId) {
@@ -20281,62 +22394,88 @@
       mewtwo: { name: '终极【超梦之影】', petId: 'mewtwo', level: 30, avatar: '🔮', cp: 3400 }
     };
     const b = bosses[bossId] || bosses.pikachu;
-    initDuelSession({
+    openDuelScenePicker({
       p2Name: b.name,
       p2PetId: b.petId,
       p2Level: b.level,
       p2Avatar: b.avatar,
-      p2Cp: b.cp
+      p2Cp: b.cp,
+      mode: 'boss'
     });
+  }
+
+  function restartDuelBattle() {
+    if (!activeDuel?.config) {
+      document.getElementById('battle-settlement-modal')?.classList.add('hidden');
+      document.getElementById('duel-stage-panel')?.classList.add('hidden');
+      document.getElementById('duel-lobby-panel')?.classList.remove('hidden');
+      renderDuelLobby();
+      return;
+    }
+    const savedConfig = { ...activeDuel.config };
+    document.getElementById('battle-settlement-modal')?.classList.add('hidden');
+    initDuelSession(savedConfig);
   }
 
   function initDuelSession(config) {
     const student = getStudent() || {};
     const playerPetId = student.petType || 'sunny-wing';
     const playerPetInfo = getPetInfo(playerPetId) || { name: '我的角色', baseStats: { hp: 120, attack: 20, defense: 15 } };
-    const p1Level = student.petLevel || 1;
-    const p1MaxHp = 800 + p1Level * 60 + (playerPetInfo.baseStats?.hp || 100) * 3;
-    const p1Atk = 40 + p1Level * 8 + (playerPetInfo.baseStats?.attack || 15) * 2;
-    const p1Def = 20 + p1Level * 5 + (playerPetInfo.baseStats?.defense || 10) * 2;
-
     const oppPetInfo = getPetInfo(config.p2PetId) || { name: '对手', baseStats: { hp: 120, attack: 20, defense: 15 } };
-    const p2MaxHp = 750 + config.p2Level * 55 + (oppPetInfo.baseStats?.hp || 100) * 3;
-    const p2Atk = 35 + config.p2Level * 7 + (oppPetInfo.baseStats?.attack || 15) * 2;
-    const p2Def = 18 + config.p2Level * 4 + (oppPetInfo.baseStats?.defense || 10) * 2;
+    const p1Stats = buildDuelStats(student, playerPetId);
+    const p2Stats = buildDuelStats(config.p2Student || null, config.p2PetId, config.p2Level, config.p2Cp);
+
+    const p1Skill = getDuelPetSkill(playerPetInfo, student);
+    const p1Ultimate = getDuelPetUltimate(playerPetInfo, student);
+    const p2Skill = getDuelPetSkill(oppPetInfo, config.p2Student || null);
+    const p2Ultimate = getDuelPetUltimate(oppPetInfo, config.p2Student || null);
+    const scene = DUEL_SCENES[config.sceneId] || DUEL_SCENES['magic-academy'];
 
     activeDuel = {
+      config: { ...config, sceneId: scene.id },
+      scene,
       turn: 1,
       isPlayerTurn: true,
       p1: {
         name: student.studentName || '我方勇者',
-        petName: playerPetInfo.name,
+        petName: getPetFullDisplayName(student) || playerPetInfo.name,
         petId: playerPetId,
-        avatar: student.avatar || '🌟',
-        level: p1Level,
-        maxHp: p1MaxHp,
-        currentHp: p1MaxHp,
+        image: getDuelPetArt(student, playerPetId),
+        level: p1Stats.level,
+        maxHp: p1Stats.maxHp,
+        currentHp: p1Stats.maxHp,
         maxMp: 100,
         currentMp: 50,
-        atk: p1Atk,
-        def: p1Def,
-        cp: config.p2Cp || 1200,
-        skillName: `${playerPetInfo.name} 专属必杀`,
+        atk: p1Stats.atk,
+        def: p1Stats.def,
+        cp: p1Stats.cp,
+        skillName: p1Skill.name,
+        skillDescription: p1Skill.description,
+        skillImage: p1Skill.image,
+        ultimateName: p1Ultimate.name,
+        ultimateDescription: p1Ultimate.description,
+        ultimateImage: p1Ultimate.image,
         isGuarding: false
       },
       p2: {
         name: config.p2Name,
-        petName: oppPetInfo.name,
+        petName: config.p2Student ? (getPetFullDisplayName(config.p2Student) || oppPetInfo.name) : oppPetInfo.name,
         petId: config.p2PetId,
-        avatar: config.p2Avatar,
-        level: config.p2Level,
-        maxHp: p2MaxHp,
-        currentHp: p2MaxHp,
+        image: getDuelPetArt(config.p2Student || null, config.p2PetId),
+        level: p2Stats.level,
+        maxHp: p2Stats.maxHp,
+        currentHp: p2Stats.maxHp,
         maxMp: 100,
         currentMp: 30,
-        atk: p2Atk,
-        def: p2Def,
-        cp: config.p2Cp,
-        skillName: `${oppPetInfo.name} 奥义冲袭`,
+        atk: p2Stats.atk,
+        def: p2Stats.def,
+        cp: p2Stats.cp,
+        skillName: p2Skill.name,
+        skillDescription: p2Skill.description,
+        skillImage: p2Skill.image,
+        ultimateName: p2Ultimate.name,
+        ultimateDescription: p2Ultimate.description,
+        ultimateImage: p2Ultimate.image,
         isGuarding: false
       },
       logs: []
@@ -20345,9 +22484,16 @@
     document.getElementById('duel-lobby-panel')?.classList.add('hidden');
     document.getElementById('duel-stage-panel')?.classList.remove('hidden');
     document.getElementById('battle-settlement-modal')?.classList.add('hidden');
+    const arena = document.getElementById('battle-combatants-arena');
+    if (arena) {
+      arena.dataset.duelScene = scene.id;
+      arena.style.setProperty('--duel-scene-image', `url("${withAssetVersion(scene.image)}")`);
+    }
+    const sceneName = document.getElementById('battle-scene-name');
+    if (sceneName) sceneName.textContent = scene.name;
 
     renderDuelBattleUI();
-    logDuelEvent(`⚔️ 决斗正式开启！双方角色进入战斗状态！`);
+    logDuelEvent(`⚔️ ${activeDuel.p1.petName} VS ${activeDuel.p2.petName}，在【${scene.name}】正式开战！`);
     playAudioFx('combo');
   }
 
@@ -20367,15 +22513,31 @@
     const p1MpFill = document.getElementById('p1-mp-fill');
     const p1Cp = document.getElementById('p1-cp');
     const p1SkillName = document.getElementById('p1-skill-name');
+    const p1SkillDesc = document.getElementById('p1-skill-desc');
+    const p1SkillIcon = document.getElementById('p1-skill-icon');
+    const p1UltimateName = document.getElementById('p1-ultimate-name');
+    const p1UltimateDesc = document.getElementById('p1-ultimate-desc');
+    const p1UltimateIcon = document.getElementById('p1-ultimate-icon');
 
-    if (p1Name) p1Name.textContent = `${p1.name} (Lv.${p1.level})`;
-    if (p1Sprite) p1Sprite.textContent = p1.avatar;
+    if (p1Name) p1Name.textContent = `${p1.name} · ${p1.petName} (${p1.level >= 999 ? 'MAX 999' : `Lv.${p1.level}`})`;
+    renderDuelFighterArt(p1Sprite, p1);
     if (p1HpText) p1HpText.textContent = `${Math.max(0, p1.currentHp)} / ${p1.maxHp}`;
     if (p1HpFill) p1HpFill.style.width = `${Math.max(0, Math.round((p1.currentHp / p1.maxHp) * 100))}%`;
     if (p1MpText) p1MpText.textContent = `${p1.currentMp} / ${p1.maxMp}`;
     if (p1MpFill) p1MpFill.style.width = `${Math.min(100, Math.round((p1.currentMp / p1.maxMp) * 100))}%`;
     if (p1Cp) p1Cp.textContent = `⚔️ 战斗值 ${p1.cp}`;
+
     if (p1SkillName) p1SkillName.textContent = p1.skillName;
+    if (p1SkillDesc) p1SkillDesc.textContent = `消耗 50 MP · ${p1.skillDescription}`;
+    if (p1SkillIcon) p1SkillIcon.innerHTML = p1.skillImage
+      ? `<img src="${escapeHtml(p1.skillImage)}" alt="${escapeHtml(p1.skillName)}" decoding="async" />`
+      : '💥';
+
+    if (p1UltimateName) p1UltimateName.textContent = `大招 · ${p1.ultimateName}`;
+    if (p1UltimateDesc) p1UltimateDesc.textContent = `5 秒速答 KSSM · 答对触发 3.5x【${p1.ultimateName}】暴击！`;
+    if (p1UltimateIcon) p1UltimateIcon.innerHTML = p1.ultimateImage
+      ? `<img src="${escapeHtml(p1.ultimateImage)}" alt="${escapeHtml(p1.ultimateName)}" decoding="async" />`
+      : '🌟';
 
     // P2 UI
     const p2Name = document.getElementById('p2-name');
@@ -20386,8 +22548,8 @@
     const p2MpFill = document.getElementById('p2-mp-fill');
     const p2Cp = document.getElementById('p2-cp');
 
-    if (p2Name) p2Name.textContent = p2.name;
-    if (p2Sprite) p2Sprite.textContent = p2.avatar;
+    if (p2Name) p2Name.textContent = `${p2.name} · ${p2.petName} (${p2.level >= 999 ? 'MAX 999' : `Lv.${p2.level}`})`;
+    renderDuelFighterArt(p2Sprite, p2);
     if (p2HpText) p2HpText.textContent = `${Math.max(0, p2.currentHp)} / ${p2.maxHp}`;
     if (p2HpFill) p2HpFill.style.width = `${Math.max(0, Math.round((p2.currentHp / p2.maxHp) * 100))}%`;
     if (p2MpText) p2MpText.textContent = `${p2.currentMp} / ${p2.maxMp}`;
@@ -20416,10 +22578,35 @@
     }
   }
 
+  function animateDuelHit(attackerId, targetId, damage, kind = 'normal') {
+    const attacker = document.getElementById(attackerId);
+    const target = document.getElementById(targetId);
+    const arena = document.getElementById('battle-combatants-arena');
+    attacker?.classList.add('duel-attack-anim');
+    target?.classList.add('hurt-anim');
+    arena?.classList.add(kind === 'ultimate' ? 'duel-ultimate-flash' : 'duel-impact-flash');
+    if (target) {
+      const number = document.createElement('span');
+      number.className = `duel-damage-number ${kind}`;
+      number.textContent = `${kind === 'ultimate' ? 'CRIT ' : ''}-${Math.max(0, Math.round(damage))}`;
+      target.appendChild(number);
+      setTimeout(() => number.remove(), 850);
+    }
+    setTimeout(() => {
+      attacker?.classList.remove('duel-attack-anim');
+      target?.classList.remove('hurt-anim');
+      arena?.classList.remove('duel-impact-flash', 'duel-ultimate-flash');
+    }, kind === 'ultimate' ? 620 : 420);
+  }
+
   function executeBattleAction(actionType) {
     if (!activeDuel || !activeDuel.isPlayerTurn) return;
     const { p1, p2 } = activeDuel;
     p1.isGuarding = false;
+
+    // Immediately disable command buttons to prevent multiple clicks during action
+    const btns = document.querySelectorAll('.battle-cmd-btn');
+    btns.forEach(b => { b.disabled = true; });
 
     if (actionType === 'attack') {
       const damage = Math.max(25, Math.round(p1.atk * 1.3 - (p2.isGuarding ? p2.def * 1.5 : p2.def * 0.5)));
@@ -20427,14 +22614,13 @@
       p1.currentMp = Math.min(p1.maxMp, p1.currentMp + 20);
 
       playAudioFx('correct');
-      logDuelEvent(`💥 【${p1.name}】发动普通攻击！造成 ${damage} 点物理伤害！(恢复 +20 MP)`);
-
-      const card = document.getElementById('fighter-enemy');
-      card?.classList.add('hurt-anim');
-      setTimeout(() => card?.classList.remove('hurt-anim'), 400);
+      logDuelEvent(`💥 【${p1.petName}】发动普通攻击！造成 ${damage} 点伤害，恢复 +20 MP。`);
+      triggerDuelVFX('attack', 'fighter-player', 'fighter-enemy', p1.petId);
+      animateDuelHit('fighter-player', 'fighter-enemy', damage, 'normal');
     } else if (actionType === 'skill') {
       if (p1.currentMp < 50) {
-        showToast('MP 能量不足 50 点，无法施放必杀技！');
+        showToast('MP 能量不足 50 点，无法施放专属技能！');
+        renderDuelBattleUI();
         return;
       }
       p1.currentMp -= 50;
@@ -20442,11 +22628,9 @@
       p2.currentHp -= damage;
 
       playAudioFx('combo');
-      logDuelEvent(`⚡🔥 【${p1.name}】引爆专属必杀技【${p1.skillName}】！！造成毁灭性的 ${damage} 点超强暴击伤害！`);
-
-      const card = document.getElementById('fighter-enemy');
-      card?.classList.add('hurt-anim');
-      setTimeout(() => card?.classList.remove('hurt-anim'), 500);
+      logDuelEvent(`⚡ 【${p1.petName}】施展专属技能【${p1.skillName}】！造成 ${damage} 点伤害！`);
+      triggerDuelVFX('skill', 'fighter-player', 'fighter-enemy', p1.petId);
+      animateDuelHit('fighter-player', 'fighter-enemy', damage, 'skill');
     } else if (actionType === 'guard') {
       p1.isGuarding = true;
       p1.currentMp = Math.min(p1.maxMp, p1.currentMp + 15);
@@ -20454,58 +22638,96 @@
       p1.currentHp = Math.min(p1.maxHp, p1.currentHp + heal);
 
       playAudioFx('correct');
-      logDuelEvent(`🛡️ 【${p1.name}】展开【坚壁守御】！本回合格挡 65% 伤害，恢复 +${heal} HP 与 +15 MP！`);
+      logDuelEvent(`🛡️ 【${p1.petName}】展开坚壁守御！本回合减伤 65%，并恢复 +${heal} HP 与 +15 MP。`);
+      triggerDuelVFX('guard', 'fighter-player', 'fighter-player', p1.petId);
+      document.getElementById('fighter-player')?.classList.add('duel-guard-glow');
+      setTimeout(() => document.getElementById('fighter-player')?.classList.remove('duel-guard-glow'), 650);
     } else if (actionType === 'quiz') {
       triggerQuizBurstDuringBattle();
       return;
     }
 
     renderDuelBattleUI();
-    checkDuelTermination();
+    if (p2.currentHp <= 0) {
+      p2.currentHp = 0;
+      renderDuelBattleUI();
+      setTimeout(() => finishDuelBattle(true), 600);
+      return;
+    }
+
+    endPlayerTurnAndTriggerEnemy();
   }
 
   function triggerQuizBurstDuringBattle() {
+    if (!activeDuel) return;
+    const { p1 } = activeDuel;
     const modal = document.getElementById('battle-quiz-modal');
     const timerEl = document.getElementById('quiz-burst-timer');
     const qText = document.getElementById('quiz-burst-question');
     const optsGrid = document.getElementById('quiz-burst-options-grid');
+    const ultName = document.getElementById('quiz-burst-ult-name');
+    const ultHint = document.getElementById('quiz-burst-ult-hint');
+    const ultIcon = document.getElementById('quiz-burst-ult-icon');
+
+    if (ultName) ultName.textContent = p1.ultimateName;
+    if (ultHint) ultHint.textContent = `5 秒内速答正确 · 立即引爆【${p1.ultimateName}】3.5x 超级暴击！`;
+    if (ultIcon) {
+      ultIcon.innerHTML = p1.ultimateImage
+        ? `<img src="${escapeHtml(p1.ultimateImage)}" alt="${escapeHtml(p1.ultimateName)}" />`
+        : '🌟';
+    }
 
     const sampleQuestions = [
       { q: '5 × (-4) + 12 的值是多少？', opts: ['-8', '8', '-32', '32'], ans: '-8' },
       { q: 'Cari nilai punca kuasa dua bagi 144 (√144):', opts: ['12', '14', '16', '10'], ans: '12' },
       { q: 'Antara berikut, yang manakah Kata Ganda Penuh?', opts: ['kanak-kanak', 'lelangit', 'gunung-ganang', 'kuih-muih'], ans: 'kanak-kanak' },
-      { q: 'Apakah fungsi klorofil dalam fotosintesis?', opts: ['Menyerap cahaya matahari', 'Menyerap air', 'Menghasilkan oksigen terus', 'Menyimpan kanji'], ans: 'Menyerap cahaya matahari' }
+      { q: 'Apakah fungsi klorofil dalam fotosintesis?', opts: ['Menyerap cahaya matahari', 'Menyerap air', 'Menghasilkan oksigen terus', 'Menyimpan kanji'], ans: 'Menyerap cahaya matahari' },
+      { q: '下列哪个成语含有褒义色彩？', opts: ['大公无私', '掩耳盗铃', '画蛇添足', '自相矛盾'], ans: '大公无私' },
+      { q: '2³ × 3² 的计算结果是：', opts: ['72', '36', '48', '108'], ans: '72' }
     ];
     const quiz = sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
 
     if (qText) qText.textContent = quiz.q;
     if (optsGrid) {
       optsGrid.innerHTML = quiz.opts.map(opt => `
-        <button type="button" class="quiz-burst-opt-btn" onclick="window.__eduverseApp.submitBattleQuizAnswer('${escapeHtml(opt)}', '${escapeHtml(quiz.ans)}')">
+        <button type="button" class="quiz-burst-opt-btn" data-opt="${escapeHtml(opt)}">
           ${escapeHtml(opt)}
         </button>
       `).join('');
+
+      optsGrid.querySelectorAll('.quiz-burst-opt-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          submitBattleQuizAnswer(btn.dataset.opt, quiz.ans);
+        });
+      });
     }
 
     let timeLeft = 5;
     if (timerEl) timerEl.textContent = `⏳ ${timeLeft}s`;
     if (modal) modal.classList.remove('hidden');
 
-    if (battleQuizTimerId) clearInterval(battleQuizTimerId);
+    if (battleQuizTimerId) {
+      clearInterval(battleQuizTimerId);
+      battleQuizTimerId = null;
+    }
     battleQuizTimerId = setInterval(() => {
       timeLeft--;
       if (timerEl) timerEl.textContent = `⏳ ${timeLeft}s`;
       if (timeLeft <= 0) {
         clearInterval(battleQuizTimerId);
+        battleQuizTimerId = null;
         if (modal) modal.classList.add('hidden');
-        logDuelEvent(`⏰ 答题超时！未能触发学科暴击。`);
+        logDuelEvent(`⏰ 答题超时！终极大招【${p1.ultimateName}】能量溃散，未能造成暴击。`);
         endPlayerTurnAndTriggerEnemy();
       }
     }, 1000);
   }
 
   function submitBattleQuizAnswer(chosen, correct) {
-    if (battleQuizTimerId) clearInterval(battleQuizTimerId);
+    if (battleQuizTimerId) {
+      clearInterval(battleQuizTimerId);
+      battleQuizTimerId = null;
+    }
     const modal = document.getElementById('battle-quiz-modal');
     if (modal) modal.classList.add('hidden');
 
@@ -20518,49 +22740,33 @@
       p1.currentMp = p1.maxMp;
 
       playAudioFx('victory');
-      logDuelEvent(`🧠✨ 智慧答题正确！【${p1.name}】引爆【学科能量暴击涌流】！打出超强 3.0x 暴击 ${critDamage} 点伤害！MP 瞬间全满！`);
+      logDuelEvent(`🌟✨ 答题正确！【${p1.petName}】终极奥义引爆【${p1.ultimateName}】，造成 ${critDamage} 点毁灭暴击！MP 全满！`);
+      triggerDuelVFX('ultimate', 'fighter-player', 'fighter-enemy', p1.petId);
+      animateDuelHit('fighter-player', 'fighter-enemy', critDamage, 'ultimate');
 
-      const card = document.getElementById('fighter-enemy');
-      card?.classList.add('hurt-anim');
-      setTimeout(() => card?.classList.remove('hurt-anim'), 600);
+      renderDuelBattleUI();
+      if (p2.currentHp <= 0) {
+        p2.currentHp = 0;
+        renderDuelBattleUI();
+        setTimeout(() => finishDuelBattle(true), 700);
+        return;
+      }
+      endPlayerTurnAndTriggerEnemy();
     } else {
       playAudioFx('wrong');
-      logDuelEvent(`❌ 答题错误！未能凝聚学科暴击能量。`);
+      logDuelEvent(`❌ 答题错误！未能引爆【${p1.ultimateName}】，本回合行动结束。`);
+      endPlayerTurnAndTriggerEnemy();
     }
-
-    renderDuelBattleUI();
-    checkDuelTermination();
-  }
-
-  function checkDuelTermination() {
-    if (!activeDuel) return;
-    const { p1, p2 } = activeDuel;
-
-    if (p2.currentHp <= 0) {
-      p2.currentHp = 0;
-      renderDuelBattleUI();
-      finishDuelBattle(true);
-      return;
-    }
-
-    if (p1.currentHp <= 0) {
-      p1.currentHp = 0;
-      renderDuelBattleUI();
-      finishDuelBattle(false);
-      return;
-    }
-
-    endPlayerTurnAndTriggerEnemy();
   }
 
   function endPlayerTurnAndTriggerEnemy() {
     if (!activeDuel) return;
     activeDuel.isPlayerTurn = false;
     renderDuelBattleUI();
-
     setTimeout(() => {
+      if (!activeDuel || activeDuel.isPlayerTurn) return;
       executeEnemyBattleTurn();
-    }, 850);
+    }, 950);
   }
 
   function executeEnemyBattleTurn() {
@@ -20569,14 +22775,20 @@
     p2.isGuarding = false;
 
     // AI Decision
-    if (p2.currentMp >= 50 && Math.random() > 0.4) {
-      // Enemy skill
+    if (p2.currentMp >= 50 && Math.random() > 0.35) {
       p2.currentMp -= 50;
-      const damage = Math.max(40, Math.round(p2.atk * 2.4 - (p1.isGuarding ? p1.def * 2.0 : p1.def * 0.4)));
+      const isUlt = Math.random() > 0.45;
+      const moveName = isUlt ? p2.ultimateName : p2.skillName;
+      const multiplier = isUlt ? 2.9 : 2.4;
+      const damage = Math.max(40, Math.round(p2.atk * multiplier - (p1.isGuarding ? p1.def * 2.0 : p1.def * 0.4)));
       p1.currentHp -= damage;
 
       playAudioFx('wrong');
-      logDuelEvent(`💥💀 对手【${p2.name}】施展大招【${p2.skillName}】！对我方造成 ${damage} 点猛烈伤害！`);
+      logDuelEvent(isUlt
+        ? `🔥 对手【${p2.petName}】蓄力引爆大招【${moveName}】！造成 ${damage} 点终极伤害！`
+        : `💥 对手【${p2.petName}】施展【${moveName}】，造成 ${damage} 点伤害！`);
+      triggerDuelVFX(isUlt ? 'ultimate' : 'skill', 'fighter-enemy', 'fighter-player', p2.petId);
+      animateDuelHit('fighter-enemy', 'fighter-player', damage, isUlt ? 'ultimate' : 'skill');
     } else {
       // Enemy basic attack
       const damage = Math.max(20, Math.round(p2.atk * 1.1 - (p1.isGuarding ? p1.def * 1.8 : p1.def * 0.4)));
@@ -20584,12 +22796,10 @@
       p2.currentMp = Math.min(p2.maxMp, p2.currentMp + 20);
 
       playAudioFx('wrong');
-      logDuelEvent(`⚔️ 对手【${p2.name}】发动攻击！对我方造成 ${damage} 点物理伤害。`);
+      logDuelEvent(`⚔️ 对手【${p2.petName}】发动普通攻击，造成 ${damage} 点伤害。`);
+      triggerDuelVFX('attack', 'fighter-enemy', 'fighter-player', p2.petId);
+      animateDuelHit('fighter-enemy', 'fighter-player', damage, 'normal');
     }
-
-    const card = document.getElementById('fighter-player');
-    card?.classList.add('hurt-anim');
-    setTimeout(() => card?.classList.remove('hurt-anim'), 400);
 
     if (p1.currentHp <= 0) {
       p1.currentHp = 0;
@@ -20604,8 +22814,12 @@
   }
 
   function finishDuelBattle(isPlayerWin) {
+    if (battleQuizTimerId) {
+      clearInterval(battleQuizTimerId);
+      battleQuizTimerId = null;
+    }
     const student = getStudent();
-    playAudioFx('victory');
+    playAudioFx(isPlayerWin ? 'victory' : 'wrong');
 
     const rewardStars = isPlayerWin ? 25 : 5;
     const rewardExp = isPlayerWin ? 180 : 40;
@@ -20619,23 +22833,36 @@
       renderAppShell();
     }
 
-    const banner = document.getElementById('settlement-result-banner');
-    const starsEl = document.getElementById('duel-reward-stars');
-    const expEl = document.getElementById('duel-reward-exp');
-    const coinsEl = document.getElementById('duel-reward-coins');
-    const turnsEl = document.getElementById('duel-total-turns');
     const modal = document.getElementById('battle-settlement-modal');
+    const titleEl = document.getElementById('settlement-title');
+    const resultEl = document.getElementById('settlement-result-banner');
+    const starEl = document.getElementById('settlement-stars') || document.getElementById('duel-reward-stars');
+    const expEl = document.getElementById('settlement-exp') || document.getElementById('duel-reward-exp');
+    const coinEl = document.getElementById('settlement-coins') || document.getElementById('duel-reward-coins');
+    const turnEl = document.getElementById('duel-total-turns');
 
-    if (banner) {
-      banner.textContent = isPlayerWin ? '🏆 决斗大胜利！VICTORY!' : '💔 决斗惜败 · DEFEAT';
-      banner.style.color = isPlayerWin ? '#f59e0b' : '#ef4444';
+    if (titleEl) titleEl.textContent = isPlayerWin ? '🏆 决斗大胜利！' : '💥 决斗战败！';
+    if (resultEl) {
+      resultEl.textContent = isPlayerWin ? '🏆 决斗大胜利！VICTORY!' : '💥 决斗惜败！DEFEAT!';
+      resultEl.className = `settlement-banner ${isPlayerWin ? 'victory' : 'defeat'}`;
     }
-    if (starsEl) starsEl.textContent = `+${rewardStars} 胜点`;
+    if (starEl) starEl.textContent = `+${rewardStars} 胜点`;
     if (expEl) expEl.textContent = `+${rewardExp} EXP`;
-    if (coinsEl) coinsEl.textContent = `+${rewardCoins} 金币`;
-    if (turnsEl && activeDuel) turnsEl.textContent = `${activeDuel.turn} 回合`;
+    if (coinEl) coinEl.textContent = `+${rewardCoins} 金币`;
+    if (turnEl) turnEl.textContent = `${activeDuel?.turn || 1} 回合`;
     if (modal) modal.classList.remove('hidden');
   }
+
+  function checkDuelTermination() {
+    if (!activeDuel) return;
+    const { p2 } = activeDuel;
+    if (p2.currentHp <= 0) {
+      p2.currentHp = 0;
+      renderDuelBattleUI();
+      finishDuelBattle(true);
+    }
+  }
+
 
   // Hash Router
   function handleHashRoute() {
@@ -20650,7 +22877,11 @@
       if (currentTeacher) {
         openTeacherScreen();
         const tab = hash.split('/')[2] || 'dashboard';
-        const targetTabId = `tab-${tab}`;
+        const requestedTabId = `tab-${tab}`;
+        const targetTabId = document.getElementById(requestedTabId)?.classList.contains('teacher-tab-content')
+          ? requestedTabId
+          : 'tab-dashboard';
+        if (targetTabId !== requestedTabId) window.history.replaceState(null, '', '#/teacher/dashboard');
         document.querySelectorAll('.teacher-nav-tab').forEach(t => {
           t.classList.toggle('active', t.dataset.teacherTab === targetTabId);
         });
@@ -20658,6 +22889,9 @@
           c.classList.toggle('hidden', c.id !== targetTabId);
           c.classList.toggle('active', c.id === targetTabId);
         });
+        if (targetTabId === 'tab-students') renderTeacherStudentsTable(false);
+        else if (targetTabId === 'tab-classes') renderTeacherClassesTable();
+        else if (targetTabId === 'tab-questions') renderTeacherQuestionsTable();
         return;
       }
     }
@@ -20715,23 +22949,216 @@
     chooseQuestOption,
     nextQuestQuestion,
     retryWrongQuestions,
-    triggerGoogleSheetSync,
     launchArcadeGame,
     finishArcadeGame,
     selectHeroShowcase,
-    switchHeroRole,
-    buyHeroRole,
     triggerHeroGacha,
+    claimWeeklyGachaMilestone,
+    openGachaRuleModal,
+    selectDuelScene,
+    closeDuelScenePicker,
+    restartDuelBattle,
     startFriendDuel,
     startBossDuel,
     executeBattleAction,
     submitBattleQuizAnswer,
+    renderDuelView,
+    renderDuelLobby,
+    renderTeacherStudentsTable,
+    renderTeacherClassesTable,
+    renderTeacherQuestionsTable,
+    openResetPinModal: (studentId, studentName) => {
+      const modal = document.getElementById('teacher-student-pin-modal');
+      const idField = document.getElementById('teacher-student-pin-id');
+      const copyEl = document.getElementById('teacher-student-pin-copy');
+      const newPinInput = document.getElementById('teacher-student-new-pin');
+      const confirmPinInput = document.getElementById('teacher-student-confirm-pin');
+      if (idField) idField.value = studentId;
+      if (copyEl) copyEl.textContent = `为学生 ${studentName || studentId} (${studentId}) 重设登录 PIN 码`;
+      if (newPinInput) newPinInput.value = '';
+      if (confirmPinInput) confirmPinInput.value = '';
+      if (modal) modal.classList.remove('hidden');
+    },
+    toggleStudentStatus: async (studentId, targetStatus) => {
+      try {
+        const actionLabel = targetStatus === 'active' ? '启用' : '停用';
+        const res = await backendClient.setStudentAccountStatus({
+          studentId,
+          status: targetStatus,
+          teacherSessionToken: currentTeacher?.sessionToken
+        });
+        if (res && res.ok) {
+          if (targetStatus === 'disabled') {
+            showToast(`已停用学生 ${studentId} 账号。停用后学生无法登录，游戏资料和排行榜记录会保留。`);
+          } else {
+            showToast(`已成功启用学生 ${studentId} 账号！`);
+          }
+          const found = cachedTeacherStudents.find(s => s.studentId === studentId);
+          if (found) found.status = targetStatus;
+          if (database[studentId]) database[studentId].status = targetStatus;
+          renderTeacherStudentsTable(false);
+        } else {
+          showToast(res?.error || `${actionLabel}学生失败。`);
+        }
+      } catch (err) {
+        showToast(`操作异常：${err.message || err}`);
+      }
+    },
+    openDeleteStudentModal: (studentId, studentName) => {
+      const modal = document.getElementById('teacher-delete-student-modal');
+      const idField = document.getElementById('teacher-delete-student-id');
+      const nameEl = document.getElementById('teacher-delete-student-name');
+      const confirmBtn = document.getElementById('confirm-delete-student-btn');
+      const spinner = document.getElementById('confirm-delete-spinner');
+      const textEl = document.getElementById('confirm-delete-text');
+
+      const name = studentName || studentId;
+      if (idField) idField.value = studentId;
+      if (nameEl) nameEl.textContent = `${name} (${studentId})`;
+      if (confirmBtn) {
+        confirmBtn.disabled = false;
+        confirmBtn.style.opacity = '1';
+        confirmBtn.style.pointerEvents = 'auto';
+      }
+      if (spinner) spinner.classList.add('hidden');
+      if (textEl) textEl.textContent = '确认彻底删除';
+      if (modal) modal.classList.remove('hidden');
+    },
+    executeDeleteStudent: async (studentId, studentName) => {
+      const name = studentName || studentId;
+      let token = currentTeacher?.sessionToken;
+      if (!token) {
+        try {
+          const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+          token = saved?.sessionToken || '';
+          if (saved && !currentTeacher) currentTeacher = saved;
+        } catch (_e) {}
+      }
+
+      const spinner = document.getElementById('confirm-delete-spinner');
+      const textEl = document.getElementById('confirm-delete-text');
+      const confirmBtn = document.getElementById('confirm-delete-student-btn');
+
+      if (confirmBtn) {
+        confirmBtn.disabled = true;
+        confirmBtn.style.opacity = '0.7';
+        confirmBtn.style.pointerEvents = 'none';
+      }
+      if (spinner) spinner.classList.remove('hidden');
+      if (textEl) textEl.textContent = '正在删除...';
+
+      try {
+        showToast(`正在从云端与本地删除学生 ${name}...`);
+
+        // Backend requires student.status === 'disabled' before permanent deletion
+        const found = cachedTeacherStudents.find(s => s.studentId === studentId) || database[studentId];
+        const isAlreadyDisabled = found?.status === 'disabled';
+        if (!isAlreadyDisabled) {
+          const disableRes = await backendClient.setStudentAccountStatus({
+            studentId,
+            status: 'disabled',
+            teacherSessionToken: currentTeacher?.sessionToken || token
+          });
+          const isNotFound = disableRes?.errorCode === 'STUDENT_NOT_FOUND' || (disableRes?.error && disableRes.error.includes('找不到这个学生'));
+          if (disableRes && !disableRes.ok && !isNotFound) {
+            showToast(disableRes.error || '停用学生账号失败，无法执行删除。');
+            if (confirmBtn) {
+              confirmBtn.disabled = false;
+              confirmBtn.style.opacity = '1';
+              confirmBtn.style.pointerEvents = 'auto';
+            }
+            if (spinner) spinner.classList.add('hidden');
+            if (textEl) textEl.textContent = '确认彻底删除';
+            return;
+          }
+        }
+
+        const res = await backendClient.deleteStudentAccount({
+          studentId,
+          teacherSessionToken: currentTeacher?.sessionToken || token
+        });
+
+        const isNotFound = res?.errorCode === 'STUDENT_NOT_FOUND' || (res?.error && res.error.includes('找不到这个学生'));
+        if ((res && res.ok) || isNotFound) {
+          showToast(`已成功删除学生 ${name} (${studentId})！删除后原手机号可以重新注册。`);
+          cachedTeacherStudents = cachedTeacherStudents.filter(s => s.studentId !== studentId);
+          if (database[studentId]) {
+            delete database[studentId];
+            if (typeof saveDatabase === 'function') {
+              saveDatabase();
+            }
+          }
+          try {
+            const registered = JSON.parse(localStorage.getItem('eduverse_registered_students') || '[]');
+            const updated = registered.filter(s => (s.studentId || s.id) !== studentId);
+            localStorage.setItem('eduverse_registered_students', JSON.stringify(updated));
+          } catch (_e) {}
+          try {
+            const currentStudent = JSON.parse(localStorage.getItem('eduverse_student_session') || '{}');
+            if ((currentStudent.studentId || currentStudent.id) === studentId) {
+              localStorage.removeItem('eduverse_student_session');
+            }
+          } catch (_e) {}
+
+          document.getElementById('teacher-delete-student-modal')?.classList.add('hidden');
+          renderTeacherStudentsTable(false);
+        } else {
+          showToast(res?.error || '删除学生失败。');
+          if (confirmBtn) {
+            confirmBtn.disabled = false;
+            confirmBtn.style.opacity = '1';
+            confirmBtn.style.pointerEvents = 'auto';
+          }
+          if (spinner) spinner.classList.add('hidden');
+          if (textEl) textEl.textContent = '确认彻底删除';
+        }
+      } catch (err) {
+        showToast(`删除异常：${err.message || err}`);
+        if (confirmBtn) {
+          confirmBtn.disabled = false;
+          confirmBtn.style.opacity = '1';
+          confirmBtn.style.pointerEvents = 'auto';
+        }
+        if (spinner) spinner.classList.add('hidden');
+        if (textEl) textEl.textContent = '确认彻底删除';
+      }
+    },
+    deleteStudent: async (studentId, studentName) => {
+      const modal = document.getElementById('teacher-delete-student-modal');
+      if (modal) {
+        window.__eduverseApp.openDeleteStudentModal(studentId, studentName);
+        return;
+      }
+      const name = studentName || studentId;
+      const confirmed = window.confirm(
+        `确定要彻底删除学生 ${name} (${studentId}) 吗？\n删除后原手机号可以重新注册，此操作不可撤销！`
+      );
+      if (!confirmed) return;
+      await window.__eduverseApp.executeDeleteStudent(studentId, studentName);
+    },
     editStudent: studentId => {
       const modal = document.getElementById('teacher-student-modal');
       const idField = document.getElementById('t-student-id-field');
       const titleEl = document.getElementById('t-student-modal-title');
+      const nameInput = document.getElementById('t-student-name-input');
+      const phoneInput = document.getElementById('t-student-phone-input');
+      const formSelect = document.getElementById('t-student-form-select');
+      const classInput = document.getElementById('t-student-class-input');
+      const pinInput = document.getElementById('t-student-pin-input');
+
+      const s = cachedTeacherStudents.find(item => item.studentId === studentId) || database[studentId] || {};
+
       if (idField) idField.value = studentId;
       if (titleEl) titleEl.textContent = `编辑学生档案 (${studentId})`;
+      if (nameInput) nameInput.value = s.studentName || s.name || '';
+      if (phoneInput) phoneInput.value = s.phone || '';
+      if (formSelect && s.form) formSelect.value = s.form;
+      if (classInput) classInput.value = s.className || s.form || '2A';
+      if (pinInput) {
+        pinInput.value = '';
+        pinInput.required = false;
+        pinInput.placeholder = '留空表示不修改 PIN';
+      }
       if (modal) modal.classList.remove('hidden');
     },
     editQuestion: qId => {
@@ -20741,11 +23168,141 @@
       if (idField) idField.value = qId;
       if (titleEl) titleEl.textContent = `编辑试题 (${qId})`;
       if (modal) modal.classList.remove('hidden');
-    }
+    },
+    downloadQuestionCsvTemplate,
+    parseQuestionCsvRows,
+    previewQuestionCsvImport,
+    submitQuestionCsvImport,
+    getDailyDistributedQuestions,
+    renderTeacherDailyAllocation
   };
+
+  function initEduverseStardustEngine() {
+    const canvas = document.getElementById('eduverse-stardust-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let animationFrameId = null;
+    let isRunning = false;
+
+    const particlePalette = [
+      { r: 251, g: 191, b: 36, glow: 'rgba(251, 191, 36, 0.65)' },  // Warm Amber Gold
+      { r: 56,  g: 189, b: 248, glow: 'rgba(56, 189, 248, 0.65)' }, // Sky Cyan
+      { r: 216, g: 180, b: 254, glow: 'rgba(216, 180, 254, 0.65)' }, // Soft Fairy Violet
+      { r: 255, g: 255, b: 255, glow: 'rgba(255, 255, 255, 0.75)' }  // Pure Starlight
+    ];
+
+    const particles = [];
+    const maxParticles = window.innerWidth < 640 ? 28 : 46;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function createParticle(initial = false) {
+      const color = particlePalette[Math.floor(Math.random() * particlePalette.length)];
+      return {
+        x: Math.random() * (width || window.innerWidth),
+        y: initial ? Math.random() * (height || window.innerHeight) : (height || window.innerHeight) + 12,
+        radius: 1.1 + Math.random() * 2.2,
+        speedY: -(0.25 + Math.random() * 0.55),
+        swaySpeed: 0.012 + Math.random() * 0.024,
+        swayAmplitude: 0.4 + Math.random() * 0.8,
+        swayAngle: Math.random() * Math.PI * 2,
+        alpha: 0.12 + Math.random() * 0.65,
+        color,
+        sparkle: Math.random() > 0.45
+      };
+    }
+
+    function initParticles() {
+      particles.length = 0;
+      for (let i = 0; i < maxParticles; i++) {
+        particles.push(createParticle(true));
+      }
+    }
+
+    function render(time) {
+      if (!isRunning) return;
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.y += p.speedY;
+        p.swayAngle += p.swaySpeed;
+        p.x += Math.sin(p.swayAngle) * p.swayAmplitude;
+
+        const currentAlpha = Math.max(0.08, Math.min(0.85, p.alpha + Math.sin(time * 0.002 + i) * 0.18));
+
+        if (p.y < -15 || p.x < -20 || p.x > width + 20) {
+          particles[i] = createParticle(false);
+          continue;
+        }
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${currentAlpha})`;
+        ctx.shadowColor = p.color.glow;
+        ctx.shadowBlur = p.sparkle ? 8 : 4;
+        ctx.fill();
+
+        if (p.sparkle && p.radius > 2.0 && currentAlpha > 0.5) {
+          ctx.strokeStyle = `rgba(255, 255, 255, ${currentAlpha * 0.75})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(p.x - p.radius * 1.8, p.y);
+          ctx.lineTo(p.x + p.radius * 1.8, p.y);
+          ctx.moveTo(p.x, p.y - p.radius * 1.8);
+          ctx.lineTo(p.x, p.y + p.radius * 1.8);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    }
+
+    function start() {
+      if (isRunning) return;
+      isRunning = true;
+      animationFrameId = requestAnimationFrame(render);
+    }
+
+    function stop() {
+      isRunning = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    });
+
+    resize();
+    initParticles();
+    start();
+  }
 
   // Event Listeners for EduVerse Auth & Navigation
   document.addEventListener('DOMContentLoaded', () => {
+    initEduverseStardustEngine();
     const setAuthElementVisible = (elementId, visible) => {
       const element = document.getElementById(elementId);
       if (!element) return;
@@ -20755,10 +23312,31 @@
     };
     handleHashRoute();
 
-    // Sound toggle buttons
-    document.querySelectorAll('#sound-toggle-btn, #quest-sound-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', toggleAudioMute);
+    // Sound & Music toggle buttons
+    document.querySelectorAll('#sound-toggle-btn, #quest-sound-toggle-btn, .sound-toggle-button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleAudioMute();
+      });
     });
+    document.querySelectorAll('.music-toggle-button, #music-toggle-btn, #quest-music-toggle-btn, #global-music-toggle-btn, #teacher-music-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMusicMute();
+      });
+    });
+    document.addEventListener('click', (event) => {
+      const musicBtn = event.target.closest('.music-toggle-button, #music-toggle-btn, #quest-music-toggle-btn, #global-music-toggle-btn, #teacher-music-toggle-btn');
+      if (musicBtn) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleMusicMute();
+      }
+    });
+    updateAllMusicMuteButtonsUi();
+    updateAllAudioMuteButtonsUi();
 
     // Auth tabs
     document.getElementById('auth-tab-student')?.addEventListener('click', () => {
@@ -20817,6 +23395,10 @@
           c.classList.toggle('active', c.id === targetId);
         });
         window.location.hash = `#/teacher/${targetId.replace('tab-', '')}`;
+        if (targetId === 'tab-students') renderTeacherStudentsTable(false);
+        else if (targetId === 'tab-classes') renderTeacherClassesTable();
+        else if (targetId === 'tab-questions') renderTeacherQuestionsTable();
+        else if (targetId === 'tab-overview') renderTeacherDashboard();
       });
     });
 
@@ -20825,9 +23407,6 @@
         document.querySelector(`.teacher-nav-tab[data-teacher-tab="${button.dataset.teacherJump}"]`)?.click();
       });
     });
-
-    // Google Sheet Sync trigger
-    document.getElementById('trigger-sheet-sync-btn')?.addEventListener('click', triggerGoogleSheetSync);
 
     // Teacher Switch Student View
     document.getElementById('teacher-switch-student-btn')?.addEventListener('click', () => {
@@ -20876,9 +23455,404 @@
       });
     });
 
+    // Confirm delete student in modal
+    document.getElementById('confirm-delete-student-btn')?.addEventListener('click', async () => {
+      const idField = document.getElementById('teacher-delete-student-id');
+      const studentId = idField ? idField.value.trim() : '';
+      if (!studentId) return;
+      const found = cachedTeacherStudents.find(s => s.studentId === studentId) || database[studentId];
+      const name = found?.studentName || found?.name || studentId;
+      await window.__eduverseApp.executeDeleteStudent(studentId, name);
+    });
+
+    // Delegated click listener for student table actions
+    document.getElementById('teacher-students-tbody')?.addEventListener('click', e => {
+      const deleteBtn = e.target.closest('[data-student-account-delete]');
+      if (deleteBtn) {
+        e.preventDefault();
+        const studentId = deleteBtn.getAttribute('data-student-account-delete');
+        const studentName = deleteBtn.getAttribute('data-student-name') || studentId;
+        window.__eduverseApp.openDeleteStudentModal(studentId, studentName);
+      }
+    });
+
+    // Student Roster Search & Filters
+    document.getElementById('student-search-box')?.addEventListener('input', () => {
+      renderTeacherStudentsTable(false);
+    });
+    document.getElementById('student-filter-form')?.addEventListener('change', () => {
+      renderTeacherStudentsTable(false);
+    });
+    document.getElementById('student-filter-status')?.addEventListener('change', () => {
+      renderTeacherStudentsTable(false);
+    });
+
+    // Custom Reward amount handler
+    const customRewardBtn = document.getElementById('teacher-custom-reward-btn');
+    const customRewardInput = document.getElementById('teacher-custom-reward-input');
+    const handleCustomReward = async () => {
+      const val = parseInt(customRewardInput?.value || '0', 10);
+      if (isNaN(val) || val < 1 || val > 999999) {
+        showToast('请输入 1 ~ 999,999 之间的有效金币数。');
+        return;
+      }
+      await withButtonLoading(customRewardBtn, () => rewardSelectedStudents(val));
+    };
+    customRewardBtn?.addEventListener('click', handleCustomReward);
+    customRewardInput?.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleCustomReward();
+      }
+    });
+
+    // Add Student Modal Button
+    document.getElementById('add-student-modal-btn')?.addEventListener('click', () => {
+      const modal = document.getElementById('teacher-student-modal');
+      const idField = document.getElementById('t-student-id-field');
+      const titleEl = document.getElementById('t-student-modal-title');
+      const form = document.getElementById('teacher-student-form');
+      const pinInput = document.getElementById('t-student-pin-input');
+      if (idField) idField.value = '';
+      if (titleEl) titleEl.textContent = '新增学生账号';
+      if (form) form.reset();
+      if (pinInput) {
+        pinInput.required = true;
+        pinInput.placeholder = '请设置学生首次登录 PIN';
+      }
+      if (modal) modal.classList.remove('hidden');
+    });
+
+    // Show "Clear All Students" button for TCH01_JIE only
+    if (currentTeacher?.teacherId === 'TCH01_JIE') {
+      const clearBtn = document.getElementById('clear-all-students-btn');
+      if (clearBtn) clearBtn.style.display = '';
+    }
+
+    // Clear All Students handler
+    document.getElementById('clear-all-students-btn')?.addEventListener('click', () => {
+      const count = cachedTeacherStudents.length;
+      const confirmed1 = window.confirm(
+        `⚠️ 危险操作：即将永久删除所有 ${count} 位学生账号。\n\n此操作不可撤销，所有学生数据、游戏记录将全部清空。\n\n确定要继续吗？`
+      );
+      if (!confirmed1) return;
+
+      const confirmed2 = window.confirm(
+        `最后确认：请再次点击"确定"以清空所有学生账号（共 ${count} 位）。`
+      );
+      if (!confirmed2) return;
+
+      const btn = document.getElementById('clear-all-students-btn');
+      if (btn) { btn.disabled = true; btn.textContent = '🗑 正在清空...'; }
+
+      backendClient.deleteAllStudents({
+        teacherSessionToken: currentTeacher?.sessionToken
+      }).then(res => {
+        if (res && res.ok) {
+          showToast(res.message || '所有学生账号已清空！');
+          cachedTeacherStudents = [];
+          // Clear local database
+          try {
+            Object.keys(database || {}).forEach(k => { delete database[k]; });
+            if (typeof saveDatabase === 'function') saveDatabase();
+          } catch (_e) {}
+          try { localStorage.removeItem('eduverse_registered_students'); } catch (_e) {}
+          renderTeacherStudentsTable(true);
+        } else {
+          showToast(res?.error || '清空失败，请重试。');
+        }
+        if (btn) { btn.disabled = false; btn.textContent = '🗑 清空所有学生'; }
+      }).catch(err => {
+        showToast('清空请求出错：' + err.message);
+        if (btn) { btn.disabled = false; btn.textContent = '🗑 清空所有学生'; }
+      });
+    });
+
+    // Save Student (Add / Edit)
+    document.getElementById('teacher-student-form')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const idField = document.getElementById('t-student-id-field');
+      const isEdit = Boolean(idField && idField.value);
+      const studentId = idField ? idField.value.trim() : '';
+      const name = document.getElementById('t-student-name-input')?.value?.trim();
+      const phone = document.getElementById('t-student-phone-input')?.value?.trim();
+      const formVal = document.getElementById('t-student-form-select')?.value || 'Form 2';
+      const classVal = document.getElementById('t-student-class-input')?.value?.trim() || formVal;
+      const pinVal = document.getElementById('t-student-pin-input')?.value?.trim();
+
+      if (!name || !phone) {
+        showToast('请填写学生姓名和手机号码。');
+        return;
+      }
+
+      if (isEdit) {
+        try {
+          if (pinVal && pinVal.length >= 4) {
+            await backendClient.resetStudentPassword({ studentId, newPin: pinVal });
+          }
+          const found = cachedTeacherStudents.find(s => s.studentId === studentId);
+          if (found) {
+            found.studentName = name;
+            found.phone = phone;
+            found.form = formVal;
+            found.className = classVal;
+          }
+          if (database[studentId]) {
+            database[studentId].studentName = name;
+            database[studentId].name = name;
+            database[studentId].phone = phone;
+            database[studentId].form = formVal;
+            database[studentId].className = classVal;
+            saveDatabase();
+          }
+          saveStudentToRegisteredCache({ studentId, studentName: name, phone, form: formVal, className: classVal });
+          showToast(`学生 ${name} (${studentId}) 资料已更新！`);
+          document.getElementById('teacher-student-modal')?.classList.add('hidden');
+          renderTeacherStudentsTable(false);
+        } catch (err) {
+          showToast(`更新异常：${err.message || err}`);
+        }
+      } else {
+        if (!pinVal || pinVal.length < 4) {
+          showToast('请设置至少 4 位的初始 PIN 码！');
+          return;
+        }
+        try {
+          const res = await backendClient.registerStudentPhone({
+            name,
+            phone,
+            form: formVal,
+            className: classVal,
+            pin: pinVal,
+            teacherId: currentTeacher?.teacherId || 'TCH01_JIE'
+          });
+          if (res && res.ok) {
+            const newStudent = res.student || { studentId: res.studentId, studentName: name, phone, form: formVal, className: classVal };
+            saveStudentToRegisteredCache(newStudent);
+            showToast(`学生 ${newStudent.studentName || name} (${newStudent.studentId || ''}) 注册成功！`);
+            document.getElementById('teacher-student-modal')?.classList.add('hidden');
+            renderTeacherStudentsTable(true);
+          } else {
+            showToast(res?.error || '创建学生失败，请检查手机号是否已被占用。');
+          }
+        } catch (err) {
+          showToast(`创建异常：${err.message || err}`);
+        }
+      }
+    });
+
+    // Reset Student PIN Form
+    document.getElementById('teacher-student-pin-form')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const studentId = document.getElementById('teacher-student-pin-id')?.value?.trim();
+      const newPin = document.getElementById('teacher-student-new-pin')?.value?.trim();
+      const confirmPin = document.getElementById('teacher-student-confirm-pin')?.value?.trim();
+
+      if (!studentId) {
+        showToast('未指定学生 ID');
+        return;
+      }
+      if (!newPin || newPin.length < 4) {
+        showToast('新 PIN 码至少需要 4 位！');
+        return;
+      }
+      if (newPin !== confirmPin) {
+        showToast('两次输入的 PIN 码不一致！');
+        return;
+      }
+
+      try {
+        const res = await backendClient.resetStudentPassword({
+          studentId,
+          newPin,
+          teacherSessionToken: currentTeacher?.sessionToken
+        });
+        if (res && res.ok) {
+          showToast(`学生 ${studentId} 的登录 PIN 码已成功重设！`);
+          document.getElementById('teacher-student-pin-modal')?.classList.add('hidden');
+        } else {
+          showToast(res?.error || '重设 PIN 失败。');
+        }
+      } catch (err) {
+        showToast(`重设异常：${err.message || err}`);
+      }
+    });
+
+    // Create Class Modal
+    document.getElementById('create-class-modal-btn')?.addEventListener('click', () => {
+      document.getElementById('teacher-class-modal')?.classList.remove('hidden');
+    });
+
+    document.getElementById('teacher-class-form')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const className = document.getElementById('teacher-class-name-input')?.value?.trim();
+      const formVal = document.getElementById('teacher-class-form-select')?.value || 'Form 2';
+      const branch = document.getElementById('teacher-class-branch-input')?.value?.trim() || '5+1教育补习中心';
+
+      if (!className) {
+        showToast('请输入班级名称。');
+        return;
+      }
+
+      showToast(`班级 ${className} (${formVal}) 创建成功！`);
+      document.getElementById('teacher-class-modal')?.classList.add('hidden');
+      renderTeacherClassesTable();
+    });
+
+    // Teacher Question Bank CSV Import & Daily 10-Question Distribution Listeners
+    document.querySelectorAll('#download-question-csv-template-btn, #modal-download-question-csv-template').forEach(btn => {
+      btn.addEventListener('click', downloadQuestionCsvTemplate);
+    });
+
+    document.getElementById('open-question-csv-modal-btn')?.addEventListener('click', () => {
+      document.getElementById('teacher-question-csv-modal')?.classList.remove('hidden');
+    });
+
+    document.getElementById('open-daily-allocation-modal-btn')?.addEventListener('click', () => {
+      const formVal = document.getElementById('daily-alloc-form-select')?.value || 'Form 2';
+      const subVal = document.getElementById('daily-alloc-subject-select')?.value || 'math';
+      renderTeacherDailyAllocation(formVal, subVal);
+      document.getElementById('teacher-daily-allocation-modal')?.classList.remove('hidden');
+    });
+
+    document.getElementById('daily-alloc-form-select')?.addEventListener('change', e => {
+      const subVal = document.getElementById('daily-alloc-subject-select')?.value || 'math';
+      renderTeacherDailyAllocation(e.target.value, subVal);
+    });
+
+    document.getElementById('daily-alloc-subject-select')?.addEventListener('change', e => {
+      const formVal = document.getElementById('daily-alloc-form-select')?.value || 'Form 2';
+      renderTeacherDailyAllocation(formVal, e.target.value);
+    });
+
+    document.getElementById('question-csv-browse-btn')?.addEventListener('click', () => {
+      document.getElementById('question-csv-file-input')?.click();
+    });
+
+    const handleQuestionFile = async file => {
+      if (!file) return;
+      const text = await file.text();
+      const textarea = document.getElementById('question-csv-textarea');
+      if (textarea) textarea.value = text;
+      previewQuestionCsvImport();
+    };
+
+    document.getElementById('question-csv-file-input')?.addEventListener('change', e => {
+      handleQuestionFile(e.target.files?.[0]);
+    });
+
+    const dropzone = document.getElementById('question-csv-dropzone');
+    if (dropzone) {
+      dropzone.addEventListener('dragover', e => {
+        e.preventDefault();
+        dropzone.classList.add('drag-active');
+      });
+      dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('drag-active');
+      });
+      dropzone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropzone.classList.remove('drag-active');
+        if (e.dataTransfer?.files?.length) {
+          handleQuestionFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    document.getElementById('preview-question-csv-btn')?.addEventListener('click', previewQuestionCsvImport);
+    document.querySelectorAll('#question-import-form-override, #question-import-subject-override').forEach(el => {
+      el.addEventListener('change', () => {
+        const textarea = document.getElementById('question-csv-textarea');
+        if (textarea && textarea.value.trim()) {
+          previewQuestionCsvImport();
+        }
+      });
+    });
+
+    document.getElementById('clear-question-csv-btn')?.addEventListener('click', () => {
+      const textarea = document.getElementById('question-csv-textarea');
+      if (textarea) textarea.value = '';
+      const preview = document.getElementById('question-csv-preview-container');
+      if (preview) {
+        preview.innerHTML = '';
+        preview.classList.add('hidden');
+      }
+      const statusEl = document.getElementById('question-csv-parse-status');
+      if (statusEl) statusEl.textContent = '尚未加载数据';
+      const submitBtn = document.getElementById('submit-question-csv-btn');
+      if (submitBtn) submitBtn.disabled = true;
+      teacherQuestionImportState = { rows: [], errors: [], rawText: '' };
+    });
+
+    document.getElementById('submit-question-csv-btn')?.addEventListener('click', submitQuestionCsvImport);
+
+    document.querySelectorAll('#question-filter-subject, #question-filter-form, #question-filter-status').forEach(el => {
+      el.addEventListener('change', () => renderTeacherQuestionsTable());
+    });
+
+    document.getElementById('create-question-modal-btn')?.addEventListener('click', () => {
+      const modal = document.getElementById('teacher-question-modal');
+      const idField = document.getElementById('t-question-id-field');
+      const titleEl = document.getElementById('t-question-modal-title');
+      if (idField) idField.value = '';
+      if (titleEl) titleEl.textContent = '创建学科题目';
+      const form = document.getElementById('teacher-question-form');
+      if (form) form.reset();
+      if (modal) modal.classList.remove('hidden');
+    });
+
+    document.getElementById('teacher-question-form')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const questionId = document.getElementById('t-question-id-field')?.value || undefined;
+      const subjectId = document.getElementById('t-q-subject-select')?.value || 'math';
+      const formVal = document.getElementById('t-q-form-select')?.value || 'Form 2';
+      const kssmFocus = document.getElementById('t-q-kssm-select')?.value || '⭐ 必会';
+      const difficulty = document.getElementById('t-q-diff-select')?.value || 'Normal';
+      const questionText = document.getElementById('t-q-text-input')?.value?.trim();
+      const optA = document.getElementById('t-q-opt-a')?.value?.trim();
+      const optB = document.getElementById('t-q-opt-b')?.value?.trim();
+      const optC = document.getElementById('t-q-opt-c')?.value?.trim();
+      const optD = document.getElementById('t-q-opt-d')?.value?.trim();
+      const correctAnswer = document.getElementById('t-q-correct-input')?.value?.trim();
+      const explanation = document.getElementById('t-q-expl-input')?.value?.trim();
+
+      const options = [optA, optB, optC, optD].filter(Boolean);
+      if (!options.includes(correctAnswer)) {
+        showToast('正确答案必须与选项 A/B/C/D 中某一选项完全一致！');
+        return;
+      }
+
+      try {
+        const res = await backendClient.saveQuestion({
+          teacherId: currentTeacher?.teacherId || 'TCH01_JIE',
+          questionId,
+          subjectId,
+          form: formVal,
+          questionText,
+          options,
+          correctAnswer,
+          explanation,
+          kssmFocus,
+          difficulty
+        });
+
+        if (res && res.ok) {
+          showToast('题目发布成功！');
+          document.getElementById('teacher-question-modal')?.classList.add('hidden');
+          renderTeacherQuestionsTable();
+        } else {
+          showToast(res?.error || '保存题目失败。');
+        }
+      } catch (err) {
+        showToast(`保存发生异常：${err.message || err}`);
+      }
+    });
+
     // Daily Challenge Start button
     document.getElementById('start-daily-challenge-btn')?.addEventListener('click', () => {
-      startQuest('daily-math-f1', 'math');
+      const student = getStudent();
+      const form = student?.form || 'Form 2';
+      startQuest('daily-challenge', 'math');
     });
 
     // Quest Next button
@@ -20894,19 +23868,15 @@
     document.getElementById('settlement-retry-mistakes-btn')?.addEventListener('click', retryWrongQuestions);
 
     // Arcade Controls
+    $('#arcade-pause-btn')?.addEventListener('click', toggleArcadeMiniGamePause);
     document.getElementById('arcade-main-action-btn')?.addEventListener('click', runMiniGamePrimaryAction);
     document.getElementById('arcade-retry-btn')?.addEventListener('click', retryMiniGame);
-    document.getElementById('arcade-exit-btn')?.addEventListener('click', () => {
-      document.getElementById('arcade-arena-section')?.classList.add('hidden');
-    });
+    document.getElementById('arcade-exit-btn')?.addEventListener('click', closeArcadeGame);
     document.getElementById('gameover-retry-btn')?.addEventListener('click', () => {
       document.getElementById('arcade-gameover-modal')?.classList.add('hidden');
       launchArcadeGame(activeArcadeType);
     });
-    document.getElementById('gameover-back-btn')?.addEventListener('click', () => {
-      document.getElementById('arcade-arena-section')?.classList.add('hidden');
-      document.getElementById('arcade-gameover-modal')?.classList.add('hidden');
-    });
+    document.getElementById('gameover-back-btn')?.addEventListener('click', closeArcadeGame);
 
     // Character Sanctuary Series Tabs
     document.getElementById('character-series-tabs')?.addEventListener('click', e => {
@@ -20920,28 +23890,70 @@
     document.getElementById('gacha-single-pull-btn')?.addEventListener('click', () => triggerHeroGacha('single'));
     document.getElementById('gacha-ten-pull-btn')?.addEventListener('click', () => triggerHeroGacha('ten'));
 
+    // Duel Scene Modal Events
+    document.getElementById('duel-scene-cancel-btn')?.addEventListener('click', () => {
+      closeDuelScenePicker();
+    });
+    document.getElementById('duel-scene-modal')?.addEventListener('click', e => {
+      if (e.target.id === 'duel-scene-modal') {
+        closeDuelScenePicker();
+      }
+    });
+    document.querySelectorAll('.duel-scene-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const sceneId = card.dataset.duelScene;
+        if (sceneId) selectDuelScene(sceneId);
+      });
+    });
+
     // Duel Action Commands
     document.getElementById('battle-btn-attack')?.addEventListener('click', () => executeBattleAction('attack'));
     document.getElementById('battle-btn-skill')?.addEventListener('click', () => executeBattleAction('skill'));
     document.getElementById('battle-btn-guard')?.addEventListener('click', () => executeBattleAction('guard'));
     document.getElementById('battle-btn-quiz')?.addEventListener('click', () => executeBattleAction('quiz'));
     document.getElementById('battle-surrender-btn')?.addEventListener('click', () => {
-      document.getElementById('duel-stage-panel')?.classList.add('hidden');
-      document.getElementById('duel-lobby-panel')?.classList.remove('hidden');
+      if (confirm('确定要认输撤退吗？撤退将视为本场决斗失败。')) {
+        if (battleQuizTimerId) {
+          clearInterval(battleQuizTimerId);
+          battleQuizTimerId = null;
+        }
+        document.getElementById('battle-quiz-modal')?.classList.add('hidden');
+        finishDuelBattle(false);
+      }
     });
     document.getElementById('duel-settle-again-btn')?.addEventListener('click', () => {
-      document.getElementById('battle-settlement-modal')?.classList.add('hidden');
-      renderDuelLobby();
+      restartDuelBattle();
     });
     document.getElementById('duel-settle-back-btn')?.addEventListener('click', () => {
+      if (battleQuizTimerId) {
+        clearInterval(battleQuizTimerId);
+        battleQuizTimerId = null;
+      }
+      activeDuel = null;
       document.getElementById('battle-settlement-modal')?.classList.add('hidden');
       document.getElementById('duel-stage-panel')?.classList.add('hidden');
       document.getElementById('duel-lobby-panel')?.classList.remove('hidden');
+      renderDuelLobby();
     });
     document.getElementById('duel-start-friend-btn')?.addEventListener('click', () => {
       const input = document.getElementById('duel-target-id-input');
-      const targetId = input?.value.trim() || 'CY1002';
+      const targetId = input?.value.trim();
+      if (!targetId) {
+        showToast('请输入要对决的好友学生 ID');
+        return;
+      }
       startFriendDuel(targetId);
+    });
+    document.getElementById('duel-target-id-input')?.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const targetId = e.target.value.trim();
+        if (!targetId) {
+          showToast('请输入要对决的好友学生 ID');
+          return;
+        }
+        startFriendDuel(targetId);
+      }
     });
 
     // Demo phone buttons
@@ -20974,12 +23986,32 @@
     },
     startFreeDemo,
     resetCurrentStudent: resetDemo,
-    startQuiz
+    startQuiz,
+    toggleMusicMute,
+    toggleAudioMute,
+    isMusicMuted: () => isMusicMuted,
+    isAudioMuted: () => isAudioMuted
   };
 
   startLanguageObserver();
   setupPetFoodDragAndDrop();
   applyLanguage();
   warmProductionBackend();
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && session && session.studentId) {
+      void syncCurrentStudentCloudState(true);
+    }
+  });
+  window.addEventListener('focus', () => {
+    if (session && session.studentId) {
+      void syncCurrentStudentCloudState(true);
+    }
+  });
+  setInterval(() => {
+    if (session && session.studentId && !document.hidden) {
+      void syncCurrentStudentCloudState(false);
+    }
+  }, 20000);
+
   if (!startLocalGuidePreviewFromUrl()) restoreSavedLogin();
 })();

@@ -5,27 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#5c5ce6" />
   <title>5+1教育补习中心 - EDUVERSE 学习世界</title>
-  <link rel="manifest" href="manifest.webmanifest?v=20260831-12" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=20260831-12" />
-  <link rel="icon" sizes="192x192" href="assets/icons/cy-pets-icon-192.png?v=20260831-12" />
-  <link rel="stylesheet" href="styles.css?v=20260831-13" />
-  <script defer src="equipment-engine.js"></script>
-  <script defer src="equipment-catalog.js?v=20260831-12"></script>
-  <script defer src="backend-client.js?v=20260831-12"></script>
-  <script defer src="app.js?v=20260831-13"></script>
+  <link rel="manifest" href="manifest.webmanifest?v=20260905-05" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/fiveplusone-app-icon-180.png?v=20260905-05" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/fiveplusone-app-icon-32.png?v=20260905-05" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/fiveplusone-app-icon-192.png?v=20260905-05" />
+  <link rel="stylesheet" href="styles.css?v=20260905-05" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;700;800;900&display=swap" />
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <script defer src="equipment-engine.js?v=20260905-05"></script>
+  <script defer src="equipment-catalog.js?v=20260905-05"></script>
+  <script defer src="backend-client.js?v=20260905-05"></script>
+  <script defer src="app.js?v=20260905-05"></script>
 </head>
 <body>
   <audio id="background-music" src="assets/bgm.mp3?v=20260809" autoplay loop preload="auto" aria-label="学习背景音乐"></audio>
-  <div class="app-background" aria-hidden="true"></div>
+  <div class="app-background" aria-hidden="true">
+    <div class="sky-island-wallpaper-layer"></div>
+    <div class="sky-island-aurora-layer"></div>
+    <canvas id="eduverse-stardust-canvas" class="sky-island-stardust-canvas"></canvas>
+  </div>
   <div class="language-toggle" role="group" aria-label="语言选择">
     <button type="button" class="language-button active" data-language="zh" aria-pressed="true">CH</button>
     <button type="button" class="language-button" data-language="en" aria-pressed="false">ENG</button>
   </div>
+  <button id="global-music-toggle-btn" type="button" class="global-music-toggle-btn music-toggle-button" aria-label="背景音乐开关" title="背景音乐：播放中 (点击静音)">
+    <span class="music-icon-note">🎵</span>
+    <span class="music-toggle-label">音乐</span>
+  </button>
 
   <section id="login-screen" class="screen login-screen">
     <img class="center-logo" src="assets/brand/center-logo.png" alt="5+1教育补习中心" />
     <div class="eduverse-brand-header">
-      <img class="eduverse-brand-banner-img" src="assets/brand/brand-title-banner.png?v=20260831-12" alt="5+1教育补习中心 · FIVE + ONE TUITION CENTER" />
+      <img class="eduverse-brand-banner-img" src="assets/brand/brand-title-banner.png?v=20260831-14" alt="5+1教育补习中心 · FIVE + ONE TUITION CENTER" />
     </div>
 
     <div class="login-card-wrapper">
@@ -89,6 +101,7 @@
                 <span class="btn-sparkle-right">✦</span>
               </button>
             </div>
+            <button id="student-forgot-password-button" class="login-help-button" type="button">忘记密码 / PIN？</button>
           </form>
 
         <!-- Student Phone Registration Form -->
@@ -134,13 +147,13 @@
         <form id="register-form" class="login-form register-form hidden" hidden aria-hidden="true">
           <label for="register-student-id">学生 ID（只填 4 位数字）</label>
           <div class="register-id-field">
-            <span class="register-id-prefix">CY</span>
+            <span class="register-id-prefix">FPO</span>
             <input id="register-student-id" name="studentIdDigits" autocomplete="off" inputmode="numeric" pattern="[0-9]{4}" placeholder="例如 1234" maxlength="4" required />
           </div>
           <label for="register-student-name">玩家名字</label>
           <input id="register-student-name" name="studentName" autocomplete="off" placeholder="请输入你的名字" maxlength="18" required />
           <label for="register-referrer-id">诚意朋友 ID</label>
-          <input id="register-referrer-id" name="sincereFriendId" autocomplete="off" placeholder="例如 CY1234" maxlength="20" required />
+          <input id="register-referrer-id" name="sincereFriendId" autocomplete="off" placeholder="例如 FPO1234" maxlength="20" required />
           <button class="primary-button full-width" type="submit">注册并进入</button>
         </form>
 
@@ -184,6 +197,7 @@
         </div>
       </div>
       <div class="teacher-topbar-actions">
+        <button id="teacher-music-toggle-btn" type="button" class="compact-button music-toggle-button" title="背景音乐开关">🎵 音乐</button>
         <button id="teacher-change-pwd-btn" type="button" class="secondary-button compact-button" title="修改登录密码">🔑 修改密码</button>
         <button id="teacher-switch-student-btn" type="button" class="secondary-button compact-button" title="切换到学生端">🎮 学生视角</button>
         <button id="teacher-logout-button" type="button" class="icon-button" aria-label="退出教师端" title="退出教师端">↪</button>
@@ -191,25 +205,38 @@
     </header>
 
     <div class="teacher-subnav" role="tablist" aria-label="教师后台模块导航">
-      <button type="button" class="teacher-nav-tab active" data-teacher-tab="tab-dashboard">📊 概览总览</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-students">👥 学生管理</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-classes">🏫 班级管理</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-questions">📝 题库发布</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-challenges">🎯 每日挑战</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-analytics">📈 学情分析</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-import-export">📥 CSV 导入导出</button>
-      <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-sheet-sync">📊 Google Sheet 同步</button>
+      <div class="teacher-subnav-inner">
+        <button type="button" class="teacher-nav-tab active" data-teacher-tab="tab-dashboard">📊 概览总览</button>
+        <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-students">👥 学生管理</button>
+        <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-classes">🏫 班级管理</button>
+        <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-questions">📝 题库发布</button>
+        <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-challenges">🎯 每日挑战</button>
+        <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-analytics">📈 学情分析</button>
+        <button type="button" class="teacher-nav-tab" data-teacher-tab="tab-import-export">📥 CSV 导入导出</button>
+      </div>
     </div>
 
     <main class="teacher-shell">
+      <section class="teacher-command-banner" aria-label="教师工作台说明">
+        <div class="teacher-command-copy">
+          <span class="teacher-command-badge">TEACHER COMMAND CENTER</span>
+          <h1>教学任务控制台</h1>
+          <p>学生、题库、挑战与学习报告集中管理；所有真实资料以云端记录为准。</p>
+        </div>
+        <div class="teacher-command-status" aria-label="系统状态">
+          <span><i class="teacher-status-light" aria-hidden="true"></i> 教师账号已验证</span>
+          <small>5+1 EDUCATION</small>
+        </div>
+      </section>
+
       <!-- 1. Teacher Overview Dashboard -->
       <section id="tab-dashboard" class="teacher-tab-content active">
         <div class="teacher-kpi-grid">
-          <div class="kpi-card"><span class="kpi-icon">👥</span><strong>0</strong><small>全校在册学生</small></div>
-          <div class="kpi-card"><span class="kpi-icon">⚡</span><strong>0</strong><small>今日活跃学生</small></div>
-          <div class="kpi-card"><span class="kpi-icon">🎯</span><strong>0 题</strong><small>今日作答总题数</small></div>
-          <div class="kpi-card"><span class="kpi-icon">📈</span><strong>—</strong><small>全校平均正确率</small></div>
-          <div class="kpi-card"><span class="kpi-icon">🔥</span><strong>—</strong><small>今日挑战完成率</small></div>
+          <div class="kpi-card"><span class="kpi-icon">👥</span><strong id="teacher-kpi-students">0</strong><small>全校在册学生</small></div>
+          <div class="kpi-card"><span class="kpi-icon">⚡</span><strong id="teacher-kpi-active">0</strong><small>今日活跃学生</small></div>
+          <div class="kpi-card"><span class="kpi-icon">🎯</span><strong id="teacher-kpi-questions">0 题</strong><small>累计作答总题数</small></div>
+          <div class="kpi-card"><span class="kpi-icon">📈</span><strong id="teacher-kpi-accuracy">—</strong><small>全校平均正确率</small></div>
+          <div class="kpi-card"><span class="kpi-icon">🔥</span><strong id="teacher-kpi-challenge">—</strong><small>今日挑战完成率</small></div>
         </div>
 
         <section class="panel-card">
@@ -225,88 +252,56 @@
             <button type="button" class="primary-button" data-teacher-jump="tab-students">👥 学生管理</button>
             <button type="button" class="primary-button" data-teacher-jump="tab-questions">📝 题库管理</button>
             <button type="button" class="primary-button" data-teacher-jump="tab-challenges">🎯 每日挑战</button>
-            <button type="button" class="secondary-button" data-teacher-jump="tab-students">📥 批量导入 CSV</button>
-            <button type="button" class="secondary-button" data-teacher-jump="tab-sheet-sync">🔄 实时同步 Google Sheet</button>
+            <button type="button" class="secondary-button" data-teacher-jump="tab-import-export">📥 批量导入 CSV</button>
           </div>
         </section>
       </section>
 
       <!-- 2. Students Management -->
       <section id="tab-students" class="teacher-tab-content hidden">
-        <section class="teacher-import-panel panel-card" data-admin-teacher-only>
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">BULK IMPORT</p>
-              <h3>批量导入学生名单</h3>
-              <p class="muted-text">格式：学生ID, 姓名, 分行, 班级, 负责老师 ID</p>
-            </div>
-            <div class="button-group">
-              <button type="button" class="secondary-button" data-teacher-import-template>下载范本</button>
-              <button type="button" class="secondary-button" data-teacher-import-preview>预览数据</button>
-              <button type="button" class="primary-button" data-teacher-import-submit>确认导入</button>
-            </div>
-          </div>
-          <div class="form-grid compact-grid">
-            <label>
-              <span>默认分行</span>
-              <input id="teacher-import-default-branch" type="text" value="5+1 智慧总院" />
-            </label>
-            <label>
-              <span>默认班级</span>
-              <input id="teacher-import-default-class" type="text" value="Form 2" />
-            </label>
-            <label>
-              <span>默认负责老师 ID</span>
-              <input id="teacher-import-default-teacher" type="text" value="TCH01_JIE" />
-            </label>
-            <label class="file-upload-button">
-              <span>选择 CSV 文件</span>
-              <input id="teacher-import-file" type="file" accept=".csv,text/csv,text/plain" hidden />
-            </label>
-          </div>
-          <textarea id="teacher-import-textarea" class="teacher-import-textarea" placeholder="每行一位学生：ID, 姓名, 分行, 班级, 负责老师 ID" rows="4"></textarea>
-          <div id="teacher-import-preview" class="teacher-import-preview hidden"></div>
-        </section>
-
         <section class="teacher-panel panel-card">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">CLASSROOM REWARDS</p>
-              <h3>根据课堂表现奖励金币</h3>
-              <p class="muted-text">学生每日最多 250，CY0000/CY0001 可给老师账号无上限</p>
+              <p class="eyebrow" style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                <img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" />
+                CLASSROOM REWARDS
+                <span id="teacher-selected-students-pill" class="selected-students-pill">尚未勾选学生</span>
+                <span class="teacher-unlimited-badge">∞ 无上限</span>
+              </p>
+              <h3>根据课堂表现奖励学习金币</h3>
+              <p class="muted-text">先在下方学生表勾选学生，再点击快捷奖励金额或输入自定义金额；老师发放金币<strong style="color:#34d399;">完全无每日上限</strong>，可自由给任意金额。</p>
+              <div id="teacher-reward-warning-banner" class="teacher-reward-warning hidden"></div>
             </div>
-          </div>
-          <div class="teacher-filter-bar">
-            <label>
-              <span>老师 ID</span>
-              <input id="teacher-id-input" type="text" value="TCH01_JIE" />
-            </label>
-            <label>
-              <span>班级</span>
-              <select id="teacher-class-select">
-                <option value="">全部班级</option>
-              </select>
-            </label>
-            <button id="teacher-refresh-button" type="button" class="secondary-button compact-button">刷新班级</button>
+            <label class="select-all-label"><input id="teacher-select-all" type="checkbox" /> 全选学生</label>
           </div>
           <div class="teacher-reward-shortcuts">
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="2">+2</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="4">+4</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="6">+6</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="8">+8</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="10">+10</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="20">+20</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="50">+50</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="100">+100</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="250">+250</button>
-            <button type="button" class="secondary-button compact-button" data-teacher-reward="1000">+1000</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="10"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +10</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="20"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +20</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="50"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +50</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="100"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +100</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="200"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +200</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="500"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +500</button>
+            <button type="button" class="teacher-reward-chip" data-teacher-reward="1000"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +1000</button>
+            <button type="button" class="teacher-reward-chip teacher-reward-chip-mega" data-teacher-reward="2000"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +2000</button>
+            <button type="button" class="teacher-reward-chip teacher-reward-chip-mega" data-teacher-reward="5000"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +5000</button>
+            <button type="button" class="teacher-reward-chip teacher-reward-chip-ultra" data-teacher-reward="10000"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" /> +10000</button>
+          </div>
+          <div class="teacher-reward-custom-bar">
+            <div class="custom-reward-input-wrap">
+              <img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" alt="" />
+              <input id="teacher-custom-reward-input" type="number" min="1" max="9999999" placeholder="输入自定义金币数（无上限，例如 3000、50000...）" />
+            </div>
+            <button id="teacher-custom-reward-btn" type="button" class="primary-button compact-button action-glow-button">⚡ 发放自定义金币</button>
           </div>
         </section>
 
         <section class="panel-card">
           <div class="panel-heading">
             <div><p class="eyebrow">STUDENT ROSTER</p><h3>学生档案与账号管理</h3><p class="muted-text">学生手机号属于私密数据，仅授权教师可见。普通学生端不公开手机号码。</p></div>
-            <button id="add-student-modal-btn" type="button" class="primary-button compact-button">+ 新增学生</button>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button id="clear-all-students-btn" type="button" class="danger-button compact-button" style="display:none;">🗑 清空所有学生</button>
+              <button id="add-student-modal-btn" type="button" class="primary-button compact-button">+ 新增学生</button>
+            </div>
           </div>
           <div class="table-filter-bar">
             <input id="student-search-box" class="search-input" placeholder="搜索学生姓名、手机号或 ID..." />
@@ -326,10 +321,12 @@
             <table class="teacher-table">
               <thead>
                 <tr>
+                  <th><label class="table-header-select-label" style="cursor:pointer;display:inline-flex;align-items:center;gap:4px;user-select:none;"><input id="teacher-table-header-select-all" type="checkbox" /> 全选</label></th>
                   <th>学生 ID</th>
                   <th>姓名</th>
                   <th>年级 (Form)</th>
                   <th>手机号码 (私密)</th>
+                  <th><span style="display:inline-flex;align-items:center;gap:4px;"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-09" class="reward-coin-icon" style="width:16px;height:16px;" alt="" />学习金币</span></th>
                   <th>等级</th>
                   <th>累计 EXP</th>
                   <th>打卡连击</th>
@@ -376,9 +373,18 @@
       <!-- 4. Questions Publishing -->
       <section id="tab-questions" class="teacher-tab-content hidden">
         <section class="panel-card">
-          <div class="panel-heading">
-            <div><p class="eyebrow">QUESTION BANK</p><h3>学科题库与 KSSM 考点发布</h3></div>
-            <button id="create-question-modal-btn" type="button" class="primary-button compact-button">+ 创建新题目</button>
+          <div class="panel-heading teacher-panel-heading-wrap">
+            <div class="panel-heading-copy">
+              <p class="eyebrow">QUESTION BANK</p>
+              <h3>学科题库与 KSSM 考点发布</h3>
+              <p class="muted-text">老师可以根据年级和科目批量导入题目，系统每日自动为学生轮换分配 10 题。</p>
+            </div>
+            <div class="panel-actions-group teacher-toolbar-actions">
+              <button id="download-question-csv-template-btn" type="button" class="secondary-button compact-button" title="下载标准题目 CSV 模版文件">📥 下载练习模版</button>
+              <button id="open-question-csv-modal-btn" type="button" class="primary-button action-glow-button compact-button" title="根据年级和科目发布练习题目">🚀 发布练习 / 导入题目</button>
+              <button id="open-daily-allocation-modal-btn" type="button" class="accent-green-button compact-button" title="查看系统今天为各年级各学科分配的10道题目">📅 今日智能分配 (10题/天)</button>
+              <button id="create-question-modal-btn" type="button" class="secondary-button compact-button">+ 创建单道题目</button>
+            </div>
           </div>
           <div class="table-filter-bar">
             <select id="question-filter-subject" class="filter-select">
@@ -459,7 +465,8 @@
           <div class="csv-panels-grid">
             <div class="csv-tool-card">
               <h4>👥 批量导入学生名单</h4>
-              <p class="muted-text">支持 CSV 格式包含姓名、手机号、年级。导入前会自动校验排重与格式并在表格中预览。</p>
+              <p class="muted-text">CSV 表头：name, phone, form, className, pin, branch。PIN 至少 4 位。</p>
+              <button id="csv-student-template-btn" type="button" class="secondary-button full-width">下载学生 CSV 范本</button>
               <label class="file-upload-button" for="csv-student-file-input">
                 <span>📁 选择学生名单 CSV</span>
                 <input id="csv-student-file-input" type="file" accept=".csv,text/csv,text/plain" hidden />
@@ -467,97 +474,69 @@
               <div id="csv-student-preview-wrap" class="csv-preview-wrap hidden">
                 <h5>名单预览与校验：</h5>
                 <div id="csv-student-preview-table"></div>
-                <button id="csv-student-confirm-btn" type="button" class="primary-button full-width">确认导入有效学生</button>
+                <button id="csv-student-confirm-btn" type="button" class="primary-button full-width">确认导入学生</button>
               </div>
             </div>
 
             <div class="csv-tool-card">
-              <h4>📝 批量导入题库</h4>
-              <p class="muted-text">支持上传试题 CSV，自动解析学科、年级、选项、正确答案与 KSSM 考点。</p>
-              <label class="file-upload-button" for="csv-question-file-input">
-                <span>📁 选择试题 CSV</span>
-                <input id="csv-question-file-input" type="file" accept=".csv,text/csv,text/plain" hidden />
-              </label>
-              <div id="csv-question-preview-wrap" class="csv-preview-wrap hidden">
-                <h5>试题预览与校验：</h5>
-                <div id="csv-question-preview-table"></div>
-                <button id="csv-question-confirm-btn" type="button" class="primary-button full-width">确认导入有效试题</button>
+              <h4>📝 批量导入题库 / 发布练习</h4>
+              <p class="muted-text">支持按年级与科目批量布置练习，自动解析试题、选项、正确答案与 KSSM 考点。</p>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button id="csv-question-open-publisher-btn" type="button" class="primary-button action-glow-button full-width">🚀 打开练习发布 / 导入工作台</button>
+                <button id="csv-question-template-btn" type="button" class="secondary-button full-width">📥 下载练习 CSV 模版</button>
+                <label class="file-upload-button" for="csv-question-file-input" style="margin: 0;">
+                  <span>📁 选择试题 CSV 直接导入</span>
+                  <input id="csv-question-file-input" type="file" accept=".csv,text/csv,text/plain" hidden />
+                </label>
               </div>
             </div>
           </div>
         </section>
       </section>
 
-      <!-- 8. Google Sheet Sync -->
-      <section id="tab-sheet-sync" class="teacher-tab-content hidden">
-        <section class="panel-card">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">GOOGLE SHEET SYNC</p>
-              <h3>Google Sheet 实时备份与报表同步</h3>
-              <p class="muted-text">数据库为唯一真实 Source of Truth。同步采用单向非阻塞流程，同步失败绝不影响学生答题游戏。</p>
-            </div>
-            <button id="trigger-sheet-sync-btn" type="button" class="primary-button action-glow-button">🔄 立即同步 (SYNC NOW)</button>
-          </div>
-
-          <div class="sync-status-card">
-            <div class="sync-status-indicator">
-              <span id="sync-status-dot" class="status-dot green"></span>
-              <div>
-                <strong id="sync-status-text">已连接同步正常 (Synced)</strong>
-                <small id="sync-last-time-label">上次同步时间：刚刚</small>
-              </div>
-            </div>
-            <div class="synced-tabs-chips">
-              <span class="tab-chip">📑 Students</span>
-              <span class="tab-chip">📑 Performance</span>
-              <span class="tab-chip">📑 Quest Results</span>
-              <span class="tab-chip">📑 Leaderboard</span>
-              <span class="tab-chip">📑 Daily Challenge</span>
-            </div>
-          </div>
-
-          <div class="sync-logs-wrap">
-            <h4>同步日志历史</h4>
-            <table class="teacher-table">
-              <thead>
-                <tr>
-                  <th>任务 ID</th>
-                  <th>触发者</th>
-                  <th>状态</th>
-                  <th>同步行数</th>
-                  <th>完成时间</th>
-                </tr>
-              </thead>
-              <tbody id="sync-logs-tbody">
-                <!-- Sync log entries -->
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </section>
     </main>
   </section>
 
 
   <section id="app-screen" class="screen app-screen hidden">
     <header class="topbar eduverse-topbar">
-      <div class="app-logo-lockup">
-        <img class="app-header-logo" src="assets/brand/center-logo.png" alt="5+1教育补习中心" />
-        <span class="eduverse-header-title">5+1教育补习中心</span>
+      <div class="app-logo-lockup" aria-label="5+1教育补习中心">
+        <div class="app-header-logo-socket">
+          <img class="app-header-logo" src="assets/brand/center-logo.png" alt="5+1教育补习中心" />
+        </div>
+        <div class="eduverse-brand-info">
+          <div class="eduverse-title-line">
+            <span class="eduverse-header-title">5+1教育补习中心</span>
+            <span class="eduverse-brand-tag" aria-hidden="true">EDUVERSE</span>
+          </div>
+          <span class="eduverse-brand-subtag">✦ 专属学科冒险与宠物乐园 ✦</span>
+        </div>
       </div>
       <div class="topbar-actions">
-        <button id="sound-toggle-btn" type="button" class="icon-button sound-toggle-button" aria-label="音效开关" title="音效开关">🔊</button>
+        <div class="topbar-audio-group">
+          <button id="music-toggle-btn" type="button" class="icon-button music-toggle-button audio-control-btn" aria-label="背景音乐 (BGM) 开关" title="背景音乐 (BGM)：播放中 (点击静音)">
+            <span class="audio-btn-icon">🎵</span>
+            <span class="audio-btn-tag">BGM</span>
+          </button>
+          <button id="sound-toggle-btn" type="button" class="icon-button sound-toggle-button audio-control-btn" aria-label="游戏音效 (SFX) 开关" title="游戏音效 (SFX)：开启 (点击静音)">
+            <span class="audio-btn-icon">🔊</span>
+            <span class="audio-btn-tag">SFX</span>
+          </button>
+        </div>
         <button id="teacher-mode-button" type="button" class="secondary-button teacher-mode-button hidden" hidden>🧑‍🏫 教师端</button>
         <div class="student-chip">
-          <label class="avatar-upload-control" title="更换头像">
-            <input type="file" id="student-avatar-upload" accept="image/*" class="sr-only" />
+          <button id="student-avatar-menu-button" type="button" class="avatar-upload-control" aria-label="选择或上传头像" title="点击更换头像与编辑资料">
             <span id="student-chip-avatar">🌟</span>
-          </label>
+          </button>
+          <input type="file" id="student-avatar-upload" accept="image/*" class="sr-only" />
           <div class="student-chip-info">
-            <span id="student-chip-name">学生</span>
+            <div class="student-chip-name-row">
+              <span id="student-chip-name">学生</span>
+              <span id="student-chip-id" class="student-chip-id-badge" title="学生学号 (系统唯一，不可修改)">510000</span>
+            </div>
             <span id="student-chip-form" class="student-form-pill">Form 2</span>
           </div>
+          <button id="student-profile-edit-button" type="button" class="student-profile-edit-button" aria-label="编辑个人资料" title="编辑个人资料 (修改头像与名字)">✏️</button>
         </div>
         <button id="logout-button" type="button" class="icon-button" aria-label="退出登录" title="退出登录">↪</button>
       </div>
@@ -568,13 +547,12 @@
         <button type="button" class="nav-button active" data-view="dashboard-view">🏰 学习大厅</button>
         <button type="button" class="nav-button" data-view="subjects-view">⚔️ 学科试炼</button>
         <button type="button" class="nav-button" data-view="arcade-view">🎮 迷你游戏乐园</button>
-        <button type="button" class="nav-button" data-view="characters-view">🧙‍♂️ 角色殿堂 & 商城</button>
         <button type="button" class="nav-button" data-view="duel-view">⚔️ 好友巅峰决斗</button>
         <button type="button" class="nav-button" data-view="leaderboard-view">🏆 全校荣耀榜</button>
-        <button type="button" class="nav-button" data-view="achievements-view">👑 成就殿堂</button>
         <button type="button" class="nav-button" data-view="home-view" data-onboarding-target="nav-pets">🐾 我的宠物</button>
         <button type="button" class="nav-button" data-view="guide-view">互动区</button>
         <button type="button" class="nav-button" data-view="shop-view">🛍️ 宠物商店</button>
+        <button type="button" class="nav-button" data-view="characters-view">🌟 英雄扭蛋馆</button>
         <button type="button" class="nav-button" data-view="wall-view">💬 留言墙</button>
         <button type="button" class="nav-button" data-view="friends-view">👥 好友</button>
         <button type="button" class="nav-button" data-view="music-box-view">🎵 音乐盒</button>
@@ -585,14 +563,16 @@
         <!-- Student Header Stats Card -->
         <section class="student-hub-header panel-card">
           <div class="hub-header-left">
-            <div class="hub-avatar-wrap">
+            <div id="hub-avatar-wrap" class="hub-avatar-wrap" title="点击更换头像与编辑资料">
               <span id="hub-avatar-icon" class="hub-avatar-icon">🌟</span>
               <span id="hub-level-badge" class="hub-level-badge">Lv.1</span>
             </div>
             <div class="hub-user-meta">
               <div class="hub-name-row">
                 <h2 id="hub-student-name">探索者</h2>
+                <span id="hub-student-id-tag" class="hub-id-tag" title="学号 (系统唯一，不可修改)">🆔 510000</span>
                 <span id="hub-form-tag" class="kssm-form-tag">Form 2</span>
+                <button id="hub-profile-edit-btn" type="button" class="hub-profile-edit-btn" aria-label="编辑个人资料" title="修改名字与头像">✏️ 编辑资料</button>
               </div>
               <div class="hub-exp-container">
                 <div class="hub-exp-labels">
@@ -606,7 +586,10 @@
             </div>
           </div>
           <div class="hub-header-right">
-            <div class="hub-stat-chip"><span class="chip-icon">🪙</span><strong id="hub-coin-count">80</strong><small>金币</small></div>
+            <div class="hub-stat-chip hub-coin-pill">
+              <img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" alt="学习金币" class="hok-wallet-icon" />
+              <span>学习金币</span><strong><span id="hub-coin-count">80</span></strong>
+            </div>
             <div class="hub-stat-chip"><span class="chip-icon">⭐</span><strong id="hub-star-count">15</strong><small>星星</small></div>
             <div class="hub-streak-chip"><span>🔥</span><strong id="hub-streak-count">3</strong><span>天连击</span></div>
           </div>
@@ -643,32 +626,95 @@
         </section>
 
         <!-- Quick Game & Adventure Portals Row -->
-        <section class="game-portals-hero-row">
+        <section class="game-portals-hero-row" aria-label="游戏与冒险传送门">
+          <!-- 1. 迷你游戏乐园 (Arcade) -->
           <div class="portal-hero-card portal-arcade" onclick="window.__eduverseApp.openView('arcade-view')">
-            <span class="portal-hero-badge">🎮</span>
-            <div class="portal-hero-info">
-              <h4>迷你游戏乐园</h4>
-              <p>4 款趣味街机小游戏 · 挑战反应与跳跃极速得分！</p>
+            <div class="portal-card-ambient"></div>
+            <div class="portal-hero-main">
+              <div class="portal-hero-badge-wrap">
+                <img class="portal-hero-badge-img" src="assets/portals/portal-arcade-badge.webp" alt="迷你游戏" loading="lazy" />
+                <span class="portal-hero-badge-glow"></span>
+              </div>
+              <div class="portal-hero-info">
+                <div class="portal-tag-row">
+                  <span class="portal-tag arcade-tag">⚡ 极速街机</span>
+                  <span class="portal-status-pill hot">🔥 4款必玩</span>
+                </div>
+                <h4>迷你游戏乐园</h4>
+                <p>轮盘反应 · 跑跑挑战 · 极速跳跃！挑战手速赢海量金币！</p>
+                <div class="portal-feature-pills">
+                  <span>🎮 4大经典街机</span>
+                  <span>⚡ 极限手速挑战</span>
+                  <span>🪙 丰厚金币奖励</span>
+                </div>
+              </div>
             </div>
-            <button type="button" class="primary-button compact-button">进入游玩 🚀</button>
+            <div class="portal-action-row">
+              <button type="button" class="portal-cta-btn portal-btn-arcade">
+                <span class="btn-text">进入游玩</span>
+                <span class="btn-icon">🚀</span>
+              </button>
+            </div>
           </div>
 
+          <!-- 2. 英雄扭蛋馆 (Hero Gacha) -->
           <div class="portal-hero-card portal-hero-roles" onclick="window.__eduverseApp.openView('characters-view')">
-            <span class="portal-hero-badge">🧙‍♂️</span>
-            <div class="portal-hero-info">
-              <h4>角色殿堂 & 商城</h4>
-              <p>选择主战英雄 · 购买 26+ 角色 · 盲盒抽卡与神装！</p>
+            <div class="portal-card-ambient"></div>
+            <div class="portal-hero-main">
+              <div class="portal-hero-badge-wrap">
+                <img class="portal-hero-badge-img" src="assets/portals/portal-gacha-badge.webp" alt="英雄扭蛋" loading="lazy" />
+                <span class="portal-hero-badge-glow"></span>
+              </div>
+              <div class="portal-hero-info">
+                <div class="portal-tag-row">
+                  <span class="portal-tag gacha-tag">✨ 盲盒神装</span>
+                  <span class="portal-status-pill mythic">👑 26+ 英雄</span>
+                </div>
+                <h4>英雄扭蛋馆</h4>
+                <p>招募传奇英雄伙伴，解锁绝版神装专属技能，战力直飙 999999！</p>
+                <div class="portal-feature-pills">
+                  <span>🔮 盲盒抽神兽</span>
+                  <span>🛡️ 专属神装搭配</span>
+                  <span>⭐ 战力999999</span>
+                </div>
+              </div>
             </div>
-            <button type="button" class="primary-button compact-button">挑选角色 🌟</button>
+            <div class="portal-action-row">
+              <button type="button" class="portal-cta-btn portal-btn-gacha">
+                <span class="btn-text">挑选角色</span>
+                <span class="btn-icon">🌟</span>
+              </button>
+            </div>
           </div>
 
+          <!-- 3. 好友巅峰决斗 (PVP Arena) -->
           <div class="portal-hero-card portal-duel" onclick="window.__eduverseApp.openView('duel-view')">
-            <span class="portal-hero-badge">⚔️</span>
-            <div class="portal-hero-info">
-              <h4>好友巅峰决斗</h4>
-              <p>与同班好友发起回合制对决 · 答题暴击逆转战局！</p>
+            <div class="portal-card-ambient"></div>
+            <div class="portal-hero-main">
+              <div class="portal-hero-badge-wrap">
+                <img class="portal-hero-badge-img" src="assets/portals/portal-duel-badge.webp" alt="巅峰决斗" loading="lazy" />
+                <span class="portal-hero-badge-glow"></span>
+              </div>
+              <div class="portal-hero-info">
+                <div class="portal-tag-row">
+                  <span class="portal-tag duel-tag">⚔️ 巅峰竞技场</span>
+                  <span class="portal-status-pill live">💥 实时决斗</span>
+                </div>
+                <h4>好友巅峰决斗</h4>
+                <p>与同班好友发起回合制对决，答题触发致命暴击与终极技能逆转！</p>
+                <div class="portal-feature-pills">
+                  <span>⚔️ 1V1 回合对决</span>
+                  <span>🧠 答题暴击加成</span>
+                  <span>🏆 争夺巅峰段位</span>
+                </div>
+              </div>
             </div>
-            <button type="button" class="primary-button compact-button">前往决斗 ⚔️</button>
+            <div class="portal-action-row">
+              <button type="button" class="portal-cta-btn portal-btn-duel">
+                <span class="btn-text">前往决斗</span>
+                <span class="btn-icon">⚔️</span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -750,7 +796,16 @@
             <div class="quest-status-col">
               <div class="quest-combo-counter"><span class="combo-flame">🔥</span><strong id="quest-combo-count">0</strong><span>COMBO</span></div>
               <div class="quest-timer-box">⏱️ <strong id="quest-timer-display">00:45</strong></div>
-              <button id="quest-sound-toggle-btn" type="button" class="icon-button compact-icon-btn" title="音效开关">🔊</button>
+              <div class="quest-audio-group">
+                <button id="quest-music-toggle-btn" type="button" class="icon-button compact-icon-btn music-toggle-button audio-control-btn" title="背景音乐 (BGM)：播放中 (点击静音)">
+                  <span class="audio-btn-icon">🎵</span>
+                  <span class="audio-btn-tag">BGM</span>
+                </button>
+                <button id="quest-sound-toggle-btn" type="button" class="icon-button compact-icon-btn sound-toggle-button audio-control-btn" title="游戏音效 (SFX)：开启 (点击静音)">
+                  <span class="audio-btn-icon">🔊</span>
+                  <span class="audio-btn-tag">SFX</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -792,7 +847,7 @@
               <div class="settlement-box"><span class="box-icon">🎯</span><strong id="settlement-accuracy">100%</strong><small>本次正确率</small></div>
               <div class="settlement-box"><span class="box-icon">🔥</span><strong id="settlement-combo">5 COMBO</strong><small>最高连击 (1.5x)</small></div>
               <div class="settlement-box"><span class="box-icon">⭐</span><strong id="settlement-total-exp">+450 EXP</strong><small>总经验奖励</small></div>
-              <div class="settlement-box"><span class="box-icon">🪙</span><strong id="settlement-coins">+50 Coins</strong><small>金币收益</small></div>
+              <div class="settlement-box"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" alt="学习金币" class="settlement-box-coin-img" /><strong id="settlement-coins">+50 Coins</strong><small>学习金币收益</small></div>
             </div>
 
             <div class="settlement-breakdown-card">
@@ -858,24 +913,7 @@
         </section>
       </section>
 
-      <!-- 5. EduVerse Achievements Hall View -->
-      <section id="achievements-view" class="view hidden">
-        <section class="panel-card">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">TROPHY GALLERY</p>
-              <h3>👑 成就殿堂 (Trophy & Badges)</h3>
-              <p class="muted-text">解锁勋章不仅能获得丰厚 EXP 赏金，还能提升你的全校荣耀等级！</p>
-            </div>
-          </div>
-
-          <div id="achievements-gallery-grid" class="achievements-gallery-grid">
-            <!-- Achievement badges (Common, Rare, Epic, Legendary) -->
-          </div>
-        </section>
-      </section>
-
-      <!-- 6. Mini-Games Arcade View (多个小游戏乐园) -->
+      <!-- 5. Mini-Games Arcade View (多个小游戏乐园) -->
       <section id="arcade-view" class="view hidden">
         <section class="panel-card arcade-header">
           <div class="panel-heading">
@@ -889,50 +927,78 @@
             </div>
           </div>
 
-          <!-- 4 Game Station Cards -->
+          <!-- 4 Game Station Cards with Illustrated Backgrounds -->
           <div class="arcade-stations-grid">
             <!-- Game 1: Reaction Blitz -->
-            <div class="arcade-game-card theme-bc" onclick="window.__eduverseApp.launchArcadeGame('reaction')">
-              <div class="arcade-card-badge">⚡</div>
+            <div class="arcade-game-card theme-bc arcade-card-reaction" onclick="window.__eduverseApp.launchArcadeGame('reaction')">
+              <div class="arcade-card-bg-layer" style="background-image: url('assets/arcade/arcade-bg-reaction.webp');"></div>
+              <div class="arcade-card-overlay"></div>
+              <div class="arcade-card-top-row">
+                <div class="arcade-card-badge">⚡</div>
+                <span class="arcade-genre-chip genre-blitz">⚡ 闪电反应</span>
+              </div>
               <div class="arcade-card-info">
                 <h4>极速反应转盘 (Reaction Blitz)</h4>
                 <p>测试闪电般的反应力！在指针划过目标高亮扇区时精准点击。</p>
-                <div class="arcade-score-tag">最高纪录: <strong id="best-score-reaction">0</strong> pts</div>
+                <div class="arcade-score-tag">🏆 最高纪录: <strong id="best-score-reaction">0</strong> pts</div>
               </div>
-              <button type="button" class="primary-button compact-button action-glow-button">开始游玩 🎮</button>
+              <div class="arcade-action-wrap">
+                <button type="button" class="arcade-play-btn btn-reaction">开始游玩 🎮</button>
+              </div>
             </div>
 
             <!-- Game 2: Flappy Pet -->
-            <div class="arcade-game-card theme-bm" onclick="window.__eduverseApp.launchArcadeGame('flappy')">
-              <div class="arcade-card-badge">🐦</div>
+            <div class="arcade-game-card theme-bm arcade-card-flappy" onclick="window.__eduverseApp.launchArcadeGame('flappy')">
+              <div class="arcade-card-bg-layer" style="background-image: url('assets/arcade/arcade-bg-flappy.webp');"></div>
+              <div class="arcade-card-overlay"></div>
+              <div class="arcade-card-top-row">
+                <div class="arcade-card-badge">🐦</div>
+                <span class="arcade-genre-chip genre-flappy">🌿 飞行闯关</span>
+              </div>
               <div class="arcade-card-info">
                 <h4>萌宠飞跃秘境 (Flappy Pet Quest)</h4>
                 <p>带领你的主战角色穿越高低障碍柱，收集空中飘浮金币！</p>
-                <div class="arcade-score-tag">最高纪录: <strong id="best-score-flappy">0</strong> pts</div>
+                <div class="arcade-score-tag">🏆 最高纪录: <strong id="best-score-flappy">0</strong> pts</div>
               </div>
-              <button type="button" class="primary-button compact-button action-glow-button">开始游玩 🎮</button>
+              <div class="arcade-action-wrap">
+                <button type="button" class="arcade-play-btn btn-flappy">开始游玩 🎮</button>
+              </div>
             </div>
 
             <!-- Game 3: Dash Runner -->
-            <div class="arcade-game-card theme-bi" onclick="window.__eduverseApp.launchArcadeGame('runner')">
-              <div class="arcade-card-badge">🏃</div>
+            <div class="arcade-game-card theme-bi arcade-card-runner" onclick="window.__eduverseApp.launchArcadeGame('runner')">
+              <div class="arcade-card-bg-layer" style="background-image: url('assets/arcade/arcade-bg-runner.webp');"></div>
+              <div class="arcade-card-overlay"></div>
+              <div class="arcade-card-top-row">
+                <div class="arcade-card-badge">🏃</div>
+                <span class="arcade-genre-chip genre-runner">🚀 极限酷跑</span>
+              </div>
               <div class="arcade-card-info">
                 <h4>无尽酷跑大冲刺 (Dash Runner)</h4>
                 <p>跨越地形陷阱与障碍物，极速冲刺挑战最远奔跑距离！</p>
-                <div class="arcade-score-tag">最高纪录: <strong id="best-score-runner">0</strong> m</div>
+                <div class="arcade-score-tag">🏆 最高纪录: <strong id="best-score-runner">0</strong> m</div>
               </div>
-              <button type="button" class="primary-button compact-button action-glow-button">开始游玩 🎮</button>
+              <div class="arcade-action-wrap">
+                <button type="button" class="arcade-play-btn btn-runner">开始游玩 🎮</button>
+              </div>
             </div>
 
             <!-- Game 4: Jump Charge -->
-            <div class="arcade-game-card theme-math" onclick="window.__eduverseApp.launchArcadeGame('jumpCharge')">
-              <div class="arcade-card-badge">🚀</div>
+            <div class="arcade-game-card theme-math arcade-card-jump" onclick="window.__eduverseApp.launchArcadeGame('jumpCharge')">
+              <div class="arcade-card-bg-layer" style="background-image: url('assets/arcade/arcade-bg-jump.webp');"></div>
+              <div class="arcade-card-overlay"></div>
+              <div class="arcade-card-top-row">
+                <div class="arcade-card-badge">🚀</div>
+                <span class="arcade-genre-chip genre-jump">🌌 蓄力跳跃</span>
+              </div>
               <div class="arcade-card-info">
                 <h4>聚力跳跃大师 (Jump Charge)</h4>
                 <p>长按蓄力计算抛物线，精准跃上每一块神秘悬浮浮台！</p>
-                <div class="arcade-score-tag">最高纪录: <strong id="best-score-jumpCharge">0</strong> 阶</div>
+                <div class="arcade-score-tag">🏆 最高纪录: <strong id="best-score-jumpCharge">0</strong> 阶</div>
               </div>
-              <button type="button" class="primary-button compact-button action-glow-button">开始游玩 🎮</button>
+              <div class="arcade-action-wrap">
+                <button type="button" class="arcade-play-btn btn-jump">开始游玩 🎮</button>
+              </div>
             </div>
           </div>
         </section>
@@ -956,7 +1022,7 @@
           </div>
 
           <div class="arcade-canvas-wrapper">
-            <canvas id="arcade-game-canvas" width="800" height="420" class="arcade-game-canvas"></canvas>
+            <canvas id="arcade-game-canvas" width="900" height="540" class="arcade-game-canvas"></canvas>
             <div id="arcade-touch-controls" class="arcade-touch-controls">
               <button id="arcade-main-action-btn" type="button" class="primary-button arcade-action-touch-btn">⚡ 点击动作 / 跳跃 (TAP / JUMP)</button>
             </div>
@@ -971,7 +1037,7 @@
                 <div class="stat-box"><span class="label">本次得分</span><strong id="gameover-final-score">0</strong></div>
                 <div class="stat-box"><span class="label">历史最高</span><strong id="gameover-high-score">0</strong></div>
                 <div class="stat-box"><span class="label">获得 EXP</span><strong id="gameover-reward-exp" style="color:#6366f1;">+0</strong></div>
-                <div class="stat-box"><span class="label">获得金币</span><strong id="gameover-reward-coins" style="color:#f59e0b;">+0</strong></div>
+                <div class="stat-box"><span class="label">获得学习金币</span><strong id="gameover-reward-coins" style="color:#f59e0b;">+0</strong></div>
               </div>
               <div class="gameover-actions">
                 <button id="gameover-retry-btn" type="button" class="primary-button action-glow-button">🔄 再玩一次</button>
@@ -982,73 +1048,130 @@
         </section>
       </section>
 
-      <!-- 7. Hero Characters Sanctuary & Shop View (真实角色选择 & 商城) -->
+      <!-- 7. Hero Gacha Hall (Honor of Kings Lucky Treasure Style) -->
       <section id="characters-view" class="view hidden">
-        <!-- Top Hero Header & Filter -->
-        <section class="panel-card hero-sanctuary-header">
-          <div class="panel-heading">
+        <section class="hero-gacha-hall hok-gacha-hall-container">
+          <!-- Top Bar with Wallet & Countdown -->
+          <div class="hero-gacha-head hok-head-bar">
             <div>
-              <p class="eyebrow">HERO SANCTUARY & SHOP</p>
-              <h2>🧙‍♂️ 角色殿堂 · 英雄养成与角色商城</h2>
-              <p class="muted-text">选择你的主战英雄，解锁全套 1920x1080 震撼原画、进化形态与专属神器装备！</p>
+              <p class="eyebrow">KING OF GLORY STYLE · LIMITED HERO TREASURE</p>
+              <h2>🌟 英雄夺宝扭蛋馆</h2>
+              <p>消耗学习金币开启星核召唤。环形跑马灯矩阵抽奖，概率公开透明，满幸运值必得限定神兽英雄！</p>
             </div>
-            <div class="hero-shop-currency-badge">
-              <span>🪙 金币：<strong id="char-view-coins">80</strong></span>
-              <span>⭐ 胜点：<strong id="char-view-stars">15</strong></span>
-            </div>
-          </div>
-
-          <!-- Series Tabs -->
-          <div id="character-series-tabs" class="character-series-tabs" role="tablist">
-            <button type="button" class="nav-button active" data-series="all">全部角色 (ALL)</button>
-            <button type="button" class="nav-button" data-series="pokemon">⚡ 宝可梦</button>
-            <button type="button" class="nav-button" data-series="popmart">🎪 盲盒潮玩</button>
-            <button type="button" class="nav-button" data-series="sanrio">🎀 三丽鸥</button>
-            <button type="button" class="nav-button" data-series="minecraft">🧱 我的世界</button>
-            <button type="button" class="nav-button" data-series="cartoon">🎨 经典动漫</button>
-            <button type="button" class="nav-button" data-series="elemental">🐉 元素神兽</button>
-          </div>
-        </section>
-
-        <div class="hero-sanctuary-layout">
-          <!-- Left: Roster Grid -->
-          <div class="hero-roster-column">
-            <div class="roster-heading">
-              <h4>英雄名册列表 (<span id="unlocked-hero-count">1</span> / 26 已解锁)</h4>
-              <small class="muted-text">点击角色查看技能、属性战力并一键出战</small>
-            </div>
-            <div id="hero-roster-grid" class="hero-roster-grid">
-              <!-- Roster cards dynamically populated -->
-            </div>
-          </div>
-
-          <!-- Right: Detailed Showcase & Actions -->
-          <div class="hero-details-column">
-            <div id="hero-showcase-card" class="panel-card hero-showcase-card">
-              <!-- Dynamic Hero Showcase Container -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Hero Gacha Machine Section -->
-        <section class="panel-card gacha-machine-section">
-          <div class="gacha-machine-inner">
-            <div class="gacha-visual-box">
-              <span class="gacha-machine-icon">🎰</span>
-              <div class="gacha-title-box">
-                <h3>🌟 幸运扭蛋机 · 盲盒抽卡 (LUCKY GACHA)</h3>
-                <p class="muted-text">每次抽卡均有机会抽取 SSR / LEGEND 稀有角色与专属神装！重复抽取将自动折算金币返还。</p>
+            <div class="hok-wallet-bar">
+              <div class="hok-wallet-pill">
+                <img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" alt="学习金币" class="hok-wallet-icon" />
+                <span>学习金币</span><strong><span id="char-view-coins">0</span></strong>
+              </div>
+              <div class="hok-wallet-pill">
+                <img src="assets/roles/hero-gacha/items/diamonds-pack.png?v=20260904-04" alt="荣耀星星" class="hok-wallet-icon" />
+                <span>荣耀星星</span><strong><span id="char-view-stars">0</span></strong>
+              </div>
+              <div class="hok-wallet-pill">
+                <img src="assets/roles/hero-gacha/items/gacha-ticket.png?v=20260904-04" alt="抽奖券" class="hok-wallet-icon" />
+                <span>抽奖券</span><strong><span id="char-view-tickets">0</span></strong>
               </div>
             </div>
-            <div class="gacha-action-buttons">
-              <button id="gacha-single-pull-btn" type="button" class="primary-button action-glow-button gacha-pull-btn">
-                <span>🔘 单次抽取</span>
-                <strong>🪙 100 金币</strong>
-              </button>
-              <button id="gacha-ten-pull-btn" type="button" class="primary-button action-glow-button gacha-pull-btn ten-pull-glow">
-                <span>🔟 连环十连抽 (9折)</span>
-                <strong>🪙 900 金币</strong>
-              </button>
+          </div>
+
+          <!-- The Main Arena: Left/Center 14-grid + Right Weekly Milestone Track -->
+          <div class="hok-gacha-stage-wrapper">
+            <!-- 14-Grid Wheel Board -->
+            <div class="hok-gacha-board">
+              <div class="hok-board-top-status">
+                <span class="hok-title-tag">👑 荣耀英雄夺宝</span>
+                <span class="hok-countdown-tag" id="hok-countdown-tag">⏳ 限时奖池重置倒计时: 1天 21:03:26</span>
+              </div>
+
+              <!-- 5x4 Grid containing the 14 slots around the perimeter -->
+              <div id="hok-wheel-grid" class="hok-wheel-grid">
+                <!-- 14 slots rendered dynamically -->
+              </div>
+
+              <!-- Center Core Area floating in rows 2-3, cols 2-4 -->
+              <div class="hok-center-core" id="hok-center-core">
+                <button type="button" class="hok-rule-pill-btn" id="hok-rule-trigger-btn" onclick="window.__eduverseApp.openGachaRuleModal()">规则 ⓘ</button>
+                <div class="hok-crystal-anchor">
+                  <div class="hok-crystal-orb" id="hok-crystal-orb">
+                    <img class="hok-central-star-core-img" src="assets/roles/hero-gacha/items/star-crystal-core.png?v=20260904-04" alt="星核神晶" />
+                    <div class="crystal-facet facet-1"></div>
+                    <div class="crystal-facet facet-2"></div>
+                    <div class="crystal-facet facet-3"></div>
+                    <div class="crystal-core-glow"></div>
+                  </div>
+                </div>
+
+                <div class="hok-pity-hud">
+                  <div class="hok-pity-title">当前幸运值 <strong id="hero-gacha-pity-count">0 / 50</strong></div>
+                  <div class="hok-pity-track">
+                    <div id="hero-gacha-pity-bar" class="hok-pity-fill" style="width: 0%;"></div>
+                  </div>
+                  <small class="hok-pity-tip">幸运值越高，获得神兽英雄几率越高！达到 50 必得限定 SSR！</small>
+                </div>
+
+                <div class="hok-draw-actions">
+                  <button id="gacha-single-pull-btn" type="button" class="gacha-pull-btn hok-draw-btn single-pull-btn" onclick="window.__eduverseApp.triggerHeroGacha('single')">
+                    <span class="btn-coin-label"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" class="btn-mini-coin-icon" alt="" /> 60 召唤一次</span>
+                  </button>
+                  <button id="gacha-ten-pull-btn" type="button" class="gacha-pull-btn hok-draw-btn multi-pull-btn" onclick="window.__eduverseApp.triggerHeroGacha('ten')">
+                    <span class="discount-badge">9折特惠</span>
+                    <span class="btn-coin-label"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" class="btn-mini-coin-icon" alt="" /> 270 召唤五次</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Sidebar: Weekly Cumulative Milestone Chests -->
+            <aside class="hok-milestone-sidebar">
+              <div class="sidebar-header">
+                <h4>🎁 额外奖励</h4>
+                <p>本周累计: <strong id="hok-weekly-pull-count">0</strong> 次</p>
+              </div>
+              <div class="milestone-vertical-track" id="hok-milestone-track">
+                <!-- 5, 15, 35, 65 pulls milestone nodes -->
+              </div>
+            </aside>
+          </div>
+
+          <!-- Transparent Rates Note (Required by Tests) -->
+          <div class="hero-gacha-rates hok-rates-inline">
+            <strong>概率公开与保底说明：</strong>
+            <span>限定 SSR 英雄 2%</span>
+            <span>宠物装备 98%</span>
+            <span>十连至少 1 位限定英雄</span>
+            <span>最多 50 抽必得限定英雄</span>
+          </div>
+
+          <!-- Hero Gallery & Equipment Showcase Collapsible Drawer (Required by Tests & Catalog) -->
+          <details class="hok-hero-showcase-drawer" open>
+            <summary class="drawer-summary">
+              <span>📖 英雄伙伴档案与专属神装全图鉴（点击展开/收起）</span>
+              <small>六大限定英雄已入驻，可在抽卡前预览全部形态与技能</small>
+            </summary>
+            <div id="hero-gacha-pool-grid" class="hero-gacha-pool-grid" aria-label="本期英雄奖池"></div>
+            <section class="hero-gacha-rewards">
+              <div class="rewards-heading">
+                <p class="eyebrow">EQUIPMENT REWARDS</p>
+                <h3>宠物专属神装图鉴</h3>
+                <p>没有抽到英雄时，会获得现有宠物的真实专属装备；装备会自动存入对应宠物的装备栏中提升战力。</p>
+              </div>
+              <div id="hero-gacha-equipment-preview" class="hero-gacha-equipment-preview"></div>
+            </section>
+          </details>
+
+          <!-- Gacha Rule Modal -->
+          <div id="hok-gacha-rule-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+            <div class="modal-card hok-rule-modal-card">
+              <div class="modal-header">
+                <h3>📜 英雄夺宝规则与概率公示</h3>
+                <button type="button" class="close-btn" onclick="document.getElementById('hok-gacha-rule-modal').classList.add('hidden')">✕</button>
+              </div>
+              <div class="rule-content-body">
+                <p><strong>1. 召唤机制</strong>：每次召唤消耗 60 学习金币，五连召唤享受 9 折优惠仅需 270 学习金币。</p>
+                <p><strong>2. 幸运值体系</strong>：未抽中 SSR 英雄时，每次召唤均会累积 +1 幸运值。幸运值越高，获得稀有神兽英雄的概率越高；当幸运值达到 50 时，必定触发【终极保底】，直接获得限定 SSR 英雄并将幸运值重置为 0。</p>
+                <p><strong>3. 概率公示</strong>：限定 SSR 英雄 2%、S级/A级专属装备与极品符文 98%（十连至少 1 位限定英雄）。</p>
+                <p><strong>4. 每周累计宝箱</strong>：每周根据总抽卡次数累积里程进度，分别在达到 5次、15次、35次、65次 时解锁额外豪华宝箱奖品！</p>
+              </div>
             </div>
           </div>
         </section>
@@ -1062,25 +1185,27 @@
             <div>
               <p class="eyebrow">PVP DUEL ARENA</p>
               <h2>⚔️ 好友巅峰决斗擂台</h2>
-              <p class="muted-text">携带你的专属主战角色与神装，与同班好友或天梯 AI 守护者展开回合制热血 RPG 对决！</p>
+              <p class="muted-text">派出你的当前宠物与专属技能，挑战好友的真实宠物资料或训练塔守护者！</p>
             </div>
             <div class="duel-user-rank-badge">
-              <span>🏆 决斗战绩：<strong id="duel-win-count">5</strong> 胜 / <strong id="duel-loss-count">1</strong> 负</span>
+              <span>🪞 好友宠物影子战 · 读取双方真实宠物资料</span>
             </div>
           </div>
+
+          <div id="duel-player-preview" class="duel-player-preview"></div>
 
           <div class="duel-mode-grid">
             <!-- Mode 1: Friend Matchmaking -->
             <div class="duel-mode-card">
               <div class="mode-card-header">
-                <h3>👥 挑选班级好友对决</h3>
-                <p class="muted-text">选择一位在线/离线同学进行决斗，系统将自动加载其实际角色与战力</p>
+                <h3>👥 挑选好友宠物对决</h3>
+                <p class="muted-text">选择一位好友，系统会读取双方当前宠物、进化形态、等级与真实战力。</p>
               </div>
               <div id="duel-friends-list" class="duel-friends-list">
                 <!-- Classmates list items -->
               </div>
               <div class="duel-manual-search">
-                <input id="duel-target-id-input" placeholder="输入指定学生 ID (例如 510002)..." />
+                <input id="duel-target-id-input" placeholder="输入好友学生 ID 发起对决..." />
                 <button id="duel-start-friend-btn" type="button" class="primary-button action-glow-button">⚔️ 发起好友对决</button>
               </div>
             </div>
@@ -1088,51 +1213,144 @@
             <!-- Mode 2: AI Ladder Bosses -->
             <div class="duel-mode-card">
               <div class="mode-card-header">
-                <h3>🤖 天梯守护者挑战 (AI BOSS)</h3>
+                <h3>🤖 宠物训练塔 (AI BOSS)</h3>
                 <p class="muted-text">挑战守护神秘学科圣地的传奇角色，通关赢取海量金币与专属成就！</p>
               </div>
               <div class="duel-bosses-list">
-                <div class="duel-boss-item" onclick="window.__eduverseApp.startBossDuel('pikachu')">
-                  <span class="boss-avatar">⚡</span>
+                <!-- Boss 1: Pikachu (Electric) -->
+                <div class="duel-boss-item boss-theme-electric" onclick="window.__eduverseApp.startBossDuel('pikachu')">
+                  <div class="boss-card-bg-layer"></div>
+                  <div class="boss-avatar-wrapper">
+                    <span class="boss-avatar"><img src="assets/optimized/role-thumbs/new-character-pokemon-pikachu-pikachu-before.webp?v=20260902-11" alt="Pikachu" loading="lazy" decoding="async" /></span>
+                    <span class="boss-element-tag">⚡</span>
+                  </div>
                   <div class="boss-info">
+                    <div class="boss-badge-row">
+                      <span class="boss-floor-pill">FLOOR 01 · 初阶试炼</span>
+                      <span class="boss-element-pill element-electric">⚡ 电属性</span>
+                    </div>
                     <strong>赤红的皮卡丘 (Pikachu)</strong>
-                    <small>Lv.15 · 战斗值 ⚔️ 1,280 · 电属性</small>
+                    <div class="boss-metrics-row">
+                      <span class="boss-metric-item">Lv.15</span>
+                      <span class="boss-metric-item highlight-cp">⚔️ 1,280</span>
+                      <span class="boss-metric-reward">🪙 +300 金币</span>
+                    </div>
+                    <small class="boss-legacy-stats" style="display:none;">Lv.15 · 战斗值 ⚔️ 1,280 · 电属性</small>
                   </div>
-                  <button type="button" class="primary-button compact-button">挑战 ⚔️</button>
+                  <button type="button" class="primary-button compact-button boss-challenge-btn" onclick="event.stopPropagation(); window.__eduverseApp.startBossDuel('pikachu')">挑战 ⚡</button>
                 </div>
-                <div class="duel-boss-item" onclick="window.__eduverseApp.startBossDuel('charizard')">
-                  <span class="boss-avatar">🔥</span>
+
+                <!-- Boss 2: Charizard (Fire) -->
+                <div class="duel-boss-item boss-theme-fire" onclick="window.__eduverseApp.startBossDuel('charizard')">
+                  <div class="boss-card-bg-layer"></div>
+                  <div class="boss-avatar-wrapper">
+                    <span class="boss-avatar"><img src="assets/optimized/role-thumbs/new-character-pokemon-chalizard-chalizard-before.webp?v=20260902-11" alt="Charizard" loading="lazy" decoding="async" /></span>
+                    <span class="boss-element-tag">🔥</span>
+                  </div>
                   <div class="boss-info">
+                    <div class="boss-badge-row">
+                      <span class="boss-floor-pill">FLOOR 02 · 熔岩炽炎</span>
+                      <span class="boss-element-pill element-fire">🔥 火属性</span>
+                    </div>
                     <strong>烈焰喷火龙 (Charizard)</strong>
-                    <small>Lv.20 · 战斗值 ⚔️ 1,850 · 火属性</small>
+                    <div class="boss-metrics-row">
+                      <span class="boss-metric-item">Lv.20</span>
+                      <span class="boss-metric-item highlight-cp">⚔️ 1,850</span>
+                      <span class="boss-metric-reward">🪙 +500 金币</span>
+                    </div>
+                    <small class="boss-legacy-stats" style="display:none;">Lv.20 · 战斗值 ⚔️ 1,850 · 火属性</small>
                   </div>
-                  <button type="button" class="primary-button compact-button">挑战 ⚔️</button>
+                  <button type="button" class="primary-button compact-button boss-challenge-btn" onclick="event.stopPropagation(); window.__eduverseApp.startBossDuel('charizard')">挑战 🔥</button>
                 </div>
-                <div class="duel-boss-item" onclick="window.__eduverseApp.startBossDuel('enderdragon')">
-                  <span class="boss-avatar">🐉</span>
+
+                <!-- Boss 3: Ender Dragon (Void) -->
+                <div class="duel-boss-item boss-theme-void" onclick="window.__eduverseApp.startBossDuel('enderdragon')">
+                  <div class="boss-card-bg-layer"></div>
+                  <div class="boss-avatar-wrapper">
+                    <span class="boss-avatar"><img src="assets/optimized/role-thumbs/new-character-minecraft-enderdragon-enderdragon-before.webp?v=20260902-11" alt="Ender Dragon" loading="lazy" decoding="async" /></span>
+                    <span class="boss-element-tag">🌌</span>
+                  </div>
                   <div class="boss-info">
+                    <div class="boss-badge-row">
+                      <span class="boss-floor-pill">FLOOR 03 · 终末虚空</span>
+                      <span class="boss-element-pill element-void">🌌 虚空属性</span>
+                    </div>
                     <strong>末影黑龙神 (Ender Dragon)</strong>
-                    <small>Lv.25 · 战斗值 ⚔️ 2,600 · 虚空属性</small>
+                    <div class="boss-metrics-row">
+                      <span class="boss-metric-item">Lv.25</span>
+                      <span class="boss-metric-item highlight-cp">⚔️ 2,600</span>
+                      <span class="boss-metric-reward">🪙 +800 金币</span>
+                    </div>
+                    <small class="boss-legacy-stats" style="display:none;">Lv.25 · 战斗值 ⚔️ 2,600 · 虚空属性</small>
                   </div>
-                  <button type="button" class="primary-button compact-button">挑战 ⚔️</button>
+                  <button type="button" class="primary-button compact-button boss-challenge-btn" onclick="event.stopPropagation(); window.__eduverseApp.startBossDuel('enderdragon')">挑战 🌌</button>
                 </div>
-                <div class="duel-boss-item" onclick="window.__eduverseApp.startBossDuel('mewtwo')">
-                  <span class="boss-avatar">🔮</span>
-                  <div class="boss-info">
-                    <strong>超梦之影 (Mewtwo)</strong>
-                    <small>Lv.30 · 战斗值 ⚔️ 3,400 · 超能巅峰</small>
+
+                <!-- Boss 4: Mewtwo (Psychic / Final Boss) -->
+                <div class="duel-boss-item boss-theme-psychic" onclick="window.__eduverseApp.startBossDuel('mewtwo')">
+                  <div class="boss-card-bg-layer"></div>
+                  <div class="boss-avatar-wrapper">
+                    <span class="boss-avatar"><img src="assets/optimized/role-thumbs/new-character-pokemon-mewtwo-mewtwo-before.webp?v=20260902-11" alt="Mewtwo" loading="lazy" decoding="async" /></span>
+                    <span class="boss-element-tag">🔮</span>
                   </div>
-                  <button type="button" class="primary-button compact-button">挑战 ⚔️</button>
+                  <div class="boss-info">
+                    <div class="boss-badge-row">
+                      <span class="boss-floor-pill crown-pill">👑 FLOOR 04 · 极境神殿</span>
+                      <span class="boss-element-pill element-psychic">🔮 超能巅峰</span>
+                    </div>
+                    <strong>超梦之影 (Mewtwo)</strong>
+                    <div class="boss-metrics-row">
+                      <span class="boss-metric-item">Lv.30</span>
+                      <span class="boss-metric-item highlight-cp">⚔️ 3,400</span>
+                      <span class="boss-metric-reward">🪙 +1,500 金币</span>
+                    </div>
+                    <small class="boss-legacy-stats" style="display:none;">Lv.30 · 战斗值 ⚔️ 3,400 · 超能巅峰</small>
+                  </div>
+                  <button type="button" class="primary-button compact-button boss-challenge-btn" onclick="event.stopPropagation(); window.__eduverseApp.startBossDuel('mewtwo')">挑战 🔮</button>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
+        <div id="duel-scene-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="duel-scene-title">
+          <div class="modal-card duel-scene-modal-card">
+            <div class="duel-scene-heading">
+              <div>
+                <p class="eyebrow">CHOOSE YOUR BATTLEFIELD</p>
+                <h2 id="duel-scene-title">选择决斗场景</h2>
+                <p>选择一个战场，然后让双方宠物正式开战。</p>
+              </div>
+              <button id="duel-scene-cancel-btn" type="button" class="secondary-button compact-button" onclick="window.__eduverseApp.closeDuelScenePicker()">取消</button>
+            </div>
+            <div id="duel-scene-grid" class="duel-scene-grid">
+              <button type="button" class="duel-scene-card" data-duel-scene="magic-academy" onclick="window.__eduverseApp.selectDuelScene('magic-academy')">
+                <img src="assets/duel-scenes/magic-academy-arena.jpg?v=20260902-11" alt="魔法学院竞技场" loading="lazy" decoding="async" />
+                <span><strong>魔法学院</strong><small>星光魔法 · 远古学院竞技场</small></span>
+              </button>
+              <button type="button" class="duel-scene-card" data-duel-scene="lava-temple" onclick="window.__eduverseApp.selectDuelScene('lava-temple')">
+                <img src="assets/duel-scenes/lava-temple-arena.jpg?v=20260902-11" alt="熔岩火山神殿" loading="lazy" decoding="async" />
+                <span><strong>熔岩神殿</strong><small>火山熔岩 · 炽热能量爆发</small></span>
+              </button>
+              <button type="button" class="duel-scene-card" data-duel-scene="neon-city" onclick="window.__eduverseApp.selectDuelScene('neon-city')">
+                <img src="assets/duel-scenes/neon-city-arena.jpg?v=20260902-11" alt="未来霓虹城市" loading="lazy" decoding="async" />
+                <span><strong>霓虹未来城</strong><small>科技都会 · 极速光能赛场</small></span>
+              </button>
+              <button type="button" class="duel-scene-card" data-duel-scene="dinosaur-jungle" onclick="window.__eduverseApp.selectDuelScene('dinosaur-jungle')">
+                <img src="assets/duel-scenes/dinosaur-jungle-arena.jpg?v=20260902-11" alt="远古恐龙丛林" loading="lazy" decoding="async" />
+                <span><strong>远古恐龙丛林</strong><small>原始遗迹 · 野性冒险战场</small></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Live Turn-Based Battle Stage Panel -->
         <section id="duel-stage-panel" class="panel-card duel-stage-panel hidden">
           <div class="battle-stage-header">
-            <span class="battle-turn-indicator" id="battle-turn-label">第 1 回合 · 你的行动阶段</span>
+            <div class="battle-stage-status">
+              <span id="battle-scene-name" class="battle-scene-name">魔法学院</span>
+              <span class="battle-turn-indicator" id="battle-turn-label">第 1 回合 · 你的行动阶段</span>
+            </div>
             <button id="battle-surrender-btn" type="button" class="secondary-button compact-button">🏳️ 认输撤退</button>
           </div>
 
@@ -1141,7 +1359,7 @@
             <!-- Player 1 (Left) -->
             <div id="fighter-player" class="fighter-card fighter-left">
               <div class="fighter-visual-wrap">
-                <div class="fighter-sprite" id="p1-sprite">🌟</div>
+                <div class="fighter-sprite" id="p1-sprite" aria-label="我的出战宠物"></div>
                 <div class="fighter-status-buffs" id="p1-buffs"></div>
               </div>
               <div class="fighter-meta">
@@ -1163,7 +1381,7 @@
             <!-- Player 2 (Right) -->
             <div id="fighter-enemy" class="fighter-card fighter-right">
               <div class="fighter-visual-wrap">
-                <div class="fighter-sprite" id="p2-sprite">⚡</div>
+                <div class="fighter-sprite" id="p2-sprite" aria-label="对手出战宠物"></div>
                 <div class="fighter-status-buffs" id="p2-buffs"></div>
               </div>
               <div class="fighter-meta">
@@ -1192,7 +1410,7 @@
             </button>
 
             <button id="battle-btn-skill" type="button" class="battle-cmd-btn cmd-skill">
-              <span class="cmd-icon">💥</span>
+              <span class="cmd-icon" id="p1-skill-icon">💥</span>
               <div class="cmd-info">
                 <strong id="p1-skill-name">专属必杀技</strong>
                 <small id="p1-skill-desc">消耗 50 MP 造成高额元素伤害</small>
@@ -1208,10 +1426,10 @@
             </button>
 
             <button id="battle-btn-quiz" type="button" class="battle-cmd-btn cmd-quiz">
-              <span class="cmd-icon">🧠</span>
+              <span class="cmd-icon" id="p1-ultimate-icon">🌟</span>
               <div class="cmd-info">
-                <strong>学科暴击涌流 (QUIZ BURST)</strong>
-                <small>5 秒速答 KSSM 试题 · 答对触发 3.0x 暴击！</small>
+                <strong id="p1-ultimate-name">终极大招 (ULTIMATE)</strong>
+                <small id="p1-ultimate-desc">5 秒速答 KSSM 试题 · 答对触发 3.5x 暴击！</small>
               </div>
             </button>
           </div>
@@ -1228,8 +1446,15 @@
           <div id="battle-quiz-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
             <div class="modal-card quiz-burst-modal-card">
               <div class="quiz-burst-header">
-                <span class="kssm-chip kssm-chip-glow">🧠 学科能量暴击速答</span>
+                <span class="kssm-chip kssm-chip-glow" id="quiz-burst-badge">💥 终极奥义·速答爆发</span>
                 <span id="quiz-burst-timer" class="quiz-burst-countdown">⏳ 5s</span>
+              </div>
+              <div id="quiz-burst-ult-banner" class="quiz-burst-ult-banner">
+                <span class="quiz-burst-ult-icon" id="quiz-burst-ult-icon">🌟</span>
+                <div class="quiz-burst-ult-info">
+                  <strong id="quiz-burst-ult-name">终极大招</strong>
+                  <small id="quiz-burst-ult-hint">5 秒内答对题目 · 立即引爆 3.5x 毁灭奥义！</small>
+                </div>
               </div>
               <p id="quiz-burst-question" class="quiz-burst-text">题目加载中...</p>
               <div id="quiz-burst-options-grid" class="quiz-burst-options-grid"></div>
@@ -1243,7 +1468,7 @@
               <div class="gameover-stats-grid">
                 <div class="stat-box"><span class="label">荣耀胜点</span><strong id="duel-reward-stars" style="color:#eab308;">+25 胜点</strong></div>
                 <div class="stat-box"><span class="label">EXP 经验</span><strong id="duel-reward-exp" style="color:#6366f1;">+180 EXP</strong></div>
-                <div class="stat-box"><span class="label">赏金金币</span><strong id="duel-reward-coins" style="color:#f59e0b;">+50 金币</strong></div>
+                <div class="stat-box"><span class="label">赏金学习金币</span><strong id="duel-reward-coins" style="color:#f59e0b;">+50 学习金币</strong></div>
                 <div class="stat-box"><span class="label">回合数</span><strong id="duel-total-turns">5 回合</strong></div>
               </div>
               <div class="gameover-actions">
@@ -1290,18 +1515,14 @@
 
       <section id="home-view" class="view">
         <header class="story-title-banner">
-          <img src="assets/brand/cy-pets-story-integrated-title-banner-imagen.png" alt="CY PETS STORY" />
-          <div class="story-title-banner-copy">
-            <h2>CY PETS STORY</h2>
-            <p>5+1 学习乐园</p>
-          </div>
+          <img class="story-title-banner-art" src="assets/brand/eduverse-voxel-adventure-hero.png?v=20260902-15" alt="方块冒险世界" />
         </header>
 
         <div class="home-top-panels" aria-label="学习快捷信息">
           <article class="stats-card panel-card">
             <div class="panel-heading compact"><h3>我的学习能量</h3><span class="mini-icon">⚡</span></div>
             <div class="stats-grid">
-              <div class="stat-box"><span class="stat-icon coin">🪙</span><strong id="coin-count">0</strong><small>金币</small></div>
+              <div class="stat-box"><img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" alt="学习金币" class="stat-box-coin-img" /><strong id="coin-count">0</strong><small>学习金币</small></div>
               <div class="stat-box"><span class="stat-icon star">⭐</span><strong id="star-count">0</strong><small>累计星星</small></div>
               <div class="stat-box"><span class="stat-icon book">📚</span><strong id="checkin-count">0</strong><small>完成天数</small></div>
               <div class="stat-box"><span class="stat-icon trophy">🏆</span><strong id="best-score">—</strong><small>最佳成绩</small></div>
@@ -1413,7 +1634,13 @@
       <section id="shop-view" class="view">
         <div class="section-title-row">
           <div><p class="eyebrow">PET SHOP</p><h2>宠物商店</h2><p class="muted-text">按照系列查看宠物。点进分类后，可以看到每只宠物和它自己的专属装备。</p></div>
-          <div class="catalog-mode-card pet-shop-mode-card" aria-label="宠物商店模式"><span class="catalog-mode-icon">🛒</span><div><small>当前模式</small><strong>系列商店</strong></div><span class="catalog-mode-note">宠物 + 专属装备</span></div>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <div class="hok-wallet-pill">
+              <img src="assets/roles/hero-gacha/items/coins-pack.png?v=20260904-04" alt="学习金币" class="hok-wallet-icon" />
+              <span>学习金币</span><strong><span id="shop-coin-count">0</span></strong>
+            </div>
+            <div class="catalog-mode-card pet-shop-mode-card" aria-label="宠物商店模式"><span class="catalog-mode-icon">🛒</span><div><small>当前模式</small><strong>系列商店</strong></div><span class="catalog-mode-note">宠物 + 专属装备</span></div>
+          </div>
         </div>
         <section class="pet-shop-panel" data-onboarding-target="pet-shop">
           <div class="pet-collection-heading"><div><p class="eyebrow">SERIES COLLECTION</p><h3>选择宠物系列</h3></div><span>宠物可购买 / 切换</span></div>
@@ -1425,7 +1652,7 @@
 
       <section id="music-box-view" class="view">
         <div class="section-title-row">
-          <div><p class="eyebrow">MUSIC BOX</p><h2>音乐盒</h2><p class="muted-text">试听 30 秒，使用 280 金币解锁喜欢的主题曲。已购买的歌曲可以随时切换。</p></div>
+          <div><p class="eyebrow">MUSIC BOX</p><h2>音乐盒</h2><p class="muted-text">试听 30 秒，使用 280 学习金币解锁喜欢的主题曲。已购买的歌曲可以随时切换。</p></div>
           <div class="wallet-card"><span>🎵</span><strong id="music-box-owned-count">0</strong><span>首已拥有</span></div>
         </div>
         <section id="music-player-panel" class="music-player-panel" aria-label="音乐播放器"></section>
@@ -1517,7 +1744,7 @@
     <div class="registration-success-card">
       <p class="eyebrow">WELCOME TO FIVE + ONE TUITION CENTER</p>
       <h2 id="registration-success-title">请记住你的学生 ID</h2>
-      <strong id="registration-success-id" class="registration-success-id">CY0000</strong>
+      <strong id="registration-success-id" class="registration-success-id">FPO0000</strong>
       <p class="muted-text">请记住这个 ID，下次登录会用到。</p>
       <button type="button" class="primary-button full-width" data-registration-success-continue>知道了，进入我的学习世界</button>
     </div>
@@ -1526,10 +1753,10 @@
   <div id="pet-selection-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="pet-selection-title">
     <div class="pet-selection-card">
       <button id="pet-selection-close" class="modal-close-button hidden" type="button" aria-label="关闭弹窗" title="关闭" data-modal-close="pet-selection">×</button>
-      <div class="modal-paw">🐾</div>
-      <p class="eyebrow">CHOOSE YOUR COMPANION</p>
-      <h2 id="pet-selection-title">选择你的 A 级初始宠物</h2>
-      <p id="pet-selection-copy" class="muted-text">这是你假期学习旅程的第一位伙伴。之后可以继续升级到 R、SR、SSR 和 LEGEND！</p>
+      <div class="modal-paw">✦</div>
+      <p class="eyebrow">FIRST LOGIN · CHOOSE YOUR COMPANION</p>
+      <h2 id="pet-selection-title">选择你的第一位冒险伙伴</h2>
+      <p id="pet-selection-copy" class="muted-text">三选一：选定后会陪你学习、升级和跟朋友一起玩。</p>
       <div id="initial-pet-options" class="initial-pet-grid"></div>
       <div class="pet-adoption-fields">
         <label for="pet-name-input">宠物名字<input id="pet-name-input" maxlength="20" autocomplete="off" placeholder="例如：小太阳" /></label>
@@ -1606,7 +1833,64 @@
     </div>
   </div>
 
-  <div id="avatar-crop-overlay" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="avatar-crop-title">
+  <div id="student-profile-overlay" class="modal-backdrop hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="student-profile-title">
+    <div class="student-profile-card">
+      <button class="modal-close-button" type="button" aria-label="关闭个人资料" title="关闭" data-student-profile-close>×</button>
+      <p class="eyebrow">PLAYER PROFILE</p>
+      <h2 id="student-profile-title">编辑个人资料</h2>
+      <p class="student-profile-intro">设置你在学习大厅、好友和排行榜显示的名字与头像。</p>
+      
+      <!-- 学生编号 / 学号（只读不可改） -->
+      <div class="student-profile-id-section">
+        <div class="student-profile-id-header">
+          <span class="id-badge-label">学生专属编号 / 学号</span>
+          <span class="id-lock-tag">🔒 系统唯一 · 不可修改</span>
+        </div>
+        <div class="student-profile-id-display-box">
+          <span class="id-symbol">🆔</span>
+          <span id="student-profile-id-text" class="student-profile-id-val">510000</span>
+          <button type="button" id="student-profile-copy-id-btn" class="id-copy-btn" title="点击复制学号">📋 复制学号</button>
+        </div>
+        <small class="student-profile-id-hint">此学号为中心系统唯一终身标识，与成绩数据及教师发放的金币直接绑定，无法修改。</small>
+      </div>
+
+      <div class="student-profile-avatar-zone">
+        <div id="student-profile-avatar-preview" class="student-profile-avatar-preview">🌟</div>
+        <div>
+          <strong>玩家头像</strong>
+          <p>可直接点击下方内置萌宠头像，或上传照片自由裁切。</p>
+          <label class="student-profile-avatar-button" for="student-avatar-upload">📷 上传自定义照片</label>
+        </div>
+      </div>
+      <div class="student-avatar-preset-section">
+        <strong>选择 App 内置萌宠/炫酷头像</strong>
+        <div class="student-avatar-preset-grid" role="group" aria-label="内置头像选择">
+          <button type="button" data-student-avatar-preset="🌟" aria-label="星星头像">🌟</button>
+          <button type="button" data-student-avatar-preset="⚡" aria-label="闪电头像">⚡</button>
+          <button type="button" data-student-avatar-preset="🐱" aria-label="猫咪头像">🐱</button>
+          <button type="button" data-student-avatar-preset="🐼" aria-label="熊猫头像">🐼</button>
+          <button type="button" data-student-avatar-preset="🦊" aria-label="狐狸头像">🦊</button>
+          <button type="button" data-student-avatar-preset="🦁" aria-label="狮子头像">🦁</button>
+          <button type="button" data-student-avatar-preset="🦉" aria-label="猫头鹰头像">🦉</button>
+          <button type="button" data-student-avatar-preset="🐻" aria-label="小熊头像">🐻</button>
+          <button type="button" data-student-avatar-preset="🤖" aria-label="机器人头像">🤖</button>
+          <button type="button" data-student-avatar-preset="🐉" aria-label="飞龙头像">🐉</button>
+          <button type="button" data-student-avatar-preset="🧱" aria-label="方块头像">🧱</button>
+          <button type="button" data-student-avatar-preset="🚀" aria-label="火箭头像">🚀</button>
+        </div>
+      </div>
+      <form id="student-profile-form" class="student-profile-form">
+        <label for="student-profile-name-input">玩家显示名字</label>
+        <div class="student-profile-name-row">
+          <input id="student-profile-name-input" name="studentProfileName" maxlength="18" autocomplete="off" placeholder="请输入你的名字" required />
+          <button type="submit" class="primary-button">保存名字</button>
+        </div>
+        <small>最多 18 个字；保存后在学习大厅、好友与排行榜实时同步。</small>
+      </form>
+    </div>
+  </div>
+
+  <div id="avatar-crop-overlay" class="modal-backdrop hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="avatar-crop-title">
     <div class="avatar-crop-card">
       <button class="modal-close-button" type="button" aria-label="关闭头像调整" title="关闭" data-avatar-crop-cancel>×</button>
       <p class="eyebrow">PROFILE AVATAR</p>
@@ -1629,7 +1913,7 @@
       <h2 id="friend-gift-title">赠送礼物</h2>
       <p id="friend-gift-target" class="muted-text"></p>
       <div class="gift-type-tabs" role="tablist" aria-label="礼物类型">
-        <button type="button" class="gift-type-tab active" data-gift-type="coins">金币</button>
+        <button type="button" class="gift-type-tab active" data-gift-type="coins">学习金币</button>
         <button type="button" class="gift-type-tab" data-gift-type="item">道具</button>
         <button type="button" class="gift-type-tab" data-gift-type="pet">宠物</button>
         <button type="button" class="gift-type-tab" data-gift-type="blind-box">盲盒</button>
@@ -1685,7 +1969,7 @@
 
   <!-- Teacher Password Change Modal -->
   <div id="teacher-pwd-change-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="pwd-change-title">
-    <div class="modal-card">
+    <div class="modal-card teacher-modal-card">
       <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-pwd">×</button>
       <p class="eyebrow">SECURITY</p>
       <h2 id="pwd-change-title">修改教师登录密码</h2>
@@ -1699,9 +1983,63 @@
     </div>
   </div>
 
+  <div id="student-forgot-password-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="student-forgot-password-title">
+    <div class="modal-card">
+      <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="student-forgot-password">×</button>
+      <p class="eyebrow">ACCOUNT RECOVERY</p>
+      <h2 id="student-forgot-password-title">忘记学生密码？</h2>
+      <p class="muted-text">为了保护学生账号，这里不会直接用姓名和电话号码自行改密码。</p>
+      <div class="password-help-card">
+        <strong>请联系您的老师</strong>
+        <p>告诉老师您的正确姓名和登记电话号码。老师核对身份后，会在教师后台为您设置新的临时 PIN。</p>
+      </div>
+      <button type="button" class="primary-button full-width" data-modal-close="student-forgot-password">我知道了</button>
+    </div>
+  </div>
+
+  <div id="teacher-student-pin-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="teacher-student-pin-title">
+    <div class="modal-card teacher-modal-card">
+      <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-student-pin">×</button>
+      <p class="eyebrow">STUDENT SECURITY</p>
+      <h2 id="teacher-student-pin-title">重设学生临时 PIN</h2>
+      <p id="teacher-student-pin-copy" class="muted-text"></p>
+      <form id="teacher-student-pin-form" class="modal-form">
+        <input id="teacher-student-pin-id" type="hidden" />
+        <label><span>新临时 PIN（至少 4 位）</span><input id="teacher-student-new-pin" type="password" minlength="4" required autocomplete="new-password" /></label>
+        <label><span>确认新临时 PIN</span><input id="teacher-student-confirm-pin" type="password" minlength="4" required autocomplete="new-password" /></label>
+        <button type="submit" class="primary-button action-glow-button full-width">确认重设 PIN</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Teacher Delete Student Modal -->
+  <div id="teacher-delete-student-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="teacher-delete-student-title">
+    <div class="modal-card teacher-modal-card" style="max-width:440px;text-align:center;">
+      <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-delete-student">×</button>
+      <div style="font-size:40px;margin-bottom:10px;line-height:1;">🗑️</div>
+      <p class="eyebrow" style="color:#ef4444;letter-spacing:1.5px;font-weight:700;">DANGER ZONE</p>
+      <h2 id="teacher-delete-student-title" style="color:#f87171;margin-bottom:8px;font-size:20px;">彻底删除学生账号</h2>
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:14px;margin:16px 0;text-align:left;">
+        <p style="margin:0 0 6px 0;color:#fca5a5;font-size:13px;font-weight:600;">⚠️ 永久删除警示：</p>
+        <p id="teacher-delete-student-desc" style="margin:0;color:#cbd5e1;font-size:14px;line-height:1.6;">
+          确定要彻底删除学生 <strong id="teacher-delete-student-name" style="color:#fff;"></strong> 吗？<br />
+          <span style="color:#ef4444;font-size:12px;display:inline-block;margin-top:4px;">删除后原手机号可以重新注册，学生的所有云端与本地游戏进度将被清空，此操作不可撤销！</span>
+        </p>
+      </div>
+      <input type="hidden" id="teacher-delete-student-id" value="" />
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+        <button type="button" class="secondary-button" data-modal-close="teacher-delete-student" style="flex:1;">取消</button>
+        <button type="button" id="confirm-delete-student-btn" class="secondary-button danger-button" style="flex:1.2;background:#ef4444;color:#fff;border-color:#ef4444;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;">
+          <span id="confirm-delete-spinner" class="loading-spinner hidden" style="width:14px;height:14px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;"></span>
+          <span id="confirm-delete-text">确认彻底删除</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Teacher Add/Edit Student Modal -->
   <div id="teacher-student-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="t-student-modal-title">
-    <div class="modal-card">
+    <div class="modal-card teacher-modal-card">
       <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-student">×</button>
       <p class="eyebrow">STUDENT ACCOUNT</p>
       <h2 id="t-student-modal-title">新增学生账号</h2>
@@ -1717,15 +2055,30 @@
           </select>
         </label>
         <label><span>班级归属</span><input id="t-student-class-input" placeholder="例如：2A" /></label>
-        <label><span>重置/设置 PIN 码</span><input id="t-student-pin-input" type="password" placeholder="留空则保持原 PIN 码" minlength="4" /></label>
+        <label><span>初始 PIN 码（至少 4 位）</span><input id="t-student-pin-input" type="password" placeholder="请设置学生首次登录 PIN" minlength="4" required /></label>
         <button type="submit" class="primary-button action-glow-button full-width">保存学生档案</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Teacher Create Class Modal -->
+  <div id="teacher-class-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="teacher-class-modal-title">
+    <div class="modal-card teacher-modal-card">
+      <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-class">×</button>
+      <p class="eyebrow">CLASS MANAGEMENT</p>
+      <h2 id="teacher-class-modal-title">建立新班级</h2>
+      <form id="teacher-class-form" class="modal-form">
+        <label><span>班级名称</span><input id="teacher-class-name-input" required placeholder="例如：2A" maxlength="60" /></label>
+        <label><span>年级</span><select id="teacher-class-form-select" required><option value="Form 1">Form 1</option><option value="Form 2" selected>Form 2</option><option value="Form 3">Form 3</option></select></label>
+        <label><span>分行 / 校区</span><input id="teacher-class-branch-input" required value="5+1教育补习中心" maxlength="60" /></label>
+        <button type="submit" class="primary-button action-glow-button full-width">保存班级</button>
       </form>
     </div>
   </div>
 
   <!-- Teacher Add/Edit Question Modal -->
   <div id="teacher-question-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="t-question-modal-title">
-    <div class="modal-card modal-card-large">
+    <div class="modal-card modal-card-large teacher-modal-card">
       <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-question">×</button>
       <p class="eyebrow">QUESTION AUTHORING</p>
       <h2 id="t-question-modal-title">创建 / 编辑学科题目</h2>
@@ -1772,10 +2125,10 @@
         <label class="full-grid-col"><span>题目内容</span>
           <textarea id="t-q-text-input" rows="3" required placeholder="请输入完整试题内容..."></textarea>
         </label>
-        <label class="full-grid-col"><span>选项 A</span><input id="t-q-opt-a" required placeholder="选项 A 内容" /></label>
-        <label class="full-grid-col"><span>选项 B</span><input id="t-q-opt-b" required placeholder="选项 B 内容" /></label>
-        <label class="full-grid-col"><span>选项 C</span><input id="t-q-opt-c" placeholder="选项 C 内容" /></label>
-        <label class="full-grid-col"><span>选项 D</span><input id="t-q-opt-d" placeholder="选项 D 内容" /></label>
+        <label><span>选项 A</span><input id="t-q-opt-a" required placeholder="选项 A 内容" /></label>
+        <label><span>选项 B</span><input id="t-q-opt-b" required placeholder="选项 B 内容" /></label>
+        <label><span>选项 C</span><input id="t-q-opt-c" placeholder="选项 C 内容" /></label>
+        <label><span>选项 D</span><input id="t-q-opt-d" placeholder="选项 D 内容" /></label>
         <label class="full-grid-col"><span>正确答案 (必须与上方某一选项完全一致)</span>
           <input id="t-q-correct-input" required placeholder="填入正确选项文字" />
         </label>
@@ -1787,29 +2140,180 @@
     </div>
   </div>
 
+  <!-- Teacher Question CSV Batch Import Modal -->
+  <div id="teacher-question-csv-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="t-q-csv-modal-title">
+    <div class="modal-card modal-card-large teacher-modal-card" style="max-width: 980px; max-height: 92vh; display: flex; flex-direction: column;">
+      <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-question-csv">×</button>
+      <div style="flex-shrink: 0;">
+        <p class="eyebrow">TEACHER EXERCISE PUBLISHER & CSV IMPORT</p>
+        <h2 id="t-q-csv-modal-title" style="margin-bottom: 4px;">🚀 发布练习与题目导入 (KSSM 智能题库)</h2>
+        <p class="muted-text" style="margin: 0 0 12px; font-size: 13px;">
+          老师可根据<strong>目标年级</strong>与<strong>所属科目</strong>发布练习。导入后系统每日自动为学生<strong>智能轮换分配 10 题</strong>进行挑战。
+        </p>
+      </div>
+
+      <!-- Step 1: 练习设定栏 (年级、科目、练习标题/章节) -->
+      <div class="question-import-scope-bar" style="background: rgba(15, 23, 42, 0.78); padding: 12px 16px; border-radius: 12px; border: 1.5px solid rgba(56, 189, 248, 0.35); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 800; color: #38bdf8;">🎯 目标年级：</span>
+          <select id="question-import-form-override" class="filter-select" style="min-width: 135px; font-weight: 700; background: rgba(8, 16, 48, 0.95); color: #ffffff; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 8px; padding: 6px 10px;">
+            <option value="auto">自动识别 (按每行指定)</option>
+            <option value="Form 1">Form 1 (初一)</option>
+            <option value="Form 2" selected>Form 2 (初二)</option>
+            <option value="Form 3">Form 3 (初三)</option>
+            <option value="Form 4">Form 4 (高一)</option>
+            <option value="Form 5">Form 5 (高二)</option>
+          </select>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 800; color: #c084fc;">📚 所属科目：</span>
+          <select id="question-import-subject-override" class="filter-select" style="min-width: 145px; font-weight: 700; background: rgba(8, 16, 48, 0.95); color: #ffffff; border: 1px solid rgba(192, 132, 252, 0.4); border-radius: 8px; padding: 6px 10px;">
+            <option value="auto">自动识别 (按每行指定)</option>
+            <option value="math" selected>📐 数学 (Mathematics)</option>
+            <option value="science">🔬 科学 (Science)</option>
+            <option value="english">🔤 英文 (English)</option>
+            <option value="bm">🇲🇾 国文 (Bahasa Melayu)</option>
+            <option value="bc">🏮 华文 (Bahasa Cina)</option>
+            <option value="sejarah">🏛️ 历史 (Sejarah)</option>
+            <option value="geografi">🌍 地理 (Geografi)</option>
+            <option value="perniagaan">💼 商科/经济 (Business)</option>
+          </select>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 220px;">
+          <span style="font-size: 13px; font-weight: 800; color: #34d399;">🔖 练习/单元名称：</span>
+          <input type="text" id="question-import-chapter-input" class="form-input" placeholder="例如：第二单元：因式分解强化训练" style="flex: 1; padding: 6px 12px; font-size: 12.5px; border-radius: 8px; background: rgba(8, 16, 48, 0.95); border: 1px solid rgba(52, 211, 153, 0.4); color: #ffffff;" />
+        </div>
+      </div>
+
+      <!-- Step 2: 模版与快捷工具栏 -->
+      <div class="question-import-template-toolbar" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; background: rgba(30, 41, 59, 0.5); padding: 10px 14px; border-radius: 10px; border: 1px dashed rgba(148, 163, 184, 0.35); margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+          <button type="button" id="modal-download-question-csv-template" class="secondary-button compact-button" style="font-size: 12px; font-weight: 800; color: #38bdf8; border-color: rgba(56, 189, 248, 0.5);">
+            📥 下载「Form 2 数学」标准练习模版 (CSV)
+          </button>
+          <button type="button" id="modal-download-generic-csv-template" class="link-button" style="font-size: 12px; color: #94a3b8; text-decoration: underline;">
+            下载全科目通用模版
+          </button>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button type="button" id="fill-sample-questions-btn" class="secondary-button compact-button" style="font-size: 12px; color: #f59e0b; border-color: rgba(245, 158, 11, 0.5);">
+            📋 一键填入示范练习数据
+          </button>
+          <button type="button" id="toggle-csv-guide-btn" class="link-button" style="font-size: 12px; color: #a5b4fc;">
+            📖 查看模版字段指引
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Guide Box -->
+      <div id="question-csv-guide-box" class="hidden" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; font-size: 12px; color: #cbd5e1; line-height: 1.6;">
+        <strong style="color: #38bdf8; display: block; margin-bottom: 4px;">📌 模版 12 个字段填写说明：</strong>
+        <div>1. <strong>年级</strong>：Form 1 / Form 2 / Form 3（若上方已指定则优先按指定）</div>
+        <div>2. <strong>科目</strong>：数学 / 科学 / 华文 / 英文 / 国文 / 历史 / 地理（若上方已指定则优先按指定）</div>
+        <div>3. <strong>单元章节</strong>：如“第一单元：有理数”（若上方已填写练习名称则自动采用）</div>
+        <div>4. <strong>题目内容</strong>：具体的试题题目，支持长文本</div>
+        <div>5. <strong>选项A ~ 选项D</strong>：4个选项内容</div>
+        <div>6. <strong>正确答案</strong>：填入 <code>A</code>、<code>B</code>、<code>C</code>、<code>D</code> 或选项的具体文字均可识别</div>
+        <div>7. <strong>考点重点</strong>：如 <code>🔥 高频考点</code>、<code>⭐ 必会</code>、<code>🧠 KBAT</code></div>
+        <div>8. <strong>难度</strong>：<code>Easy</code> / <code>Normal</code> / <code>Hard</code></div>
+        <div>9. <strong>解析</strong>：答错或复习时提供给学生的详细解题指导</div>
+      </div>
+
+      <div style="overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 12px;">
+        <!-- Dropzone & File Selector -->
+        <div id="question-csv-dropzone" class="csv-upload-dropzone">
+          <input type="file" id="question-csv-file-input" accept=".csv,text/csv,text/plain" style="display: none;" />
+          <div class="csv-dropzone-inner">
+            <span class="csv-dropzone-icon">📁</span>
+            <div class="csv-dropzone-text">
+              <strong>点击选择 CSV 文件，或将文件拖放到这里</strong>
+              <small>支持 .csv 与 .txt 格式，建议使用 UTF-8 编码</small>
+            </div>
+            <button type="button" id="question-csv-browse-btn" class="secondary-button compact-button">浏览本地文件</button>
+          </div>
+        </div>
+
+        <!-- Textarea Paste Option -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="question-csv-textarea" style="font-size: 13px; font-weight: 700;">或直接从 Excel / Google 表格复制文本粘贴：</label>
+            <span style="font-size: 12px; color: #94a3b8;">支持 Tab 键制表符或逗号分隔</span>
+          </div>
+          <textarea id="question-csv-textarea" rows="4" class="form-textarea" style="font-family: monospace; font-size: 12px; width: 100%; box-sizing: border-box;" placeholder="年级,科目,单元章节,题目内容,选项A,选项B,选项C,选项D,正确答案,考点重点,难度,解析&#10;Form 1,数学,第一单元：有理数,计算：15 + (-7) 的值是多少？,8,-8,22,-22,A,🔥 高频考点,Easy,正负数相加：异号相减取绝对值大的符号 15 - 7 = 8。"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="preview-question-csv-btn" class="primary-button compact-button">🔍 解析并预览待发布练习试卷</button>
+            <button type="button" id="clear-question-csv-btn" class="secondary-button compact-button">清空输入</button>
+          </div>
+          <span id="question-csv-parse-status" style="font-size: 13px; font-weight: 600; color: #94a3b8;">尚未加载数据</span>
+        </div>
+
+        <!-- Live Preview & Confirmation List -->
+        <div id="question-csv-preview-container" class="question-csv-preview hidden">
+          <!-- Populated by previewQuestionCsvImport with interactive confirmation checklist -->
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; flex-shrink: 0; display: flex; gap: 12px;">
+        <button type="button" class="secondary-button" data-modal-close="teacher-question-csv" style="flex: 1;">取消</button>
+        <button type="button" id="submit-question-csv-btn" class="primary-button action-glow-button" style="flex: 2;" disabled>🚀 确认发布练习并写入题库</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Teacher Daily 10-Question Allocation Modal -->
+  <div id="teacher-daily-allocation-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="t-daily-alloc-modal-title">
+    <div class="modal-card modal-card-large teacher-modal-card" style="max-width: 960px; max-height: 90vh; display: flex; flex-direction: column;">
+      <button class="modal-close-button" type="button" aria-label="关闭" data-modal-close="teacher-daily-allocation">×</button>
+      <div style="flex-shrink: 0;">
+        <p class="eyebrow">DAILY 10-QUESTION SMART ALLOCATION</p>
+        <h2 id="t-daily-alloc-modal-title" style="margin-bottom: 6px;">📅 今日系统智能分配 (每日 10 题)</h2>
+        <p class="muted-text" style="margin: 0 0 14px; font-size: 13.5px;">
+          基于老师设定的题库，系统每天基于日期算法为各年级学生<strong>自动分配专属 10 道题目</strong>。每天午夜 00:00 自动轮换。
+        </p>
+        <div class="daily-alloc-filter-bar" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; background: rgba(15, 23, 42, 0.6); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 14px;">
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700;">
+            <span>目标年级：</span>
+            <select id="daily-alloc-form-select" class="filter-select" style="min-width: 110px;">
+              <option value="Form 1">Form 1</option>
+              <option value="Form 2" selected>Form 2</option>
+              <option value="Form 3">Form 3</option>
+            </select>
+          </label>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700;">
+            <span>所属学科：</span>
+            <select id="daily-alloc-subject-select" class="filter-select" style="min-width: 110px;">
+              <option value="math" selected>数学 (Math)</option>
+              <option value="science">科学 (Science)</option>
+              <option value="bc">华文 (Chinese)</option>
+              <option value="bm">国文 (Malay)</option>
+              <option value="bi">英文 (English)</option>
+              <option value="sejarah">历史 (Sejarah)</option>
+              <option value="geografi">地理 (Geografi)</option>
+              <option value="moral">道德 (Moral)</option>
+            </select>
+          </label>
+          <span id="daily-alloc-info-pill" class="kssm-chip kssm-chip-glow" style="margin-left: auto; font-size: 12px;">
+            今日专属：10 题分配就绪
+          </span>
+        </div>
+      </div>
+
+      <div id="daily-allocation-questions-list" style="overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+        <!-- Populated by renderTeacherDailyAllocation -->
+      </div>
+    </div>
+  </div>
+
   <!-- Legacy Registration Success Modal -->
   <div id="registration-success-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="registration-success-title">
     <div class="modal-card">
       <p class="eyebrow">REGISTRATION COMPLETE</p>
       <h2 id="registration-success-title">注册成功！</h2>
-      <p class="muted-text">请牢记你的学生 ID：<strong id="registration-success-id">CY0000</strong></p>
+      <p class="muted-text">请牢记你的学生 ID：<strong id="registration-success-id">FPO0000</strong></p>
       <button type="button" class="primary-button action-glow-button full-width" data-registration-success-continue>进入学习世界 🚀</button>
-    </div>
-  </div>
-
-  <!-- Avatar Crop Modal -->
-  <div id="avatar-crop-overlay" class="modal-backdrop hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="avatar-crop-title">
-    <div class="modal-card avatar-crop-modal">
-      <h3 id="avatar-crop-title">裁剪头像</h3>
-      <canvas id="avatar-crop-canvas" width="280" height="280"></canvas>
-      <div class="avatar-crop-controls">
-        <label for="avatar-crop-zoom">缩放</label>
-        <input type="range" id="avatar-crop-zoom" min="1" max="3" step="0.1" value="1" />
-      </div>
-      <div class="modal-actions">
-        <button type="button" class="secondary-button" data-avatar-crop-cancel>取消</button>
-        <button type="button" class="primary-button" data-avatar-crop-save>保存头像</button>
-      </div>
     </div>
   </div>
 

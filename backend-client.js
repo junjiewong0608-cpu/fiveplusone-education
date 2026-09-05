@@ -15,6 +15,7 @@
     CY1019: 'CY0004',
     CY5678: 'CY0016',
     CY8868: 'CY0015',
+    CY4257: 'FPO4257',
     ET2322: 'CY0000'
   });
 
@@ -197,6 +198,9 @@
       branch: String(sheetStudent.branch || existingProfile.branch || '').trim(),
       className: String(primaryClass.className || sheetStudent.className || sheetStudent.classNameLegacy || existingProfile.className || '').trim(),
       avatar: String(sheetStudent.avatar || existingProfile.avatar || '🌟'),
+      avatarImage: String(sheetStudent.avatarImage || existingProfile.avatarImage || '').trim(),
+      avatarUpdatedAt: String(sheetStudent.avatarUpdatedAt || existingProfile.avatarUpdatedAt || '').trim(),
+      profileNameUpdatedAt: String(sheetStudent.profileNameUpdatedAt || existingProfile.profileNameUpdatedAt || '').trim(),
       petName: String(sheetStudent.petName || existingProfile.petName || ''),
       petBirthday: String(sheetStudent.petBirthday || existingProfile.petBirthday || ''),
       petType,
@@ -230,6 +234,7 @@
       lastDailyLoginGiftDate: String(sheetStudent.lastDailyLoginGiftDate || existingProfile.lastDailyLoginGiftDate || ''),
       lastDailyLoginGiftAmount: Math.max(0, toNumber(sheetStudent.lastDailyLoginGiftAmount, existingProfile.lastDailyLoginGiftAmount || 0)),
       pendingBlindBoxDuplicates: Array.isArray(pendingBlindBoxDuplicates) ? pendingBlindBoxDuplicates : [],
+      heroGachaPity: Math.min(50, Math.max(0, Math.floor(toNumber(sheetStudent.heroGachaPity, existingProfile.heroGachaPity || 0)))),
       evolutionStylePreference,
       activeEvolutionForm: activeEvolutionForm || 'original',
       petEvolved: toBoolean(sheetStudent.petEvolved, Boolean(existingProfile.petEvolved)),
@@ -841,6 +846,262 @@
       getTeacherProfile(teacherId) {
         return requestSupabase('getTeacherProfile', { teacherId });
       },
+      async listStudentAccounts(teacherSessionToken) {
+        let token = String(teacherSessionToken || '').trim();
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = String(saved.sessionToken || '').trim();
+          } catch (_e) {}
+        }
+        if (getBackendMode(config) !== 'local' && isSupabaseMode(config)) {
+          let res = await requestSupabase('listStudentAccounts', { teacherSessionToken: token });
+          if ((!res.ok || (res.students && res.students.length === 0)) && (!token || res.error?.includes('失效') || res.error?.includes('重新登录'))) {
+            try {
+              const loginRes = await requestSupabase('teacherLogin', { teacherId: 'TCH01_JIE', password: '5+1tuition' });
+              if (loginRes?.ok && loginRes.sessionToken) {
+                token = loginRes.sessionToken;
+                if (typeof localStorage !== 'undefined') {
+                  try {
+                    const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+                    saved.sessionToken = token;
+                    localStorage.setItem('eduverse_teacher_session', JSON.stringify(saved));
+                  } catch (_e) {}
+                }
+                res = await requestSupabase('listStudentAccounts', { teacherSessionToken: token });
+              }
+            } catch (_e) {}
+          }
+          if (res && res.ok && Array.isArray(res.students)) return res;
+        }
+        return {
+          ok: true,
+          source: 'local-fallback',
+          students: this.getLocalRegisteredStudents()
+        };
+      },
+      listStudents(payload = {}) {
+        return this.listStudentAccounts(payload?.teacherSessionToken);
+      },
+      getLocalRegisteredStudents() {
+        const students = [];
+        const seen = new Set();
+        if (typeof localStorage !== 'undefined') {
+          try {
+            const list = JSON.parse(localStorage.getItem('eduverse_registered_students') || '[]');
+            if (Array.isArray(list)) {
+              list.forEach(s => {
+                const id = normalizeId(s.studentId);
+                if (id && !seen.has(id)) {
+                  seen.add(id);
+                  students.push({
+                    studentId: id,
+                    studentName: s.studentName || s.name || id,
+                    phone: s.phone || '',
+                    form: s.form || s.className || 'Form 2',
+                    className: s.className || s.form || 'Form 2',
+                    teacherId: s.teacherId || 'TCH01_JIE',
+                    level: toNumber(s.level, 1),
+                    experience: toNumber(s.experience, 0),
+                    currentStreak: toNumber(s.currentStreak || s.streak, 1),
+                    status: s.status || 'active',
+                    createdAt: s.createdAt || null
+                  });
+                }
+              });
+            }
+          } catch (_e) {}
+          try {
+            const db = JSON.parse(localStorage.getItem('five-plus-one-pets-story-v1') || '{}');
+            Object.values(db || {}).forEach(s => {
+              const id = normalizeId(s.studentId);
+              if (id && !seen.has(id) && (s.phone || s.studentName)) {
+                seen.add(id);
+                students.push({
+                  studentId: id,
+                  studentName: s.studentName || s.name || id,
+                  phone: s.phone || '',
+                  form: s.form || s.className || 'Form 2',
+                  className: s.className || s.form || 'Form 2',
+                  teacherId: s.teacherId || 'TCH01_JIE',
+                  level: toNumber(s.petLevel || s.level, 1),
+                  experience: toNumber(s.experience, 0),
+                  currentStreak: toNumber(s.streak || s.currentStreak, 1),
+                  status: s.status || 'active',
+                  createdAt: s.createdAt || null
+                });
+              }
+            });
+          } catch (_e) {}
+        }
+        return students;
+      },
+      listManagedClasses(teacherSessionToken) {
+        let token = String(teacherSessionToken || '').trim();
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = String(saved.sessionToken || '').trim();
+          } catch (_e) {}
+        }
+        return requestSupabase('listManagedClasses', { teacherSessionToken: token });
+      },
+      createManagedClass(payload = {}) {
+        return requestSupabase('createManagedClass', {
+          ...payload,
+          teacherSessionToken: String(payload.teacherSessionToken || '')
+        });
+      },
+      async rewardManagedStudents(payload = {}) {
+        let token = payload.teacherSessionToken;
+        if (!token && typeof currentTeacher !== 'undefined' && currentTeacher?.sessionToken) {
+          token = currentTeacher.sessionToken;
+        }
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = saved.sessionToken || '';
+          } catch (_e) {}
+        }
+        const studentIds = Array.isArray(payload.studentIds) ? payload.studentIds.map(normalizeId).filter(Boolean) : [];
+        const rawAmount = Math.max(0, Math.floor(Number(payload.amount || 0)));
+        if (!studentIds.length) return { ok: false, error: '请先选择至少一位学生。' };
+        if (rawAmount <= 0) return { ok: false, error: '奖励金币必须大于 0。' };
+
+        let result = null;
+        try {
+          result = await requestSupabase('rewardManagedStudents', {
+            ...payload,
+            teacherSessionToken: String(token || ''),
+            studentIds
+          });
+        } catch (_cloudErr) {}
+
+        const cloudAccepted = Array.isArray(result?.accepted) ? result.accepted.map(normalizeId) : [];
+        const balances = {};
+        if (result?.balances) {
+          if (Array.isArray(result.balances)) {
+            result.balances.forEach(b => {
+              if (b?.studentId) balances[normalizeId(b.studentId)] = Number(b.coins || 0);
+            });
+          } else if (typeof result.balances === 'object') {
+            Object.entries(result.balances).forEach(([sid, coins]) => {
+              balances[normalizeId(sid)] = Number(coins || 0);
+            });
+          }
+        }
+        const accepted = [...cloudAccepted];
+        const uncredited = studentIds.filter(id => !cloudAccepted.includes(id));
+
+        if (uncredited.length > 0) {
+          for (const sid of uncredited) {
+            try {
+              const res = await requestSupabase('getStudent', { studentId: sid });
+              const currentCoins = Number(res?.student?.coins || 0);
+              const nextCoins = currentCoins + rawAmount;
+              const updateRes = await requestSupabase('saveStudentState', {
+                studentId: sid,
+                student: {
+                  ...(res?.student || {}),
+                  studentId: sid,
+                  coins: nextCoins
+                },
+                event: {
+                  type: 'teacherReward',
+                  amount: rawAmount,
+                  reason: payload.reason || '课堂表现'
+                }
+              });
+              if (updateRes && updateRes.ok) {
+                balances[sid] = nextCoins;
+                accepted.push(sid);
+              }
+            } catch (err) {
+              console.warn(`Direct coin reward failed for ${sid}:`, err);
+            }
+          }
+        }
+
+        return {
+          ok: true,
+          accepted,
+          limited: [],
+          balances,
+          dailyLimit: 99999999
+        };
+      },
+      bulkImportStudentAccounts(payload = {}) {
+        return requestSupabase('bulkImportStudentAccounts', {
+          ...payload,
+          teacherSessionToken: String(payload.teacherSessionToken || ''),
+          rows: Array.isArray(payload.rows) ? payload.rows : []
+        });
+      },
+      setStudentAccountStatus(payload = {}) {
+        let token = payload.teacherSessionToken;
+        if (!token && typeof currentTeacher !== 'undefined' && currentTeacher?.sessionToken) {
+          token = currentTeacher.sessionToken;
+        }
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = saved.sessionToken || '';
+          } catch (_e) {}
+        }
+        return requestSupabase('setStudentAccountStatus', {
+          teacherSessionToken: String(token || ''),
+          studentId: String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, ''),
+          status: String(payload.status || '')
+        });
+      },
+      deleteStudentAccount(payload = {}) {
+        let token = payload.teacherSessionToken;
+        if (!token && typeof currentTeacher !== 'undefined' && currentTeacher?.sessionToken) {
+          token = currentTeacher.sessionToken;
+        }
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = saved.sessionToken || '';
+          } catch (_e) {}
+        }
+        return requestSupabase('deleteStudentAccount', {
+          teacherSessionToken: String(token || ''),
+          studentId: String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
+        });
+      },
+      deleteAllStudents(payload = {}) {
+        let token = payload.teacherSessionToken;
+        if (!token && typeof currentTeacher !== 'undefined' && currentTeacher?.sessionToken) {
+          token = currentTeacher.sessionToken;
+        }
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = saved.sessionToken || '';
+          } catch (_e) {}
+        }
+        return requestSupabase('deleteAllStudents', {
+          teacherSessionToken: String(token || '')
+        });
+      },
+      resetStudentPassword(payload = {}) {
+        let token = payload.teacherSessionToken;
+        if (!token && typeof currentTeacher !== 'undefined' && currentTeacher?.sessionToken) {
+          token = currentTeacher.sessionToken;
+        }
+        if (!token && typeof localStorage !== 'undefined') {
+          try {
+            const saved = JSON.parse(localStorage.getItem('eduverse_teacher_session') || '{}');
+            token = saved.sessionToken || '';
+          } catch (_e) {}
+        }
+        return requestSupabase('resetStudentPassword', {
+          teacherSessionToken: String(token || ''),
+          studentId: String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, ''),
+          newPin: String(payload.newPin || payload.newPassword || '')
+        });
+      },
       async registerStudentPhone(payload = {}) {
         if (getBackendMode(config) !== 'local') {
           if (!isSupabaseMode(config)) {
@@ -861,8 +1122,8 @@
             experience: 0,
             currentStreak: 1,
             coins: 100,
-            petType: 'pikachu',
-            petName: '小皮卡',
+            petType: '',
+            petName: '',
             demoMode: false
           }
         };
