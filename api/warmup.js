@@ -3,7 +3,7 @@ const JSON_HEADERS = {
   'Cache-Control': 'no-store'
 };
 
-const SUPABASE_FUNCTION_URL = process.env.SUPABASE_FUNCTION_URL || 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api';
+const SUPABASE_FUNCTION_URL = process.env.SUPABASE_FUNCTION_URL || 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/fiveplusone-education-api';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'YOUR_PUBLIC_FUNCTION_KEY';
 const WARMUP_TIMEOUT_MS = 25000;
 

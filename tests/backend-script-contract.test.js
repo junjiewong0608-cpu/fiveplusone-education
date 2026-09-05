@@ -74,7 +74,7 @@ test('Sheet reward shortcuts reward selected rows from Students or class roster 
 });
 
 test('Sheet menu can sync manually edited coins to Supabase without overwriting pet state', () => {
-  assert.match(scriptSource, /const SUPABASE_FUNCTION_URL = 'https:\/\/YOUR_SUPABASE_PROJECT_REF\.supabase\.co\/functions\/v1\/cy-pets-api'/);
+  assert.match(scriptSource, /const SUPABASE_FUNCTION_URL = 'https:\/\/YOUR_SUPABASE_PROJECT_REF\.supabase\.co\/functions\/v1\/fiveplusone-education-api'/);
   assert.match(scriptSource, /const SUPABASE_PUBLIC_FUNCTION_KEY = 'YOUR_PUBLIC_FUNCTION_KEY'/);
   assert.match(scriptSource, /function syncSelectedStudentCoinsToWebsite\(\)/);
   assert.match(scriptSource, /function syncAllStudentCoinsToWebsite\(\)/);

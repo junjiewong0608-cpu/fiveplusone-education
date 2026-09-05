@@ -757,6 +757,12 @@ test('student message wall uses preset sharing, likes, preset comments and GAS p
 
 test('student avatar upload saves a compact avatar and shows it on message wall posts', () => {
   assert.match(htmlSource, /id="student-avatar-upload"/);
+  assert.match(htmlSource, /id="student-profile-edit-button"/);
+  assert.match(htmlSource, /id="student-avatar-menu-button"/);
+  assert.match(htmlSource, /id="student-profile-overlay"/);
+  assert.match(htmlSource, /id="student-profile-form"/);
+  assert.equal((htmlSource.match(/data-student-avatar-preset=/g) || []).length, 6);
+  assert.equal((htmlSource.match(/id="avatar-crop-overlay"/g) || []).length, 1);
   assert.match(htmlSource, /class="avatar-upload-control"/);
   assert.match(htmlSource, /id="avatar-crop-overlay"/);
   assert.match(htmlSource, /id="avatar-crop-canvas"/);
@@ -765,12 +771,18 @@ test('student avatar upload saves a compact avatar and shows it on message wall 
   assert.match(appSource, /async function prepareStudentAvatarCrop\(file\)/);
   assert.match(appSource, /function createStudentAvatarImageFromCrop\(\)/);
   assert.match(appSource, /async function saveStudentAvatarFromCrop\(\)/);
+  assert.match(appSource, /async function saveStudentPresetAvatar\(value\)/);
+  assert.match(sourceBetween('async function saveStudentPresetAvatar(value)', 'function renderStudentAvatarVisual'), /student\.avatar = avatar/);
+  assert.match(sourceBetween('async function saveStudentPresetAvatar(value)', 'function renderStudentAvatarVisual'), /student\.avatarImage = ''/);
+  assert.match(sourceBetween('async function saveStudentPresetAvatar(value)', 'function renderStudentAvatarVisual'), /type: 'updateAvatarPreset'/);
   assert.match(sourceBetween("document.addEventListener('change'", "const interactionLockToggle"), /#student-avatar-upload/);
   assert.match(sourceBetween('function renderAppShell()', 'function renderHome()'), /student-avatar-preview/);
   assert.match(sourceBetween('function buildWallPostPayload(message)', 'async function createWallPost'), /__studentAvatarImage:\s*getStudentAvatarImage\(student\)/);
   assert.match(sourceBetween('function normalizeWallPost(post = {})', 'function dedupeWallComments'), /studentAvatarImage/);
   assert.match(sourceBetween('function renderMessageWall(student)', 'function openImageViewer'), /wall-owner-avatar/);
   assert.match(cssSource, /\.avatar-upload-control/);
+  assert.match(cssSource, /\.student-chip #student-chip-avatar/);
+  assert.doesNotMatch(cssSource, /\.student-chip span:first-child/);
   assert.match(cssSource, /\.wall-owner-avatar/);
 });
 

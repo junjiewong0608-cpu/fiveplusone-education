@@ -413,7 +413,7 @@ as $$
 declare
   normalized_teacher_id text := upper(trim(coalesce(p_teacher_id, '')));
   reward_amount integer := coalesce(p_amount, 0);
-  student_daily_reward_limit integer := 250;
+  student_daily_reward_limit integer := 999999;
   reward_day_start timestamptz := ((now() at time zone 'Asia/Kuala_Lumpur')::date at time zone 'Asia/Kuala_Lumpur');
   reward_day_end timestamptz := reward_day_start + interval '1 day';
 begin

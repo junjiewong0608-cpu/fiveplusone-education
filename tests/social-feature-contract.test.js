@@ -73,6 +73,33 @@ test('frontend and client include social contracts', () => {
 	  assert.match(appSource, /async function joinFriendInteractionRoom\(friendId\)/);
 });
 
+test('student quest, leaderboard and duel views never depend on demo students', () => {
+  const activeViewSource = sourceBetween('function renderActiveStudentView()', 'function createStudentProfile');
+  const leaderboardSource = sourceBetween('async function renderGloryPodium()', 'function renderDashboardSubjectCards');
+  const duelSource = sourceBetween('async function renderDuelLobby()', 'function startBossDuel');
+  const backendLeaderboardSource = sourceBetween('async function getGloryLeaderboard', 'async function listAchievements', functionSource);
+
+  assert.match(activeViewSource, /renderQuestView\(\)/);
+  assert.match(activeViewSource, /renderGloryPodium\(\)/);
+  assert.match(activeViewSource, /renderDuelLobby\(\)/);
+  assert.match(appSource, /function renderQuestView\(\)/);
+  assert.match(appSource, /老师还没有发布这个学科的练习/);
+  assert.doesNotMatch(leaderboardSource, /林子轩|陈思琪|张凯文/);
+  assert.doesNotMatch(duelSource, /MOCK_CLASSMATE_OPPONENTS|FPO100[1-5]/);
+  assert.match(backendLeaderboardSource, /await listLeaderboardStudents\(\)/);
+  assert.match(backendLeaderboardSource, /!isTeacherRosterRow\(student\)/);
+  assert.doesNotMatch(backendLeaderboardSource, /林子轩|陈思琪|张凯文|李美华|黄俊杰/);
+  assert.match(functionSource, /const SEED_CHAPTERS: JsonRecord\[\] = \[\];/);
+});
+
+test('student navigation reveals the selected view without hijacking character filters', () => {
+  const switchViewSource = extractAppFunction('switchView');
+  assert.match(switchViewSource, /view\.classList\.toggle\('hidden', !isActive\)/);
+  assert.match(switchViewSource, /\.main-nav \.nav-button\[data-view\]/);
+  assert.match(appSource, /\$all\('\.main-nav \.nav-button\[data-view\]'\)\.forEach\(button => button\.addEventListener/);
+  assert.doesNotMatch(appSource, /\$all\('\.nav-button'\)\.forEach\(button => button\.addEventListener\('click', \(\) => switchView/);
+});
+
 test('teacher old account aliases stay aligned across backends', () => {
   [clientSource, functionSource, redisRoomSource].forEach(source => {
     assert.match(source, /replace\(\s*\/\[\^A-Z0-9\]\/g,\s*''\s*\)/);
@@ -82,6 +109,12 @@ test('teacher old account aliases stay aligned across backends', () => {
     assert.match(source, /CY0002:\s*'Teacher B'/);
     assert.match(source, /CY0013:\s*'Teacher F'/);
   });
+});
+
+test('legacy teacher roster id resolves to the 5+1 id everywhere', () => {
+  for (const source of [clientSource, functionSource, redisRoomSource]) {
+    assert.match(source, /CY4257:\s*'FPO4257'/);
+  }
 });
 
 test('interaction room head labels use pet name plus player name for everyone', () => {
@@ -634,7 +667,7 @@ test('frontend turns pet interaction into a shared pet wall with room selection 
 
 test('student self registration requires a sincere friend id', () => {
   assert.match(indexSource, /class="register-id-field"/);
-  assert.match(indexSource, /class="register-id-prefix"[^>]*>CY<\/span>/);
+  assert.match(indexSource, /class="register-id-prefix"[^>]*>FPO<\/span>/);
   assert.match(indexSource, /<label for="register-student-id">学生 ID（只填 4 位数字）<\/label>/);
   assert.match(indexSource, /<input id="register-student-id"[^>]*name="studentIdDigits"[^>]*inputmode="numeric"[^>]*pattern="\[0-9\]\{4\}"[^>]*maxlength="4"[^>]*required/);
   assert.match(indexSource, /<label for="register-referrer-id">诚意朋友 ID<\/label>/);
@@ -642,7 +675,7 @@ test('student self registration requires a sincere friend id', () => {
   assert.match(indexSource, /id="registration-success-modal"/);
   assert.match(indexSource, /id="registration-success-id"/);
   assert.match(indexSource, /data-registration-success-continue/);
-  assert.match(sourceBetween('function getRegisterStudentIdFromForm(form)', 'async function registerStudentFromForm'), /`CY\$\{digits\}`/);
+  assert.match(sourceBetween('function getRegisterStudentIdFromForm(form)', 'async function registerStudentFromForm'), /`FPO\$\{digits\}`/);
   assert.match(sourceBetween('function getRegisterStudentIdFromForm(form)', 'async function registerStudentFromForm'), /学生 ID 请填写 4 位数字。/);
   assert.doesNotMatch(sourceBetween('function getRegisterStudentIdFromForm(form)', 'async function registerStudentFromForm'), /if \(!digits\) return \{ ok: true/);
   assert.match(sourceBetween('async function registerStudentFromForm', 'async function login'), /const studentIdValidation = getRegisterStudentIdFromForm\(form\)/);
@@ -660,4 +693,33 @@ test('student self registration requires a sincere friend id', () => {
   assert.match(registerSource, /SINCERE_FRIEND_ID_REQUIRED/);
   assert.match(registerSource, /await studentIdExists\(sincereFriendId\)/);
   assert.match(registerSource, /SINCERE_FRIEND_ID_NOT_FOUND/);
+});
+
+test('teacher console hides manual Google Sheet sync while the server connector stays available', () => {
+  assert.doesNotMatch(indexSource, /tab-sheet-sync|trigger-sheet-sync-btn|Google Sheet 同步/);
+  assert.doesNotMatch(appSource, /renderGoogleSheetSyncStatus|triggerGoogleSheetSync/);
+  assert.match(appSource, /requestedTabId[\s\S]{0,240}'tab-dashboard'[\s\S]{0,180}replaceState\(null, '', '#\/teacher\/dashboard'\)/);
+  const syncSource = sourceBetween('async function syncGoogleSheetsData', 'async function handleAction', functionSource);
+  assert.match(syncSource, /GOOGLE_SHEET_NOT_CONFIGURED/);
+  assert.match(syncSource, /status:\s*'not_configured'/);
+  assert.match(functionSource, /GOOGLE_SHEETS_WEB_APP_URL/);
+  assert.match(syncSource, /google_sheet_sync_jobs/);
+  assert.match(syncSource, /name:\s*'学生资料'/);
+  assert.match(syncSource, /name:\s*'排行榜'/);
+  assert.doesNotMatch(syncSource, /rowsSynced:\s*(?:120|185)/);
+});
+
+test('first login offers exactly the three approved starter companions and persists through the existing adoption flow', () => {
+  assert.match(appSource, /const NOVA_STARTER_PET = Object\.freeze\(\{/);
+  assert.match(appSource, /id: 'nova-robot'/);
+  assert.match(appSource, /const INITIAL_PETS = \[/);
+  assert.match(appSource, /\.\.\.\['pikachu', 'steve'\]/);
+  assert.match(appSource, /NOVA_STARTER_PET\s*\n\s*\]/);
+  assert.match(sourceBetween('function renderPetSelection()', 'function openPetPurchaseModal'), /starter-adventure-mode/);
+  assert.match(sourceBetween('async function chooseInitialPet()', 'async function buyAndEquipItem'), /commitStudentState\(student, snapshot, \{ type: 'adoptInitialPet'/);
+  assert.match(indexSource, /FIRST LOGIN · CHOOSE YOUR COMPANION/);
+  assert.ok(fs.existsSync(path.join(projectRoot, 'assets', 'roles', 'starter', 'nova-robot.png')));
+  assert.ok(fs.existsSync(path.join(projectRoot, 'assets', 'roles', 'starter', 'nova-robot-card.png')));
+  assert.ok(fs.existsSync(path.join(projectRoot, 'assets', '8bit', 'characters', 'nova-robot-8bit.png')));
+  assert.ok(fs.existsSync(path.join(projectRoot, 'assets', 'optimized', 'role-thumbs', 'starter-nova-robot.webp')));
 });

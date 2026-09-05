@@ -231,6 +231,65 @@
     makeFourPieceSet('yoyo', 'YOYO', 'YOYO专属套装', 'mythic', ['爱心云杖', '粉云发冠', '棉花斗篷', '心愿气球'], ['Heartcloud Wand', 'Pink Cloud Crown', 'Cotton Cape', 'Wish Balloon'], 'YOYO')
   ];
 
+  function makeFivePieceSet(petId, petName, setName, tierKey, names, englishNames, theme, options = {}) {
+    return {
+      petId,
+      petName,
+      setName,
+      tierKey,
+      slots: ['weapon', 'head', 'body', 'hands', 'accessory'],
+      names,
+      englishNames,
+      descriptions: options.descriptions || [
+        `${theme}专属神兵，凝聚极境能量，极大增强爆发攻击与行动速度。`,
+        `${theme}专属战盔，强化战场超能感知，提升生命上限与暴击幸运。`,
+        `${theme}专属重铠，吸收正面冲击伤害，大幅提高护甲与生命强度。`,
+        `${theme}专属战爪护手，强化攻击穿透力，攻击时附加异常状态。`,
+        `${theme}专属核心饰品，唤醒神兽专属命格，大幅增强全属性战力。`
+      ],
+      stats: options.stats || [
+        { attack: 18, speed: 6 },
+        { hp: 22, luck: 8 },
+        { hp: 32, defense: 18 },
+        { attack: 15, speed: 5 },
+        { attack: 12, defense: 10, luck: 12 }
+      ]
+    };
+  }
+
+  const fivePieceSets = [
+    makeFivePieceSet('arcflare-fox', '赤焰机甲狐', '赤炎机甲专属神装', 'mythic',
+      ['赤炎脉冲刃', '高能红外战盔', '等离子阻燃胸甲', '离子喷射爪套', '炽核能量勋章'],
+      ['Flame Pulse Blade', 'Infra War Helm', 'Plasma Flame Armor', 'Ion Thruster Gauntlets', 'Blazing Core Medal'],
+      '赤焰机甲狐'
+    ),
+    makeFivePieceSet('vibranium-panther', '紫能守护豹', '振金守护专属神装', 'mythic',
+      ['振金暗夜刺', '黑曜战纹面具', '纳米蓄能战甲', '虚空充能利爪', '紫能守护星环'],
+      ['Vibranium Night Dagger', 'Obsidian War Mask', 'Nano Storage Battleplate', 'Void Charge Claws', 'Purple Energy Ring'],
+      '紫能守护豹'
+    ),
+    makeFivePieceSet('stormmane-lion', '雷霆战狮', '狂雷咆哮专属神装', 'mythic',
+      ['雷皇裂空枪', '雷霆金鬃冠', '风暴神威重铠', '电光震荡手铠', '九天雷神护符'],
+      ['Thunder Sky Lance', 'Thunder Gold Crown', 'Storm Might Armor', 'Volt Shock Gauntlets', 'Nine Heavens Charm'],
+      '雷霆战狮'
+    ),
+    makeFivePieceSet('webshade-lynx', '蛛影战猫', '幽影蛛罗专属神装', 'mythic',
+      ['暗影合金爪', '隐匿夜行护面', '影丝轻灵战衣', '剧毒刺刃手套', '天罗蛛影之眼'],
+      ['Shadow Alloy Claws', 'Stealth Night Visor', 'Shadowsilk Suit', 'Venom Blade Gloves', 'Web of Shadows Eye'],
+      '蛛影战猫'
+    ),
+    makeFivePieceSet('gamma-boulder-bear', '伽马巨岩熊', '泰坦巨岩专属神装', 'mythic',
+      ['核能破山锤', '大地岩晶重盔', '伽马钛钢堡垒甲', '撼地重岩爪套', '泰坦不灭岩核'],
+      ['Nuclear Mountain Hammer', 'Earth Rock Heavy Helm', 'Gamma Fortress Armor', 'Earthshaker Gauntlets', 'Titan Eternal Core'],
+      '伽马巨岩熊'
+    ),
+    makeFivePieceSet('runeportal-owl', '秘境传送鸮', '星界秘境专属神装', 'mythic',
+      ['秘境时空权杖', '真视古符羽冠', '虚空星辰法袍', '时空跃迁羽套', '异界门扉钥匙'],
+      ['Astral Portal Scepter', 'True Sight Rune Crown', 'Void Star Robe', 'Chrono Shift Featherbands', 'Otherworld Key'],
+      '秘境传送鸮'
+    )
+  ];
+
   function makeExclusiveItem(set, index) {
     const tier = tierInfo[set.tierKey];
     const slotOrder = set.slots || exclusiveSlotOrder;
@@ -257,16 +316,20 @@
     };
   }
 
-  const exclusiveEquipment = [...exclusiveSets, ...fourPieceSets]
+  const standardExclusiveSets = [...exclusiveSets, ...fourPieceSets];
+  const standardExclusiveEquipment = standardExclusiveSets
+    .flatMap(set => set.names.map((_, index) => makeExclusiveItem(set, index)));
+  const heroExclusiveEquipment = fivePieceSets
     .flatMap(set => set.names.map((_, index) => makeExclusiveItem(set, index)));
 
   window.EQUIPMENT_SLOTS = EQUIPMENT_SLOTS;
-  window.EXCLUSIVE_EQUIPMENT_SETS = [...exclusiveSets, ...fourPieceSets].map(set => ({
+  window.EXCLUSIVE_EQUIPMENT_SETS = standardExclusiveSets.map(set => ({
     petId: set.petId,
     petName: set.petName,
     setName: set.setName,
     tierKey: set.tierKey,
     size: (set.slots || exclusiveSlotOrder).length
   }));
-  window.EQUIPMENT_CATALOG_DATA = exclusiveEquipment;
+  window.EQUIPMENT_CATALOG_DATA = standardExclusiveEquipment;
+  window.HERO_GACHA_EQUIPMENT_DATA = heroExclusiveEquipment;
 })();

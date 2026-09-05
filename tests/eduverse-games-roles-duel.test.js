@@ -34,34 +34,42 @@ test('EduVerse: Mini-Games Arcade Hub Contract', () => {
   assert.match(cssSource, /\.arcade-canvas-wrapper/);
 });
 
-test('EduVerse: Hero Characters Sanctuary, Selection & Shop Contract', () => {
+test('EduVerse: limited hero gacha contract', () => {
   // 1. Check navigation and view existence
   assert.match(indexSource, /data-view="characters-view"/);
   assert.match(indexSource, /id="characters-view"/);
-  assert.match(indexSource, /id="hero-roster-grid"/);
-  assert.match(indexSource, /id="hero-showcase-card"/);
+  assert.match(indexSource, /id="hero-gacha-pool-grid"/);
+  assert.match(indexSource, /id="hero-gacha-equipment-preview"/);
+  assert.match(indexSource, /id="hero-gacha-pity-count"/);
   assert.match(indexSource, /id="gacha-single-pull-btn"/);
   assert.match(indexSource, /id="gacha-ten-pull-btn"/);
 
-  // 2. Check Series categories
-  assert.match(indexSource, /data-series="pokemon"/);
-  assert.match(indexSource, /data-series="popmart"/);
-  assert.match(indexSource, /data-series="sanrio"/);
-  assert.match(indexSource, /data-series="minecraft"/);
+  // 2. Check limited heroes and transparent rates
+  assert.match(appSource, /arcflare-fox/);
+  assert.match(appSource, /webshade-lynx/);
+  assert.match(appSource, /stormmane-lion/);
+  assert.match(appSource, /runeportal-owl/);
+  assert.match(appSource, /vibranium-panther/);
+  assert.match(appSource, /gamma-boulder-bear/);
+  assert.match(indexSource, /限定 SSR 英雄 2%/);
+  assert.match(indexSource, /十连至少 1 位限定英雄/);
 
   // 3. Check App Logic
-  assert.match(appSource, /HERO_SERIES_MAP/);
+  assert.match(appSource, /HERO_GACHA_PITY_LIMIT = 50/);
   assert.match(appSource, /function renderCharactersView\(/);
-  assert.match(appSource, /function selectHeroShowcase\(roleId\)/);
-  assert.match(appSource, /async function switchHeroRole\(roleId\)/);
-  assert.match(appSource, /async function buyHeroRole\(roleId\)/);
-  assert.match(appSource, /function triggerHeroGacha\(pullType/);
+  assert.match(appSource, /async function triggerHeroGacha\(pullType/);
+  assert.match(appSource, /pulls === 10 && index === pulls - 1 && !pulledHero/);
+  assert.match(appSource, /grantItemToStudent\(student, item\)/);
 
   // 4. Check CSS styling
-  assert.match(cssSource, /\.hero-sanctuary-layout/);
-  assert.match(cssSource, /\.roster-hero-item/);
-  assert.match(cssSource, /\.showcase-visual-banner/);
-  assert.match(cssSource, /\.gacha-machine-section/);
+  assert.match(cssSource, /\.hero-gacha-hall/);
+  assert.match(cssSource, /\.hero-gacha-pool-grid/);
+  assert.match(cssSource, /\.hero-gacha-forms img/);
+  assert.match(cssSource, /\.hero-gacha-skill-row img/);
+  assert.match(cssSource, /\.hero-gacha-equipment-group/);
+  // 5. Check Marquee wheel diversity (does not hardcode one single target slot)
+  assert.match(appSource, /runHeroGachaMarquee/);
+  assert.doesNotMatch(appSource, /targetSlot = 13;\s*\/\/\s*S-grade titanium blade slot/);
 });
 
 test('EduVerse: Friend PvP & AI Boss Duel Arena Contract', () => {
@@ -71,6 +79,15 @@ test('EduVerse: Friend PvP & AI Boss Duel Arena Contract', () => {
   assert.match(indexSource, /id="duel-stage-panel"/);
   assert.match(indexSource, /id="battle-combatants-arena"/);
   assert.match(indexSource, /id="duel-combat-log-ticker"/);
+  assert.match(indexSource, /id="duel-player-preview"/);
+  assert.match(indexSource, /id="duel-scene-modal"/);
+  assert.match(indexSource, /data-duel-scene="magic-academy"/);
+  assert.match(indexSource, /data-duel-scene="lava-temple"/);
+  assert.match(indexSource, /data-duel-scene="neon-city"/);
+  assert.match(indexSource, /data-duel-scene="dinosaur-jungle"/);
+  assert.match(indexSource, /好友宠物影子战/);
+  assert.doesNotMatch(indexSource, /duel-win-count">5/);
+  assert.doesNotMatch(indexSource, /duel-loss-count">1/);
 
   // 2. Check 4 Combat Commands
   assert.match(indexSource, /id="battle-btn-attack"/);
@@ -86,10 +103,33 @@ test('EduVerse: Friend PvP & AI Boss Duel Arena Contract', () => {
   assert.match(appSource, /function executeBattleAction\(actionType\)/);
   assert.match(appSource, /function triggerQuizBurstDuringBattle\(\)/);
   assert.match(appSource, /function finishDuelBattle\(isPlayerWin\)/);
+  assert.match(appSource, /function getDuelPetArt\(/);
+  assert.match(appSource, /function getDuelPetArt[\s\S]+?const sprite = getPetQStyleImage\(pet\);\s+if \(sprite\) return withAssetVersion\(sprite\);[\s\S]+?getPetRecordDisplayImage\(student, petId\)/);
+  assert.match(appSource, /function getDuelPetUltimate\(/);
+  assert.match(appSource, /const DUEL_SCENES = Object\.freeze/);
+  assert.match(appSource, /function openDuelScenePicker\(/);
+  assert.match(appSource, /function selectDuelScene\(/);
+  assert.match(appSource, /arena\.style\.setProperty\('--duel-scene-image'/);
+  assert.match(appSource, /getPetRecordDisplayImage\(student, petId\)/);
+  assert.match(appSource, /const p1Stats = buildDuelStats\(student, playerPetId\)/);
+  assert.match(appSource, /cp: p1Stats\.cp/);
+  assert.match(appSource, /skillName: p1Skill\.name/);
+  assert.match(appSource, /renderDuelFighterArt\(p1Sprite, p1\)/);
+  assert.match(appSource, /function restartDuelBattle\(\)/);
+  assert.doesNotMatch(appSource, /if \(p1Sprite\) p1Sprite\.textContent = p1\.avatar/);
 
   // 4. Check CSS styling
   assert.match(cssSource, /\.duel-mode-grid/);
   assert.match(cssSource, /\.fighter-card/);
   assert.match(cssSource, /\.battle-action-command-bar/);
   assert.match(cssSource, /\.battle-narration-box/);
+  assert.match(cssSource, /\.duel-player-preview/);
+  assert.match(cssSource, /body\.app-mode \.duel-preview-art img\s*\{[^}]*position:\s*absolute !important;[^}]*inset:\s*12px !important;[^}]*object-fit:\s*contain !important;/s);
+  assert.match(cssSource, /body\.app-mode \.friend-duel-avatar img,[^\{]+\{[^}]*inset:\s*4px !important;[^}]*object-fit:\s*contain !important;/s);
+  assert.match(cssSource, /body\.app-mode \.fighter-sprite\s*\{[^}]*position:\s*relative;/s);
+  assert.match(cssSource, /body\.app-mode \.fighter-sprite img\s*\{[^}]*inset:\s*8px !important;[^}]*object-fit:\s*contain !important;/s);
+  assert.match(cssSource, /\.fighter-sprite img/);
+  assert.match(cssSource, /\.duel-damage-number/);
+  assert.match(cssSource, /\.duel-scene-grid/);
+  assert.match(cssSource, /var\(--duel-scene-image\)/);
 });

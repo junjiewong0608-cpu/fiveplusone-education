@@ -7,7 +7,8 @@ var CORS_HEADERS = {
 var CY_PETS_PUBLIC_FUNCTION_KEY = "YOUR_PUBLIC_FUNCTION_KEY";
 var TEACHER_ADMIN_IDS = /* @__PURE__ */ new Set(["CY0000"]);
 var TEACHER_REWARD_ADMIN_IDS = /* @__PURE__ */ new Set(["CY0000", "CY0001"]);
-var TEACHER_DAILY_REWARD_LIMIT = 250;
+var TEACHER_DAILY_REWARD_LIMIT = 999999;
+var TEACHER_MANAGED_DAILY_REWARD_LIMIT = 999999;
 var BULK_IMPORT_MAX_ROWS = 500;
 var ROOM_MEMBER_LIMIT = 10;
 var ROOM_MEMBERSHIP_LIMIT = 3;
@@ -1091,6 +1092,81 @@ async function rewardStudents(payload) {
     });
   }
   return { ok: true, source: "supabase", accepted, balances, limited, dailyLimit: TEACHER_DAILY_REWARD_LIMIT };
+}
+async function rewardManagedStudents(payload = {}) {
+  const teacherSessionToken = String(payload.teacherSessionToken || payload.sessionToken || "").trim();
+  const session = verifyTeacherSessionToken(teacherSessionToken);
+  if (!session) {
+    return { ok: false, error: "Unauthorized teacher session token." };
+  }
+
+  const studentIds = Array.isArray(payload.studentIds) ? payload.studentIds : [];
+  const targetIds = studentIds.map((id) => String(id || "").trim().toUpperCase()).filter(Boolean);
+  if (!targetIds.length) {
+    return { ok: false, error: "No students selected for reward." };
+  }
+
+  const rawAmount = Math.floor(toNumber(payload.amount, 0));
+  if (rawAmount <= 0) {
+    return { ok: false, error: "Reward amount must be greater than zero." };
+  }
+  const amount = Math.min(rawAmount, TEACHER_MANAGED_DAILY_REWARD_LIMIT);
+
+  const teacherId = session.teacherId || "TEACHER";
+  const reason = String(payload.reason || "课堂表现").trim().slice(0, 100);
+
+  const { start, end } = getUtcDayRange();
+  const rewardRows = targetIds.length ? await supabaseRequest(`teacher_rewards?student_id=in.(${targetIds.map(encodeURIComponent).join(",")})&created_at=gte.${encodeURIComponent(start)}&created_at=lt.${encodeURIComponent(end)}&select=student_id,amount&limit=5000`) || [] : [];
+  const rewardTotals = new Map();
+  rewardRows.forEach((row) => {
+    const studentId = String(row.student_id || "").toUpperCase();
+    rewardTotals.set(studentId, (rewardTotals.get(studentId) || 0) + Math.max(0, Math.floor(toNumber(row.amount, 0))));
+  });
+
+  const accepted = [];
+  const limited = [];
+  const balances = {};
+  const rewardsToLog = [];
+
+  for (const studentId of targetIds) {
+    const remainingDailyReward = Math.max(0, TEACHER_MANAGED_DAILY_REWARD_LIMIT - (rewardTotals.get(studentId) || 0));
+    const appliedAmount = Math.min(amount, remainingDailyReward);
+
+    if (appliedAmount <= 0) {
+      limited.push({ studentId, remainingDailyReward: 0 });
+      continue;
+    }
+
+    const currentCoinRows = await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}&select=coins,student_id&limit=1`) || [];
+    const currentCoins = toNumber(currentCoinRows[0]?.coins, 0);
+    const updatedCoins = Math.min(99999999, currentCoins + appliedAmount);
+
+    await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+      method: "PATCH",
+      body: { coins: updatedCoins },
+      prefer: "return=minimal"
+    });
+
+    balances[studentId] = updatedCoins;
+    accepted.push({ studentId, awarded: appliedAmount, coins: updatedCoins });
+    rewardsToLog.push({ studentId, amount: appliedAmount });
+  }
+
+  if (rewardsToLog.length) {
+    await supabaseRequest("teacher_rewards", {
+      method: "POST",
+      body: rewardsToLog.map((reward) => ({
+        teacher_id: teacherId,
+        class_id: "Managed Class",
+        student_id: reward.studentId,
+        amount: reward.amount,
+        reason
+      })),
+      prefer: "return=minimal"
+    });
+  }
+
+  return { ok: true, source: "supabase", accepted, balances, limited, dailyLimit: TEACHER_MANAGED_DAILY_REWARD_LIMIT };
 }
 function normalizeBulkImportStudentId(value) {
   const compact = String(value || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -3404,6 +3480,7 @@ const LOCAL_STORAGE_DB = {
   chapters: [...SEED_CHAPTERS],
   questRecords: [],
   studentAchievements: new Map(),
+  registeredStudents: [],
   dailyChallenges: [
     {
       challengeId: 'daily-math-f1',
@@ -3614,6 +3691,12 @@ async function registerStudentPhone(payload = {}) {
     // fallback gracefully
   }
 
+  LOCAL_STORAGE_DB.registeredStudents.push({
+    ...studentRow,
+    studentId,
+    student: initialGameState
+  });
+
   return {
     ok: true,
     studentId,
@@ -3667,6 +3750,108 @@ async function loginStudentPhone(payload = {}) {
     ok: true,
     student: mockStudent
   };
+}
+
+async function listStudentAccounts(payload = {}) {
+  let students = [];
+  try {
+    const rows = (await supabaseRequest('students?select=student_id,student_name,phone,form,class_name,teacher_id,level,experience,coins,current_streak,status,created_at&order=student_name.asc&limit=5000') || []);
+    if (Array.isArray(rows) && rows.length) {
+      students = rows.map(row => ({
+        studentId: row.student_id,
+        studentName: row.student_name,
+        phone: row.phone || '',
+        form: row.form || '',
+        className: row.class_name || '',
+        teacherId: row.teacher_id || '',
+        level: toNumber(row.level, 1),
+        experience: toNumber(row.experience, 0),
+        coins: toNumber(row.coins, 0),
+        currentStreak: toNumber(row.current_streak, 0),
+        status: row.status || 'active',
+        createdAt: row.created_at || null
+      }));
+    }
+  } catch (_e) {}
+
+  if (LOCAL_STORAGE_DB.registeredStudents && LOCAL_STORAGE_DB.registeredStudents.length) {
+    const seen = new Set(students.map(s => s.studentId));
+    LOCAL_STORAGE_DB.registeredStudents.forEach(row => {
+      const id = row.student_id || row.studentId;
+      if (!seen.has(id)) {
+        seen.add(id);
+        students.push({
+          studentId: id,
+          studentName: row.student_name || row.studentName,
+          phone: row.phone || '',
+          form: row.form || '',
+          className: row.class_name || row.className || '',
+          teacherId: row.teacher_id || row.teacherId || '',
+          level: toNumber(row.level, 1),
+          experience: toNumber(row.experience, 0),
+          coins: toNumber(row.coins, 0),
+          currentStreak: toNumber(row.current_streak || row.currentStreak, 1),
+          status: row.status || 'active',
+          createdAt: row.created_at || null
+        });
+      }
+    });
+  }
+
+  return {
+    ok: true,
+    students
+  };
+}
+
+async function listStudents(payload = {}) {
+  return listStudentAccounts(payload);
+}
+
+async function setStudentAccountStatus(payload = {}) {
+  const studentId = String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const status = String(payload.status || '');
+  if (!studentId || !['active', 'disabled'].includes(status)) return { ok: false, error: '学生账号状态无效。' };
+  try {
+    await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+      method: 'PATCH',
+      body: { status, updated_at: new Date().toISOString() },
+      prefer: 'return=minimal'
+    });
+  } catch (_e) {}
+  const found = (LOCAL_STORAGE_DB.registeredStudents || []).find(s => (s.student_id || s.studentId) === studentId);
+  if (found) found.status = status;
+  return { ok: true, studentId, status };
+}
+
+async function deleteStudentAccount(payload = {}) {
+  const studentId = String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!studentId) return { ok: false, error: '学生账号无效。' };
+  try {
+    await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+      method: 'DELETE',
+      prefer: 'return=minimal'
+    });
+  } catch (_e) {}
+  if (LOCAL_STORAGE_DB.registeredStudents) {
+    LOCAL_STORAGE_DB.registeredStudents = LOCAL_STORAGE_DB.registeredStudents.filter(s => (s.student_id || s.studentId) !== studentId);
+  }
+  return { ok: true, studentId, deleted: true };
+}
+
+async function resetStudentPassword(payload = {}) {
+  const studentId = String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const newPin = String(payload.newPin || payload.newPassword || '').trim();
+  if (!studentId) return { ok: false, error: '学生账号无效。' };
+  if (newPin.length < 4) return { ok: false, error: '学生临时 PIN 至少需要 4 位。' };
+  try {
+    await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+      method: 'PATCH',
+      body: { password_hash: hashPasswordSync(newPin), updated_at: new Date().toISOString() },
+      prefer: 'return=minimal'
+    });
+  } catch (_e) {}
+  return { ok: true, studentId };
 }
 
 // 3. Subjects, Chapters & Questions
@@ -4078,6 +4263,10 @@ async function handleAction(payload) {
   if (action === "teacherLogin") return teacherLogin(payload);
   if (action === "changeTeacherPassword") return changeTeacherPassword(payload);
   if (action === "getTeacherProfile") return getTeacherProfile(payload);
+  if (action === "listStudentAccounts" || action === "listStudents") return listStudentAccounts(payload);
+  if (action === "setStudentAccountStatus") return setStudentAccountStatus(payload);
+  if (action === "deleteStudentAccount") return deleteStudentAccount(payload);
+  if (action === "resetStudentPassword") return resetStudentPassword(payload);
   if (action === "registerStudentPhone") return registerStudentPhone(payload);
   if (action === "loginStudentPhone") return loginStudentPhone(payload);
 
@@ -4108,6 +4297,7 @@ async function handleAction(payload) {
   if (action === "listTeacherClasses") return listTeacherClasses(payload);
   if (action === "getClassStudents") return getClassStudents(payload);
   if (action === "rewardStudents") return rewardStudents(payload);
+  if (action === "rewardManagedStudents") return rewardManagedStudents(payload);
   if (action === "bulkImportStudents") return bulkImportStudents(payload);
   if (action === "listWallPosts") return listWallPosts();
   if (action === "listLeaderboardStudents") return listLeaderboardStudents();
@@ -4175,6 +4365,8 @@ export {
   teacherLogin,
   changeTeacherPassword,
   getTeacherProfile,
+  listStudentAccounts,
+  listStudents,
   registerStudentPhone,
   loginStudentPhone,
   listSubjects,
@@ -4199,6 +4391,8 @@ export default {
   teacherLogin,
   changeTeacherPassword,
   getTeacherProfile,
+  listStudentAccounts,
+  listStudents,
   registerStudentPhone,
   loginStudentPhone,
   listSubjects,

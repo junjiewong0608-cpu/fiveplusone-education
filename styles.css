@@ -14407,93 +14407,288 @@ body.app-mode .eduverse-main-nav .nav-button.active::before {
   box-shadow: 0 0 8px #fbbf24;
 }
 
-/* ── 2. Student Hub Header — pixel grid overlay ─────────── */
+/* ── 2. Student Hub Header — Cyber-Fantasy RPG HUD ─────────── */
 body.app-mode .student-hub-header {
   background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 1px,
-      transparent 1px,
-      transparent 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.02) 0px,
-      rgba(255,255,255,0.02) 1px,
-      transparent 1px,
-      transparent 40px
-    ),
-    radial-gradient(circle at 92% 10%, rgba(56,189,248,0.22), transparent 38%),
-    radial-gradient(circle at 10% 80%, rgba(192,132,252,0.18), transparent 35%),
-    linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0f2744 100%);
-  border: 2px solid #fbbf24;
-  outline: 1px solid rgba(251,191,36,0.3);
-  outline-offset: 3px;
+    radial-gradient(circle at 92% 15%, rgba(56, 189, 248, 0.18), transparent 42%),
+    radial-gradient(circle at 8% 85%, rgba(192, 132, 252, 0.16), transparent 38%),
+    radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.12), transparent 45%),
+    linear-gradient(135deg, rgba(8, 14, 38, 0.88) 0%, rgba(14, 22, 58, 0.82) 50%, rgba(6, 10, 30, 0.94) 100%) !important;
+  backdrop-filter: blur(24px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+  border-top: 2px solid rgba(251, 191, 36, 0.85) !important;
+  border-bottom: 1.5px solid rgba(168, 85, 247, 0.5) !important;
+  border-radius: 26px !important;
+  outline: none !important;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.6),
+    0 0 32px rgba(56, 189, 248, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  position: relative;
+  overflow: hidden;
+  padding: 22px 28px;
 }
 
-/* ── 3. Hub stat chips — pixel counter look ─────────────── */
-body.app-mode .hub-stat-chip {
-  background: linear-gradient(145deg, rgba(20,30,70,0.95), rgba(10,16,46,0.98));
-  border: 2px solid rgba(99,102,241,0.5);
-  box-shadow: 0 4px 0 #03051a, inset 0 1px 0 rgba(255,255,255,0.12);
-  border-radius: 14px;
-  min-width: 80px;
-  flex-direction: column;
+body.app-mode .student-hub-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.9), rgba(56, 189, 248, 0.9), transparent);
+  pointer-events: none;
+}
+
+body.app-mode .hub-avatar-wrap {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+  display: grid;
+  place-items: center;
+  border: 2.5px solid #38bdf8 !important;
+  box-shadow:
+    0 0 24px rgba(56, 189, 248, 0.6),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35),
+    0 8px 16px rgba(0, 0, 0, 0.5) !important;
+  animation: hubAvatarAuraPulse 3.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes hubAvatarAuraPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.55), inset 0 2px 6px rgba(255, 255, 255, 0.35);
+    border-color: #38bdf8;
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(251, 191, 36, 0.7), inset 0 2px 8px rgba(255, 255, 255, 0.45);
+    border-color: #fbbf24;
+  }
+}
+
+body.app-mode .hub-level-badge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  background: linear-gradient(180deg, #ffe066 0%, #f59e0b 55%, #b45309 100%) !important;
+  color: #0c1228 !important;
+  font-size: 11.5px;
+  font-weight: 1000;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 10px rgba(245, 158, 11, 0.6) !important;
+  letter-spacing: 0.5px;
+}
+
+body.app-mode .hub-student-name {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+body.app-mode .hub-id-tag {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
+  color: #67e8f9;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+body.app-mode .kssm-form-tag {
+  background: linear-gradient(135deg, #0284c7, #2563eb) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: 12px !important;
+  padding: 3px 12px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4) !important;
+}
+
+body.app-mode .hub-profile-edit-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(8px) !important;
+  color: #e2e8f0 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 4px 12px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.app-mode .hub-profile-edit-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4) !important;
+}
+
+/* EXP Progress Track & Shimmer Fill */
+body.app-mode .hub-exp-container {
+  margin-top: 6px;
+}
+
+body.app-mode .hub-exp-track {
+  background: rgba(4, 8, 26, 0.82) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+  border-radius: 999px !important;
+  height: 16px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+}
+
+body.app-mode .hub-exp-fill {
+  background: linear-gradient(90deg, #00f2fe 0%, #38bdf8 45%, #d946ef 85%, #ec4899 100%) !important;
+  box-shadow: 0 0 14px rgba(236, 72, 153, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+  border-radius: 999px !important;
+  position: relative !important;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+body.app-mode .hub-exp-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+  animation: expBarShimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes expBarShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+body.app-mode .hub-exp-labels {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+body.app-mode .hub-exp-labels strong {
+  color: #38bdf8 !important;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  letter-spacing: 0.5px;
+}
+
+/* ── 3. Hub stat chips — Luxury 3D Glass Badges ─────────────── */
+body.app-mode .hub-header-right {
+  display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 8px 14px;
-  text-align: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+body.app-mode .hub-stat-chip {
+  background: linear-gradient(145deg, rgba(16, 26, 64, 0.85), rgba(8, 14, 42, 0.95)) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  border-radius: 18px !important;
+  padding: 8px 16px !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: unset;
+  transition: all 0.25s ease;
+}
+
+body.app-mode .hub-stat-chip:hover {
+  transform: translateY(-2px);
 }
 
 body.app-mode .hub-stat-chip.hub-coin-pill {
-  flex-direction: row;
-  align-items: center;
-  padding: 8px 16px;
-  border-radius: 14px;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1.5px solid rgba(56, 189, 248, 0.4);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  gap: 8px;
-  min-width: unset;
-  text-align: left;
+  border-color: rgba(251, 191, 36, 0.7) !important;
+  background: linear-gradient(145deg, rgba(30, 24, 10, 0.9), rgba(12, 16, 40, 0.95)) !important;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.45),
+    0 0 16px rgba(251, 191, 36, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+body.app-mode .hub-stat-chip.hub-coin-pill .hok-wallet-icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 8px rgba(251, 191, 36, 0.6));
 }
 
 body.app-mode .hub-stat-chip.hub-coin-pill span {
   font-size: 13px;
-  color: #94a3b8;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: 0.02em;
+  color: #cbd5e1;
+  font-weight: 800;
 }
 
 body.app-mode .hub-stat-chip.hub-coin-pill strong {
-  font-size: 18px;
-  color: #fde047;
+  font-size: 19px !important;
+  color: #fde047 !important;
   font-weight: 900;
-  font-family: inherit;
-  text-shadow: 0 0 8px rgba(253, 224, 71, 0.35);
+  text-shadow: 0 0 10px rgba(253, 224, 71, 0.45) !important;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace !important;
 }
 
-body.app-mode .hub-stat-chip small {
-  font-size: 10px;
-  font-weight: 800;
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+body.app-mode .hub-stat-chip .chip-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
 }
 
 body.app-mode .hub-stat-chip strong {
-  font-size: 22px;
-  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 19px !important;
+  color: #ffffff;
+  font-weight: 900;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace !important;
+}
+
+body.app-mode .hub-stat-chip small {
+  font-size: 12px;
+  font-weight: 800;
+  color: #94a3b8;
 }
 
 body.app-mode .hub-streak-chip {
-  border: 2px solid #f97316;
-  box-shadow: 0 4px 0 #1c0700, 0 0 16px rgba(249,115,22,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
-  border-radius: 14px;
-  min-width: 90px;
-  gap: 6px;
+  background: linear-gradient(145deg, rgba(40, 16, 8, 0.9), rgba(16, 12, 36, 0.95)) !important;
+  border: 1.5px solid #f97316 !important;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(249, 115, 22, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  border-radius: 18px !important;
+  padding: 8px 16px !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+body.app-mode .hub-streak-chip strong {
+  font-size: 19px !important;
+  color: #ffedd5;
+  font-weight: 900;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+body.app-mode .hub-streak-chip span:first-child {
+  font-size: 20px;
+  animation: flamePulse 2s ease-in-out infinite;
+}
+
+@keyframes flamePulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.6)); }
+  50% { transform: scale(1.18); filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.9)); }
 }
 
 /* ── 4. Daily challenge — Roblox top accent bar ──────────── */
@@ -16230,35 +16425,77 @@ body.app-mode .duel-player-preview {
   }
 }
 
-/* Art frame — circular glow platform */
+/* Art frame — 3D Holographic Summoning Dais */
 body.app-mode .duel-preview-art {
   position: relative;
   background:
-    radial-gradient(circle at 50% 75%, rgba(56,189,248,0.45) 0%, rgba(56,189,248,0.15) 35%, transparent 65%),
-    radial-gradient(circle, rgba(56,189,248,0.2) 0%, rgba(6,12,38,0.85) 70%);
-  border: 2px solid rgba(56,189,248,0.45);
-  border-radius: 20px;
+    radial-gradient(ellipse at 50% 85%, rgba(56,189,248,0.5) 0%, rgba(56,189,248,0.15) 40%, transparent 70%),
+    radial-gradient(circle, rgba(99,102,241,0.2) 0%, rgba(4,8,32,0.9) 75%) !important;
+  border: 2px solid rgba(56,189,248,0.55) !important;
+  border-radius: 24px !important;
   display: grid;
   place-items: center;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(56,189,248,0.2), 0 12px 30px rgba(0,0,0,0.6) !important;
+  min-height: 260px;
 }
 
-body.app-mode .duel-preview-art::before {
-  content: '';
+body.app-mode .duel-stage-spotlight {
   position: absolute;
-  bottom: 0; left: 10%; right: 10%;
-  height: 28px;
-  background: radial-gradient(ellipse, rgba(56,189,248,0.6) 0%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(8px);
+  top: -20px;
+  left: 20%;
+  right: 20%;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(56,189,248,0.35) 0%, transparent 100%);
+  filter: blur(16px);
   pointer-events: none;
 }
 
+/* 3D Holographic Rotating Summoning Dais Ring */
+body.app-mode .duel-stage-pedestal-ring {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: 170px;
+  height: 170px;
+  margin-left: -85px;
+  border-radius: 50%;
+  border: 3px solid rgba(0,242,254,0.85);
+  box-shadow:
+    0 0 24px rgba(0,242,254,0.8),
+    inset 0 0 20px rgba(0,242,254,0.6),
+    0 0 50px rgba(79,172,254,0.4);
+  transform: rotateX(68deg);
+  animation: daisRingSpin 8s linear infinite;
+  pointer-events: none;
+}
+
+body.app-mode .duel-stage-pedestal-ring::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 2px dashed rgba(251,191,36,0.85);
+  box-shadow: inset 0 0 10px rgba(251,191,36,0.5);
+  animation: daisRingCounterSpin 6s linear infinite reverse;
+}
+
+@keyframes daisRingSpin {
+  0% { transform: rotateX(68deg) rotate(0deg); }
+  100% { transform: rotateX(68deg) rotate(360deg); }
+}
+
+@keyframes daisRingCounterSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 body.app-mode .duel-preview-art.rarity-ssr {
-  border-color: rgba(245, 158, 11, 0.65);
+  border-color: rgba(245, 158, 11, 0.75) !important;
   background:
-    radial-gradient(circle at 50% 80%, rgba(245,158,11,0.5) 0%, rgba(245,158,11,0.15) 40%, transparent 65%),
-    radial-gradient(circle, rgba(245,158,11,0.25) 0%, rgba(88,28,135,0.4) 55%, rgba(6,12,38,0.9) 80%);
-  box-shadow: 0 0 28px rgba(245,158,11,0.3), inset 0 0 20px rgba(245,158,11,0.18);
+    radial-gradient(ellipse at 50% 85%, rgba(245,158,11,0.55) 0%, rgba(245,158,11,0.18) 45%, transparent 70%),
+    radial-gradient(circle, rgba(147,51,234,0.3) 0%, rgba(4,8,32,0.92) 80%) !important;
+  box-shadow: 0 0 36px rgba(245,158,11,0.35), inset 0 0 24px rgba(245,158,11,0.2) !important;
 }
 
 body.app-mode .duel-preview-art .fighter-emoji-fallback {
@@ -16269,19 +16506,22 @@ body.app-mode .duel-preview-art .fighter-emoji-fallback {
 body.app-mode .duel-preview-art img {
   display: block;
   position: absolute !important;
-  inset: 10px !important;
-  width: calc(100% - 20px) !important;
-  height: calc(100% - 20px) !important;
+  inset: 12px !important;
+  width: calc(100% - 24px) !important;
+  height: calc(100% - 24px) !important;
   max-width: none !important;
   max-height: none !important;
   object-fit: contain !important;
   object-position: center !important;
-  filter: drop-shadow(0 10px 16px rgba(0,0,0,0.6)) drop-shadow(0 0 8px rgba(56,189,248,0.3));
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.7)) drop-shadow(0 0 14px rgba(56,189,248,0.4)) !important;
+  z-index: 2;
 }
 
 body.app-mode .duel-preview-copy h3 {
   color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0 16px rgba(56,189,248,0.3);
+  font-size: 24px;
+  font-weight: 900;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0 18px rgba(56,189,248,0.35);
 }
 
 body.app-mode .duel-ready-pill {
@@ -16289,16 +16529,67 @@ body.app-mode .duel-ready-pill {
   color: #ffffff;
   border: 1px solid #34d399;
   box-shadow: 0 0 16px rgba(16,185,129,0.55);
+  font-weight: 800;
+  border-radius: 999px;
 }
 
-body.app-mode .duel-preview-stats b,
+/* Futuristic Combat Stat Capsules */
+body.app-mode .duel-preview-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0 10px;
+}
+
+body.app-mode .duel-preview-stats b {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.4), rgba(15, 23, 42, 0.9)) !important;
+  border: 1.5px solid #38bdf8 !important;
+  color: #38bdf8 !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  padding: 6px 16px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 body.app-mode .duel-preview-stats span {
-  background: rgba(4,8,36,0.75);
-  backdrop-filter: blur(6px);
-  border: 1.5px solid rgba(99,102,241,0.38);
-  border-radius: 12px;
-  color: #e2e8f0;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1.5px solid rgba(148, 163, 184, 0.28) !important;
+  border-radius: 999px !important;
+  color: #f1f5f9 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  padding: 6px 14px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.app-mode .duel-preview-ultimate-bar {
+  background: linear-gradient(90deg, rgba(147, 51, 234, 0.4), rgba(79, 70, 229, 0.25), rgba(15, 23, 42, 0.8)) !important;
+  border: 1.5px solid rgba(192, 132, 252, 0.65) !important;
+  border-radius: 14px !important;
+  padding: 8px 16px !important;
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.35), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+  margin-top: 10px;
+}
+
+body.app-mode .ultimate-chip-label {
+  color: #f0abfc;
+  font-weight: 800;
+  font-size: 12.5px;
+}
+
+body.app-mode .ultimate-chip-name {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(240, 171, 252, 0.6);
 }
 
 /* ── 3. Mode Cards — glassmorphism with themed borders ── */
@@ -17279,104 +17570,216 @@ body.app-mode .filter-pill.active {
   box-shadow: 0 0 14px rgba(251,191,36,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
-/* 3. Glory Podium Pedestals */
+/* 3. Glory Podium Pedestals - Divine Sanctuary Tiered Stepped Dais */
 body.app-mode .glory-podium-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 20px;
   align-items: flex-end;
-  padding: 30px 14px 20px;
-  margin-bottom: 28px;
+  padding: 38px 16px 20px;
+  margin-bottom: 32px;
+  position: relative;
 }
 
 body.app-mode .podium-card {
-  background: linear-gradient(180deg, rgba(16,28,76,0.95) 0%, rgba(8,14,46,0.99) 100%);
-  border: 2px solid rgba(99,102,241,0.45);
-  border-radius: 22px;
-  padding: 22px 16px;
+  background: linear-gradient(180deg, rgba(16,28,76,0.92) 0%, rgba(8,14,46,0.98) 100%);
+  border: 1.5px solid rgba(99,102,241,0.4);
+  border-radius: 24px;
+  padding: 24px 18px 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    0 8px 0 #020718,
-    0 16px 32px rgba(0,0,0,0.6);
-  transition: all 0.25s ease;
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 10px 30px rgba(0,0,0,0.6);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-height: 250px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 body.app-mode .podium-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 }
 
-/* 1st Place Champion Pedestal (Taller, Golden) */
+/* Rank 1: Gold Champion Podium (Taller, Center, Glowing) */
+body.app-mode .podium-card.podium-gold,
 body.app-mode .podium-card.podium-first {
   background:
-    radial-gradient(circle at 50% 0%, rgba(251,191,36,0.25), transparent 50%),
-    linear-gradient(180deg, rgba(40,24,6,0.98) 0%, rgba(18,10,3,0.99) 100%);
-  border: 2.5px solid #fbbf24;
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(251,191,36,0.3) 0%, rgba(35,22,5,0.96) 65%, rgba(14,9,2,0.99) 100%);
+  border: 2px solid rgba(251,191,36,0.85);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 0 40px rgba(251,191,36,0.35),
+    0 16px 40px rgba(0,0,0,0.8);
+  transform: translateY(-24px);
+  min-height: 330px;
+  padding-top: 32px;
+  z-index: 3;
+}
+
+body.app-mode .podium-card.podium-gold:hover,
+body.app-mode .podium-card.podium-first:hover {
+  transform: translateY(-30px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.45),
+    0 0 55px rgba(251,191,36,0.55),
+    0 22px 50px rgba(0,0,0,0.85);
+}
+
+/* Rank 2: Silver Runner-up Podium */
+body.app-mode .podium-card.podium-silver {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(148,163,184,0.22) 0%, rgba(15,23,42,0.96) 65%, rgba(8,14,30,0.99) 100%);
+  border: 1.5px solid rgba(148,163,184,0.65);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.25),
-    0 0 36px rgba(251,191,36,0.4),
-    0 12px 0 #1c0800,
-    0 24px 44px rgba(0,0,0,0.75);
-  transform: translateY(-16px);
-  padding-top: 28px;
+    0 0 25px rgba(148,163,184,0.18),
+    0 12px 32px rgba(0,0,0,0.7);
+  min-height: 280px;
+  z-index: 2;
 }
 
-body.app-mode .podium-card.podium-first:hover {
-  transform: translateY(-20px) scale(1.02);
+/* Rank 3: Bronze 3rd Place Podium */
+body.app-mode .podium-card.podium-bronze {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(217,119,6,0.2) 0%, rgba(28,18,14,0.96) 65%, rgba(15,10,8,0.99) 100%);
+  border: 1.5px solid rgba(217,119,6,0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 0 22px rgba(217,119,6,0.16),
+    0 10px 28px rgba(0,0,0,0.7);
+  min-height: 250px;
+  z-index: 1;
 }
 
+/* Empty State Podium */
+body.app-mode .podium-card.podium-empty {
+  opacity: 0.75;
+}
+
+/* 3D Floating Crown */
+body.app-mode .podium-crown-3d,
 body.app-mode .podium-crown {
-  font-size: 38px;
   position: absolute;
-  top: -24px;
-  filter: drop-shadow(0 0 12px rgba(251,191,36,0.8));
-  animation: eduFloat 2.8s ease-in-out infinite;
+  top: -34px;
+  font-size: 42px;
+  filter: drop-shadow(0 0 16px rgba(251,191,36,0.95));
+  animation: floatCrown3D 3.2s ease-in-out infinite;
+  z-index: 4;
 }
 
+@keyframes floatCrown3D {
+  0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 0 14px rgba(251,191,36,0.8)); }
+  50% { transform: translateY(-7px) rotate(-3deg); filter: drop-shadow(0 0 24px rgba(251,191,36,1)); }
+}
+
+/* Laurel Wreaths */
+body.app-mode .podium-laurel-wreath {
+  font-size: 20px;
+  margin-bottom: 2px;
+  opacity: 0.85;
+}
+body.app-mode .laurel-gold {
+  color: #fbbf24;
+  filter: drop-shadow(0 0 8px rgba(251,191,36,0.7));
+}
+body.app-mode .laurel-silver {
+  color: #cbd5e1;
+  filter: drop-shadow(0 0 6px rgba(203,213,225,0.5));
+}
+body.app-mode .laurel-bronze {
+  color: #fdba74;
+  filter: drop-shadow(0 0 6px rgba(253,186,116,0.4));
+}
+
+/* Circular Luminous Avatar Frames */
+body.app-mode .podium-avatar-frame,
 body.app-mode .podium-avatar {
-  font-size: 44px;
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(10,16,48,0.9);
-  border: 2px solid rgba(255,255,255,0.25);
-  border-radius: 20px;
-  box-shadow: 0 4px 0 #020718;
+  position: relative;
   margin-bottom: 12px;
+  background: radial-gradient(circle, rgba(15,23,42,0.95) 0%, rgba(8,14,30,0.98) 100%);
+  border: 2.5px solid rgba(255,255,255,0.25);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  overflow: hidden;
 }
 
-body.app-mode .podium-first .podium-avatar {
-  border-color: #fbbf24;
-  box-shadow: 0 0 18px rgba(251,191,36,0.5), 0 4px 0 #1c0800;
+body.app-mode .podium-avatar-frame.frame-gold {
+  width: 90px;
+  height: 90px;
+  border: 3px solid #fbbf24;
+  box-shadow: 0 0 24px rgba(251,191,36,0.6), inset 0 0 12px rgba(251,191,36,0.3);
+  background: radial-gradient(circle, rgba(42,26,7,0.95) 0%, rgba(18,10,3,0.98) 100%);
 }
 
+body.app-mode .podium-avatar-frame.frame-silver {
+  width: 80px;
+  height: 80px;
+  border: 2.5px solid #cbd5e1;
+  box-shadow: 0 0 20px rgba(203,213,225,0.45), inset 0 0 10px rgba(203,213,225,0.25);
+  background: radial-gradient(circle, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.98) 100%);
+}
+
+body.app-mode .podium-avatar-frame.frame-bronze {
+  width: 74px;
+  height: 74px;
+  border: 2.5px solid #d97706;
+  box-shadow: 0 0 16px rgba(217,119,6,0.4), inset 0 0 8px rgba(217,119,6,0.2);
+  background: radial-gradient(circle, rgba(43,26,18,0.95) 0%, rgba(18,12,8,0.98) 100%);
+}
+
+body.app-mode .podium-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+body.app-mode .podium-avatar-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+body.app-mode .podium-gold .podium-avatar-icon {
+  font-size: 46px;
+}
+
+/* Rank Badges */
 body.app-mode .podium-rank-badge {
   font-size: 12px;
   font-weight: 1000;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 999px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 body.app-mode .podium-rank-1 {
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: #1a0a00;
-  box-shadow: 0 0 12px rgba(251,191,36,0.6);
+  box-shadow: 0 0 16px rgba(251,191,36,0.65), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 body.app-mode .podium-rank-2 {
-  background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+  background: linear-gradient(135deg, #f1f5f9, #94a3b8);
   color: #0f172a;
+  box-shadow: 0 0 14px rgba(148,163,184,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 body.app-mode .podium-rank-3 {
-  background: linear-gradient(135deg, #fed7aa, #fb923c);
-  color: #431407;
+  background: linear-gradient(135deg, #fed7aa, #ea580c);
+  color: #fff7ed;
+  box-shadow: 0 0 14px rgba(234,88,12,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 body.app-mode .podium-student-name {
@@ -17384,12 +17787,14 @@ body.app-mode .podium-student-name {
   font-size: 16px;
   font-weight: 1000;
   margin-bottom: 2px;
+  letter-spacing: 0.2px;
 }
 
 body.app-mode .podium-form-label {
   color: #94a3b8;
   font-size: 12px;
-  margin-bottom: 6px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 body.app-mode .podium-score {
@@ -17397,13 +17802,60 @@ body.app-mode .podium-score {
   font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
   font-size: 15px;
   font-weight: 1000;
-  text-shadow: 0 0 8px rgba(56,189,248,0.5);
+  text-shadow: 0 0 10px rgba(56,189,248,0.5);
+  margin-bottom: 14px;
 }
 
+body.app-mode .podium-gold .podium-score,
 body.app-mode .podium-first .podium-score {
   color: #fef08a;
-  text-shadow: 0 0 10px rgba(254,240,138,0.6);
+  text-shadow: 0 0 12px rgba(254,240,138,0.7);
   font-size: 17px;
+}
+
+/* Stepped Pedestal Base Plinth */
+body.app-mode .podium-pedestal-base {
+  margin-top: auto;
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 12px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+body.app-mode .podium-pedestal-base.base-gold {
+  background: linear-gradient(180deg, #d97706 0%, #78350f 100%);
+  border: 1.5px solid #fde047;
+  height: 46px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 0 16px rgba(245,158,11,0.4);
+}
+
+body.app-mode .podium-pedestal-base.base-silver {
+  background: linear-gradient(180deg, #64748b 0%, #334155 100%);
+  border: 1.5px solid #e2e8f0;
+  height: 38px;
+}
+
+body.app-mode .podium-pedestal-base.base-bronze {
+  background: linear-gradient(180deg, #9a3412 0%, #431407 100%);
+  border: 1.5px solid #fdba74;
+  height: 34px;
+}
+
+body.app-mode .podium-num {
+  font-size: 20px;
+  font-weight: 1000;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  line-height: 1;
+}
+
+body.app-mode .base-gold .podium-num {
+  font-size: 24px;
+  color: #fffbeb;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
 
 /* 4. Table Responsive Container */

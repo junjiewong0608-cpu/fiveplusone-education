@@ -360,10 +360,10 @@ test('interaction area starts with three large actions and pet mini games', () =
   assert.match(appSource, /data-interaction-lobby-mode="join"/);
   assert.match(appSource, /data-interaction-lobby-mode="create"/);
   assert.match(appSource, /data-mini-game-open/);
-  assert.match(appSource, /CY反应轮盘/);
-  assert.match(appSource, /CY跳跳跳/);
-  assert.match(appSource, /CY跑跑跑/);
-  assert.match(appSource, /CY跳一跳/);
+  assert.match(appSource, /(5\+1|CY)反应轮盘/);
+  assert.match(appSource, /(5\+1|CY)跳跳跳/);
+  assert.match(appSource, /(5\+1|CY)跑跑跑/);
+  assert.match(appSource, /(5\+1|CY)跳一跳/);
   assert.match(appSource, /function startFlappyMiniGame/);
   assert.match(appSource, /function startRunnerMiniGame/);
   assert.match(appSource, /function drawMiniGamePetHead/);
@@ -406,7 +406,7 @@ test('jump charge mini game uses pet action sprites, no aim line, and cloud-safe
   const drawJump = extractAppFunction('drawJumpChargeMiniGame');
 
   assert.match(appSource, /const MINI_GAME_SCORE_KEYS = \['reaction', 'flappy', 'runner', 'jumpCharge'\];/, 'new mini game scores should be normalized through one shared key list');
-  assert.match(choices, /type:\s*'jumpCharge'[\s\S]*title:\s*'CY跳一跳'/, 'the interaction page should offer CY jump charge as a fourth mini game');
+  assert.match(choices, /type:\s*'jumpCharge'[\s\S]*title:\s*'(5\+1|CY)跳一跳'/, 'the interaction page should offer CY jump charge as a fourth mini game');
   assert.match(startJump, /按住蓄力/, 'jump charge should teach students to hold before releasing');
   assert.match(appSource, /function startJumpChargeMiniGameCharge/, 'jump charge should start power charging on pointer down');
   assert.match(appSource, /function releaseJumpChargeMiniGame/, 'jump charge should release into a jump on pointer up');

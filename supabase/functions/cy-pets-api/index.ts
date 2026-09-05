@@ -7,7 +7,8 @@ const CORS_HEADERS = {
 const CY_PETS_PUBLIC_FUNCTION_KEY = 'YOUR_PUBLIC_FUNCTION_KEY';
 const TEACHER_ADMIN_IDS = new Set(['CY0000']);
 const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
-const TEACHER_DAILY_REWARD_LIMIT = 250;
+const TEACHER_DAILY_REWARD_LIMIT = 999999;
+const TEACHER_MANAGED_DAILY_REWARD_LIMIT = 999999;
 const BULK_IMPORT_MAX_ROWS = 500;
 const ROOM_MEMBER_LIMIT = 10;
 const ROOM_MEMBERSHIP_LIMIT = 3;
@@ -230,7 +231,8 @@ const CANONICAL_STUDENT_ID_MAP: Record<string, string> = Object.freeze({
   CY1019: 'CY0004',
   CY5678: 'CY0016',
   CY8868: 'CY0015',
-  ET2322: 'CY0000'
+  ET2322: 'CY0000',
+  CY4257: 'FPO4257'
 });
 
 const CANONICAL_STUDENT_NAME_MAP: Record<string, string> = Object.freeze({
@@ -3177,9 +3179,60 @@ const PRESET_TEACHERS = [
   { teacherId: 'TCH12_WEN', name: '汶老师', avatar: '👩‍🏫', role: 'teacher' }
 ];
 
-const TEACHER_PASSWORDS = new Map<string, { passwordHash: string; initialChanged: boolean; lastLogin: string | null }>(
-  PRESET_TEACHERS.map(t => [t.teacherId, { passwordHash: DEFAULT_INITIAL_HASH, initialChanged: false, lastLogin: null }])
-);
+const TEACHER_SESSION_TTL_MS = 12 * 60 * 60 * 1000;
+
+function bytesToBase64Url(bytes: Uint8Array) {
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
+function base64UrlToBytes(value: string) {
+  const base64 = value.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(value.length / 4) * 4, '=');
+  return Uint8Array.from(atob(base64), char => char.charCodeAt(0));
+}
+
+async function getTeacherSessionKey() {
+  const { secretKey } = getSupabaseConfig();
+  return crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secretKey),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign', 'verify']
+  );
+}
+
+async function createTeacherSessionToken(teacherId: string) {
+  const expiresAt = Date.now() + TEACHER_SESSION_TTL_MS;
+  const payload = bytesToBase64Url(new TextEncoder().encode(JSON.stringify({ teacherId, expiresAt })));
+  const signature = await crypto.subtle.sign('HMAC', await getTeacherSessionKey(), new TextEncoder().encode(payload));
+  return `${payload}.${bytesToBase64Url(new Uint8Array(signature))}`;
+}
+
+async function requireTeacherSession(payload: JsonRecord = {}) {
+  const token = String(payload.teacherSessionToken || '');
+  const [encodedPayload, encodedSignature] = token.split('.');
+  if (!encodedPayload || !encodedSignature) throw new Error('教师登录已失效，请重新登录。');
+  const valid = await crypto.subtle.verify(
+    'HMAC',
+    await getTeacherSessionKey(),
+    base64UrlToBytes(encodedSignature),
+    new TextEncoder().encode(encodedPayload)
+  );
+  if (!valid) throw new Error('教师登录已失效，请重新登录。');
+  let session: JsonRecord;
+  try {
+    session = JSON.parse(new TextDecoder().decode(base64UrlToBytes(encodedPayload)));
+  } catch (_error) {
+    throw new Error('教师登录已失效，请重新登录。');
+  }
+  const teacher = PRESET_TEACHERS.find(item => item.teacherId === session.teacherId);
+  if (!teacher || toNumber(session.expiresAt, 0) <= Date.now()) throw new Error('教师登录已失效，请重新登录。');
+  return teacher;
+}
+
+function normalizeStudentLoginName(value: unknown) {
+  return String(value || '').normalize('NFKC').trim().replace(/\s+/g, ' ').toLocaleLowerCase('en');
+}
 
 function normalizePhoneNumber(rawPhone: unknown) {
   if (!rawPhone) return '';
@@ -3313,42 +3366,7 @@ const EDUVERSE_SUBJECTS = [
   }
 ];
 
-const SEED_CHAPTERS = [
-  { chapterId: 'bc-f1-c1', subjectId: 'bc', form: 'Form 1', chapterNumber: 1, title: '第一单元：词语锤炼与修辞之美', description: '掌握比喻、拟人、借代与成语辨析。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
-  { chapterId: 'bc-f1-c2', subjectId: 'bc', form: 'Form 1', chapterNumber: 2, title: '第二单元：记叙文脉络与人物刻画', description: '分析肖像、语言与心理描写。', kssmFocus: '⭐ 必会', difficulty: 'Hard' },
-  { chapterId: 'bc-f2-c1', subjectId: 'bc', form: 'Form 2', chapterNumber: 1, title: '第一单元：说明文结构与说明方法', description: '列数字、作比较与分类别精准解析。', kssmFocus: '🔥 高频考点', difficulty: 'Normal' },
-  { chapterId: 'bc-f3-c1', subjectId: 'bc', form: 'Form 3', chapterNumber: 1, title: '第一单元：文言文与古诗名句精华', description: '文言实词虚词推断与主旨领悟。', kssmFocus: '🧠 KBAT', difficulty: 'Hard' },
-
-  { chapterId: 'bm-f1-c1', subjectId: 'bm', form: 'Form 1', chapterNumber: 1, title: 'Bab 1: Morfologi - Golongan Kata', description: 'Kata Nama, Kata Kerja dan Kata Adjektif.', kssmFocus: '🔥 Tatabahasa', difficulty: 'Normal' },
-  { chapterId: 'bm-f1-c2', subjectId: 'bm', form: 'Form 1', chapterNumber: 2, title: 'Bab 2: Sintaksis & Pola Ayat', description: 'Pola Ayat Dasar (FN+FN, FN+FK, FN+FA, FN+FS).', kssmFocus: '⭐ 必会', difficulty: 'Normal' },
-  { chapterId: 'bm-f2-c1', subjectId: 'bm', form: 'Form 2', chapterNumber: 1, title: 'Bab 1: Peribahasa & Kesalahan Bahasa', description: 'Membetulkan kesalahan ejaan dan kosa kata.', kssmFocus: '🔥 Tatabahasa', difficulty: 'Hard' },
-  { chapterId: 'bm-f3-c1', subjectId: 'bm', form: 'Form 3', chapterNumber: 1, title: 'Bab 1: Komsas & Pemahaman Prosa Moden', description: 'Tema, persoalan, nilai dan pengajaran.', kssmFocus: '🧠 KBAT', difficulty: 'Hard' },
-
-  { chapterId: 'bi-f1-c1', subjectId: 'bi', form: 'Form 1', chapterNumber: 1, title: 'Unit 1: Tenses & Subject-Verb Agreement', description: 'Master past, present and future tenses.', kssmFocus: '🔥 Grammar Wizard', difficulty: 'Normal' },
-  { chapterId: 'bi-f2-c1', subjectId: 'bi', form: 'Form 2', chapterNumber: 1, title: 'Unit 1: Relative Clauses & Connectors', description: 'Combining clauses with precision.', kssmFocus: '⭐ Vocab Pro', difficulty: 'Normal' },
-  { chapterId: 'bi-f3-c1', subjectId: 'bi', form: 'Form 3', chapterNumber: 1, title: 'Unit 1: Passive Voice & Conditionals', description: 'Zero, First, Second & Third conditionals.', kssmFocus: '🧠 Critical Reading', difficulty: 'Hard' },
-
-  { chapterId: 'math-f1-c1', subjectId: 'math', form: 'Form 1', chapterNumber: 1, title: 'Bab 1: Nombor Nisbah (Rational Numbers)', description: 'Operasi asas integer, pecahan dan perpuluhan.', kssmFocus: '🔥 代数解题', difficulty: 'Normal' },
-  { chapterId: 'math-f1-c2', subjectId: 'math', form: 'Form 1', chapterNumber: 2, title: 'Bab 2: Faktor dan Gandaan (Factors & Multiples)', description: 'FSTB (HCF) dan GSTK (LCM).', kssmFocus: '⭐ 几何公式', difficulty: 'Normal' },
-  { chapterId: 'math-f2-c1', subjectId: 'math', form: 'Form 2', chapterNumber: 1, title: 'Bab 1: Pola dan Jujukan (Patterns & Sequences)', description: 'Menerbitkan sebutan ke-n dalam jujukan.', kssmFocus: '🧠 KBAT 逻辑', difficulty: 'Normal' },
-  { chapterId: 'math-f3-c1', subjectId: 'math', form: 'Form 3', chapterNumber: 1, title: 'Bab 1: Indeks (Indices)', description: 'Hukum-hukum indeks dan operasi algebra bertingkat.', kssmFocus: '⚠️ 易错陷阱', difficulty: 'Hard' },
-
-  { chapterId: 'sci-f1-c1', subjectId: 'science', form: 'Form 1', chapterNumber: 1, title: 'Bab 1: Pengenalan Kepada Penyiasatan Saintifik', description: 'Kuantiti fizik, unit SI dan kejituan pengukuran.', kssmFocus: '⭐ 科学原理', difficulty: 'Normal' },
-  { chapterId: 'sci-f2-c1', subjectId: 'science', form: 'Form 2', chapterNumber: 1, title: 'Bab 1: Biodiversiti (Biodiversity)', description: 'Pengelasan organisma dan kekunci dikotomi.', kssmFocus: '🔥 实验探究', difficulty: 'Normal' },
-  { chapterId: 'sci-f3-c1', subjectId: 'science', form: 'Form 3', chapterNumber: 1, title: 'Bab 1: Rangsangan dan Gerak Balas', description: 'Sistem saraf manusia dan organ deria.', kssmFocus: '🧠 KBAT 假设', difficulty: 'Hard' },
-
-  { chapterId: 'sej-f1-c1', subjectId: 'sejarah', form: 'Form 1', chapterNumber: 1, title: 'Bab 1: Mengenal Sejarah', description: 'Sumber primer, sekunder dan kaedah penyelidikan.', kssmFocus: '⭐ 重点年表', difficulty: 'Normal' },
-  { chapterId: 'sej-f2-c1', subjectId: 'sejarah', form: 'Form 2', chapterNumber: 1, title: 'Bab 1: Kerajaan Alam Melayu', description: 'Funan, Champa, Srivijaya, Angkor dan Majapahit.', kssmFocus: '🔥 王朝体制', difficulty: 'Hard' },
-  { chapterId: 'sej-f3-c1', subjectId: 'sejarah', form: 'Form 3', chapterNumber: 1, title: 'Bab 1: Kedatangan Kuasa Barat', description: 'Kestabilan dan kemakmuran negara sebelum penjajahan.', kssmFocus: '📜 史料考证', difficulty: 'Hard' },
-
-  { chapterId: 'geo-f1-c1', subjectId: 'geografi', form: 'Form 1', chapterNumber: 1, title: 'Bab 1: Arah dan Garisan Latitud & Longitud', description: 'Menentukan kedudukan koordinat bumi.', kssmFocus: '🗺️ 经纬等高线', difficulty: 'Normal' },
-  { chapterId: 'geo-f2-c1', subjectId: 'geografi', form: 'Form 2', chapterNumber: 1, title: 'Bab 1: Skala dan Jarak', description: 'Mengukur jarak lurus dan melengkung pada peta.', kssmFocus: '🔥 读图技能', difficulty: 'Normal' },
-  { chapterId: 'geo-f3-c1', subjectId: 'geografi', form: 'Form 3', chapterNumber: 1, title: 'Bab 1: Jadual dan Graf', description: 'Membina dan mentafsir graf bar mudah.', kssmFocus: '⭐ 地形气候', difficulty: 'Normal' },
-
-  { chapterId: 'mor-f1-c1', subjectId: 'moral', form: 'Form 1', chapterNumber: 1, title: 'Unit 1: Kenali Moral & Pilihan Bermoral', description: 'Konsep baik, benar dan patut dalam kehidupan seharian.', kssmFocus: '🔥 核心价值', difficulty: 'Normal' },
-  { chapterId: 'mor-f2-c1', subjectId: 'moral', form: 'Form 2', chapterNumber: 1, title: 'Unit 1: Sumber Moral Asas Pembentukan Akhlak', description: 'Nilai murni membentuk keharmonian masyarakat.', kssmFocus: '⭐ 伦理情境', difficulty: 'Normal' },
-  { chapterId: 'mor-f3-c1', subjectId: 'moral', form: 'Form 3', chapterNumber: 1, title: 'Unit 1: Integriti Pilihan Keluarga Harmoni', description: 'Memupuk sikap jujur dan bertanggungjawab dalam keluarga.', kssmFocus: '🧠 道德思辨', difficulty: 'Normal' }
-];
+const SEED_CHAPTERS: JsonRecord[] = [];
 
 const SEED_QUESTIONS: JsonRecord[] = [];
 
@@ -3488,6 +3506,15 @@ async function registerStudentPhone(payload: JsonRecord = {}) {
     return { ok: false, error: '该电话号码已被注册，请直接使用手机号登录。' };
   }
 
+  // Check for duplicate name (same name cannot register twice)
+  const existingName = await supabaseRequest(
+    `students?student_name=ilike.${encodeURIComponent(name)}&status=eq.active&select=student_id&limit=1`,
+    { method: 'GET' }
+  );
+  if (existingName && (existingName as JsonRecord[]).length > 0) {
+    return { ok: false, error: `"${name}" 这个名字已被其他同学使用，请换一个名字注册。` };
+  }
+
   const randomDigits = Math.floor(1000 + Math.random() * 9000);
   const studentId = `CY${randomDigits}`;
   const passwordHash = hashPasswordSync(pin);
@@ -3517,9 +3544,9 @@ async function registerStudentPhone(payload: JsonRecord = {}) {
     form,
     branch: studentRow.branch,
     className: studentRow.class_name,
-    petName: '小精灵',
-    petType: 'sunny-wing',
-    petRarity: 'A',
+    petName: '',
+    petType: '',
+    petRarity: '',
     petLevel: 1,
     experience: 0,
     coins: 50,
@@ -3528,8 +3555,8 @@ async function registerStudentPhone(payload: JsonRecord = {}) {
     lastCheckinDate: studentRow.last_learning_date,
     ownedItems: [],
     equippedItems: {},
-    ownedPets: ['sunny-wing'],
-    petCollection: { 'sunny-wing': { petId: 'sunny-wing', ownedItems: [] } },
+    ownedPets: [],
+    petCollection: {},
     status: 'active'
   };
 
@@ -3558,45 +3585,329 @@ async function loginStudentPhone(payload: JsonRecord = {}) {
   const pin = String(payload.pin || payload.password || '').trim();
 
   if (!rawPhone) return { ok: false, error: '请输入手机号码。' };
+  if (!rawName) return { ok: false, error: '请输入学生姓名。' };
+  if (!pin) return { ok: false, error: '请输入密码。' };
 
   const normalizedPhone = normalizePhoneNumber(rawPhone);
   const inputHash = pin ? hashPasswordSync(pin) : null;
 
-  try {
-    const rows = (await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=*`, {
-      method: 'GET'
-    })) as JsonRecord[];
-    if (rows && rows.length > 0) {
-      const studentData = rows[0];
-      if (inputHash && studentData.password_hash && studentData.password_hash !== inputHash) {
-        return { ok: false, error: 'PIN 码或密码错误。' };
-      }
-      return getStudent({ studentId: studentData.student_id });
-    }
-  } catch (err) {
-    // fallback
+  const rows = (await supabaseRequest(`students?phone=eq.${encodeURIComponent(normalizedPhone)}&select=student_id,student_name,password_hash,status&limit=1`, {
+    method: 'GET'
+  })) as JsonRecord[];
+  if (!rows || rows.length === 0) {
+    return { ok: false, error: '学生姓名、电话号码或密码不正确。' };
   }
+  const studentData = rows[0];
+  if (studentData.status !== 'active') {
+    return { ok: false, error: '学生账号已被停用，请联系负责老师。' };
+  }
+  if (normalizeStudentLoginName(rawName) !== normalizeStudentLoginName(studentData.student_name)) {
+    return { ok: false, error: '学生姓名、电话号码或密码不正确。' };
+  }
+  if (studentData.password_hash && studentData.password_hash !== inputHash) {
+    return { ok: false, error: '学生姓名、电话号码或密码不正确。' };
+  }
+  return getStudent({ studentId: studentData.student_id });
+}
 
-  const studentName = rawName || '学习伙伴';
+async function listTeachers() {
   return {
     ok: true,
-    student: {
-      studentId: `51${normalizedPhone.slice(-4)}`,
-      studentName,
-      phone: normalizedPhone,
-      form: 'Form 2',
-      level: 1,
-      experience: 120,
-      coins: 80,
-      totalStars: 5,
-      streak: 3,
-      lastCheckinDate: new Date().toISOString().slice(0, 10),
-      ownedPets: ['sunny-wing'],
-      equippedItems: {},
+    teachers: PRESET_TEACHERS.map(t => ({
+      teacherId: t.teacherId,
+      name: t.name,
+      avatar: t.avatar,
+      role: t.role
+    }))
+  };
+}
+
+async function teacherLogin(payload: JsonRecord = {}) {
+  const teacherId = String(payload.teacherId || '').trim();
+  const password = String(payload.password || '');
+  const teacher = PRESET_TEACHERS.find(t => t.teacherId === teacherId);
+  if (!teacher) return { ok: false, error: '未找到该教师账号。' };
+
+  const rows = (await supabaseRequest(`teachers?teacher_id=eq.${encodeURIComponent(teacherId)}&select=teacher_id,name,avatar,password_hash,initial_password_changed,role,status&limit=1`) || []) as JsonRecord[];
+  const authRecord = rows[0];
+  if (!authRecord || authRecord.status !== 'active') return { ok: false, error: '未找到该教师账号。' };
+
+  const inputHash = hashPasswordSync(password);
+  if (inputHash !== authRecord.password_hash) {
+    return { ok: false, error: '密码错误，请输入正确的教师密码。' };
+  }
+
+  const lastLogin = new Date().toISOString();
+  await supabaseRequest(`teachers?teacher_id=eq.${encodeURIComponent(teacherId)}`, {
+    method: 'PATCH',
+    body: { last_login_at: lastLogin, updated_at: lastLogin },
+    prefer: 'return=minimal'
+  });
+  const sessionToken = await createTeacherSessionToken(teacher.teacherId);
+
+  return {
+    ok: true,
+    sessionToken,
+    teacher: {
+      teacherId: teacher.teacherId,
+      name: teacher.name,
+      avatar: teacher.avatar,
+      role: 'teacher',
+      initialPasswordChanged: Boolean(authRecord.initial_password_changed),
+      lastLogin,
       status: 'active'
     }
   };
 }
+
+async function changeTeacherPassword(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const currentPassword = String(payload.currentPassword || '');
+  const newPassword = String(payload.newPassword || '').trim();
+  if (newPassword.length < 6) return { ok: false, error: '新密码长度至少需要 6 位。' };
+
+  const rows = (await supabaseRequest(`teachers?teacher_id=eq.${encodeURIComponent(teacher.teacherId)}&select=teacher_id,password_hash,status&limit=1`) || []) as JsonRecord[];
+  const authRecord = rows[0];
+  if (!authRecord || authRecord.password_hash !== hashPasswordSync(currentPassword)) {
+    return { ok: false, error: '原密码不正确。' };
+  }
+
+  await supabaseRequest(`teachers?teacher_id=eq.${encodeURIComponent(teacher.teacherId)}`, {
+    method: 'PATCH',
+    body: { password_hash: hashPasswordSync(newPassword), initial_password_changed: true, updated_at: new Date().toISOString() },
+    prefer: 'return=minimal'
+  });
+  return { ok: true, message: '密码修改成功！' };
+}
+
+async function getTeacherProfile(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const rows = (await supabaseRequest(`teachers?teacher_id=eq.${encodeURIComponent(teacher.teacherId)}&select=initial_password_changed,last_login_at,status&limit=1`) || []) as JsonRecord[];
+  const authRecord = rows[0];
+  return {
+    ok: true,
+    teacher: {
+      teacherId: teacher.teacherId,
+      name: teacher.name,
+      avatar: teacher.avatar,
+      role: 'teacher',
+      initialPasswordChanged: Boolean(authRecord?.initial_password_changed),
+      lastLogin: authRecord?.last_login_at || null,
+      status: 'active'
+    }
+  };
+}
+
+async function listStudentAccounts(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const rows = (await supabaseRequest(`students?select=student_id,student_name,phone,form,class_name,teacher_id,coins,level,experience,current_streak,status,created_at&order=student_name.asc&limit=5000`) || []) as JsonRecord[];
+  return {
+    ok: true,
+    students: rows.map(row => ({
+      studentId: row.student_id,
+      studentName: row.student_name,
+      phone: row.phone || '',
+      form: row.form || '',
+      className: row.class_name || '',
+      teacherId: row.teacher_id || '',
+      coins: toNumber(row.coins, 0),
+      level: toNumber(row.level, 1),
+      experience: toNumber(row.experience, 0),
+      currentStreak: toNumber(row.current_streak, 0),
+      status: row.status || 'active',
+      createdAt: row.created_at || null
+    }))
+  };
+}
+
+async function listManagedClasses(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const classRows = (await supabaseRequest(`classes?select=class_id,class_name,form,teacher_id,branch,status,created_at&order=class_name.asc&limit=500`) || []) as JsonRecord[];
+  const studentRows = (await supabaseRequest('students?select=student_id,class_name,teacher_id,status&limit=5000') || []) as JsonRecord[];
+  return {
+    ok: true,
+    classes: classRows.map(row => ({
+      classId: row.class_id,
+      className: row.class_name,
+      form: row.form,
+      teacherId: row.teacher_id,
+      branch: row.branch,
+      status: row.status,
+      studentCount: studentRows.filter(student =>
+        String(student.class_name || '') === String(row.class_name || '')
+        && String(student.status || 'active') === 'active'
+      ).length,
+      createdAt: row.created_at
+    }))
+  };
+}
+
+async function createManagedClass(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const className = String(payload.className || '').trim().slice(0, 60);
+  const form = String(payload.form || 'Form 1').trim();
+  const branch = String(payload.branch || '5+1教育补习中心').trim().slice(0, 60);
+  if (!className) return { ok: false, error: '请填写班级名称。' };
+  if (!['Form 1', 'Form 2', 'Form 3'].includes(form)) return { ok: false, error: '请选择正确年级。' };
+  const existing = (await supabaseRequest(`classes?class_name=eq.${encodeURIComponent(className)}&select=class_id&limit=1`) || []) as JsonRecord[];
+  if (existing.length) return { ok: false, error: '已经存在同名班级。' };
+  const classId = `CLS-${Date.now().toString(36).toUpperCase()}-${crypto.randomUUID().slice(0, 4).toUpperCase()}`;
+  const rows = await supabaseRequest('classes', {
+    method: 'POST',
+    body: {
+      class_id: classId,
+      class_name: className,
+      form,
+      teacher_id: teacher.teacherId,
+      branch,
+      status: 'active'
+    },
+    prefer: 'return=representation'
+  }) as JsonRecord[];
+  return { ok: true, class: rows?.[0] || { class_id: classId, class_name: className, form, teacher_id: teacher.teacherId, branch, status: 'active' } };
+}
+
+async function rewardManagedStudents(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const studentIds = Array.isArray(payload.studentIds)
+    ? [...new Set(payload.studentIds.map(normalizeId).filter(Boolean))]
+    : [];
+  const amount = Math.max(0, Math.floor(toNumber(payload.amount, 0)));
+  const reason = String(payload.reason || '课堂表现').trim().slice(0, 80) || '课堂表现';
+  if (!studentIds.length) return { ok: false, error: '请先选择至少一位学生。' };
+  if (amount <= 0) return { ok: false, error: '奖励金币必须大于 0。' };
+  const rows = (await supabaseRequest(`students?student_id=in.(${studentIds.map(encodeURIComponent).join(',')})&select=student_id,student_name,teacher_id,status,coins&limit=500`) || []) as JsonRecord[];
+  const targets = rows.filter(row => String(row.status || 'active') === 'active');
+  const logs: JsonRecord[] = [];
+  const accepted: string[] = [];
+  const balances: Record<string, number> = {};
+  for (const student of targets) {
+    const studentId = normalizeId(student.student_id);
+    const existingCoins = toNumber(student.coins, 0);
+    const nextCoins = Math.min(99999999, existingCoins + amount);
+    await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+      method: 'PATCH',
+      body: { coins: nextCoins, updated_at: new Date().toISOString() },
+      prefer: 'return=minimal'
+    });
+    balances[studentId] = nextCoins;
+    accepted.push(studentId);
+    logs.push({ teacher_id: teacher.teacherId, class_id: String(student.className || ''), student_id: studentId, amount, reason });
+  }
+  if (logs.length) {
+    await supabaseRequest('teacher_rewards', { method: 'POST', body: logs, prefer: 'return=minimal' }).catch(() => null);
+  }
+  return { ok: true, accepted, balances, dailyLimit: TEACHER_MANAGED_DAILY_REWARD_LIMIT };
+}
+
+async function setStudentAccountStatus(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const studentId = String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const status = String(payload.status || '');
+  if (!studentId || !['active', 'disabled'].includes(status)) return { ok: false, error: '学生账号状态无效。' };
+
+  const rows = (await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}&select=student_id,student_name,teacher_id,status&limit=1`) || []) as JsonRecord[];
+  const student = rows[0];
+  if (!student) return { ok: false, errorCode: 'STUDENT_NOT_FOUND', error: '找不到这个学生账号。' };
+  const canManage = teacher.teacherId === 'TCH01_JIE'
+    || PRESET_TEACHERS.some(t => t.teacherId === teacher.teacherId)
+    || normalizeId(student.teacher_id) === teacher.teacherId;
+  if (!canManage && (teacher.teacherId !== 'TCH01_JIE' && normalizeId(student.teacher_id) !== teacher.teacherId)) {
+    return { ok: false, error: '您没有权限管理这个学生账号。' };
+  }
+
+  await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+    method: 'PATCH',
+    body: { status, updated_at: new Date().toISOString() },
+    prefer: 'return=minimal'
+  });
+  await syncGoogleSheetsAfterWrite(teacher.teacherId);
+  return { ok: true, studentId, status };
+}
+
+async function deleteStudentAccount(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const studentId = String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!studentId) return { ok: false, error: '学生账号无效。' };
+
+  const rows = (await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}&select=student_id,student_name,teacher_id,status&limit=1`) || []) as JsonRecord[];
+  const student = rows[0];
+  if (!student) return { ok: false, errorCode: 'STUDENT_NOT_FOUND', error: '找不到这个学生账号。' };
+  const canDelete = teacher.teacherId === 'TCH01_JIE'
+    || PRESET_TEACHERS.some(t => t.teacherId === teacher.teacherId)
+    || normalizeId(student.teacher_id) === teacher.teacherId;
+  if (!canDelete && (teacher.teacherId !== 'TCH01_JIE' && normalizeId(student.teacher_id) !== teacher.teacherId)) {
+    return { ok: false, error: '您没有权限删除这个学生账号。' };
+  }
+  if (student.status !== 'disabled') {
+    return { ok: false, errorCode: 'STUDENT_MUST_BE_DISABLED', error: '请先移除学生，再进行永久删除。' };
+  }
+
+  await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+    method: 'DELETE',
+    prefer: 'return=minimal'
+  });
+  const remaining = await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}&select=student_id&limit=1`) || [];
+  if ((remaining as JsonRecord[]).length) return { ok: false, error: '学生账号未能完全删除，请稍后再试。' };
+  await syncGoogleSheetsAfterWrite(teacher.teacherId);
+  return { ok: true, studentId, deleted: true };
+}
+
+// ─── Admin: delete ALL students (TCH01_JIE only) ────────────────────────────
+async function deleteAllStudents(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  if (teacher.teacherId !== 'TCH01_JIE') {
+    return { ok: false, error: '只有主管理员可以执行全部删除操作。' };
+  }
+
+  // Delete student_game_states first to avoid FK issues
+  await supabaseRequest('student_game_states?student_id=neq.____NONE____', {
+    method: 'DELETE',
+    prefer: 'return=minimal'
+  });
+
+  // Delete all student rows
+  await supabaseRequest('students?student_id=neq.____NONE____', {
+    method: 'DELETE',
+    prefer: 'return=minimal'
+  });
+
+  const remaining = (await supabaseRequest('students?select=student_id&limit=5') || []) as JsonRecord[];
+  return {
+    ok: true,
+    deleted: true,
+    remainingCount: remaining.length,
+    message: remaining.length === 0
+      ? '所有学生账号已成功清空。'
+      : `删除后仍剩余 ${remaining.length} 条记录，请稍后重试。`
+  };
+}
+
+async function resetStudentPassword(payload: JsonRecord = {}) {
+  const teacher = await requireTeacherSession(payload);
+  const studentId = String(payload.studentId || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const newPin = String(payload.newPin || payload.newPassword || '').trim();
+  if (!studentId) return { ok: false, error: '学生账号无效。' };
+  if (newPin.length < 4) return { ok: false, error: '学生临时 PIN 至少需要 4 位。' };
+
+  const rows = (await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}&select=student_id,teacher_id,status&limit=1`) || []) as JsonRecord[];
+  const student = rows[0];
+  if (!student) return { ok: false, errorCode: 'STUDENT_NOT_FOUND', error: '找不到这个学生账号。' };
+  const canReset = teacher.teacherId === 'TCH01_JIE'
+    || PRESET_TEACHERS.some(t => t.teacherId === teacher.teacherId)
+    || normalizeId(student.teacher_id) === teacher.teacherId;
+  if (!canReset && (teacher.teacherId !== 'TCH01_JIE' && normalizeId(student.teacher_id) !== teacher.teacherId)) {
+    return { ok: false, error: '您没有权限重设这个学生密码。' };
+  }
+
+  await supabaseRequest(`students?student_id=eq.${encodeURIComponent(studentId)}`, {
+    method: 'PATCH',
+    body: { password_hash: hashPasswordSync(newPin), updated_at: new Date().toISOString() },
+    prefer: 'return=minimal'
+  });
+  return { ok: true, studentId };
+}
+
 
 async function listSubjects() {
   return { ok: true, subjects: EDUVERSE_SUBJECTS };
@@ -3817,23 +4128,28 @@ async function submitQuestResult(payload: JsonRecord = {}) {
 
 async function getGloryLeaderboard(payload: JsonRecord = {}) {
   const filter = String(payload.filter || 'all').toLowerCase();
-  let baseList = [
-    { rank: 1, studentId: 'CY1001', studentName: '林子轩 (Alex)', form: 'Form 2', level: 14, score: 3850, exp: 3850, avatar: '🦁', streak: 15, badge: '👑 学霸之巅' },
-    { rank: 2, studentId: 'CY1002', studentName: '陈思琪 (Chloe)', form: 'Form 3', level: 13, score: 3620, exp: 3620, avatar: '🦊', streak: 12, badge: '⚡ 竞速达人' },
-    { rank: 3, studentId: 'CY1003', studentName: '张凯文 (Kevin)', form: 'Form 1', level: 12, score: 3410, exp: 3410, avatar: '🐼', streak: 10, badge: '🔥 连击宗师' },
-    { rank: 4, studentId: 'CY1004', studentName: '李美华 (Mei)', form: 'Form 2', level: 11, score: 3100, exp: 3100, avatar: '🐱', streak: 8, badge: '🌟 进阶新星' },
-    { rank: 5, studentId: 'CY1005', studentName: '黄俊杰 (Jay)', form: 'Form 3', level: 10, score: 2950, exp: 2950, avatar: '🐺', streak: 7, badge: '🎯 满分神射' }
-  ];
 
-  if (filter === 'form1') baseList = baseList.filter(s => s.form === 'Form 1');
-  if (filter === 'form2') baseList = baseList.filter(s => s.form === 'Form 2');
-  if (filter === 'form3') baseList = baseList.filter(s => s.form === 'Form 3');
+  // Fetch real students from Supabase
+  const allStudents = await listLeaderboardStudents();
+  let baseList = (allStudents.students || []) as JsonRecord[];
+
+  // Remove teacher roster rows from the leaderboard
+  baseList = baseList.filter(student => !isTeacherRosterRow(student));
+
+  // Apply form filter
+  if (filter === 'form1') baseList = baseList.filter(s => String(s.form || s.class_name || '').toLowerCase().includes('form 1') || String(s.class_name || '').toLowerCase().includes('1'));
+  if (filter === 'form2') baseList = baseList.filter(s => String(s.form || s.class_name || '').toLowerCase().includes('form 2') || String(s.class_name || '').toLowerCase().includes('2'));
+  if (filter === 'form3') baseList = baseList.filter(s => String(s.form || s.class_name || '').toLowerCase().includes('form 3') || String(s.class_name || '').toLowerCase().includes('3'));
+
+  // Sort by score/coins descending, assign ranks
+  baseList.sort((a, b) => (Number(b.score || b.coins || 0)) - (Number(a.score || a.coins || 0)));
+  const ranked = baseList.map((s, i) => ({ ...s, rank: i + 1 }));
 
   return {
     ok: true,
     filter,
-    top3: baseList.slice(0, 3),
-    rankings: baseList
+    top3: ranked.slice(0, 3),
+    rankings: ranked
   };
 }
 
@@ -3913,41 +4229,102 @@ async function bulkImportQuestions(payload: JsonRecord = {}) {
 }
 
 async function syncGoogleSheetsData(payload: JsonRecord = {}) {
+  const webAppUrl = Deno.env.get('GOOGLE_SHEETS_WEB_APP_URL') || '';
+  if (!webAppUrl) {
+    // GOOGLE_SHEET_NOT_CONFIGURED — env var absent, cannot sync
+    return {
+      ok: false,
+      status: 'not_configured',
+      error: 'GOOGLE_SHEET_NOT_CONFIGURED',
+      message: 'Google Sheets Web App URL 未配置，无法同步。请在 Supabase 函数环境变量中设置 GOOGLE_SHEETS_WEB_APP_URL。'
+    };
+  }
+
   const teacherId = String(payload.teacherId || 'TCH01_JIE');
   const jobId = `sync-${Date.now()}`;
   const nowStr = new Date().toISOString();
 
+  // Tabs that this connector will push to Google Sheet
+  const tabs = [
+    { name: '学生资料', sheet: 'Students' },
+    { name: '学习记录', sheet: 'Performance' },
+    { name: '任务结果', sheet: 'Quest Results' },
+    { name: '排行榜',   sheet: 'Leaderboard' },
+    { name: '每日挑战', sheet: 'Daily Challenge' }
+  ];
+
+  let totalRows = 0;
+  const errors: string[] = [];
+
+  for (const tab of tabs) {
+    try {
+      const res = await fetch(webAppUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'sync', sheet: tab.sheet, teacherId })
+      });
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        totalRows += Number(data.rowsWritten || 0);
+      } else {
+        errors.push(`${tab.name}: HTTP ${res.status}`);
+      }
+    } catch (e) {
+      errors.push(`${tab.name}: ${(e as Error).message}`);
+    }
+  }
+
   const syncJob = {
     jobId,
     triggeredBy: teacherId,
-    status: 'synced',
-    syncedTabs: ['Students', 'Performance', 'Quest Results', 'Leaderboard', 'Daily Challenge'],
-    rowsSynced: 185,
+    status: errors.length === 0 ? 'synced' : 'partial',
+    syncedTabs: tabs.map(t => t.name),
+    rowsSynced: totalRows,
     startedAt: nowStr,
-    finishedAt: new Date(Date.now() + 1200).toISOString(),
-    errorMessage: ''
+    finishedAt: new Date().toISOString(),
+    errorMessage: errors.join('; ')
   };
+
+  // Persist to google_sheet_sync_jobs table (best-effort)
+  try {
+    await supabaseAdmin.from('google_sheet_sync_jobs').insert([{
+      job_id: jobId,
+      triggered_by: teacherId,
+      status: syncJob.status,
+      synced_tabs: syncJob.syncedTabs,
+      rows_synced: syncJob.rowsSynced,
+      started_at: nowStr,
+      finished_at: syncJob.finishedAt,
+      error_message: syncJob.errorMessage
+    }]);
+  } catch (_e) { /* non-fatal — table may not exist yet */ }
 
   syncLogHistory.unshift(syncJob);
   if (syncLogHistory.length > 20) syncLogHistory = syncLogHistory.slice(0, 20);
 
   return {
-    ok: true,
+    ok: errors.length === 0,
     job: syncJob,
-    message: 'Google Sheet 同步完成！已成功更新 5 个工作表。'
+    message: errors.length === 0
+      ? `Google Sheet 同步完成！已成功更新 ${tabs.length} 个工作表。`
+      : `同步部分完成，${errors.length} 个工作表失败：${errors.join(', ')}`
   };
 }
 
 async function getGoogleSheetSyncStatus() {
-  const latest = syncLogHistory[0] || {
-    status: 'synced',
-    finishedAt: new Date().toISOString(),
-    rowsSynced: 120
-  };
+  const webAppUrl = Deno.env.get('GOOGLE_SHEETS_WEB_APP_URL') || '';
+  if (!webAppUrl) {
+    return {
+      ok: false,
+      status: 'not_configured',
+      error: 'GOOGLE_SHEET_NOT_CONFIGURED'
+    };
+  }
+  const latest = syncLogHistory[0] || null;
   return {
     ok: true,
-    status: latest.status,
-    lastSyncedAt: latest.finishedAt,
+    status: latest?.status ?? 'never_synced',
+    lastSyncedAt: latest?.finishedAt ?? null,
     latestJob: latest,
     logs: syncLogHistory
   };
@@ -3960,6 +4337,14 @@ async function handleAction(payload: JsonRecord) {
   if (action === 'teacherLogin') return teacherLogin(payload);
   if (action === 'changeTeacherPassword') return changeTeacherPassword(payload);
   if (action === 'getTeacherProfile') return getTeacherProfile(payload);
+  if (action === 'listStudentAccounts' || action === 'listStudents') return listStudentAccounts(payload);
+  if (action === 'listManagedClasses') return listManagedClasses(payload);
+  if (action === 'createManagedClass') return createManagedClass(payload);
+  if (action === 'rewardManagedStudents') return rewardManagedStudents(payload);
+  if (action === 'setStudentAccountStatus') return setStudentAccountStatus(payload);
+  if (action === 'deleteStudentAccount') return deleteStudentAccount(payload);
+  if (action === 'deleteAllStudents') return deleteAllStudents(payload);
+  if (action === 'resetStudentPassword') return resetStudentPassword(payload);
   if (action === 'registerStudentPhone') return registerStudentPhone(payload);
   if (action === 'loginStudentPhone') return loginStudentPhone(payload);
 

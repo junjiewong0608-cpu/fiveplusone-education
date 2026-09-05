@@ -19,7 +19,7 @@
     requestRetryDelayMs: 650
   };
   const DEFAULT_APP_VIEW = 'dashboard-view';
-  const APP_ASSET_VERSION = '20260905-05';
+  const APP_ASSET_VERSION = '20260905-06';
   const TEACHER_GLOBAL_ADMIN_IDS = new Set(['TCH01_JIE', '510000', 'FO0000', 'CY0000']);
   const TEACHER_REWARD_ADMIN_IDS = new Set(['CY0000', 'CY0001']);
   const MINI_GAME_SCORE_KEYS = ['reaction', 'flappy', 'runner', 'jumpCharge'];
@@ -21200,33 +21200,52 @@
         const rank2 = top3[1] || { studentName: '虚位以待', score: 0, avatar: '🥈', form: '-' };
         const rank3 = top3[2] || { studentName: '虚位以待', score: 0, avatar: '🥉', form: '-' };
 
+        const renderPodiumAvatar = (item) => {
+          if (item.avatarImage && typeof item.avatarImage === 'string' && item.avatarImage.startsWith('data:')) {
+            return `<img src="${escapeHtml(item.avatarImage)}" class="podium-avatar-img" alt="${escapeHtml(item.studentName)}" />`;
+          }
+          return `<span class="podium-avatar-icon">${escapeHtml(item.avatar || '🌟')}</span>`;
+        };
+
         const html = `
-          <!-- Rank 2 (Left) -->
-          <div class="podium-card">
-            <span class="podium-avatar">${rank2.avatar || '🦊'}</span>
+          <!-- Rank 2 (Left, Silver) -->
+          <div class="podium-card podium-silver ${rank2.studentName === '虚位以待' ? 'podium-empty' : ''}">
+            <div class="podium-laurel-wreath laurel-silver">🌿</div>
+            <div class="podium-avatar-frame frame-silver">
+              ${renderPodiumAvatar(rank2)}
+            </div>
             <span class="podium-rank-badge podium-rank-2">🥈 榜眼第 2 名</span>
-            <strong class="podium-student-name">${rank2.studentName}</strong>
-            <span class="podium-form-label">${rank2.form}</span>
-            <span class="podium-score">${rank2.score} EXP</span>
+            <strong class="podium-student-name">${escapeHtml(rank2.studentName)}</strong>
+            <span class="podium-form-label">${escapeHtml(rank2.form || '-')}</span>
+            <span class="podium-score">${Number(rank2.score || 0).toLocaleString()} EXP</span>
+            <div class="podium-pedestal-base base-silver"><span class="podium-num">2</span></div>
           </div>
 
-          <!-- Rank 1 (Center, Elevated) -->
-          <div class="podium-card podium-first">
-            <span class="podium-crown">👑</span>
-            <span class="podium-avatar">${rank1.avatar || '🦁'}</span>
+          <!-- Rank 1 (Center, Gold Champion) -->
+          <div class="podium-card podium-first podium-gold ${rank1.studentName === '虚位以待' ? 'podium-empty' : ''}">
+            <div class="podium-crown-3d">👑</div>
+            <div class="podium-laurel-wreath laurel-gold">🌾</div>
+            <div class="podium-avatar-frame frame-gold">
+              ${renderPodiumAvatar(rank1)}
+            </div>
             <span class="podium-rank-badge podium-rank-1">🥇 状元第 1 名</span>
-            <strong class="podium-student-name">${rank1.studentName}</strong>
-            <span class="podium-form-label">${rank1.form}</span>
-            <span class="podium-score">${rank1.score} EXP</span>
+            <strong class="podium-student-name">${escapeHtml(rank1.studentName)}</strong>
+            <span class="podium-form-label">${escapeHtml(rank1.form || '-')}</span>
+            <span class="podium-score">${Number(rank1.score || 0).toLocaleString()} EXP</span>
+            <div class="podium-pedestal-base base-gold"><span class="podium-num">1</span></div>
           </div>
 
-          <!-- Rank 3 (Right) -->
-          <div class="podium-card">
-            <span class="podium-avatar">${rank3.avatar || '🐼'}</span>
+          <!-- Rank 3 (Right, Bronze) -->
+          <div class="podium-card podium-bronze ${rank3.studentName === '虚位以待' ? 'podium-empty' : ''}">
+            <div class="podium-laurel-wreath laurel-bronze">🌿</div>
+            <div class="podium-avatar-frame frame-bronze">
+              ${renderPodiumAvatar(rank3)}
+            </div>
             <span class="podium-rank-badge podium-rank-3">🥉 探花第 3 名</span>
-            <strong class="podium-student-name">${rank3.studentName}</strong>
-            <span class="podium-form-label">${rank3.form}</span>
-            <span class="podium-score">${rank3.score} EXP</span>
+            <strong class="podium-student-name">${escapeHtml(rank3.studentName)}</strong>
+            <span class="podium-form-label">${escapeHtml(rank3.form || '-')}</span>
+            <span class="podium-score">${Number(rank3.score || 0).toLocaleString()} EXP</span>
+            <div class="podium-pedestal-base base-bronze"><span class="podium-num">3</span></div>
           </div>
         `;
 

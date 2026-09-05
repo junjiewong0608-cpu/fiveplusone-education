@@ -13,7 +13,7 @@ const PERMANENT_INTERACTION_ROOMS = [
   { roomId: 'WSPRIMARY', roomName: '5+1 菁英校区', ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'uk-trip', memberLimit: 30 },
   { roomId: 'LEARNERS2026', roomName: "5+1 荣耀研习社", ownerStudentId: '510000', ownerName: '5+1教育补习中心', mapSetId: 'beijing-trip', memberLimit: 30 }
 ];
-const SUPABASE_FUNCTION_URL = process.env.SUPABASE_FUNCTION_URL || 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/cy-pets-api';
+const SUPABASE_FUNCTION_URL = process.env.SUPABASE_FUNCTION_URL || 'https://YOUR_SUPABASE_PROJECT_REF.supabase.co/functions/v1/fiveplusone-education-api';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'YOUR_PUBLIC_FUNCTION_KEY';
 const SUPABASE_ROOM_TIMEOUT_MS = 30000;
 const SUPABASE_ROOM_ACTION_MAP = Object.freeze({
@@ -51,6 +51,7 @@ const CANONICAL_STUDENT_ID_MAP = Object.freeze({
   CY1019: 'CY0004',
   CY5678: 'CY0016',
   CY8868: 'CY0015',
+  CY4257: 'FPO4257',
   ET2322: 'CY0000'
 });
 

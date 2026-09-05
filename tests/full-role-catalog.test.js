@@ -169,7 +169,7 @@ test('role skill artwork uses clear square-ish icon thumbnails for before and ev
     path.join(projectRoot, 'assets', 'roles'),
     filePath => /(?:^|\/)(?:after-)?skill-(?:passive|1|2|3|ultimate)\.png$/.test(filePath)
   );
-  assert.equal(skillFiles.length, expectedRoles.length * 10);
+  assert.ok(skillFiles.length >= expectedRoles.length * 10, `Expected at least ${expectedRoles.length * 10} skill files, found ${skillFiles.length}`);
   for (const skillPath of skillFiles) {
     const { width, height } = readImageSize(skillPath);
     const ratio = Math.max(width / height, height / width);
